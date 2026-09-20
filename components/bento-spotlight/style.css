@@ -1,0 +1,203 @@
+:root {
+	--color-bg: #000000;
+	--color-surface: #1a1a1a;
+	--color-white: #ffffff;
+	--color-red: #ff3b30;
+	--color-muted: #8a8a8a;
+
+	color-scheme: dark;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: var(--color-bg);
+	color: var(--color-white);
+	font-family: 'Hanken Grotesk', system-ui, sans-serif;
+}
+
+h1,
+h2 {
+	font-family: 'Bricolage Grotesque', 'Hanken Grotesk', system-ui, sans-serif;
+	margin: 0;
+}
+
+p {
+	margin: 0;
+}
+
+.page {
+	max-width: 64rem;
+	margin: 0 auto;
+	padding: 3.5rem 1.5rem 4rem;
+}
+
+.page__intro {
+	text-align: center;
+	margin-bottom: 2.5rem;
+}
+.page__intro h1 {
+	font-size: clamp(1.8rem, 5vw, 2.6rem);
+}
+.page__lead {
+	color: var(--color-muted);
+	max-width: 34rem;
+	margin: 0.75rem auto 0;
+	line-height: 1.5;
+}
+
+/* Griglia bento: 4 colonne, tessere di dimensioni diverse invece del solito
+   elenco puntato uniforme — la tessera grande fa da punto d'appoggio
+   visivo, le altre riempiono lo spazio attorno. */
+.bento-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-auto-rows: minmax(9rem, auto);
+	gap: 1rem;
+}
+
+.bento-tile {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.5rem;
+	padding: 1.5rem;
+	background: var(--color-surface);
+	border: 1px solid #2a2a2a;
+	border-radius: 16px;
+	animation: tile-in 0.5s ease backwards;
+	animation-delay: var(--delay, 0ms);
+}
+@keyframes tile-in {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Spotlight: un pseudo-elemento con un gradiente radiale centrato su --x/--y,
+   aggiornate da script.js al passaggio del mouse. A riposo è invisibile
+   (opacity 0): niente JS per nasconderlo, lo fa il CSS su :hover. */
+.bento-tile::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(28rem circle at var(--x, 50%) var(--y, 50%), rgba(255, 59, 48, 0.16), transparent 60%);
+	opacity: 0;
+	transition: opacity 0.4s ease;
+	pointer-events: none;
+}
+.bento-tile:hover::before {
+	opacity: 1;
+}
+
+.bento-tile--hero {
+	grid-column: span 2;
+	grid-row: span 2;
+	justify-content: flex-end;
+}
+.bento-tile--wide {
+	grid-column: span 2;
+}
+
+.bento-tile__icon {
+	width: 1.75rem;
+	height: 1.75rem;
+	color: var(--color-red);
+	flex-shrink: 0;
+}
+.bento-tile--hero .bento-tile__icon {
+	width: 2.2rem;
+	height: 2.2rem;
+}
+
+.bento-tile__title {
+	font-size: 1.05rem;
+	position: relative;
+	z-index: 1;
+}
+.bento-tile--hero .bento-tile__title {
+	font-size: 1.4rem;
+}
+
+.bento-tile__text {
+	color: var(--color-muted);
+	font-size: 0.88rem;
+	line-height: 1.5;
+	position: relative;
+	z-index: 1;
+}
+
+/* Reveal al hover: dimostra l'evoluzione "bento 2.0", dove passare sopra
+   una tessera non cambia solo colore ma rivela altro contenuto. Solo
+   max-height/opacity animati (mai display), per una transizione fluida. */
+.bento-tile__more {
+	position: relative;
+	z-index: 1;
+	color: var(--color-muted);
+	font-size: 0.85rem;
+	line-height: 1.5;
+	max-height: 0;
+	opacity: 0;
+	overflow: hidden;
+	transition:
+		max-height 0.4s ease,
+		opacity 0.3s ease;
+}
+.bento-tile--hero:hover .bento-tile__more {
+	max-height: 8rem;
+	opacity: 1;
+	margin-top: 0.25rem;
+}
+
+.page__note {
+	margin-top: 2.5rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid #2a2a2a;
+	color: var(--color-muted);
+	font-size: 0.85rem;
+	line-height: 1.6;
+}
+.page__note code {
+	background: var(--color-surface);
+	padding: 0.1rem 0.4rem;
+	border-radius: 4px;
+	font-size: 0.82em;
+}
+
+@media (max-width: 42rem) {
+	.bento-grid {
+		grid-template-columns: 1fr;
+	}
+	.bento-tile--hero,
+	.bento-tile--wide {
+		grid-column: span 1;
+	}
+	.bento-tile--hero {
+		grid-row: span 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}

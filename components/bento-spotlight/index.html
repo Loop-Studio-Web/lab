@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bento Spotlight — Loop Studio Lab</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="page">
+			<div class="page__intro">
+				<h1>Perché scegliere noi</h1>
+				<p class="page__lead">
+					Una griglia "bento" per mettere in fila i punti di forza di un'attività in un colpo d'occhio,
+					invece del solito elenco puntato. Muovi il cursore sulle tessere.
+				</p>
+			</div>
+
+			<div class="bento-grid">
+				<article class="bento-tile bento-tile--hero">
+					<svg class="bento-tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+						<path
+							d="M12 2.5l2.4 5.6 6.1.6-4.6 4.1 1.4 6-5.3-3.2-5.3 3.2 1.4-6-4.6-4.1 6.1-.6z"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.4"
+							stroke-linejoin="round" />
+					</svg>
+					<h2 class="bento-tile__title">Un sito che si nota</h2>
+					<p class="bento-tile__text">
+						Design su misura per il tuo brand, non un modello scaricato e riempito a caso: la prima
+						impressione conta più di quanto sembri.
+					</p>
+					<p class="bento-tile__more">
+						Ogni sezione è pensata per il pubblico specifico di quel settore — un dentista e un
+						concessionario non devono comunicare allo stesso modo, e nemmeno i loro siti.
+					</p>
+				</article>
+
+				<article class="bento-tile bento-tile--wide">
+					<svg class="bento-tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+						<path
+							d="M13 2 3 14h7l-1 8 11-14h-8z"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+							stroke-linejoin="round" />
+					</svg>
+					<h2 class="bento-tile__title">Veloce su ogni dispositivo</h2>
+					<p class="bento-tile__text">Caricamento immediato, anche su una connessione mobile debole.</p>
+				</article>
+
+				<article class="bento-tile">
+					<svg class="bento-tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+						<path
+							d="M12 2.5l7.5 3v5.2c0 5-3.2 8.6-7.5 10.8-4.3-2.2-7.5-5.8-7.5-10.8V5.5z"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+							stroke-linejoin="round" />
+					</svg>
+					<h2 class="bento-tile__title">Sicuro dal primo giorno</h2>
+					<p class="bento-tile__text">HTTPS, aggiornamenti e nessuna sorpresa in produzione.</p>
+				</article>
+
+				<article class="bento-tile">
+					<svg class="bento-tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+						<circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6" />
+						<path d="M15.5 15.5 21 21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+					</svg>
+					<h2 class="bento-tile__title">Pensato per Google</h2>
+					<p class="bento-tile__text">SEO tecnica curata fin dal primo commit, non aggiunta alla fine.</p>
+				</article>
+
+				<article class="bento-tile bento-tile--wide">
+					<svg class="bento-tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+						<path
+							d="M4 18v-2a4 4 0 0 1 4-4h1M20 18v-2a4 4 0 0 0-4-4h-1M9.5 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM14.5 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+							stroke-linecap="round"
+							stroke-linejoin="round" />
+					</svg>
+					<h2 class="bento-tile__title">Assistenza reale</h2>
+					<p class="bento-tile__text">Una persona che risponde, non un ticket che sparisce nel nulla.</p>
+				</article>
+
+				<article class="bento-tile bento-tile--wide">
+					<svg class="bento-tile__icon" viewBox="0 0 24 24" aria-hidden="true">
+						<path
+							d="M4 12a8 8 0 0 1 13.66-5.66M20 12a8 8 0 0 1-13.66 5.66"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+							stroke-linecap="round" />
+						<path
+							d="M17.5 4v3.2h-3.2M6.5 20v-3.2h3.2"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+							stroke-linecap="round"
+							stroke-linejoin="round" />
+					</svg>
+					<h2 class="bento-tile__title">Sempre aggiornato</h2>
+					<p class="bento-tile__text">Il sito resta al passo nel tempo, non fermo al giorno della consegna.</p>
+				</article>
+			</div>
+
+			<p class="page__note">
+				Griglia CSS con tessere di dimensioni diverse ("bento", dal contenitore del pranzo giapponese) e una
+				luce che segue il cursore su ogni tessera — un solo listener su tutta la griglia, aggiornato con
+				<code>requestAnimationFrame</code> per restare fluido. Nessuna libreria: solo CSS Grid, custom
+				property e un gradiente radiale. Pattern riusabile per una sezione "perché scegliere noi", i servizi
+				offerti o una panoramica prodotti — su qualunque sito, a prescindere dal settore.
+			</p>
+		</main>
+	</body>
+</html>
