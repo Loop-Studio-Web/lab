@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Matemasie&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@property --progress {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+
+body {
+  min-height: 100svh;
+  font-family: "Open Sans", sans-serif;
+  background-color: #222;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circular-progress {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background: conic-gradient(
+    var(--clr) calc(var(--progress) * 3.6deg),
+    #eee 0deg
+  );
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: progressAnim 2s forwards;
+}
+
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  background-color: #222;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circular-progress span {
+  font-size: 3rem;
+  color: #fff;
+  z-index: 1;
+}
+
+@-moz-document url-prefix() {
+  .circular-progress {
+    animation: progressAnimFirefox 2s forwards;
+  }
+}
+
+@keyframes progressAnimFirefox {
+  0% {
+    --progress: 0;
+  }
+  100% {
+    --progress: 70;
+  }
+}
+
+@keyframes progressAnim {
+  0% {
+    --progress: 0;
+  }
+
+  100% {
+    --progress: var(--value);
+  }
+}
