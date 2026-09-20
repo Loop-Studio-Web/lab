@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@6..144,400;6..144,700&family=Hanken+Grotesk:wght@400;500;600&display=swap");
+
+:root {
+  --color-black: #000000;
+  --color-red: #ff3b30;
+  --color-white: #ffffff;
+  --color-grey: #8a8a8a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Hanken Grotesk", sans-serif;
+  height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 35%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 200;
+}
+
+header .logo img {
+  display: block;
+  height: 26px;
+  width: auto;
+  background-color: #fffc;
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+header nav ul {
+  display: flex;
+  gap: 2em;
+  list-style: none;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+header nav ul li a:hover {
+  color: var(--color-red);
+}
+
+@media screen and (max-width: 680px) {
+  header {
+    width: auto;
+    height: 52px;
+    padding: 0 16px;
+  }
+
+  header nav {
+    display: none;
+  }
+}
+
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.left-slide {
+  height: 100%;
+  width: 35%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s ease-in-out;
+}
+
+.left-slide > div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.left-slide > div:nth-child(1) {
+  background: linear-gradient(160deg, var(--color-black) 0%, #b99f8a 160%);
+}
+.left-slide > div:nth-child(2) {
+  background: linear-gradient(160deg, var(--color-black) 0%, #354f32 160%);
+}
+.left-slide > div:nth-child(3) {
+  background: linear-gradient(160deg, var(--color-black) 0%, #657e85 160%);
+}
+.left-slide > div:nth-child(4) {
+  background: linear-gradient(160deg, var(--color-black) 0%, #2b2e32 160%);
+}
+
+.left-slide .tag {
+  color: var(--color-red);
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+
+.left-slide h1 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 40px;
+  color: var(--color-white);
+}
+
+.right-slide {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 35%;
+  width: 65%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.right-slide > div {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  background-color: var(--color-white);
+  border: none;
+  color: var(--color-grey);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px;
+}
+
+button:hover {
+  color: var(--color-red);
+}
+
+button:focus {
+  outline: none;
+}
+
+.slider-container .action-buttons button {
+  position: absolute;
+  left: 35%;
+  top: 50%;
+  z-index: 100;
+}
+
+.slider-container .action-buttons .down-button {
+  transform: translateX(-100%);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.slider-container .action-buttons .up-button {
+  transform: translateY(-100%);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
