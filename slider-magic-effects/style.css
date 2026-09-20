@@ -1,0 +1,302 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 15px;
+  background-color: darkslategray;
+}
+
+svg {
+  color: #fff;
+}
+
+:root {
+  --width-df: min(1200px, 90vh);
+  --diameter: 500px;
+}
+
+header {
+  width: var(--width-df);
+  height: 70px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  background-color: #eee5;
+  border: 1px solid #eee9;
+  border-radius: 8px;
+  padding: 4px 10px;
+}
+
+.logo {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+.slider {
+  color: #eee;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: -70px;
+  position: relative;
+}
+
+.slider .list .item {
+  position: absolute;
+  inset: 0 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider .list .item .content {
+  position: absolute;
+  top: 20%;
+  width: max-content;
+  display: grid;
+  grid-template-columns: repeat(2, 400px);
+  gap: 80px;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-family: "Poppins";
+  text-shadow: 0 0 80px #000;
+}
+
+.slider .list .item .content h2 {
+  font-size: 10em;
+  font-family: "Bebas Neue";
+  line-height: 0.9em;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.slider .list .content p:last-child {
+  display: flex;
+  align-items: end;
+  padding-bottom: 25px;
+}
+
+.slider .list .image {
+  flex-shrink: 0;
+  width: var(--diameter);
+  height: var(--diameter);
+  background-image: var(--url);
+  background-position: center;
+  background-size: var(--diameter) var(--diameter);
+  border-radius: 50%;
+  position: relative;
+}
+
+.slider .list .item .image::before,
+.slider .list .item .image::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background-image: linear-gradient(to right, #0004, #0004), var(--url);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-position: center;
+  background-size: var(--diameter) var(--diameter);
+}
+
+.slider .list .item .image::after {
+  width: 30%;
+  height: 30%;
+  background-image: var(--url);
+}
+
+.slider .list .content h2 {
+  transform: translateY(-100%);
+  transition: transform 1s;
+}
+
+.slider .list .item .image {
+  transform: rotate(-60deg);
+  filter: blur(30px);
+  transition: 1s;
+}
+
+.slider .list .item .image::before {
+  transform: translate(-50%, -50%) rotate(-120deg);
+  transition: transform 1s;
+}
+
+.slider .list .item .image::after {
+  transform: translate(-50%, -50%) rotate(-170deg);
+  transition: transform 1s;
+}
+
+.slider .list .item {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.slider .list .item.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slider .list .item.active .content h2 {
+  transform: translateY(0);
+}
+
+.slider .list .item.active .image {
+  transform: rotate(0);
+  filter: blur(0);
+}
+
+.slider .list .item.active .image::before,
+.slider .list .item.active .image::after {
+  transform: translate(-50%, -50%) rotate(0);
+}
+
+.slider .list .item.active ~ .item {
+  opacity: 0;
+}
+
+.slider .list .item.active ~ .item .content h2 {
+  transform: translateY(100%);
+}
+
+.slider .list .item.active ~ .item .image {
+  transform: rotate(60deg);
+  filter: blur(30px);
+}
+
+.slider .list .item.active ~ .item .image::before {
+  transform: translate(-50%, -50%) rotate(120deg);
+}
+
+.slider .list .item.active ~ .item .image::after {
+  transform: translate(-50%, -50%) rotate(170deg);
+}
+
+.arrows {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
+  width: var(--width-df);
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.arrows button {
+  all: unset;
+  cursor: pointer;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease, transform 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.arrows button svg {
+  width: 28px;
+  height: 28px;
+  color: #fff;
+}
+
+.arrows button svg path:last-child {
+  opacity: 0.45;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.arrows button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.08);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.arrows button:active {
+  transform: scale(0.94);
+}
+
+#next:hover svg path:last-child {
+  transform: translateX(4px);
+  opacity: 0.85;
+}
+
+#prev:hover svg path:last-child {
+  transform: translateX(-4px);
+  opacity: 0.85;
+}
+
+.slider .list::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1000px, 100vw);
+  background-image: url(img/model.png);
+  height: 70%;
+  background-size: cover;
+  background-position: top;
+  pointer-events: none;
+  animation: showModel 1s ease-in-out 1 forwards;
+}
+
+@keyframes showModel {
+  from {
+    transform: translateX(-50%) scale(1.5) translateY(88px);
+  }
+}
+
+@media all and (max-width: 1024px) {
+  .slider .list .item .content {
+    grid-template-columns: repeat(2, 300px);
+    gap: 100px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .slider .list .item .content {
+    grid-template-columns: 80vw;
+    gap: 20px;
+    top: 70px;
+  }
+
+  .slider .list .item .content h2 {
+    font-size: 4em;
+  }
+
+  .slider .list .item .content p {
+    font-size: small;
+    text-align: right;
+    padding-left: 30%;
+    transform: translateY(-30px);
+  }
+}

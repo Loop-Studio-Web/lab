@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider Magic Effects</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <link
+      rel="shortcut icon"
+      href="img/slider-vertical-svgrepo-com.svg"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <main>
+      <header>
+        <a
+          href="https://theloopstudio.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="logo-link"
+        >
+          <img src="img/loop_studio.png" alt="Loop Studio" class="logo" />
+        </a>
+        <nav>
+          <svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="2"
+              d="M5 7h14M5 12h14M5 17h14"
+            />
+          </svg>
+        </nav>
+      </header>
+
+      <section class="slider">
+        <div class="list">
+          <div class="item active">
+            <div class="image" style="--url: url('img/1.jpg')"></div>
+            <div class="content">
+              <h2>Slider Image Magic</h2>
+              <p>
+                Layered mountain ridges fade into blue haze as the last
+                light breaks through the clouds.
+              </p>
+              <p>Alpine dusk.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="image" style="--url: url('img/2.jpg')"></div>
+            <div class="content">
+              <h2>Slider Image Magic</h2>
+              <p>
+                A quiet river cuts through the hills as the valley settles
+                into evening light.
+              </p>
+              <p>River valley.</p>
+            </div>
+          </div>
+          <div class="item">
+            <div class="image" style="--url: url('img/3.jpg')"></div>
+            <div class="content">
+              <h2>Slider Image Magic</h2>
+              <p>
+                Clouds spill over the ridge at sunrise, rolling across the
+                highlands like a tide.
+              </p>
+              <p>Cloud sea.</p>
+            </div>
+          </div>
+        </div>
+        <div class="arrows">
+          <button id="prev" aria-label="Previous slide">
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M17 5l-7 7 7 7"
+              />
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M11 5l-7 7 7 7"
+              />
+            </svg>
+          </button>
+          <button id="next" aria-label="Next slide">
+            <svg
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M7 5l7 7-7 7"
+              />
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M13 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

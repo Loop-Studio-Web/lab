@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkyTracker — by Loop Studio</title>
+    <link
+      rel="shortcut icon"
+      href="img/favicon-32x32.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="hero-band">
+      <header class="site-header">
+        <a class="brand" href="https://theloopstudio.org" target="_blank" rel="noopener">
+          <img src="img/loop_nero.png" alt="Loop Studio" class="brand__logo" />
+        </a>
+        <nav class="site-nav">
+          <a href="https://theloopstudio.org">Home</a>
+          <a href="https://theloopstudio.org/contatti">Contatti</a>
+          <a href="https://theloopstudio.org/portfolio">Portfolio</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1 class="app-title">Sky<span>Tracker</span></h1>
+        <div class="search-box">
+          <input
+            type="text"
+            class="input-search"
+            placeholder="Cerca una città..."
+          />
+          <button type="button" class="btn-search" aria-label="Cerca">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <main>
+      <section class="weather-card" aria-live="polite">
+        <div class="weather-main">
+          <div class="weather-main__location">
+            <p class="weather-info__city"></p>
+            <p class="weather-info__day-date">
+              <span class="weather-info__day"></span>
+              <span class="weather-info__date"></span>
+            </p>
+          </div>
+          <div class="weather-main__condition">
+            <div class="weather-info__icon"></div>
+            <p class="weather-info__description"></p>
+          </div>
+          <div class="weather-main__temp">
+            <p class="weather-info__temperature"></p>
+            <p class="weather-info__units">
+              <span class="weather-info__units-c"></span>
+              <span class="weather-info__units-f"></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="weather-details">
+          <div class="detail feels-like">
+            <img src="img/temperature-feels-like-svgrepo-com.svg" alt="" />
+            <div>
+              <p>Percepita</p>
+              <span></span>
+            </div>
+          </div>
+          <div class="detail humidity">
+            <img src="img/humidity-svgrepo-com.svg" alt="" />
+            <div>
+              <p>Umidità</p>
+              <span></span>
+            </div>
+          </div>
+          <div class="detail rain">
+            <img src="img/rain-svgrepo-com.svg" alt="" />
+            <div>
+              <p>Probabilità pioggia</p>
+              <span></span>
+            </div>
+          </div>
+          <div class="detail wind">
+            <img src="img/wind-svgrepo-com.svg" alt="" />
+            <div>
+              <p>Vento</p>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="forecast">
+        <article class="forecast-card next-days-info-day1">
+          <p class="day"></p>
+          <div class="icon-next-day"></div>
+          <p class="max-temp"></p>
+          <p class="min-temp"></p>
+        </article>
+        <article class="forecast-card next-days-info-day2">
+          <p class="day"></p>
+          <div class="icon-next-day"></div>
+          <p class="max-temp"></p>
+          <p class="min-temp"></p>
+        </article>
+      </section>
+
+      <p class="error-message" hidden></p>
+    </main>
+
+    <footer>
+      <p>SkyTracker © 2026 — un esperimento <a href="https://theloopstudio.org">Loop Studio</a></p>
+      <a class="attribution" href="https://www.weatherapi.com/" title="Free Weather API">
+        <img
+          src="//cdn.weatherapi.com/v4/images/weatherapi_logo.png"
+          alt="Weather data by WeatherAPI.com"
+        />
+      </a>
+    </footer>
+  </body>
+</html>
