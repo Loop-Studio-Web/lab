@@ -10,9 +10,9 @@ Spiegare cosa si fa e perché (l'autore è alle prime armi con Astro), critiche 
 ## Flusso di lavoro
 
 Si procede a **lotti**: ogni lotto si costruisce, si mostra all'autore (link `http://localhost:8765/components/<id>/`),
-si raccolgono le correzioni, poi il lotto dopo. **Niente collaudi formali durante le iterazioni.** Alla fine:
-Impeccable `detect` + `critique`, axe, Lighthouse, poi scheda di progetto/README. **Commit solo con l'ok
-dell'autore, push solo dopo il via esplicito** (il deploy parte dal push su `main`).
+si raccolgono le correzioni, poi il lotto dopo. **Collaudi sul Lab (regola dell'autore, 22/10/2026): niente test formali**
+(niente Impeccable `detect`/`critique`, niente Lighthouse locale): solo **axe** e **PageSpeed Insights con la chiave**, DOPO il
+deploy, sulle pagine online. **Commit solo con l'ok dell'autore, push solo dopo il via esplicito** (il deploy parte dal push su `main`).
 
 ## Struttura
 
@@ -29,8 +29,9 @@ dell'autore, push solo dopo il via esplicito** (il deploy parte dal push su `mai
 - `components/<id>/`: `index.html` (+ `style.css`, `script.js`, `img/`, `video/`, `fonts/` se servono). Ogni scheda apribile da sola.
 - Ogni pagina nuova: `<link rel="stylesheet" href="../_shared/base.css">`, `<link rel="icon" href="data:,">`, `<html lang="it">`,
   titolo "Nome — Loop Studio Lab", `<main class="demo">`, il tag script di `studio.js`.
-- Sito madre: `src/data/lab-components.ts` (array ordinato a mano: id, title, category, description, previewUrl) + `src/pages/lab.astro`
-  (filtro categorie, badge conteggio). **Ancora invariati**: puntano alle vecchie versioni online; si aggiornano alla chiusura.
+- Sito madre: `src/data/lab-components.ts` (28 schede, array ordinato a mano: id = nome cartella, title, category, description,
+  previewUrl) + `src/pages/lab.astro` (filtro categorie, badge conteggio). Il modal del sito ha `allow="clipboard-write"`.
+  Categorie: Layout, Navigazione, Interazione, Form, Card, Feedback, Effetti, Galleria e media.
 
 ## Regole di costruzione (valgono per tutte le schede)
 
@@ -67,7 +68,7 @@ dell'autore, push solo dopo il via esplicito** (il deploy parte dal push su `mai
 
 - `C:\Users\utente\Documents\Assets\Lab_Componenti\`: `fonts/` (+`licenses/`), `photos-candidate/`, `photos-new/` (+`photos-new-list.txt` con i fotografi),
   `svg/` (flask, backpack, leaves, marchi, prezzi-*, biscotto), `icons/` (Lucide), `cutouts/`, `out/img` e `out/video`, `video/` (≤0,9 MB, muti),
-  `video-src/` (originali 4K, NON pubblicare), `CREDITS.md`, `_work/` (screenshot di verifica), `_tmp/`, `_build/` (script).
+  `video-src/` (originali 4K, NON pubblicare), `CREDITS.md`, `_build/` (script).
   Crediti: solo la fonte (Unsplash/Pexels), mai per singola foto. Idee sorgente: `C:\Users\utente\Documents\Assets\Vetrine\Ispiration_Components`
   (txt e zip CodePen "free to use"; i loro testi/font/immagini remoti vanno sostituiti con nostri).
 - **Server di prova**: `python -m http.server 8765` dalla radice del Lab, in background (porta libera prima; fermare solo il processo avviato da noi, mai `taskkill /IM`).
@@ -79,34 +80,24 @@ dell'autore, push solo dopo il via esplicito** (il deploy parte dal push su `mai
 
 ## Stato del rinnovo dei Componenti (aggiornato 2026-10-22)
 
-Rinnovo della sezione Componenti (gli Esperimenti vengono dopo). Fasi 1-3 (concept, struttura, asset) chiuse e approvate.
-**Committato in locale il 22/10 (Lab lotti 1-3 `3e40adc`, lotto 4 nel commit successivo; sito `070bb23`) ma NON pushato: si pusha tutto a fine chiusura**, dopo il via esplicito (controllare prima l'allineamento git su entrambe le repo). Il sito (`lab-components.ts`) è ancora quello vecchio.
+Rinnovo chiuso a livello di codice: **28 schede**, le 14 vecchie eliminate senza recuperi (restano solo nella storia di git).
+Tutto **committato/pronto in locale ma NON pushato** (Lab: lotti 1-4 + chiusura; sito: `lab-components.ts` nuovo, `allow="clipboard-write"`,
+testi di `lab.astro`). Si pusha dopo il via esplicito, controllando prima l'allineamento git su entrambe le repo; il sito va pushato
+DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle su GitHub Pages.
 
-- **Lotto 1 (approvato)**: bento-spotlight, toast-notification, sticky-navbar, rotating-image-gallery, video-trailer-popup.
-- **Lotto 2 (approvato)**: bottoni, like, interruttori, hamburger, campi-testo, loader, prezzi-toggle, tab-segmented, stepper-timeline, cookie.
-- **Lotto 3 (approvato 22/10)**: card, flip-card, bordi-animati, sfondi, cursori, galleria-fisarmonica, marquee-loghi. Con il marchio vero (borraccia, zaini, tessera, scontrino) e la firma dello studio. Cursori: SVG degli animali (da Download dell'autore) dentro un cerchio piccolo con il nome sotto.
-- **Lotto 4: APPROVATO e committato il 22/10 (6 schede). Prossimo: chiusura (vedi sotto).** Orario-arco ha la demo d'ingresso `data-sweep` solo sulla prima istanza (si ferma al primo tocco). Il lotto 4 chiude la lista: 28 schede, scartate le 14 vecchie senza sostituto diretto (sibling-fade, feedback-ui a emoji, popup-box di conferma: decisione dell'autore, nessun recupero). Scelte da ricordare: effetti-testo ha 9 effetti con
-  i due a scorrimento seguono lo scroll della PAGINA (`view-timeline: --card` sul riquadro, range `cover 0% → 45-50%`): provato prima con scroller proprio, scartato perché cattura la rotella a metà e taglia l'effetto, e dopo la fine obbliga a cliccare per rivederlo; campanella parte
-  ACCESA (miniatura più forte) e ha anche la campanella piccola con contatore; orario-arco ha due istanze (orario, durata) dallo stesso
-  codice; stelle-voto ha stelle ORO (non palette, riconoscibili) con media, voto a radio e mezze stelle; copia-appunti ripiega su
-  `execCommand` perché il modal del sito non ha `allow="clipboard-write"` (da valutare aggiungerlo a `ComponentPreviewModal.astro`).
-  Trappola nuova: un `<button>` eredita `text-align: center` e sposta i pseudo-elementi assoluti senza offset (campanella): `text-align: start`.
-  Sotto, la specifica originale del lotto (storico):
-  - **effetti-testo**, due sezioni. *Glitch*: glitch1 (hover, clip, `data-text`, foto di sfondo dal pool), glitch2 ("the deepend", Medula One, comparsa + clip casuale), glitch3 (20 passi di clip), glitch4 ("PSYCHO", Bungee Shade, `@property` + clip-path); la copia glitch è `aria-hidden`. *Altri*: unscramble scroll-driven (zip `2026-07-23-scroll-driven-text-unscramble-in-css`, Noto Sans Mono) e versione circolare "Round and round" (text_effect3): usano `sibling-index()`/`sibling-count()` (sperimentali) → mettere `--i`/`--count` inline come fallback, e funzionano solo se la pagina supera il box; ombra sfumata (text_effect1); lettere impilate (text_effect4, senza css-doodle); titolo con barre animate (text_effect4 bis, "Álvaro Montoro" → nome nostro). Font disponibili in `Assets/.../fonts`: medula-one, bungee-shade, noto-sans-mono, playwrite-is, cormorant, jura.
-  - **menu-hover** (text_effect5: voci con riflesso via `text-shadow` in hover/focus, Jura, categoria Navigazione), **campanella** (zip `2026-07-14-css-hyper-realistic-animated-glowing-bell`), **orario-arco** (`Time.txt`, Inter → Hanken; forse sotto Form), **stelle-voto** e **copia-appunti** (miei).
-  - Ognuna con `studio.js`, prima sezione forte a 1600×1000, reduced-motion, tastiera.
-- **Esperimenti (dopo)**: 5 slider a schermo intero sono troppi (ne terrei 2-3); la GSAP draggable zoom grid (zip `2026-07-14-draggable-zoom-grid-gallery-using-gsap`) = nuovo Esperimento con contenuto nostro. Anche gli Esperimenti vanno firmati con il logo.
+- **Lotti**: 1 bento-spotlight, toast-notification, sticky-navbar, rotating-image-gallery, video-trailer-popup · 2 bottoni, like, interruttori,
+  hamburger, campi-testo, loader, prezzi-toggle, tab-segmented, stepper-timeline, cookie · 3 card, flip-card, bordi-animati, sfondi, cursori,
+  galleria-fisarmonica, marquee-loghi · 4 effetti-testo, menu-hover, campanella, orario-arco, stelle-voto, copia-appunti.
+- **Scelte da ricordare (lotto 4)**: i due effetti di testo a scorrimento seguono lo scroll della PAGINA (`view-timeline: --card` sul riquadro,
+  range `cover 0% → 45-50%`; uno scroller proprio cattura la rotella a metà); `sibling-index()`/`sibling-count()` sono sperimentali, quindi `--i`/`--count`
+  inline come fallback. Campanella parte ACCESA (miniatura più forte). Orario-arco: due istanze dallo stesso codice, demo d'ingresso `data-sweep`
+  solo sulla prima. Stelle-voto: stelle ORO (non palette, riconoscibili). Copia-appunti: ripiega su `execCommand` se `clipboard-write` manca.
+  Trappola: un `<button>` eredita `text-align: center` e sposta i pseudo-elementi assoluti senza offset → `text-align: start`.
 
-## Chiusura (a fine lotto 4)
+## Prossimi passi
 
-1. Sito, `src/data/lab-components.ts`: 28 schede con id fissi, ordine curato (apertura con varietà), commento di testa aggiornato; facoltativo campo `variants`
-   ("7 varianti"). Categorie: Layout (bento-spotlight, prezzi-toggle, stepper-timeline), Navigazione (sticky-navbar, hamburger, menu-hover, tab-segmented),
-   Interazione (interruttori, bottoni, like), Form (campi-testo, orario-arco?), Card (card, flip-card, bordi-animati), Feedback (toast-notification, cookie,
-   loader, stelle-voto, copia-appunti), Effetti (effetti-testo, sfondi, cursori, campanella), Galleria e media (rotating-image-gallery, galleria-fisarmonica,
-   video-trailer-popup, marquee-loghi). Verificare anche i testi della pagina `/lab/` e la miniatura di ogni scheda.
-2. Questa repo: aggiornare `README.md` e `index.html` (elenco "Components (prototype)", con la firma dello studio); eliminare le vecchie cartelle
-   rimaste (auto-text-anim, bouncing-letter, button-ripple-effect, circular-progress-bar, circular-progress-bar2, click-effect, dark-mode-toggle,
-   dark-mode2, double-click-heart, feedback-ui, loading-bar, popup-box, responsive-navbar2, sibling-fade). Prima grep dei riferimenti (oggi solo
-   `lab-components.ts`, README e `index.html`). Le cartelle vecchie senza `base.css` NON hanno la firma: spariscono comunque.
-3. Dopo la bozza approvata: test formali (Impeccable `detect` + `critique`, axe, Lighthouse; prova su telefono vero; filtri SVG e `feTurbulence` su telefoni lenti),
-   poi scheda di progetto e README. Commit solo con l'ok, push solo dopo il via esplicito; controllare l'allineamento git su entrambe le repo.
+1. Via esplicito → push del Lab e del sito (deploy automatico); verificare la pagina `/lab/` online (28 card, filtri, miniature, modal "Prova dal vivo").
+2. **axe** e **PSI con la chiave** sulle pagine online (nessun altro collaudo). Prova su telefono vero a discrezione dell'autore; filtri SVG e
+   `feTurbulence` (sfondi, bordi) sono i candidati a rallentare su telefoni lenti.
+3. **Esperimenti** (dopo): 5 slider a schermo intero sono troppi (ne terrei 2-3); la GSAP draggable zoom grid (zip `2026-07-14-draggable-zoom-grid-gallery-using-gsap`)
+   = nuovo Esperimento con contenuto nostro. Anche gli Esperimenti vanno firmati con il logo (`studio.js`).

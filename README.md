@@ -37,14 +37,16 @@ The site is plain static files served as-is by GitHub Pages, so there is **no bu
 
 ## Components
 
-Twenty small prototypes in [`components/`](components), one folder each, usually a single HTML, CSS and JS file:
+Twenty-eight demo pages in [`components/`](components), one folder each (`index.html`, usually with its own CSS and JS). Most gather several variants of the same idea, so there are well over a hundred small pieces in all. Every page opens on its own, on a fixed dark stage, with real buttons, keyboard and touch support and `prefers-reduced-motion` respected. Shared base styles, fonts, photos and the studio signature live in [`components/_shared/`](components/_shared).
 
-- **Navigation:** sticky navbar, responsive navbar (offcanvas and dropdown)
-- **Feedback:** toast notification, popup box, feedback UI, loading bar, circular progress bar (two variants)
-- **Micro-interactions:** button ripple, click effect, double-click heart, bouncing letter, sibling fade, auto text animation
-- **Theming:** dark-mode toggle (two variants, one with a sun and moon)
-- **Media:** rotating image gallery, video trailer popup
-- **Layout:** [bento spotlight](components/bento-spotlight), a bento grid whose tiles light up under the cursor (also in its [own repo](https://github.com/Loop-Studio-Web/bento-spotlight))
+- **Layout:** [bento spotlight](components/bento-spotlight) (also in its [own repo](https://github.com/Loop-Studio-Web/bento-spotlight)), pricing toggle, stepper and timeline
+- **Navigation:** sticky navbar, hamburger, menu with reflection, tabs and segmented controls
+- **Interaction:** buttons, switches (light/dark), like
+- **Forms:** text fields, arc time picker, star rating
+- **Cards:** cards, flip cards
+- **Feedback:** toast, loaders and progress, cookie notice, copy to clipboard
+- **Effects:** animated backgrounds, text effects, cursors, animated borders, bell
+- **Gallery and media:** rotating 3D gallery, accordion gallery, video popup, logo marquee
 
 ## Using it
 
