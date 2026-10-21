@@ -98,9 +98,13 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
 
 ## Prossimi passi
 
-1. Fatto il 22/10: push di Lab (`377b310`) e sito, `/lab/` online verificato, **axe 0 violazioni** su `/lab/` + 28 schede (online), **PSI mobile**
-   `/lab/` 97/100/100/100 (LCP 2,5 s); schede campione 90-99 perf, a11y 100. Aperti, non bloccanti: **sfondi** CLS 0,198 e perf 90 su mobile
-   (altre schede CLS 0,075, probabile logo/font della firma); SEO 91 sulle schede = manca la meta description (sono demo in iframe).
+1. Fatto il 22/10: tutto pubblicato (ultimo Lab `4cb0971`), `/lab/` online verificato, **axe 0 violazioni** su `/lab/` + 28 schede, **PSI mobile**
+   `/lab/` 97, schede campione 98-100, a11y 100, **CLS 0** (era 0,198 su sfondi: misure del logo spostate in `base.css` + preload dei font).
+   SEO 91 sulle schede = manca la meta description (demo in iframe, ignorato).
+   **Aperto, noto**: `bordi-animati` mobile ~72 (TBT ~1,5 s). Non è il filtro elettrico: sono i due alone (`.glow`, filtro SVG
+   con `feMorphology`/blur + gradiente conico animato) che ricalcolano il bordo a ogni fotogramma sulla CPU; prima la sezione era fuori dal primo
+   schermo mobile e il punteggio sembrava 98. Già fatto: alone animato solo se in vista, un solo rumore per seme nell'elettrico. Stringere l'area dei
+   filtri non serve (misurato). Rimedi veri = cambiare tecnica (es. gradiente ruotato con `transform`, alone con `box-shadow`): decisione dell'autore.
 2. Prova su telefono vero a discrezione dell'autore; filtri SVG e `feTurbulence` (sfondi, bordi) sono i candidati a rallentare su telefoni lenti.
 3. **Esperimenti** (dopo): 5 slider a schermo intero sono troppi (ne terrei 2-3); la GSAP draggable zoom grid (zip `2026-07-14-draggable-zoom-grid-gallery-using-gsap`)
    = nuovo Esperimento con contenuto nostro. Anche gli Esperimenti vanno firmati con il logo (`studio.js`).
