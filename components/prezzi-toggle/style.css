@@ -62,8 +62,8 @@
 }
 .cta:active { transform: scale(0.97); }
 @media (hover: hover) and (pointer: fine) { .cta:hover { border-color: var(--muted); background: rgb(255 255 255 / 0.05); } }
-.cta--hot { background: var(--accent); border-color: var(--accent); }
-@media (hover: hover) and (pointer: fine) { .cta--hot:hover { background: var(--accent); filter: brightness(1.1); } }
+.cta--hot { background: var(--accent-strong); border-color: var(--accent-strong); }
+@media (hover: hover) and (pointer: fine) { .cta--hot:hover { background: var(--accent-strong); filter: brightness(1.1); } }
 
 /* ---------- Tre schede ---------- */
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: stretch; }
@@ -89,7 +89,7 @@
 	font-weight: 700;
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
-	background: var(--accent);
+	background: var(--accent-strong);
 	border-radius: 999px;
 }
 .plan__tag--inline { position: static; margin-left: 0.4rem; vertical-align: middle; }

@@ -23,6 +23,7 @@
 	--text: #ffffff;
 	--muted: #8a8a8a;
 	--accent: #ff3b30;
+	--accent-strong: #d42a20; /* rosso più cupo per sfondi con testo bianco (≈5:1) */
 
 	--font-display: 'Bricolage Grotesque', 'Hanken Grotesk', system-ui, sans-serif;
 	--font-text: 'Hanken Grotesk', system-ui, sans-serif;

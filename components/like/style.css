@@ -302,7 +302,7 @@ button {
 	padding: 0.45rem 0.9rem 0.45rem 0.75rem;
 	font: inherit;
 	font-weight: 700;
-	color: #878787;
+	color: #6b6b6b;
 	cursor: pointer;
 	background: #fff;
 	border: 2px solid #c7c7c7;
@@ -313,7 +313,7 @@ button {
 		transform 160ms var(--ease-out);
 }
 .pill:active { transform: scale(0.95); }
-.pill[aria-pressed='true'] { color: #ff6e6f; border-color: currentColor; }
+.pill[aria-pressed='true'] { color: #d42a20; border-color: currentColor; }
 .pill__icon {
 	position: relative;
 	display: block;

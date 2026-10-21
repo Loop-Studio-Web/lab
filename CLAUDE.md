@@ -53,6 +53,8 @@ deploy, sulle pagine online. **Commit solo con l'ok dell'autore, push solo dopo 
 
 ## Trappole già incontrate
 
+- **GitHub Pages usa Jekyll e ignora le cartelle che iniziano con `_`**: senza `.nojekyll` nella radice `components/_shared/` dà 404 online (in locale funziona, `http.server` non ha la regola). Il file c'è: non toglierlo. Dopo ogni push controllare la pagina ONLINE, non solo il locale.
+- Rosso con testo bianco: `--accent` (#ff3b30) dà solo 3,5:1; per sfondi con testo bianco usare `--accent-strong` (#d42a20, ≈5:1) come fa il sito madre.
 - `backdrop-filter` su un antenato fa da contenitore ai figli `position: fixed`: sfondo/blur su un `::before`.
 - Margin collapsing: margine verticale su figlio `display:block` esce dal genitore → genitore `display:flex/grid`.
 - Icone che ruotano (hamburger → X): righe `position:absolute; inset:50% auto auto 50%; translate:-50% -50%`.

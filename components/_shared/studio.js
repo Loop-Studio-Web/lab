@@ -25,7 +25,11 @@
 		return a;
 	};
 
-	document.body.prepend(link('studio-corner'));
+	// <nav> con etichetta: tiene il logo dentro un landmark (regola axe "region").
+	const corner = document.createElement('nav');
+	corner.setAttribute('aria-label', 'Loop Studio');
+	corner.append(link('studio-corner'));
+	document.body.prepend(corner);
 
 	const footer = document.createElement('footer');
 	footer.className = 'studio-mark';

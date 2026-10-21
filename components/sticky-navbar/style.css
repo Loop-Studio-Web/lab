@@ -73,7 +73,7 @@ html {
 .site-nav__links .site-nav__cta {
 	margin-left: 0.5rem;
 	color: var(--text);
-	background: var(--accent);
+	background: var(--accent-strong);
 	transition:
 		transform 160ms var(--ease-out),
 		filter 160ms ease;

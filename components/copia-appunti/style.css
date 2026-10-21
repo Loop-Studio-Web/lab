@@ -193,7 +193,7 @@
 	padding: 1.75rem 1.25rem;
 	text-align: center;
 	color: #fff;
-	background: var(--accent);
+	background: var(--accent-strong);
 	border-radius: 1rem 0 0 1rem;
 }
 .coupon__big {

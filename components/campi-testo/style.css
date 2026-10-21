@@ -281,6 +281,7 @@
 /* pieno */
 .fl--fill input { background: #262626; border-color: transparent; }
 .fl--fill input:focus { background: #2d2d2d; }
+.fl--fill > span { color: #a3a3a3; }
 /* pillola */
 .fl--pill input { border-radius: 2rem; padding-left: 1.4rem; }
 .fl--pill span { left: 1.4rem; }
