@@ -80,12 +80,18 @@ dell'autore, push solo dopo il via esplicito** (il deploy parte dal push su `mai
 ## Stato del rinnovo dei Componenti (aggiornato 2026-10-22)
 
 Rinnovo della sezione Componenti (gli Esperimenti vengono dopo). Fasi 1-3 (concept, struttura, asset) chiuse e approvate.
-**Committato in locale il 22/10 (Lab `3e40adc`, sito `070bb23`) ma NON pushato: si pusha tutto insieme alla fine del lotto 4**, dopo il via esplicito (controllare prima l'allineamento git su entrambe le repo). Il sito (`lab-components.ts`) è ancora quello vecchio.
+**Committato in locale il 22/10 (Lab lotti 1-3 `3e40adc`, lotto 4 nel commit successivo; sito `070bb23`) ma NON pushato: si pusha tutto a fine chiusura**, dopo il via esplicito (controllare prima l'allineamento git su entrambe le repo). Il sito (`lab-components.ts`) è ancora quello vecchio.
 
 - **Lotto 1 (approvato)**: bento-spotlight, toast-notification, sticky-navbar, rotating-image-gallery, video-trailer-popup.
 - **Lotto 2 (approvato)**: bottoni, like, interruttori, hamburger, campi-testo, loader, prezzi-toggle, tab-segmented, stepper-timeline, cookie.
 - **Lotto 3 (approvato 22/10)**: card, flip-card, bordi-animati, sfondi, cursori, galleria-fisarmonica, marquee-loghi. Con il marchio vero (borraccia, zaini, tessera, scontrino) e la firma dello studio. Cursori: SVG degli animali (da Download dell'autore) dentro un cerchio piccolo con il nome sotto.
-- **Da fare, lotto 4** (sorgenti già lette, nessun file scritto):
+- **Lotto 4: APPROVATO e committato il 22/10 (6 schede). Prossimo: chiusura (vedi sotto).** Orario-arco ha la demo d'ingresso `data-sweep` solo sulla prima istanza (si ferma al primo tocco). Il lotto 4 chiude la lista: 28 schede, scartate le 14 vecchie senza sostituto diretto (sibling-fade, feedback-ui a emoji, popup-box di conferma: decisione dell'autore, nessun recupero). Scelte da ricordare: effetti-testo ha 9 effetti con
+  i due a scorrimento seguono lo scroll della PAGINA (`view-timeline: --card` sul riquadro, range `cover 0% → 45-50%`): provato prima con scroller proprio, scartato perché cattura la rotella a metà e taglia l'effetto, e dopo la fine obbliga a cliccare per rivederlo; campanella parte
+  ACCESA (miniatura più forte) e ha anche la campanella piccola con contatore; orario-arco ha due istanze (orario, durata) dallo stesso
+  codice; stelle-voto ha stelle ORO (non palette, riconoscibili) con media, voto a radio e mezze stelle; copia-appunti ripiega su
+  `execCommand` perché il modal del sito non ha `allow="clipboard-write"` (da valutare aggiungerlo a `ComponentPreviewModal.astro`).
+  Trappola nuova: un `<button>` eredita `text-align: center` e sposta i pseudo-elementi assoluti senza offset (campanella): `text-align: start`.
+  Sotto, la specifica originale del lotto (storico):
   - **effetti-testo**, due sezioni. *Glitch*: glitch1 (hover, clip, `data-text`, foto di sfondo dal pool), glitch2 ("the deepend", Medula One, comparsa + clip casuale), glitch3 (20 passi di clip), glitch4 ("PSYCHO", Bungee Shade, `@property` + clip-path); la copia glitch è `aria-hidden`. *Altri*: unscramble scroll-driven (zip `2026-07-23-scroll-driven-text-unscramble-in-css`, Noto Sans Mono) e versione circolare "Round and round" (text_effect3): usano `sibling-index()`/`sibling-count()` (sperimentali) → mettere `--i`/`--count` inline come fallback, e funzionano solo se la pagina supera il box; ombra sfumata (text_effect1); lettere impilate (text_effect4, senza css-doodle); titolo con barre animate (text_effect4 bis, "Álvaro Montoro" → nome nostro). Font disponibili in `Assets/.../fonts`: medula-one, bungee-shade, noto-sans-mono, playwrite-is, cormorant, jura.
   - **menu-hover** (text_effect5: voci con riflesso via `text-shadow` in hover/focus, Jura, categoria Navigazione), **campanella** (zip `2026-07-14-css-hyper-realistic-animated-glowing-bell`), **orario-arco** (`Time.txt`, Inter → Hanken; forse sotto Form), **stelle-voto** e **copia-appunti** (miei).
   - Ognuna con `studio.js`, prima sezione forte a 1600×1000, reduced-motion, tastiera.

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Menu con riflesso — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Menu con riflesso</h1>
+				<p class="demo__lead">
+					Una voce di menu che, al passaggio o con la tastiera, proietta sopra e sotto di sé un’eco
+					sfumata del proprio testo. Solo <code>text-shadow</code>: niente elementi in più, niente JavaScript
+					per l’effetto.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Riflesso</h2>
+				<div class="stage">
+					<nav aria-label="Menu dimostrativo">
+						<ul class="menu" role="list">
+							<li><a href="#" data-demo-link>Chi siamo</a></li>
+							<li><a href="#" data-demo-link aria-current="page">Servizi</a></li>
+							<li><a href="#" data-demo-link>Portfolio</a></li>
+							<li class="cta"><a href="#" data-demo-link>Contatti</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Eco verso il basso</h2>
+				<div class="stage">
+					<nav aria-label="Menu dimostrativo con eco in basso">
+						<ul class="menu menu--down" role="list">
+							<li><a href="#" data-demo-link>Foto</a></li>
+							<li><a href="#" data-demo-link>Video</a></li>
+							<li><a href="#" data-demo-link>Social</a></li>
+							<li class="cta"><a href="#" data-demo-link>Preventivo</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Alone</h2>
+				<div class="stage">
+					<nav aria-label="Menu dimostrativo con alone">
+						<ul class="menu menu--halo" role="list">
+							<li><a href="#" data-demo-link>Studio</a></li>
+							<li><a href="#" data-demo-link>Lavori</a></li>
+							<li><a href="#" data-demo-link>Pacchetti</a></li>
+							<li class="cta"><a href="#" data-demo-link>Scrivici</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+			<p class="demo__note">
+				Sul touch non esiste il passaggio del mouse: un tocco segna la voce come attiva
+				(<code>aria-current</code>) e l’eco resta accesa. Con la tastiera (Tab) compare lo stesso effetto,
+				più una sottolineatura. I tre menu cambiano solo le variabili <code>--rgb</code> e le ombre.
+			</p>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Copia negli appunti — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Copia negli appunti</h1>
+				<p class="demo__lead">
+					Un clic e il testo è negli appunti, con una risposta chiara: l’icona diventa una spunta e il
+					pulsante lo dice a parole. Quattro posti dove serve davvero: un codice sconto, uno snippet,
+					i recapiti e un link da condividere.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Codice sconto</h2>
+				<div class="stage stage--coupon">
+					<div class="coupon">
+						<div class="coupon__offer">
+							<p class="coupon__big">−10%</p>
+							<p class="coupon__what">sul primo progetto</p>
+						</div>
+						<div class="coupon__code">
+							<p class="coupon__hint">Il tuo codice</p>
+							<p class="coupon__value" id="coupon-code">LOOP-2026</p>
+							<button type="button" class="copy copy--solid" data-copy-target="#coupon-code" data-done="Copiato!">
+								<span class="copy__label">Copia codice</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Blocco di codice</h2>
+				<div class="stage stage--code">
+					<figure class="snippet">
+						<figcaption class="snippet__bar">
+							<span>global.css</span>
+							<button type="button" class="copy copy--ghost" data-copy-target="#snippet-code" data-done="Copiato">
+								<span class="copy__label">Copia</span>
+							</button>
+						</figcaption>
+						<pre class="snippet__pre" tabindex="0"><code id="snippet-code"><span class="t-sel">:root</span> {
+  <span class="t-prop">--color-nero</span>: <span class="t-val">#000000</span>;
+  <span class="t-prop">--color-rosso</span>: <span class="t-val">#ff3b30</span>;
+  <span class="t-prop">--color-antracite</span>: <span class="t-val">#1a1a1a</span>;
+  <span class="t-prop">--font-titoli</span>: <span class="t-val">'Bricolage Grotesque'</span>, <span class="t-val">sans-serif</span>;
+}</code></pre>
+					</figure>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Recapiti</h2>
+				<div class="stage stage--rows">
+					<ul class="rows" role="list">
+						<li class="rows__item">
+							<span class="rows__key">Email</span>
+							<span class="rows__value">ciao@esempio.it</span>
+							<button type="button" class="copy copy--icon" data-copy="ciao@esempio.it" data-done="Copiata" aria-label="Copia l’email">
+								<span class="copy__tip" aria-hidden="true"></span>
+							</button>
+						</li>
+						<li class="rows__item">
+							<span class="rows__key">Telefono</span>
+							<span class="rows__value">+39 02 0000 0000</span>
+							<button type="button" class="copy copy--icon" data-copy="+39 02 0000 0000" data-done="Copiato" aria-label="Copia il telefono">
+								<span class="copy__tip" aria-hidden="true"></span>
+							</button>
+						</li>
+						<li class="rows__item">
+							<span class="rows__key">Indirizzo</span>
+							<span class="rows__value">Via dell’Esempio 1, Milano</span>
+							<button type="button" class="copy copy--icon" data-copy="Via dell’Esempio 1, Milano" data-done="Copiato" aria-label="Copia l’indirizzo">
+								<span class="copy__tip" aria-hidden="true"></span>
+							</button>
+						</li>
+						<li class="rows__item">
+							<span class="rows__key">Partita IVA</span>
+							<span class="rows__value">IT00000000000</span>
+							<button type="button" class="copy copy--icon" data-copy="IT00000000000" data-done="Copiata" aria-label="Copia la partita IVA">
+								<span class="copy__tip" aria-hidden="true"></span>
+							</button>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Link da condividere</h2>
+				<div class="stage stage--share">
+					<div class="share">
+						<label class="share__label" for="share-url">Condividi questo progetto</label>
+						<div class="share__field">
+							<input id="share-url" class="share__input" type="text" readonly value="https://theloopstudio.org/portfolio/" />
+							<button type="button" class="copy copy--solid" data-copy-target="#share-url" data-done="Copiato!">
+								<span class="copy__label">Copia link</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<p class="sr-only" role="status" data-copy-status></p>
+
+			<p class="demo__note">
+				Si prova prima <code>navigator.clipboard.writeText()</code>; se il browser lo nega (succede dentro un
+				iframe di un altro sito, come qui nel box “Prova dal vivo”) si ripiega su <code>execCommand('copy')</code>. Se
+				anche quello fallisce il testo viene selezionato e il pulsante dice “Copia a mano”. L’esito è annunciato
+				ai lettori di schermo da una regione <code>role="status"</code>.
+			</p>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

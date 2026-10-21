@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Campanella — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Campanella</h1>
+				<p class="demo__lead">
+					Il simbolo delle notifiche, in due misure: una campanella “realistica” fatta solo di
+					gradienti e ombre CSS, e quella piccola da barra di navigazione, con il contatore e lo scampanio.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Campanella con lampada</h2>
+				<div class="stage bell-scene" data-live>
+					<div class="bell-rig">
+						<button type="button" class="bell-container" aria-pressed="true" data-bell>
+							<span class="sr-only">Notifiche</span>
+							<span class="rope"></span>
+							<span class="bell-top"></span>
+
+							<span class="bell-base"></span>
+							<span class="bell-base"></span>
+							<span class="shadow-l1"></span>
+							<span class="shadow-l2"></span>
+							<span class="left-glow"></span>
+							<span class="left-glow2"></span>
+							<span class="r-glow"></span>
+							<span class="r-glow2"></span>
+							<span class="mid-ring"></span>
+							<span class="mid-ring small"></span>
+
+							<span class="glow"></span>
+							<span class="glow2"></span>
+
+							<span class="bell-buff-t"></span>
+							<span class="bell-buff"></span>
+
+							<span class="bell-btm"></span>
+							<span class="bell-btm2"></span>
+
+							<span class="bell-ring-container">
+								<span class="bell-ring"></span>
+								<span class="bell-rays"></span>
+							</span>
+
+							<span class="volumetric">
+								<span class="vl"></span>
+								<span class="vr"></span>
+							</span>
+						</button>
+					</div>
+					<div class="bell-pool" aria-hidden="true"></div>
+					<div class="grain" aria-hidden="true"></div>
+					<p class="bell-status" role="status" data-bell-status>Notifiche attive</p>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Campanella da barra</h2>
+				<div class="stage stage--mini">
+					<button type="button" class="bell-icon" data-bell-icon aria-label="Notifiche: nessuna non letta">
+						<svg viewBox="0 0 24 24" aria-hidden="true" class="bell-icon__svg">
+							<path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
+							<path class="bell-icon__clapper" d="M10.268 21a2 2 0 0 0 3.464 0" />
+						</svg>
+						<span class="bell-icon__badge" data-badge hidden>0</span>
+					</button>
+					<button type="button" class="chip" data-notify>Simula una notifica</button>
+					<p class="stage__hint">Il clic sulla campanella segna tutto come letto</p>
+					<p class="sr-only" role="status" data-bell-live></p>
+				</div>
+			</section>
+
+			<p class="demo__note">
+				La campanella grande è un vero <code>&lt;button&gt;</code> con <code>aria-pressed</code>: si usa anche
+				da tastiera. Il dondolio e i raggi girano solo quando la sezione è in vista, e con il movimento
+				ridotto restano fermi. Tutta la scena è dimensionata in <code>em</code> a partire da una sola misura,
+				quindi si scala senza ritoccare nulla.
+			</p>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

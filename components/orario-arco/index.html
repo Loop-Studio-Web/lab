@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Orario ad arco — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Orario ad arco</h1>
+				<p class="demo__lead">
+					Scegliere un orario o una durata trascinando un pallino lungo un arco. Il colore segue il
+					valore, dall’alba alla notte. Sotto c’è un normale <code>&lt;input type="range"&gt;</code>, quindi
+					funziona anche con la tastiera e con i lettori di schermo.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Orario dell’appuntamento</h2>
+				<div class="stage">
+					<div
+						class="arc"
+						data-arc
+						data-sweep
+						data-format="time"
+						data-stops='["#23408f","#402862","#934284","#f6876d","#fcbb5d","#f3d970","#fcbb5d","#f6876d","#934284","#402862","#23408f"]'
+					>
+						<label class="sr-only" for="arc-time">Orario dell’appuntamento</label>
+						<input id="arc-time" class="arc__input" type="range" min="0" max="1435" step="5" value="900" />
+						<div class="arc__thumb" aria-hidden="true">
+							<span class="arc__pill" data-out>15:00</span>
+						</div>
+						<svg class="arc__svg" viewBox="0 0 238 36" fill="none" aria-hidden="true">
+							<defs><linearGradient class="arc__grad" gradientUnits="userSpaceOnUse" x1="2" y1="0" x2="236" y2="0" /></defs>
+							<path class="arc__track" d="M2 34L7.21879 31.0968C78.5901 -8.60616 165.659 -7.50128 236 34" />
+						</svg>
+					</div>
+					<p class="arc__caption" data-caption>Pomeriggio</p>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Durata del servizio</h2>
+				<div class="stage">
+					<div
+						class="arc arc--short"
+						data-arc
+						data-format="duration"
+						data-stops='["#ffd2cf","#ff8f87","#ff3b30","#a3231b"]'
+					>
+						<label class="sr-only" for="arc-dur">Durata del servizio</label>
+						<input id="arc-dur" class="arc__input" type="range" min="15" max="180" step="5" value="90" />
+						<div class="arc__thumb" aria-hidden="true">
+							<span class="arc__pill" data-out>1 h 30 min</span>
+						</div>
+						<svg class="arc__svg" viewBox="0 0 238 36" fill="none" aria-hidden="true">
+							<defs><linearGradient class="arc__grad" gradientUnits="userSpaceOnUse" x1="2" y1="0" x2="236" y2="0" /></defs>
+							<path class="arc__track" d="M2 34L7.21879 31.0968C78.5901 -8.60616 165.659 -7.50128 236 34" />
+						</svg>
+					</div>
+					<p class="arc__caption" data-caption>Servizio fotografico di media durata</p>
+				</div>
+			</section>
+
+			<p class="demo__note">
+				Il pallino segue il puntatore lungo la curva (si cerca sul tracciato il punto con la stessa
+				<code>x</code>) e il valore resta quello dell’<code>input</code>: <code>aria-valuetext</code> legge
+				“15:00” invece di “900”. Frecce, Pagina su/giù, Home e Fine funzionano come su ogni cursore.
+			</p>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

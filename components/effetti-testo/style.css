@@ -1,0 +1,659 @@
+@font-face {
+	font-family: 'Medula One';
+	src: url('fonts/medula-one-latin-400-normal.woff2') format('woff2');
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Bungee Shade';
+	src: url('fonts/bungee-shade-latin-400-normal.woff2') format('woff2');
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Noto Sans Mono';
+	src: url('fonts/noto-sans-mono-latin-400-normal.woff2') format('woff2');
+	font-display: swap;
+}
+
+.group {
+	margin: 3rem 0 1.5rem;
+	padding-top: 1.5rem;
+	font-size: 1.4rem;
+	border-top: 1px solid var(--line);
+}
+.group:first-of-type {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: 0;
+}
+
+/* Ogni palco è un contenitore: i testi si dimensionano con cqw, non con la finestra
+   (dentro il box "Prova dal vivo" la finestra non c'entra). */
+.stage {
+	--stage-bg: var(--surface);
+	container-type: inline-size;
+	min-height: 16rem;
+}
+.stage__hint {
+	position: absolute;
+	bottom: 0.75rem;
+	left: 0;
+	right: 0;
+	text-align: center;
+	font-size: 0.75rem;
+	color: var(--muted);
+	pointer-events: none;
+}
+
+/* Fuori dalla vista le animazioni continue si fermano; le intro (data-restart)
+   tornano all'inizio e ripartono da capo al prossimo ingresso. */
+[data-live]:not([data-restart]):not(.is-live) *,
+[data-live]:not([data-restart]):not(.is-live) *::before,
+[data-live]:not([data-restart]):not(.is-live) *::after {
+	animation-play-state: paused !important;
+}
+[data-restart]:not(.is-live) *,
+[data-restart]:not(.is-live) *::before,
+[data-restart]:not(.is-live) *::after {
+	animation: none !important;
+}
+
+.replay {
+	position: absolute;
+	top: 0.75rem;
+	right: 0.75rem;
+	padding: 0.4rem 0.8rem;
+	font: 600 0.75rem var(--font-text);
+	letter-spacing: 0.04em;
+	color: var(--text);
+	background: rgb(255 255 255 / 0.08);
+	border: 1px solid var(--line);
+	border-radius: 2rem;
+	cursor: pointer;
+	transition: background-color 0.2s var(--ease-out), scale 0.15s var(--ease-out);
+}
+.replay:active {
+	scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+	.replay:hover {
+		background: rgb(255 255 255 / 0.16);
+	}
+}
+
+/* ——— Neon rotto ——— */
+.neon {
+	position: relative;
+	margin: 0;
+	font: 400 clamp(3.5rem, 22cqw, 9rem) / 0.75 'Bungee Shade', var(--font-display);
+	color: #fff;
+	text-align: center;
+	transform: scaleX(var(--scale, 1));
+	animation: neon-body 11s infinite alternate;
+}
+.neon::before,
+.neon::after {
+	--top: 0;
+	--left: 0;
+	--v-height: 30%;
+	--t-cut: calc(var(--top) * 10%);
+	--b-cut: calc(var(--t-cut) + var(--v-height));
+
+	content: attr(data-text);
+	content: attr(data-text) / '';
+	position: absolute;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	transform: translateX(calc(var(--left) * 100%));
+	filter: drop-shadow(0 0 transparent); /* evita la pixelatura del ritaglio */
+	text-shadow: calc(var(--left) * -3em) 0 0.02em var(--accent), calc(var(--left) * -6em) 0 0.02em #00e5ff;
+	background-color: var(--stage-bg);
+	clip-path: polygon(0% var(--t-cut), 100% var(--t-cut), 100% var(--b-cut), 0% var(--b-cut));
+}
+.neon::before {
+	animation: neon-b 1.7s infinite alternate-reverse;
+}
+.neon::after {
+	animation: neon-a 3.1s infinite alternate;
+}
+/* Le variabili non sono registrate: nei keyframe cambiano di colpo, ed è proprio lo scatto. */
+@keyframes neon-body {
+	17% { --scale: 0.87; }
+	31% { --scale: 1.1; }
+	37% { --scale: 1.3; }
+	47% { --scale: 0.91; }
+	87% { --scale: 1; }
+}
+@keyframes neon-a {
+	10%, 30%, 50%, 70%, 90% { --top: 0; --left: 0; }
+	0% { --v-height: 15%; }
+	20% { --left: 0.005; }
+	40% { --left: 0.01; --v-height: 20%; --top: 3; }
+	60% { --left: 0.03; --v-height: 25%; --top: 6; }
+	80% { --left: 0.07; --v-height: 5%; --top: 8; }
+	100% { --left: 0.083; --v-height: 30%; --top: 1; }
+}
+@keyframes neon-b {
+	10%, 30%, 50%, 70%, 90% { --top: 0; --left: 0; }
+	0% { --v-height: 15%; --top: 10; }
+	20% { --left: -0.005; }
+	40% { --left: -0.01; --v-height: 17%; --top: 3; }
+	60% { --left: -0.03; --v-height: 35%; --top: 6; }
+	80% { --left: -0.07; --v-height: 5%; --top: 8; }
+	100% { --left: -0.083; --v-height: 30%; --top: 1; }
+}
+
+/* ——— Al passaggio ——— */
+.stage--photo {
+	background: linear-gradient(rgb(0 0 0 / 0.55), rgb(0 0 0 / 0.55)), url('../_shared/img/fog-forest-m.webp') center / cover;
+	min-height: 18rem;
+}
+.hglitch {
+	position: relative;
+	appearance: none;
+	margin: 0;
+	padding: 0.3em 0.4em;
+	font: 800 clamp(1.5rem, 9cqw, 4.5rem) / 1.05 var(--font-display);
+	letter-spacing: -0.01em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	color: #fff;
+	background: none;
+	border: 0;
+	cursor: pointer;
+	mix-blend-mode: lighten;
+}
+.hglitch::before,
+.hglitch::after {
+	content: attr(data-text);
+	content: attr(data-text) / '';
+	position: absolute;
+	inset: 0;
+	padding: inherit;
+	text-align: center;
+	background: #000;
+	clip-path: inset(100% 0 0 0);
+}
+.hglitch::before {
+	left: -1px;
+	text-shadow: 1px 0 rgb(255 59 48 / 0.7);
+}
+.hglitch::after {
+	left: 1px;
+	text-shadow: -1px 0 rgb(0 160 255 / 0.7);
+}
+.hglitch[aria-pressed='true']::before {
+	text-shadow: 4px 0 rgb(255 59 48 / 0.7);
+	animation: slice-1 0.8s infinite ease-in-out alternate-reverse;
+}
+.hglitch[aria-pressed='true']::after {
+	text-shadow: -5px 0 rgb(0 160 255 / 0.7);
+	animation: slice-2 0.8s infinite ease-in-out alternate-reverse;
+}
+@media (hover: hover) and (pointer: fine) {
+	.hglitch:hover::before {
+		text-shadow: 4px 0 rgb(255 59 48 / 0.7);
+		animation: slice-1 0.8s infinite ease-in-out alternate-reverse;
+	}
+	.hglitch:hover::after {
+		text-shadow: -5px 0 rgb(0 160 255 / 0.7);
+		animation: slice-2 0.8s infinite ease-in-out alternate-reverse;
+	}
+}
+@keyframes slice-1 {
+	0% { clip-path: inset(30% 0 62% 0); }
+	25% { clip-path: inset(12% 0 55% 0); }
+	50% { clip-path: inset(48% 0 20% 0); }
+	75% { clip-path: inset(22% 0 48% 0); }
+	100% { clip-path: inset(70% 0 10% 0); }
+}
+@keyframes slice-2 {
+	0% { clip-path: inset(55% 0 28% 0); translate: 1px -1px; }
+	25% { clip-path: inset(8% 0 80% 0); translate: 4px -6px; }
+	50% { clip-path: inset(60% 0 25% 0); translate: 2px -3px; }
+	75% { clip-path: inset(75% 0 8% 0); translate: -4px 0; }
+	100% { clip-path: inset(25% 0 5% 0); translate: -1px -1px; }
+}
+
+/* ——— Comparsa ——— */
+.stage--deep {
+	--stage-bg: #000;
+	background: var(--stage-bg);
+	min-height: 14rem;
+}
+.deep {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0 0.3em;
+	margin: 0;
+	font: 400 clamp(2.6rem, 12cqw, 6rem) / 1.1 'Medula One', var(--font-display);
+	user-select: none;
+}
+.deep__word {
+	position: relative;
+	color: transparent;
+	animation: deep-white 4s 2s forwards;
+}
+.deep__word::before,
+.deep__word::after {
+	content: attr(data-text);
+	content: attr(data-text) / '';
+	position: absolute;
+	color: #fff;
+	background: var(--stage-bg);
+	clip-path: inset(100% 0 0 0);
+}
+.deep__word::before {
+	left: -2px;
+	top: -2px;
+	text-shadow: -2px 0 var(--accent);
+	animation: cut-a 3s 4s infinite alternate-reverse;
+}
+.deep__word::after {
+	left: 2px;
+	top: 2px;
+	text-shadow: 2px 0 #00e5ff;
+	animation: cut-b 3s 4s infinite alternate-reverse;
+}
+@keyframes deep-white {
+	100% { color: #fff; }
+}
+
+/* ——— Segnale disturbato ——— */
+.signal {
+	position: relative;
+	margin: 0;
+	padding: 0.3em 0.4em;
+	font: 800 clamp(3rem, 16cqw, 7rem) / 1 var(--font-display);
+	letter-spacing: -0.01em;
+	text-transform: uppercase;
+	color: #fff;
+}
+.signal::before,
+.signal::after {
+	content: attr(data-text);
+	content: attr(data-text) / '';
+	position: absolute;
+	inset: 0;
+	padding: inherit;
+	color: #fff;
+	background: var(--stage-bg);
+	clip-path: inset(100% 0 0 0);
+}
+.signal::before {
+	left: 3px;
+	text-shadow: -2px 0 var(--accent);
+	animation: cut-c 2s linear infinite alternate;
+}
+.signal::after {
+	left: -3px;
+	text-shadow: -2px 0 #00e5ff;
+	animation: cut-d 2s linear infinite alternate;
+}
+
+/* ——— Ombra sfumata (palco chiaro: l'ombra ha bisogno di un pavimento) ——— */
+.stage--paper {
+	--stage-bg: #d4d4d8;
+	background: linear-gradient(#e6e6e9, #c8c8cd);
+	border-color: #b4b4ba;
+	min-height: 18rem;
+	isolation: isolate; /* l'ombra (z-index -1) resta sopra lo sfondo del palco ma sotto le lettere */
+}
+.floor {
+	position: relative;
+	margin: 0;
+	padding: 0 0.12em;
+	font: 800 clamp(4rem, 24cqw, 10rem) / 1 var(--font-display);
+	text-transform: uppercase;
+	background: linear-gradient(-90deg, #fff, #f0f0f3);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.floor::before {
+	content: attr(data-text);
+	content: attr(data-text) / '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	padding: inherit;
+	-webkit-text-fill-color: #000;
+	filter: blur(12px);
+	transform: skew(67deg, 0) translate(-20%, 15%) scaleY(0.5);
+	-webkit-mask-image: linear-gradient(180deg, transparent, #000);
+	mask-image: linear-gradient(180deg, transparent, #000);
+}
+
+/* ——— Lettere impilate ——— */
+.stage--stack {
+	min-height: 22rem;
+	padding-bottom: 2.5rem;
+}
+.stack {
+	--fan: 0;
+	appearance: none;
+	display: grid;
+	margin: 0;
+	padding: 0.5em 0.5em 0.4em;
+	font: 800 clamp(4rem, 26cqw, 11rem) / 1 var(--font-display);
+	letter-spacing: -0.02em;
+	text-transform: uppercase;
+	color: inherit;
+	background: none;
+	border: 0;
+	cursor: pointer;
+}
+.stack__layer {
+	grid-area: 1 / 1;
+	z-index: calc(10 - var(--i));
+	color: var(--c, #fff);
+	-webkit-text-stroke: 0.045em var(--stage-bg);
+	paint-order: stroke fill;
+	transform-origin: 50% 85%;
+	scale: calc(1 - 0.05 * var(--i));
+	rotate: calc(var(--fan) * var(--i) * -4deg);
+	translate: calc(var(--fan) * var(--i) * 2%) calc((-5% - var(--fan) * 3%) * var(--i));
+	transition:
+		rotate 0.55s var(--ease-out) calc(var(--i) * 35ms),
+		translate 0.55s var(--ease-out) calc(var(--i) * 35ms);
+}
+.stack__layer:nth-child(2) { --c: #ffd2cf; }
+.stack__layer:nth-child(3) { --c: #ff8f87; }
+.stack__layer:nth-child(4) { --c: var(--accent); }
+.stack__layer:nth-child(5) { --c: #a3231b; }
+.stack[aria-pressed='true'] {
+	--fan: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+	.stack:hover {
+		--fan: 1;
+	}
+}
+
+/* ——— Barre che entrano ——— */
+.stage--bars {
+	padding: 0;
+	min-height: 22rem;
+	align-items: stretch;
+}
+.bars {
+	container-type: inline-size;
+	position: relative;
+	width: 100%;
+	min-height: 22rem;
+}
+.bars__in {
+	--c1: var(--accent);
+	--c2: #fff;
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	padding-bottom: 1.25rem;
+}
+.bars__in::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 42%;
+	background-repeat: no-repeat;
+	background-size: 70% 7%;
+	background-image:
+		linear-gradient(var(--c1), var(--c1)), linear-gradient(var(--c2), var(--c2)),
+		linear-gradient(var(--c1), var(--c1)), linear-gradient(var(--c2), var(--c2)),
+		linear-gradient(var(--c1), var(--c1)), linear-gradient(var(--c2), var(--c2)),
+		linear-gradient(var(--c1), var(--c1));
+	background-position: 0% 7%, 100% 21%, 0% 35%, 100% 49%, 0% 63%, 100% 77%, 0% 91%;
+	animation: bars-h 3.5s;
+}
+.bars__text {
+	position: relative;
+	text-align: center;
+	opacity: 0;
+	transform: translate(-100%, 0);
+	animation: bars-text-h 2s 3.5s 1 forwards;
+}
+.bars__logo {
+	display: block;
+	width: clamp(9rem, 42cqw, 14rem);
+	height: auto;
+	margin-inline: auto;
+}
+.bars__sub {
+	margin: 0.6em 0 0;
+	font: 500 clamp(1.1rem, 5cqw, 1.8rem) / 1.2 var(--font-text);
+	color: var(--accent);
+}
+@keyframes bars-h {
+	0% { opacity: 0; background-position: -400% 7%, 500% 21%, -400% 35%, 500% 49%, -400% 63%, 500% 77%, -400% 91%; }
+	14% { background-position: 0% 7%, 500% 21%, -400% 35%, 500% 49%, -400% 63%, 500% 77%, -400% 91%; }
+	28% { background-position: 0% 7%, 100% 21%, -400% 35%, 500% 49%, -400% 63%, 500% 77%, -400% 91%; }
+	42% { background-position: 0% 7%, 100% 21%, 0% 35%, 500% 49%, -400% 63%, 500% 77%, -400% 91%; }
+	56% { background-position: 0% 7%, 100% 21%, 0% 35%, 100% 49%, -400% 63%, 500% 77%, -400% 91%; }
+	70% { background-position: 0% 7%, 100% 21%, 0% 35%, 100% 49%, 0% 63%, 500% 77%, -400% 91%; }
+	84% { background-position: 0% 7%, 100% 21%, 0% 35%, 100% 49%, 0% 63%, 100% 77%, -400% 91%; }
+	98%, 100% { opacity: 1; background-position: 0% 7%, 100% 21%, 0% 35%, 100% 49%, 0% 63%, 100% 77%, 0% 91%; }
+}
+@keyframes bars-text-h {
+	0% { opacity: 0; transform: translate(0, -100%); }
+	20% { opacity: 0; }
+	100% { opacity: 1; transform: translate(0, 0); }
+}
+@keyframes bars-v {
+	0% { opacity: 0; background-position: 7% -400%, 21% 500%, 35% -400%, 49% 500%, 63% -400%, 77% 500%, 91% -400%; }
+	14% { background-position: 7% 0%, 21% 500%, 35% -400%, 49% 500%, 63% -400%, 77% 500%, 91% -400%; }
+	28% { background-position: 7% 0%, 21% 100%, 35% -400%, 49% 500%, 63% -400%, 77% 500%, 91% -400%; }
+	42% { background-position: 7% 0%, 21% 100%, 35% 0%, 49% 500%, 63% -400%, 77% 500%, 91% -400%; }
+	56% { background-position: 7% 0%, 21% 100%, 35% 0%, 49% 100%, 63% -400%, 77% 500%, 91% -400%; }
+	70% { background-position: 7% 0%, 21% 100%, 35% 0%, 49% 100%, 63% 0%, 77% 500%, 91% -400%; }
+	84% { background-position: 7% 0%, 21% 100%, 35% 0%, 49% 100%, 63% 0%, 77% 100%, 91% -400%; }
+	98%, 100% { opacity: 1; background-position: 7% 0%, 21% 100%, 35% 0%, 49% 100%, 63% 0%, 77% 100%, 91% 0%; }
+}
+@keyframes bars-text-v {
+	0% { opacity: 0; transform: translate(-100%, 0); }
+	20% { opacity: 0; }
+	100% { opacity: 1; transform: translate(0, 0); }
+}
+/* Largo: le barre diventano verticali a sinistra e il testo si sposta a destra. */
+@container (min-width: 40rem) {
+	.bars__in {
+		align-items: flex-start;
+		justify-content: center;
+		padding: 0;
+	}
+	.bars__in::after {
+		width: 22%;
+		height: 100%;
+		background-size: 7% 70%;
+		background-position: 7% 0%, 21% 100%, 35% 0%, 49% 100%, 63% 0%, 77% 100%, 91% 0%;
+		animation-name: bars-v;
+	}
+	.bars__text {
+		margin-left: 28%;
+		text-align: left;
+		animation-name: bars-text-v;
+	}
+	.bars__logo {
+		width: clamp(10rem, 22cqw, 17rem);
+		margin-inline: 0;
+	}
+	.bars__sub {
+		font-size: clamp(1.1rem, 3.4cqw, 1.8rem);
+	}
+}
+
+/* ——— Riquadri a scorrimento ——— */
+@property --page-offset {
+	syntax: '<number>';
+	inherits: true;
+	initial-value: 0;
+}
+@property --rotate {
+	syntax: '<number>';
+	inherits: true;
+	initial-value: 1;
+}
+
+/* Il riquadro NON ha scroll proprio: l'effetto segue lo scorrimento della pagina
+   (view timeline sul riquadro). Si compone mentre il riquadro sale verso il centro
+   della finestra, e si ricompone a ritroso se si torna su. Niente scroll annidato. */
+.scrubstage {
+	view-timeline: --card block;
+	container-type: size;
+	display: grid;
+	place-items: center;
+	position: relative;
+	height: 24rem;
+	overflow: clip;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: 1rem;
+}
+
+.scrollhint {
+	position: absolute;
+	bottom: 0.9rem;
+	left: 0;
+	right: 0;
+	margin: 0;
+	text-align: center;
+	font-size: 0.75rem;
+	color: var(--muted);
+	animation: hint-out linear both;
+	animation-timeline: --card;
+	animation-range: cover 0% cover 25%;
+}
+@keyframes hint-out {
+	to { opacity: 0; }
+}
+.nosupport {
+	display: none;
+	position: absolute;
+	bottom: 0.9rem;
+	left: 0;
+	right: 0;
+	margin: 0;
+	text-align: center;
+	font-size: 0.75rem;
+	color: var(--muted);
+}
+@supports not (animation-timeline: view()) {
+	.nosupport {
+		display: block;
+	}
+	.scrollhint {
+		display: none;
+	}
+}
+
+/* Si ricompone scorrendo: ogni lettera parte in alto o in basso, a profondità diversa. */
+.scramble {
+	width: 100%;
+	max-width: 40rem;
+	margin: 0;
+	padding: 0 1.5rem;
+	animation: unscramble linear both;
+	animation-timeline: --card;
+	animation-range: cover 0% cover 45%;
+	animation-timing-function: steps(100);
+}
+.scramble__words {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.2em 1ch;
+	font: 400 clamp(1.3rem, 5.2cqw, 2rem) / 1.4 'Noto Sans Mono', monospace;
+}
+.scramble__word {
+	display: flex;
+	perspective: 300px;
+	transform-style: preserve-3d;
+}
+.scramble__word:nth-child(2) {
+	color: var(--accent);
+}
+.scramble__word > span {
+	--dir: calc(1 - 2 * mod(var(--i), 2));
+	--rand: calc(mod(var(--i) * 7 + 20, 4) - 4);
+	--wave: sin(calc(var(--i) * 17deg));
+	--start-y: calc((var(--rand) + var(--wave)) * var(--dir) * var(--page-offset) * 0.45px);
+	--start-z: calc(abs(var(--rand) * 2 + var(--wave)) * var(--page-offset) * 0.26px);
+
+	position: relative;
+	display: inline-block;
+	transform: translate3d(0, var(--start-y), var(--start-z));
+}
+@keyframes unscramble {
+	from { --page-offset: 75; }
+	to { --page-offset: 0; }
+}
+
+/* Giro dopo giro: le parole sono raggi, le lettere partono sparse e si allineano. */
+.orbit {
+	--circle: min(48cqh, 48cqw);
+	--radius: calc(var(--circle) / 2);
+	position: relative;
+	width: var(--circle);
+	height: var(--circle);
+	font: 400 clamp(0.85rem, 3cqw, 1.2rem) / 1 'Noto Sans Mono', monospace;
+}
+.orbit__ring {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	transform: rotate(calc(var(--rotate) * 360deg));
+	animation: orbit-turn linear both;
+	animation-timeline: --card;
+	animation-range: cover 0% cover 50%;
+}
+.orbit__ring li {
+	position: absolute;
+	inset: 50%;
+	transform: rotate(calc(360deg / var(--count) * (var(--i) - 1)));
+}
+.orbit__ring li:first-child {
+	color: var(--accent);
+}
+.orbit__ring li > span {
+	--angle: calc(var(--i) * 48deg * (1 - var(--rotate)));
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	transform-origin: 0 0;
+	transform: rotate(var(--angle)) translateX(var(--radius)) translateX(calc((var(--i) - 1) * 1ch));
+}
+.orbit__mark {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: calc(var(--radius) * 1.15);
+	translate: -50% -50%;
+}
+@keyframes orbit-turn {
+	from { --rotate: 0; }
+	to { --rotate: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.scramble,
+	.orbit__ring,
+	.scrollhint {
+		animation: none;
+	}
+	.hglitch::before,
+	.hglitch::after {
+		animation: none !important;
+	}
+	.hglitch[aria-pressed='true'] {
+		text-shadow: 3px 0 rgb(255 59 48 / 0.7), -3px 0 rgb(0 160 255 / 0.7);
+	}
+}

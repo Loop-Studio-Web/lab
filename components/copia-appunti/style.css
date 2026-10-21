@@ -1,0 +1,361 @@
+.demo__lead code,
+.demo__note code {
+	font-size: 0.85em;
+}
+.demo__lead code {
+	padding: 0.1rem 0.4rem;
+	background: var(--surface);
+	border-radius: 4px;
+}
+
+.stage {
+	--ok: #2fbf71;
+	grid-template-columns: minmax(0, 1fr);
+	min-height: 13rem;
+}
+
+/* ——— Il pulsante di copia: tre stili, un solo comportamento (data-state) ——— */
+.copy {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.55rem;
+	font: 600 0.875rem var(--font-text);
+	cursor: pointer;
+	border: 1px solid transparent;
+	transition:
+		background-color 0.2s var(--ease-out),
+		color 0.2s var(--ease-out),
+		border-color 0.2s var(--ease-out),
+		scale 0.15s var(--ease-out);
+	-webkit-tap-highlight-color: transparent;
+}
+.copy:active {
+	scale: 0.97;
+}
+.copy__icons {
+	position: relative;
+	display: block;
+	width: 1.1rem;
+	height: 1.1rem;
+	flex: none;
+}
+.copy__icon {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	transition:
+		opacity 0.25s var(--ease-out),
+		scale 0.25s var(--ease-out),
+		filter 0.25s var(--ease-out);
+}
+/* Lo scambio di icona: quella che esce si rimpicciolisce e sfuoca, quella che entra la sostituisce. */
+.copy__icon--done {
+	opacity: 0;
+	scale: 0.25;
+	filter: blur(4px);
+}
+.copy[data-state='copied'] .copy__icon--copy {
+	opacity: 0;
+	scale: 0.25;
+	filter: blur(4px);
+}
+.copy[data-state='copied'] .copy__icon--done {
+	opacity: 1;
+	scale: 1;
+	filter: blur(0);
+}
+
+/* Pieno */
+.copy--solid {
+	padding: 0.7rem 1.2rem;
+	color: #fff;
+	background: #000;
+	border-radius: 0.6rem;
+}
+.copy--solid[data-state='copied'] {
+	background: var(--ok);
+	color: #04210f;
+}
+.copy--solid[data-state='failed'] {
+	background: var(--accent);
+}
+@media (hover: hover) and (pointer: fine) {
+	.copy--solid:hover:not([data-state]) {
+		background: #262626;
+	}
+}
+
+/* Discreto (nella barra del codice) */
+.copy--ghost {
+	padding: 0.35rem 0.7rem;
+	font-size: 0.78rem;
+	color: #b5b5b5;
+	background: transparent;
+	border-color: #3a3a3a;
+	border-radius: 0.45rem;
+}
+.copy--ghost[data-state='copied'] {
+	color: var(--ok);
+	border-color: var(--ok);
+}
+.copy--ghost[data-state='failed'] {
+	color: var(--accent);
+	border-color: var(--accent);
+}
+@media (hover: hover) and (pointer: fine) {
+	.copy--ghost:hover:not([data-state]) {
+		color: #fff;
+		border-color: #6a6a6a;
+	}
+}
+
+/* Solo icona, con il suggerimento che compare sopra */
+.copy--icon {
+	width: 2.5rem;
+	height: 2.5rem;
+	color: var(--muted);
+	background: transparent;
+	border-radius: 0.6rem;
+}
+.copy--icon[data-state='copied'] {
+	color: var(--ok);
+}
+.copy--icon[data-state='failed'] {
+	color: var(--accent);
+}
+@media (hover: hover) and (pointer: fine) {
+	.copy--icon:hover:not([data-state]) {
+		color: #fff;
+		background: rgb(255 255 255 / 0.08);
+	}
+}
+.copy__tip {
+	position: absolute;
+	bottom: calc(100% + 0.35rem);
+	left: 50%;
+	padding: 0.25rem 0.55rem;
+	font: 600 0.72rem var(--font-text);
+	white-space: nowrap;
+	color: #04210f;
+	background: var(--ok);
+	border-radius: 0.4rem;
+	opacity: 0;
+	translate: -50% 4px;
+	scale: 0.9;
+	pointer-events: none;
+	transition: opacity 0.2s var(--ease-out), translate 0.2s var(--ease-out), scale 0.2s var(--ease-out);
+}
+.copy[data-state='copied'] .copy__tip,
+.copy[data-state='failed'] .copy__tip {
+	opacity: 1;
+	translate: -50% 0;
+	scale: 1;
+}
+.copy[data-state='failed'] .copy__tip {
+	color: #fff;
+	background: var(--accent);
+}
+
+/* ——— Codice sconto: un biglietto con i tagli sul bordo ——— */
+.stage--coupon {
+	padding: 2.5rem 1.5rem;
+	min-height: 16rem;
+}
+.coupon {
+	--cut: 0.8rem;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	width: min(100%, 38rem);
+	color: #000;
+	background: #fff;
+	border-radius: 1rem;
+	/* i due semicerchi tolti al bordo, lungo la linea tratteggiata */
+	-webkit-mask:
+		radial-gradient(circle var(--cut) at var(--split, 11rem) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+		radial-gradient(circle var(--cut) at var(--split, 11rem) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+	mask:
+		radial-gradient(circle var(--cut) at var(--split, 11rem) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+		radial-gradient(circle var(--cut) at var(--split, 11rem) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+}
+.coupon__offer {
+	display: grid;
+	align-content: center;
+	gap: 0.25rem;
+	width: 11rem;
+	padding: 1.75rem 1.25rem;
+	text-align: center;
+	color: #fff;
+	background: var(--accent);
+	border-radius: 1rem 0 0 1rem;
+}
+.coupon__big {
+	font: 800 3rem / 1 var(--font-display);
+	letter-spacing: -0.03em;
+}
+.coupon__what {
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+.coupon__code {
+	display: grid;
+	justify-items: start;
+	align-content: center;
+	gap: 0.5rem;
+	padding: 1.5rem 1.75rem;
+	border-left: 2px dashed #c4c4c4;
+}
+.coupon__hint {
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #6b6b6b;
+}
+.coupon__value {
+	margin-bottom: 0.25rem;
+	font: 700 clamp(1.6rem, 6vw, 2.3rem) / 1 ui-monospace, 'Cascadia Code', Consolas, monospace;
+	letter-spacing: 0.04em;
+}
+@media (max-width: 34rem) {
+	.coupon {
+		--split: 50%;
+		grid-template-columns: 1fr;
+		-webkit-mask:
+			radial-gradient(circle var(--cut) at 0 var(--vsplit, 8rem), #0000 98%, #000) left / 51% 100% no-repeat,
+			radial-gradient(circle var(--cut) at 100% var(--vsplit, 8rem), #0000 98%, #000) right / 51% 100% no-repeat;
+		mask:
+			radial-gradient(circle var(--cut) at 0 var(--vsplit, 8rem), #0000 98%, #000) left / 51% 100% no-repeat,
+			radial-gradient(circle var(--cut) at 100% var(--vsplit, 8rem), #0000 98%, #000) right / 51% 100% no-repeat;
+	}
+	.coupon__offer {
+		width: auto;
+		height: 8rem;
+		border-radius: 1rem 1rem 0 0;
+	}
+	.coupon__code {
+		border-left: 0;
+		border-top: 2px dashed #c4c4c4;
+	}
+}
+
+/* ——— Blocco di codice ——— */
+.stage--code {
+	padding: 2rem 1.5rem;
+}
+.snippet {
+	width: min(100%, 38rem);
+	margin: 0;
+	overflow: hidden;
+	background: #0d0d0d;
+	border: 1px solid #2f2f2f;
+	border-radius: 0.8rem;
+}
+.snippet__bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 0.6rem 0.5rem 1rem;
+	font: 500 0.78rem ui-monospace, 'Cascadia Code', Consolas, monospace;
+	color: var(--muted);
+	background: #151515;
+	border-bottom: 1px solid #2a2a2a;
+}
+.snippet__pre {
+	margin: 0;
+	padding: 1.1rem 1rem;
+	overflow-x: auto;
+	font: 400 0.85rem / 1.7 ui-monospace, 'Cascadia Code', Consolas, monospace;
+	color: #e6e6e6;
+	tab-size: 2;
+}
+.t-sel { color: #ff8f87; }
+.t-prop { color: #9fd0ff; }
+.t-val { color: #ffd479; }
+
+/* ——— Recapiti ——— */
+.stage--rows {
+	padding: 1.5rem;
+}
+.rows {
+	display: grid;
+	width: min(100%, 34rem);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.rows__item {
+	display: grid;
+	grid-template-columns: 6.5rem minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.45rem 0;
+	border-top: 1px solid var(--line);
+}
+.rows__item:first-child {
+	border-top: 0;
+}
+.rows__key {
+	font-size: 0.78rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.rows__value {
+	overflow-wrap: anywhere;
+}
+
+/* ——— Link da condividere ——— */
+.stage--share {
+	padding: 2rem 1.5rem;
+}
+.share {
+	display: grid;
+	gap: 0.6rem;
+	width: min(100%, 36rem);
+}
+.share__label {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--muted);
+}
+.share__field {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+}
+.share__input {
+	flex: 1 1 14rem;
+	min-width: 0;
+	padding: 0.7rem 0.9rem;
+	font: 400 0.9rem ui-monospace, 'Cascadia Code', Consolas, monospace;
+	color: var(--text);
+	background: #0d0d0d;
+	border: 1px solid #333;
+	border-radius: 0.6rem;
+}
+.share__input:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+.share .copy--solid {
+	background: #fff;
+	color: #000;
+}
+.share .copy--solid[data-state='copied'] {
+	background: var(--ok);
+	color: #04210f;
+}
+@media (hover: hover) and (pointer: fine) {
+	.share .copy--solid:hover:not([data-state]) {
+		background: #e2e2e2;
+	}
+}

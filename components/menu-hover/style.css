@@ -1,0 +1,123 @@
+@font-face {
+	font-family: 'Jura';
+	src: url('../_shared/fonts/jura-latin-500-normal.woff2') format('woff2');
+	font-weight: 500;
+	font-display: swap;
+}
+
+.demo__lead code {
+	padding: 0.1rem 0.4rem;
+	background: var(--surface);
+	border-radius: 4px;
+	font-size: 0.85em;
+}
+
+/* Il palco è un contenitore: i caratteri si dimensionano con cqw, non con la finestra.
+   Spazio sopra e sotto: l'eco esce dalla riga fino a 6 ex. */
+.stage {
+	container-type: inline-size;
+	min-height: 16rem;
+	padding-block: 6.5rem;
+}
+
+.menu {
+	--gap: clamp(0.4rem, 1.5cqw, 1rem);
+	--rgb: 255 255 255;
+	--rgb-cta: 255 59 48;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5rem var(--gap);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: 'Jura', var(--font-text);
+	font-weight: 500;
+}
+.menu li {
+	font-size: clamp(1rem, 4cqw, 2.6rem);
+	line-height: 1.2;
+	color: rgb(var(--rgb));
+}
+.menu li.cta {
+	--rgb: var(--rgb-cta);
+}
+.menu li + li::before {
+	content: '\00B7';
+	margin-right: var(--gap);
+	color: var(--muted);
+}
+
+.menu a {
+	display: inline-block;
+	padding-block: 0.15em;
+	color: inherit;
+	text-decoration: none;
+	transition: text-shadow 300ms ease-in;
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* Eco: tre coppie di ombre, sempre più lontane e più deboli, sopra e sotto. */
+.menu a:where(:focus-visible, [aria-current='page']) {
+	text-shadow:
+		0 2ex rgb(var(--rgb) / 0.35),
+		0 -2ex rgb(var(--rgb) / 0.35),
+		0 4ex rgb(var(--rgb) / 0.15),
+		0 -4ex rgb(var(--rgb) / 0.15),
+		0 6ex rgb(var(--rgb) / 0.075),
+		0 -6ex rgb(var(--rgb) / 0.075);
+}
+.menu a:focus-visible {
+	outline: none;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.2em;
+}
+.menu a:active {
+	scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+	.menu a:hover {
+		text-shadow:
+			0 2ex rgb(var(--rgb) / 0.35),
+			0 -2ex rgb(var(--rgb) / 0.35),
+			0 4ex rgb(var(--rgb) / 0.15),
+			0 -4ex rgb(var(--rgb) / 0.15),
+			0 6ex rgb(var(--rgb) / 0.075),
+			0 -6ex rgb(var(--rgb) / 0.075);
+	}
+}
+
+/* Eco verso il basso: come un riflesso nell'acqua, solo sotto. */
+.menu--down a:where(:focus-visible, [aria-current='page']) {
+	text-shadow:
+		0 1.5ex rgb(var(--rgb) / 0.4),
+		0 3ex rgb(var(--rgb) / 0.2),
+		0 4.5ex rgb(var(--rgb) / 0.1),
+		0 6ex rgb(var(--rgb) / 0.05);
+}
+@media (hover: hover) and (pointer: fine) {
+	.menu--down a:hover {
+		text-shadow:
+			0 1.5ex rgb(var(--rgb) / 0.4),
+			0 3ex rgb(var(--rgb) / 0.2),
+			0 4.5ex rgb(var(--rgb) / 0.1),
+			0 6ex rgb(var(--rgb) / 0.05);
+	}
+}
+
+/* Alone: stessa tecnica, ma l'ombra non si sposta, si allarga. */
+.menu--halo a:where(:focus-visible, [aria-current='page']) {
+	text-shadow:
+		0 0 0.4ex rgb(var(--rgb) / 0.9),
+		0 0 1.2ex rgb(var(--rgb) / 0.6),
+		0 0 2.8ex rgb(var(--rgb) / 0.35);
+}
+@media (hover: hover) and (pointer: fine) {
+	.menu--halo a:hover {
+		text-shadow:
+			0 0 0.4ex rgb(var(--rgb) / 0.9),
+			0 0 1.2ex rgb(var(--rgb) / 0.6),
+			0 0 2.8ex rgb(var(--rgb) / 0.35);
+	}
+}
