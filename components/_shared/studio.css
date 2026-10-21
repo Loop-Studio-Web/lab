@@ -12,18 +12,12 @@
 	white-space: nowrap;
 }
 
-/* Logo in alto a sinistra: blocco normale (non fisso), così non copre mai il titolo. */
+/* Logo in alto a sinistra: blocco normale (non fisso), così non copre mai il titolo.
+   Le MISURE (display, padding, altezza) stanno in base.css: studio.css arriva dopo il
+   primo disegno e senza misure il logo, poi rimpicciolito, sposterebbe la pagina (CLS). */
 .studio-corner {
-	display: block;
-	width: fit-content;
-	padding: 0.9rem 1.25rem 0;
 	opacity: 0.55;
 	transition: opacity 0.2s var(--ease-out), scale 0.15s var(--ease-out);
-}
-.studio-corner img {
-	display: block;
-	height: 1.75rem;
-	width: auto;
 }
 .studio-corner:active {
 	scale: 0.97;

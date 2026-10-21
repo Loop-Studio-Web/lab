@@ -156,3 +156,16 @@ p {
 		scroll-behavior: auto !important;
 	}
 }
+
+/* Misure del logo in alto (lo inserisce studio.js): qui e non in studio.css, che si carica
+   dopo il primo disegno; senza queste il logo parte grande e poi sposta tutta la pagina. */
+.studio-corner {
+	display: block;
+	width: fit-content;
+	padding: 0.9rem 1.25rem 0;
+}
+.studio-corner img {
+	display: block;
+	height: 1.75rem;
+	width: auto;
+}
