@@ -98,8 +98,9 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
 
 ## Prossimi passi
 
-1. Via esplicito → push del Lab e del sito (deploy automatico); verificare la pagina `/lab/` online (28 card, filtri, miniature, modal "Prova dal vivo").
-2. **axe** e **PSI con la chiave** sulle pagine online (nessun altro collaudo). Prova su telefono vero a discrezione dell'autore; filtri SVG e
-   `feTurbulence` (sfondi, bordi) sono i candidati a rallentare su telefoni lenti.
+1. Fatto il 22/10: push di Lab (`377b310`) e sito, `/lab/` online verificato, **axe 0 violazioni** su `/lab/` + 28 schede (online), **PSI mobile**
+   `/lab/` 97/100/100/100 (LCP 2,5 s); schede campione 90-99 perf, a11y 100. Aperti, non bloccanti: **sfondi** CLS 0,198 e perf 90 su mobile
+   (altre schede CLS 0,075, probabile logo/font della firma); SEO 91 sulle schede = manca la meta description (sono demo in iframe).
+2. Prova su telefono vero a discrezione dell'autore; filtri SVG e `feTurbulence` (sfondi, bordi) sono i candidati a rallentare su telefoni lenti.
 3. **Esperimenti** (dopo): 5 slider a schermo intero sono troppi (ne terrei 2-3); la GSAP draggable zoom grid (zip `2026-07-14-draggable-zoom-grid-gallery-using-gsap`)
    = nuovo Esperimento con contenuto nostro. Anche gli Esperimenti vanno firmati con il logo (`studio.js`).
