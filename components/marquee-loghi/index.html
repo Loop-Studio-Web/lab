@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Marquee loghi — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+			<symbol id="nordico" viewBox="0 0 48 48"><path d="M4 40 20 12l8 14 6-8 10 22Z"/></symbol>
+			<symbol id="vela" viewBox="0 0 48 48"><path d="M24 5v32L8 37ZM27 11c8 6 13 15 13 26H27Z"/><path d="M6 41h36l-5 4H11Z"/></symbol>
+			<symbol id="orbita" viewBox="0 0 48 48"><circle cx="24" cy="24" r="9"/><ellipse cx="24" cy="24" rx="21" ry="8" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(-25 24 24)"/></symbol>
+			<symbol id="faro" viewBox="0 0 48 48"><path d="M20 8h8l4 32H16Z"/><path d="M14 8h20l-3-4H17Z"/><path d="M2 14l12 3M2 22l12-2M46 14l-12 3M46 22l-12-2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/></symbol>
+			<symbol id="ondina" viewBox="0 0 48 48"><path d="M3 16c5-6 9-6 14 0s9 6 14 0 9-6 14 0M3 26c5-6 9-6 14 0s9 6 14 0 9-6 14 0M3 36c5-6 9-6 14 0s9 6 14 0 9-6 14 0" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none"/></symbol>
+			<symbol id="brezza" viewBox="0 0 48 48"><path d="M6 40C6 18 20 6 42 6c0 22-12 36-32 36Z"/><path d="M8 41 30 19" stroke="#fff" stroke-opacity=".5" stroke-width="2.5" stroke-linecap="round" fill="none"/></symbol>
+			<symbol id="cumulo" viewBox="0 0 48 48"><path d="M12 36a9 9 0 0 1 1-18 11 11 0 0 1 21-3 10 10 0 0 1 3 21Z"/></symbol>
+			<symbol id="rotta" viewBox="0 0 48 48"><path d="M24 3 29 19 45 24 29 29 24 45 19 29 3 24 19 19Z"/><circle cx="24" cy="24" r="3.5" fill="#fff" fill-opacity=".7"/></symbol>
+		</svg>
+
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Marquee loghi</h1>
+				<p class="demo__lead">
+					La striscia dei “hanno scelto noi”. Scorre da sola, si ferma passandoci sopra, con Tab o dal
+					pulsante, e con <code>prefers-reduced-motion</code> diventa una fila da scorrere a mano. I
+					marchi sono tutti di fantasia.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Una fila, in grigio</h2>
+				<div class="stage stage--marquee">
+					<div class="marquee" data-marquee>
+						<ul class="marquee__group" aria-label="Aziende che ci hanno scelto">
+							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#nordico" /></svg>Nordico</a></li>
+							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#vela" /></svg>Vela</a></li>
+							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#orbita" /></svg>Orbita</a></li>
+							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#faro" /></svg>Faro</a></li>
+							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#ondina" /></svg>Ondina</a></li>
+							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#brezza" /></svg>Brezza</a></li>
+							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#cumulo" /></svg>Cumulo</a></li>
+							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#rotta" /></svg>Rotta</a></li>
+						</ul>
+					</div>
+					<button type="button" class="marquee__toggle" data-toggle aria-pressed="false">
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /><path class="i-play" d="M8 5v14l11-7z" /></svg>
+						<span>Metti in pausa</span>
+					</button>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Due file in senso opposto</h2>
+				<div class="stage stage--marquee">
+					<div class="marquee marquee--pills" data-marquee style="--t: 38s">
+						<ul class="marquee__group" aria-label="Settori">
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#vela" /></svg>Nautica</span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#nordico" /></svg>Outdoor</span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#cumulo" /></svg>Meteo</span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#faro" /></svg>Turismo</span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#orbita" /></svg>Tecnologia</span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#ondina" /></svg>Benessere</span></li>
+						</ul>
+					</div>
+					<div class="marquee marquee--pills marquee--reverse" data-marquee style="--t: 46s">
+						<ul class="marquee__group" aria-label="Servizi">
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#rotta" /></svg>Siti web</span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#brezza" /></svg>Social</span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#orbita" /></svg>Video</span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#nordico" /></svg>Foto</span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#cumulo" /></svg>Logo</span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#vela" /></svg>Strategia</span></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<p class="demo__note">
+				Il gruppo di marchi viene duplicato dallo script (la copia è <code>aria-hidden</code> e senza
+				focus) e l’animazione sposta tutto di una copia intera: il giro si chiude senza salti.
+			</p>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

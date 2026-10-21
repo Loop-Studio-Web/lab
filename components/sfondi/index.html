@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sfondi — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+			<symbol id="acero-rosso" viewBox="0 0 100 100"><path d="M50 4 58 25 72 18 68 38 90 32 80 50 95 58 70 62 72 72 55 68 55 96 45 96 45 68 28 72 30 62 5 58 20 50 10 32 32 38 28 18 42 25Z" fill="#c8321e" stroke="#c8321e" stroke-width="3" stroke-linejoin="round"/><path d="M50 96V30M50 60 70 46M50 60 30 46" stroke="#7a1a0e" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+			<symbol id="acero-arancio" viewBox="0 0 100 100"><path d="M50 4 58 25 72 18 68 38 90 32 80 50 95 58 70 62 72 72 55 68 55 96 45 96 45 68 28 72 30 62 5 58 20 50 10 32 32 38 28 18 42 25Z" fill="#e8851c" stroke="#e8851c" stroke-width="3" stroke-linejoin="round"/><path d="M50 96V30M50 60 70 46M50 60 30 46" stroke="#9a4a08" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+			<symbol id="ovale-giallo" viewBox="0 0 100 100"><path d="M50 96C20 70 15 35 50 4 85 35 80 70 50 96Z" fill="#f2c230"/><path d="M50 96V16M50 70 66 54M50 70 34 54M50 48 62 36M50 48 38 36" stroke="#a37d0a" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+			<symbol id="betulla-ruggine" viewBox="0 0 100 100"><path d="M50 96C10 76 5 42 30 22 40 14 50 22 50 27 50 22 60 14 70 22 95 42 90 76 50 96Z" fill="#b5541f"/><path d="M50 96V30M50 70 70 50M50 70 30 50" stroke="#6b2d0c" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+			<symbol id="quercia-bruna" viewBox="0 0 100 100"><path d="M50 96C46 80 30 80 28 66 14 62 18 50 26 44 14 36 24 24 34 26 34 12 46 6 50 4 54 6 66 12 66 26 76 24 86 36 74 44 82 50 86 62 72 66 70 80 54 80 50 96Z" fill="#8a5a2b"/><path d="M50 96V16M50 62 66 52M50 62 34 52M50 40 62 32M50 40 38 32" stroke="#4a2e12" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+			<symbol id="ovale-verde" viewBox="0 0 100 100"><path d="M50 96C20 70 15 35 50 4 85 35 80 70 50 96Z" fill="#6f9a3a"/><path d="M50 96V16M50 70 66 54M50 70 34 54M50 48 62 36M50 48 38 36" stroke="#3a5a1a" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+		</svg>
+
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Sfondi</h1>
+				<p class="demo__lead">
+					Sette sfondi animati da mettere dietro un titolo. Ognuno vive nel suo riquadro e si muove solo
+					quando è visibile; con <code>prefers-reduced-motion</code> restano fermi.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Stelle cadenti</h2>
+				<div class="stage bg bg--stars" data-bg="stars">
+					<div class="bg__layer" data-fill></div>
+					<p class="bg__tag">Foto + 40 elementi</p>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Lucciole</h2>
+				<div class="stage bg bg--fireflies" data-bg="fireflies">
+					<div class="bg__layer" data-fill></div>
+					<p class="bg__tag">Due movimenti sfasati per lucciola</p>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Foglie d’autunno</h2>
+				<div class="stage bg bg--leaves" data-bg="leaves">
+					<div class="bg__layer" data-fill></div>
+					<h3 class="bg__title">Ciao, ottobre</h3>
+					<p class="bg__tag">SVG inline, nessuna immagine</p>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Pioggia arcobaleno</h2>
+				<div class="stage bg bg--rain" data-bg="rain">
+					<div class="bg__layer" data-fill></div>
+					<p class="bg__tag">144 colonne, solo <code>transform</code></p>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Strisce in parallasse</h2>
+				<div class="stage bg bg--strips">
+					<div class="strip strip--1"></div>
+					<div class="strip strip--2"></div>
+					<div class="strip strip--3"></div>
+					<div class="strip strip--4"></div>
+					<p class="bg__tag">Una foto sola, quattro finestre</p>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Onde concentriche</h2>
+				<div class="stage bg bg--ripple">
+					<span class="ring ring--5"></span>
+					<span class="ring ring--4"></span>
+					<span class="ring ring--3"></span>
+					<span class="ring ring--2"></span>
+					<span class="ring ring--1"></span>
+					<p class="bg__tag">Cinque cerchi che respirano</p>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Illusione diagonale</h2>
+				<div class="stage bg bg--diag" tabindex="0" aria-label="Illusione ottica: le linee nere sono parallele. Passa sopra o tocca per rivelarlo.">
+					<p class="bg__tag">Passa sopra o tocca: le linee sono parallele</p>
+				</div>
+			</section>
+
+			<p class="demo__note">
+				Gli elementi (stelle, lucciole, foglie, colonne) li crea <code>script.js</code> con un generatore
+				pseudo-casuale a seme fisso: ogni volta lo sfondo è lo stesso. Foto: Unsplash.
+			</p>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

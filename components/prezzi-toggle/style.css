@@ -1,0 +1,125 @@
+.stage { gap: 1.75rem; align-content: start; justify-items: stretch; padding-block: 2rem; }
+
+/* ---------- Selettore: pillola con indicatore che scorre ---------- */
+.bill {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-self: center;
+	margin: 0;
+	padding: 0.25rem;
+	background: var(--bg);
+	border: 1px solid var(--line);
+	border-radius: 999px;
+}
+.bill input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.bill label {
+	position: relative;
+	z-index: 1;
+	padding: 0.55rem 1.3rem;
+	font-size: 0.9rem;
+	font-weight: 600;
+	text-align: center;
+	color: var(--muted);
+	cursor: pointer;
+	transition: color 200ms ease;
+}
+.bill label em { margin-left: 0.2rem; font-style: normal; font-size: 0.75rem; color: #30d158; }
+.bill input:checked + label { color: var(--text); }
+.bill__thumb {
+	position: absolute;
+	inset: 0.25rem auto 0.25rem 0.25rem;
+	width: calc(50% - 0.25rem);
+	background: #2a2a2a;
+	border-radius: 999px;
+	transition: transform 300ms var(--ease-out);
+}
+.bill:has(input[value='year']:checked) .bill__thumb { transform: translateX(100%); }
+.bill:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- Prezzo che scorre ---------- */
+.price { display: flex; align-items: baseline; gap: 0.2rem; margin: 0; font-family: var(--font-display); }
+.price__cur { font-size: 1.3rem; color: var(--muted); }
+.price__roll { position: relative; display: inline-grid; overflow: hidden; height: 1.05em; font-size: 3rem; font-weight: 700; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.p { grid-area: 1 / 1; transition: transform 380ms var(--ease-out), opacity 380ms var(--ease-out); }
+.p--y { transform: translateY(100%); opacity: 0; }
+[data-bill='year'] .p--m { transform: translateY(-100%); opacity: 0; }
+[data-bill='year'] .p--y { transform: none; opacity: 1; }
+.price__per { font-family: var(--font-text); font-size: 0.85rem; color: var(--muted); }
+.price--sm .price__roll { font-size: 1.6rem; }
+.price--sm .price__cur { font-size: 0.95rem; }
+
+.cta {
+	padding: 0.7rem 1.2rem;
+	font: inherit;
+	font-weight: 600;
+	color: var(--text);
+	cursor: pointer;
+	background: transparent;
+	border: 1px solid #3a3a3a;
+	border-radius: 0.75rem;
+	transition: transform 160ms var(--ease-out), background-color 160ms ease, border-color 160ms ease;
+}
+.cta:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .cta:hover { border-color: var(--muted); background: rgb(255 255 255 / 0.05); } }
+.cta--hot { background: var(--accent); border-color: var(--accent); }
+@media (hover: hover) and (pointer: fine) { .cta--hot:hover { background: var(--accent); filter: brightness(1.1); } }
+
+/* ---------- Tre schede ---------- */
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-items: stretch; }
+.plan {
+	position: relative;
+	display: grid;
+	align-content: start;
+	gap: 1rem;
+	padding: 1.5rem;
+	background: var(--bg);
+	border: 1px solid var(--line);
+	border-radius: 1rem;
+}
+.plan h3 { font-size: 1.25rem; }
+.plan__for { min-height: 2.6em; font-size: 0.88rem; color: var(--muted); }
+.plan--hot { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 1rem 2.5rem rgb(255 59 48 / 0.15); }
+.plan__tag {
+	position: absolute;
+	top: -0.7rem;
+	left: 1.5rem;
+	padding: 0.15rem 0.7rem;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	background: var(--accent);
+	border-radius: 999px;
+}
+.plan__tag--inline { position: static; margin-left: 0.4rem; vertical-align: middle; }
+.feat { display: grid; gap: 0.5rem; margin: 0 0 0.5rem; padding: 0; list-style: none; font-size: 0.9rem; }
+.feat li { padding-left: 1.5rem; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2330d158' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") 0 0.2rem / 1rem no-repeat; }
+
+/* ---------- Tabella ---------- */
+.tablewrap { overflow-x: auto; }
+.cmp { width: 100%; min-width: 34rem; border-collapse: collapse; font-size: 0.92rem; }
+.cmp th, .cmp td { padding: 0.9rem 1rem; text-align: center; border-bottom: 1px solid var(--line); }
+.cmp thead th { vertical-align: bottom; font-family: var(--font-display); font-size: 1.05rem; }
+.cmp thead .price { justify-content: center; margin-top: 0.3rem; }
+.cmp tbody th { text-align: left; font-weight: 500; color: #cfcfcf; }
+.cmp .hot { background: rgb(255 59 48 / 0.07); }
+.cmp thead .hot { box-shadow: inset 0 3px 0 var(--accent); }
+.cmp svg { width: 1.2rem; height: 1.2rem; }
+.cmp .yes { color: #30d158; }
+.cmp .no { color: #4a4a4a; }
+
+/* ---------- Elenco a righe ---------- */
+.rows { display: grid; gap: 0.75rem; margin: 0; padding: 0; list-style: none; }
+.row { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 1.5rem; padding: 1.1rem 1.4rem; background: var(--bg); border: 1px solid var(--line); border-radius: 1rem; }
+.row h3 { font-size: 1.1rem; }
+.row p { font-size: 0.85rem; color: var(--muted); }
+.row .price { text-align: right; }
+.row--hot { border-color: var(--accent); }
+
+@media (max-width: 52rem) {
+	.cards { grid-template-columns: 1fr; }
+	.plan__for { min-height: 0; }
+	.row { grid-template-columns: 1fr auto; }
+	.row .cta { grid-column: 1 / -1; }
+}

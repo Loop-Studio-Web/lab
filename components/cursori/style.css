@@ -1,0 +1,390 @@
+/* Cursori — quattro zone. Il cursore finto è un elemento posizionato con due
+   variabili (--x, --y) che script.js aggiorna sulla zona in cui si trova il mouse. */
+
+@font-face {
+	font-family: 'Cormorant Garamond';
+	src: url('fonts/cormorant-garamond-latin-500-normal.woff2') format('woff2');
+	font-weight: 500;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Cormorant Garamond';
+	src: url('fonts/cormorant-garamond-latin-700-normal.woff2') format('woff2');
+	font-weight: 700;
+	font-display: swap;
+}
+
+.zone {
+	--x: 50;
+	--y: 50;
+	position: relative;
+	isolation: isolate;
+	display: block;
+	padding: 0;
+}
+.cursor {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	display: grid;
+	place-items: center;
+	pointer-events: none;
+	translate: calc(var(--x) * 1px - 50%) calc(var(--y) * 1px - 50%);
+	scale: 0;
+	transition: scale 0.2s var(--ease-out);
+}
+/* Il cursore finto compare solo con un puntatore preciso; il vero sparisce solo lì. */
+@media (pointer: coarse), (hover: none) {
+	.cursor {
+		display: none;
+	}
+}
+@media (hover: hover) and (pointer: fine) {
+	.zone:not(.zone--blend),
+	.zone:not(.zone--blend) * {
+		cursor: none;
+	}
+	.zone--blend .card-p,
+	.zone--blend .card-p * {
+		cursor: none;
+	}
+	.torch__ctl,
+	.torch__ctl * {
+		cursor: auto !important;
+	}
+}
+
+/* ——— 1. Torcia ——— */
+
+.zone--torch {
+	--r: 110px;
+	height: 24rem;
+	background: #111;
+	overflow: hidden;
+}
+.torch__map {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.torch__dark {
+	position: absolute;
+	inset: 0;
+	background: #000;
+	-webkit-mask-image: radial-gradient(circle var(--r) at calc(var(--x) * 1px) calc(var(--y) * 1px), transparent 0%, transparent 60%, black 100%);
+	mask-image: radial-gradient(circle var(--r) at calc(var(--x) * 1px) calc(var(--y) * 1px), transparent 0%, transparent 60%, black 100%);
+}
+.cursor--torch {
+	scale: 0;
+	color: #f9aa47;
+}
+.cursor--torch svg {
+	width: 2.6rem;
+	height: 2.6rem;
+	fill: currentColor;
+	stroke: #7a3a00;
+	stroke-width: 0.8;
+	filter: drop-shadow(0 0 0.6rem #f9aa47);
+}
+.zone--torch.is-in .cursor,
+.zone--pets.is-in .cursor {
+	scale: 1;
+}
+.torch__ctl {
+	position: absolute;
+	top: 0.75rem;
+	right: 0.75rem;
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	padding: 0.5rem 0.8rem;
+	font-size: 0.8125rem;
+	color: #eee;
+	background: rgb(255 255 255 / 0.1);
+	border-radius: 0.5rem;
+	backdrop-filter: blur(4px);
+}
+.torch__ctl input {
+	accent-color: var(--accent);
+}
+
+/* ——— 2. Cerchio a contrasto ——— */
+
+.zone--blend {
+	padding: clamp(1.5rem, 4vw, 3rem) 1.5rem;
+	font-family: 'Cormorant Garamond', Georgia, serif;
+	background: #f2f2f2;
+}
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 2rem;
+}
+.card-p {
+	position: relative;
+	overflow: hidden;
+	width: 12.5rem;
+	aspect-ratio: 3 / 4;
+	box-shadow: 0 0.6rem 1.5rem rgb(0 0 0 / 0.3);
+	--hue: 320;
+}
+.card-p:nth-child(even) {
+	--hue: 210;
+	translate: 0 1.5rem;
+}
+.card-p img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	scale: 1;
+	transition: scale 0.25s var(--ease-out);
+}
+.card-p:hover img,
+.card-p:focus-within img {
+	scale: 1.2;
+}
+.card-p a {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	align-content: end;
+	padding: 1rem;
+	font-size: 2.1rem;
+	font-weight: 700;
+	line-height: 1.05;
+	color: #fff;
+	text-decoration: none;
+	background: linear-gradient(transparent 45%, #000);
+}
+.card-p a:focus-visible {
+	outline: 3px solid hsl(var(--hue) 100% 80%);
+	outline-offset: -6px;
+}
+.card-p a span:first-child {
+	position: relative;
+	width: fit-content;
+}
+.card-p a span:first-child::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -0.1rem;
+	height: 3px;
+	background: #fff;
+	transform: scaleX(0);
+	transform-origin: 0 50%;
+	transition: transform 0.25s var(--ease-out);
+}
+.card-p:hover a span:first-child::after,
+.card-p:focus-within a span:first-child::after {
+	transform: scaleX(1);
+}
+.card-p a span:last-child {
+	margin-top: 0.3rem;
+	font-size: 0.875rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	opacity: 0.8;
+}
+.cursor--blend,
+.cursor--label {
+	--hue: 320;
+	width: 5rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+}
+.cursor--blend {
+	background: hsl(var(--hue) 100% 80%);
+	border: 4px solid hsl(var(--hue) 100% 80%);
+	mix-blend-mode: difference;
+}
+.cursor--label {
+	background: hsl(0 0% 0% / 0.2);
+	font-size: 1.35rem;
+	font-weight: 700;
+	color: #fff;
+}
+.zone--blend:has(.card-p:hover) .cursor {
+	scale: 1;
+}
+.zone--blend:has(.card-p:nth-child(even):hover) .cursor {
+	--hue: 210;
+}
+
+/* ——— 3. Video ——— */
+
+.zone--video {
+	padding: clamp(1.5rem, 4vw, 2.5rem) 1.5rem;
+	background: #111;
+}
+.players {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1.5rem;
+}
+.player {
+	position: relative;
+	overflow: hidden;
+	width: min(26rem, 100%);
+	aspect-ratio: 16 / 9;
+	border-radius: 0.5rem;
+	background: #000;
+}
+.player video {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.player__btn {
+	position: absolute;
+	inset: 0;
+	padding: 0;
+	opacity: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+}
+.player:has(.player__btn:focus-visible) {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+.player__bar {
+	position: absolute;
+	inset: auto 0 0;
+	padding: 3rem 1rem 1rem;
+	background: linear-gradient(transparent, #000);
+	translate: 0 100%;
+	transition: translate 0.2s var(--ease-out);
+	pointer-events: none;
+}
+.player:hover .player__bar,
+.player:has(.player__btn:focus-visible) .player__bar {
+	translate: 0 0;
+}
+.player__bar svg,
+.cursor--play svg {
+	width: 2.5rem;
+	aspect-ratio: 1;
+	fill: #fff;
+}
+.cursor--play {
+	width: 3.5rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--accent);
+}
+.cursor--play svg {
+	width: 60%;
+}
+.zone--video:has(.player:hover) .cursor {
+	scale: 1;
+}
+/* Icona giusta secondo lo stato del video: data-state="paused" mostra Play, "playing" mostra Pausa. */
+.i-play,
+.i-pause {
+	display: none;
+}
+.player[data-state='paused'] .i-play,
+.player[data-state='playing'] .i-pause,
+.zone--video[data-cursor='paused'] .cursor .i-play,
+.zone--video[data-cursor='playing'] .cursor .i-pause {
+	display: block;
+}
+
+/* ——— 4. Cursore che cambia ——— */
+
+.zone--pets {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: clamp(1.5rem, 4vw, 2.5rem) 1rem;
+	background: rgb(10 15 20);
+}
+.pets {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: clamp(0.5rem, 1.5vw, 1.25rem);
+}
+.pet {
+	width: clamp(5.5rem, 12vw, 8.25rem);
+	aspect-ratio: 1 / 1.5;
+	background-position: center 50%;
+	background-size: 110%;
+	opacity: 0.55;
+	transition:
+		background-size 0.6s var(--ease-out),
+		opacity 0.6s var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+	.pet:hover {
+		background-size: 125%;
+		opacity: 0.95;
+	}
+}
+.cursor--pet {
+	width: 1rem;
+	aspect-ratio: 1;
+	scale: 0;
+	transition: scale 0.3s var(--ease-out);
+}
+/* Il cerchio è un ::before che si allarga; icone e nome non cambiano misura. */
+.cursor--pet::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: #fff;
+	scale: 1;
+	transition: scale 0.4s var(--ease-out);
+}
+.cursor--pet img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 3.1rem;
+	height: 3.1rem;
+	translate: -50% -50%;
+	object-fit: contain;
+	opacity: 0;
+	scale: 0.6;
+	transition:
+		opacity 0.2s var(--ease-out),
+		scale 0.3s var(--ease-out);
+}
+.cursor--pet img.is-on {
+	opacity: 1;
+	scale: 1;
+}
+.pet-name {
+	position: absolute;
+	top: calc(50% + 2.6rem);
+	left: 50%;
+	translate: -50% 0.4rem;
+	padding: 0.2rem 0.7rem;
+	font-size: 0.8125rem;
+	font-weight: 700;
+	white-space: nowrap;
+	color: #fff;
+	background: rgb(0 0 0 / 0.75);
+	border-radius: 100vmax;
+	opacity: 0;
+	transition:
+		opacity 0.25s var(--ease-out),
+		translate 0.3s var(--ease-out);
+}
+.zone--pets.is-over .cursor--pet::before {
+	scale: 4.5;
+}
+.zone--pets.is-over .pet-name {
+	opacity: 1;
+	translate: -50% 0;
+}

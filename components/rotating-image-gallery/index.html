@@ -1,47 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rotating Image Gallery</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    <link
-      rel="shortcut icon"
-      href="gallery-svgrepo-com.svg"
-      type="image/x-icon"
-    />
-  </head>
-  <body>
-    <div class="image-container">
-      <span style="--i: 1">
-        <img src="https://picsum.photos/id/237/300/200" />
-      </span>
-      <span style="--i: 2">
-        <img src="https://picsum.photos/id/13/300/200" />
-      </span>
-      <span style="--i: 3">
-        <img src="https://picsum.photos/id/337/300/200" />
-      </span>
-      <span style="--i: 4">
-        <img src="https://picsum.photos/id/423/300/200" />
-      </span>
-      <span style="--i: 5">
-        <img src="https://picsum.photos/id/515/300/200" />
-      </span>
-      <span style="--i: 6">
-        <img src="https://picsum.photos/id/666/300/200" />
-      </span>
-      <span style="--i: 7">
-        <img src="https://picsum.photos/id/999/300/200" />
-      </span>
-      <span style="--i: 8">
-        <img src="https://picsum.photos/id/33/300/200" />
-      </span>
-    </div>
-    <div class="btn-container">
-      <button class="btn" id="prev">Prev</button>
-      <button class="btn" id="next">Next</button>
-    </div>
-  </body>
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Galleria 3D rotante — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Galleria 3D rotante</h1>
+				<p class="demo__lead">
+					Otto immagini su un anello in prospettiva. Si sfoglia con i pulsanti, con le frecce della
+					tastiera o trascinando; da sola avanza finché la metti in pausa.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<div class="stage gallery" data-gallery tabindex="0" role="group" aria-roledescription="carosello" aria-label="Galleria di viaggi">
+					<div class="ring" data-ring>
+						<figure class="face" style="--i: 0"><img src="../_shared/img/beach-m.webp" alt="Costa tropicale vista dall’alto, con acqua turchese e onde" width="900" height="600" data-caption="Spiaggia turchese" /></figure>
+						<figure class="face" style="--i: 1"><img src="../_shared/img/desert-m.webp" alt="Dune del deserto con il sole basso sull’orizzonte" width="900" height="600" loading="lazy" data-caption="Dune del Sahara" /></figure>
+						<figure class="face" style="--i: 2"><img src="../_shared/img/aurora-m.webp" alt="Aurora boreale verde sopra una costa ghiacciata" width="900" height="600" loading="lazy" data-caption="Aurora boreale" /></figure>
+						<figure class="face" style="--i: 3"><img src="../_shared/img/waterfall-m.webp" alt="Cascata che scende tra rocce e vegetazione fitta" width="900" height="600" loading="lazy" data-caption="Cascata nella giungla" /></figure>
+						<figure class="face" style="--i: 4"><img src="../_shared/img/alpine-lake-m.webp" alt="Lago alpino scuro con cime innevate sullo sfondo" width="900" height="600" loading="lazy" data-caption="Lago alpino" /></figure>
+						<figure class="face" style="--i: 5"><img src="../_shared/img/snow-lake-m.webp" alt="Casa su palafitte e passerella sul lago ghiacciato di Braies" width="900" height="600" loading="lazy" data-caption="Lago di Braies" /></figure>
+						<figure class="face" style="--i: 6"><img src="../_shared/img/manarola-m.webp" alt="Case colorate su una scogliera sul mare a Manarola" width="900" height="600" loading="lazy" data-caption="Manarola" /></figure>
+						<figure class="face" style="--i: 7"><img src="../_shared/img/pagoda-m.webp" alt="Pagoda giapponese a cinque piani tra gli alberi" width="900" height="600" loading="lazy" data-caption="Pagoda giapponese" /></figure>
+					</div>
+				</div>
+
+				<div class="controls">
+					<button type="button" class="ctl" data-prev aria-label="Immagine precedente">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+					</button>
+					<p class="caption" data-caption-out aria-live="off">Spiaggia turchese</p>
+					<button type="button" class="ctl" data-next aria-label="Immagine successiva">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+					</button>
+					<button type="button" class="ctl ctl--play" data-play aria-pressed="false" aria-label="Metti in pausa la rotazione">
+						<svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+						<svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L8.5 4.64A1 1 0 0 0 7 5.5Z" /></svg>
+					</button>
+				</div>
+			</section>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
 </html>

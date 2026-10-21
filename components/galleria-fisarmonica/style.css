@@ -1,0 +1,107 @@
+/* Galleria a fisarmonica: 4 lame su una griglia da 9 colonne, ciascuna ne copre 3
+   (si sovrappongono di una). La colonna sotto la lama attiva passa da 1fr a 6fr. */
+
+@font-face {
+	font-family: 'Jura';
+	src: url('../_shared/fonts/jura-latin-500-normal.woff2') format('woff2');
+	font-weight: 500;
+	font-display: swap;
+}
+
+.stage--fan {
+	padding-inline: clamp(1rem, 4vw, 3rem);
+}
+.fan {
+	--cols: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	display: grid;
+	grid-template-columns: var(--cols);
+	width: min(100%, 50rem);
+	aspect-ratio: 2 / 1;
+	margin-inline: auto;
+	transition: grid-template-columns 0.35s var(--ease-in-out);
+	counter-reset: fan;
+}
+/* L'angolo cambia in :hover e :focus (il tocco su un elemento con tabindex lo mette a fuoco). */
+.fan:has(:nth-child(1):is(:hover, :focus)) {
+	--cols: 6fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.fan:has(:nth-child(2):is(:hover, :focus)) {
+	--cols: 1fr 1fr 1fr 6fr 1fr 1fr 1fr 1fr 1fr;
+}
+.fan:has(:nth-child(3):is(:hover, :focus)) {
+	--cols: 1fr 1fr 1fr 1fr 1fr 6fr 1fr 1fr 1fr;
+}
+.fan:has(:nth-child(4):is(:hover, :focus)) {
+	--cols: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 6fr 1fr;
+}
+
+.fan__item {
+	position: relative;
+	grid-row: 1;
+	margin: 0;
+	overflow: hidden;
+	border: 5px solid #f8f4ee;
+	border-radius: 0 0 0 30% / 0 0 0 50%;
+	corner-shape: notch;
+	outline-offset: -5px;
+	transition: border-radius 0.35s var(--ease-in-out);
+}
+.fan__item:nth-child(1) {
+	grid-column: 1 / span 3;
+	border-radius: 0 0 0 0 / 0 0 0 12.5rem;
+}
+.fan__item:nth-child(2) {
+	grid-column: 3 / span 3;
+}
+.fan__item:nth-child(3) {
+	grid-column: 5 / span 3;
+}
+.fan__item:nth-child(4) {
+	grid-column: 7 / span 3;
+}
+.fan__item:focus-visible {
+	outline: 3px solid var(--accent);
+}
+/* La lama attiva e la successiva perdono l'angolo tagliato: così non resta un vuoto tra loro. */
+.fan__item:is(:hover, :focus),
+.fan__item:is(:hover, :focus) + .fan__item {
+	border-radius: 0;
+}
+/* L'immagine ha una larghezza fissa: la lama scopre più o meno foto senza deformarla. */
+.fan__item img {
+	display: block;
+	width: 28rem;
+	max-width: none;
+	height: 100%;
+	object-fit: cover;
+}
+.fan__item::after {
+	content: counter(fan) '.';
+	counter-increment: fan;
+	position: absolute;
+	top: 0.5rem;
+	left: 1rem;
+	font-family: 'Jura', var(--font-text);
+	font-size: 2rem;
+	line-height: 1.2;
+	color: #fff;
+	text-shadow: 0 0 0.75rem rgb(0 0 0 / 0.7);
+	scale: 0;
+	transition: scale 0.15s var(--ease-out);
+	transform-origin: left top;
+}
+.fan__item:is(:hover, :focus)::after {
+	scale: 1;
+}
+
+@media (max-width: 36rem) {
+	.fan {
+		aspect-ratio: 4 / 3;
+	}
+	.fan__item img {
+		width: 18rem;
+	}
+	.fan__item:nth-child(1) {
+		border-radius: 0 0 0 0 / 0 0 0 7rem;
+	}
+}

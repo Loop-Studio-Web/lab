@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Prezzi con toggle — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Prezzi, mensile o annuale</h1>
+				<p class="demo__lead">
+					Tre modi di presentare gli stessi piani. Il selettore è un gruppo di radio vero: si usa con le
+					frecce, e i prezzi scorrono invece di cambiare di colpo. Dati di fantasia.
+				</p>
+			</header>
+
+			<!-- Sprite delle icone usate dalle tre varianti -->
+			<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+				<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+				<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" /></symbol>
+			</svg>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Tre schede</h2>
+				<div class="stage pricing" data-bill="month">
+					<fieldset class="bill">
+						<legend class="sr-only">Periodo di fatturazione</legend>
+						<input type="radio" name="b1" id="b1m" value="month" checked /><label for="b1m">Mensile</label>
+						<input type="radio" name="b1" id="b1y" value="year" /><label for="b1y">Annuale <em>−20%</em></label>
+						<span class="bill__thumb" aria-hidden="true"></span>
+					</fieldset>
+
+					<div class="cards">
+						<article class="plan">
+							<h3>Essenziale</h3>
+							<p class="plan__for">Per partire con una presenza ordinata.</p>
+							<p class="price"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">29</span><span class="p p--y">24</span></span><span class="price__per" data-per>/mese</span></p>
+							<ul class="feat"><li>Sito di 1 pagina</li><li>Dominio incluso</li><li>Assistenza via email</li></ul>
+							<button type="button" class="cta">Scegli Essenziale</button>
+						</article>
+						<article class="plan plan--hot">
+							<span class="plan__tag">Consigliato</span>
+							<h3>Evoluto</h3>
+							<p class="plan__for">Il giusto per un’attività che cresce.</p>
+							<p class="price"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">59</span><span class="p p--y">49</span></span><span class="price__per" data-per>/mese</span></p>
+							<ul class="feat"><li>Fino a 6 pagine</li><li>Statistiche e SEO di base</li><li>Assistenza prioritaria</li><li>Un aggiornamento al mese</li></ul>
+							<button type="button" class="cta cta--hot">Scegli Evoluto</button>
+						</article>
+						<article class="plan">
+							<h3>Studio</h3>
+							<p class="plan__for">Per chi vuole tutto curato da noi.</p>
+							<p class="price"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">119</span><span class="p p--y">99</span></span><span class="price__per" data-per>/mese</span></p>
+							<ul class="feat"><li>Pagine illimitate</li><li>Foto e video inclusi</li><li>Gestione dei social</li><li>Consulente dedicato</li></ul>
+							<button type="button" class="cta">Scegli Studio</button>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Tabella di confronto</h2>
+				<div class="stage pricing" data-bill="month">
+					<fieldset class="bill">
+						<legend class="sr-only">Periodo di fatturazione</legend>
+						<input type="radio" name="b2" id="b2m" value="month" checked /><label for="b2m">Mensile</label>
+						<input type="radio" name="b2" id="b2y" value="year" /><label for="b2y">Annuale <em>−20%</em></label>
+						<span class="bill__thumb" aria-hidden="true"></span>
+					</fieldset>
+					<div class="tablewrap">
+						<table class="cmp">
+							<thead>
+								<tr>
+									<th scope="col"><span class="sr-only">Funzione</span></th>
+									<th scope="col">Essenziale<span class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">29</span><span class="p p--y">24</span></span><span class="price__per" data-per>/mese</span></span></th>
+									<th scope="col" class="hot">Evoluto<span class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">59</span><span class="p p--y">49</span></span><span class="price__per" data-per>/mese</span></span></th>
+									<th scope="col">Studio<span class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">119</span><span class="p p--y">99</span></span><span class="price__per" data-per>/mese</span></span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><th scope="row">Pagine</th><td>1</td><td class="hot">6</td><td>Illimitate</td></tr>
+								<tr><th scope="row">Dominio e hosting</th><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td><td class="hot"><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td></tr>
+								<tr><th scope="row">SEO e statistiche</th><td><svg class="no"><use href="#i-minus" /></svg><span class="sr-only">No</span></td><td class="hot"><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td></tr>
+								<tr><th scope="row">Foto e video</th><td><svg class="no"><use href="#i-minus" /></svg><span class="sr-only">No</span></td><td class="hot"><svg class="no"><use href="#i-minus" /></svg><span class="sr-only">No</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td></tr>
+								<tr><th scope="row">Gestione social</th><td><svg class="no"><use href="#i-minus" /></svg><span class="sr-only">No</span></td><td class="hot"><svg class="no"><use href="#i-minus" /></svg><span class="sr-only">No</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Elenco a righe</h2>
+				<div class="stage pricing" data-bill="month">
+					<fieldset class="bill">
+						<legend class="sr-only">Periodo di fatturazione</legend>
+						<input type="radio" name="b3" id="b3m" value="month" checked /><label for="b3m">Mensile</label>
+						<input type="radio" name="b3" id="b3y" value="year" /><label for="b3y">Annuale <em>−20%</em></label>
+						<span class="bill__thumb" aria-hidden="true"></span>
+					</fieldset>
+					<ul class="rows">
+						<li class="row"><div><h3>Essenziale</h3><p>1 pagina, dominio incluso</p></div><p class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">29</span><span class="p p--y">24</span></span><span class="price__per" data-per>/mese</span></p><button type="button" class="cta">Scegli</button></li>
+						<li class="row row--hot"><div><h3>Evoluto <span class="plan__tag plan__tag--inline">Consigliato</span></h3><p>Fino a 6 pagine, SEO e statistiche</p></div><p class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">59</span><span class="p p--y">49</span></span><span class="price__per" data-per>/mese</span></p><button type="button" class="cta cta--hot">Scegli</button></li>
+						<li class="row"><div><h3>Studio</h3><p>Tutto incluso, foto, video e social</p></div><p class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">119</span><span class="p p--y">99</span></span><span class="price__per" data-per>/mese</span></p><button type="button" class="cta">Scegli</button></li>
+					</ul>
+				</div>
+			</section>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

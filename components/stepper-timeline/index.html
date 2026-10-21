@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Stepper e timeline — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Stepper e timeline</h1>
+				<p class="demo__lead">
+					Mostrare un percorso a tappe: uno che si compila passo dopo passo, uno che si legge scorrendo.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Stepper: richiesta di preventivo</h2>
+				<div class="stage">
+					<div class="wiz" data-wiz>
+						<ol class="steps" aria-label="Avanzamento">
+							<li class="step" data-state="current"><span class="step__dot"><span class="step__n">1</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></span><span class="step__name">Attività</span></li>
+							<li class="step"><span class="step__dot"><span class="step__n">2</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></span><span class="step__name">Cosa serve</span></li>
+							<li class="step"><span class="step__dot"><span class="step__n">3</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></span><span class="step__name">Contatti</span></li>
+							<li class="step"><span class="step__dot"><span class="step__n">4</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg></span><span class="step__name">Invio</span></li>
+						</ol>
+						<div class="wiz__panel" aria-live="polite" data-panel>
+							<h3 data-title></h3>
+							<p data-text></p>
+						</div>
+						<div class="wiz__nav">
+							<button type="button" class="btn btn--ghost" data-back>Indietro</button>
+							<button type="button" class="btn" data-next>Avanti</button>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Timeline: come nasce un progetto</h2>
+				<div class="stage stage--tl">
+					<ol class="tl">
+						<li class="tl__item"><span class="tl__when">Settimana 1</span><h3>Ascolto</h3><p>Un incontro per capire attività, pubblico e obiettivi.</p></li>
+						<li class="tl__item"><span class="tl__when">Settimana 2</span><h3>Concept</h3><p>Direzione, palette e struttura: si approva prima di costruire.</p></li>
+						<li class="tl__item"><span class="tl__when">Settimane 3–4</span><h3>Costruzione</h3><p>Pagine e contenuti, con una bozza da guardare a metà strada.</p></li>
+						<li class="tl__item"><span class="tl__when">Settimana 5</span><h3>Controlli</h3><p>Velocità, accessibilità, prova su telefono vero.</p></li>
+						<li class="tl__item"><span class="tl__when">Settimana 6</span><h3>Lancio</h3><p>Il sito va online e restiamo a disposizione.</p></li>
+					</ol>
+				</div>
+			</section>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

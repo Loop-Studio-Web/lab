@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bottoni — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Bottoni</h1>
+				<p class="demo__lead">
+					Cinque modi di dire “clicca qui”, ognuno con la sua atmosfera. Sono tutti veri
+					<code>&lt;button&gt;</code>: si raggiungono con Tab e reagiscono anche al focus, non solo al mouse.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Orbe luminoso</h2>
+				<div class="stage stage--orb">
+					<div class="orbs">
+						<div class="orb-wrap">
+							<button type="button" class="orb orb--teal" aria-label="Crea">
+								<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M4 12h16" /></svg>
+							</button>
+							<span class="orb-label" aria-hidden="true">Crea</span>
+						</div>
+						<div class="orb-wrap">
+							<button type="button" class="orb orb--silver" aria-label="Esporta">
+								<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M17 7H9M17 7v8" /></svg>
+							</button>
+							<span class="orb-label" aria-hidden="true">Esporta</span>
+						</div>
+						<div class="orb-wrap">
+							<button type="button" class="orb orb--mauve" aria-label="Conferma">
+								<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l5 4.5L19 7" /></svg>
+							</button>
+							<span class="orb-label" aria-hidden="true">Conferma</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Vetro e neon</h2>
+				<div class="stage stage--neon">
+					<div class="neons">
+						<div class="neon" style="--neon: #ff1f71"><button type="button">Scopri di più</button></div>
+						<div class="neon" style="--neon: #2db2ff"><button type="button">Guarda il progetto</button></div>
+						<div class="neon" style="--neon: #1eff45"><button type="button">Contattaci</button></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Steampunk</h2>
+				<div class="stage stage--brass">
+					<button type="button" class="brass" aria-label="Premi">
+						<span class="brass__frame">
+							<span class="brass__glass">
+								<span class="brass__mesh"></span>
+								<span class="brass__glow"></span>
+								<span class="brass__shine"></span>
+								<span class="brass__mark" aria-hidden="true">✦</span>
+							</span>
+						</span>
+					</button>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Riquadro vettoriale</h2>
+				<div class="stage stage--box">
+					<div class="box">
+						<button type="button" class="box__btn" data-copy="marta.rossi@esempio.it" aria-label="Marta Rossi: copia l’indirizzo email">
+							<span class="box__frame" aria-hidden="true">
+								<span class="pt pt--tl"></span><span class="pt pt--tr"></span><span class="pt pt--bl"></span><span class="pt pt--br"></span>
+							</span>
+							<span class="box__text" aria-hidden="true">
+								<span class="box__line">Marta Rossi</span>
+								<span class="box__line">marta.rossi@esempio.it</span>
+							</span>
+						</button>
+						<p class="box__hint" data-hint="idle" aria-hidden="true">Passa sopra per vedere l’indirizzo</p>
+						<p class="box__hint" data-hint="hover" aria-hidden="true">Clicca per copiare</p>
+						<p class="box__hint" data-hint="done" role="status"></p>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Far west</h2>
+				<div class="stage stage--west">
+					<button type="button" class="west">
+						<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+							<path d="M12 2 9.09 5H4v4.09L1 12l3 2.91V19h5.09L12 22l2.91-3H20v-5.09L23 12l-3-2.91V5h-5.09L12 2zm0 4.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" />
+						</svg>
+						<span>Duello</span>
+					</button>
+				</div>
+			</section>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

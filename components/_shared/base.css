@@ -1,0 +1,157 @@
+/* Base comune delle schede dei Componenti del Lab.
+   Palco fisso scuro nella palette Loop (nessun cambio con il tema del
+   sistema: le demo si vedono uguali dentro l'iframe del sito). Ogni scheda
+   resta apribile da sola: i file qui si caricano con ../_shared/base.css. */
+
+@font-face {
+	font-family: 'Bricolage Grotesque';
+	src: url('fonts/bricolage-grotesque-latin-wght-normal.woff2') format('woff2');
+	font-weight: 200 800;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Hanken Grotesk';
+	src: url('fonts/hanken-grotesk-latin-wght-normal.woff2') format('woff2');
+	font-weight: 100 900;
+	font-display: swap;
+}
+
+:root {
+	--bg: #000000;
+	--surface: #1a1a1a;
+	--line: #2a2a2a;
+	--text: #ffffff;
+	--muted: #8a8a8a;
+	--accent: #ff3b30;
+
+	--font-display: 'Bricolage Grotesque', 'Hanken Grotesk', system-ui, sans-serif;
+	--font-text: 'Hanken Grotesk', system-ui, sans-serif;
+
+	/* Curve di movimento: ease-out forte per entrate e feedback, ease-in-out
+	   per ciò che si sposta restando sullo schermo. */
+	--ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+	--ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+	color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 100svh;
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-text);
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	font-family: var(--font-display);
+	line-height: 1.1;
+}
+p {
+	margin: 0;
+}
+
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+}
+
+/* Struttura tipo di una scheda: titolo + sezioni, ciascuna con una piccola
+   etichetta e un "palco" in cui vive la demo. */
+.demo {
+	max-width: 64rem;
+	margin: 0 auto;
+	padding: clamp(2rem, 5vw, 3.5rem) 1.5rem 4rem;
+}
+.demo__head {
+	text-align: center;
+	margin-bottom: 2.5rem;
+}
+.demo__head h1 {
+	font-size: clamp(1.8rem, 5vw, 2.6rem);
+}
+.demo__lead {
+	color: var(--muted);
+	max-width: 36rem;
+	margin: 0.75rem auto 0;
+}
+.demo__section + .demo__section {
+	margin-top: 2.5rem;
+}
+.demo__label {
+	margin-bottom: 0.75rem;
+	font-family: var(--font-text);
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.stage {
+	position: relative;
+	display: grid;
+	place-items: center;
+	gap: 1rem;
+	padding: clamp(1.5rem, 4vw, 3rem) 1.5rem;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: 1rem;
+	overflow: hidden;
+}
+.demo__note {
+	margin-top: 2.5rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--line);
+	color: var(--muted);
+	font-size: 0.875rem;
+	line-height: 1.6;
+}
+.demo__note code {
+	padding: 0.1rem 0.4rem;
+	background: var(--surface);
+	border-radius: 4px;
+	font-size: 0.85em;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Movimento ridotto: si tolgono spostamenti e scale, restano le dissolvenze
+   brevi che aiutano a capire cosa è cambiato. */
+/* Eccezione: dentro un elemento con data-motion-ok (caricamenti e avanzamenti)
+   il movimento è l'informazione stessa e resta. */
+@media (prefers-reduced-motion: reduce) {
+	:where(:not([data-motion-ok], [data-motion-ok] *)),
+	:where(:not([data-motion-ok], [data-motion-ok] *))::before,
+	:where(:not([data-motion-ok], [data-motion-ok] *))::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		animation-delay: 0ms !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}

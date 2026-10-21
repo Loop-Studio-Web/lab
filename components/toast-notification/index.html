@@ -1,41 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Toast Notification</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
-    <link
-      rel="shortcut icon"
-      href="notification-svgrepo-com.svg"
-      type="image/x-icon"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <h3>Toast Notification</h3>
-      <div class="toast-buttons">
-        <div class="toast-row">
-          <button type="button" class="custom-toast success-toast">
-            Submit
-          </button>
-          <button type="button" class="custom-toast danger-toast">
-            Failed
-          </button>
-          <button type="button" class="custom-toast info-toast">
-            Information
-          </button>
-          <button type="button" class="custom-toast warning-toast">
-            Warning
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="toast-overlay" id="toast-overlay"></div>
-  </body>
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Toast — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Notifiche toast</h1>
+				<p class="demo__lead">
+					Messaggi brevi che compaiono senza interrompere. La barra mostra quanto resta; passa sopra o
+					metti il focus e il tempo si ferma.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Quattro stati</h2>
+				<div class="stage">
+					<div class="toast-samples" data-samples></div>
+					<div class="toast-buttons">
+						<button type="button" class="toast-trigger" data-toast="success">Successo</button>
+						<button type="button" class="toast-trigger" data-toast="error">Errore</button>
+						<button type="button" class="toast-trigger" data-toast="info">Info</button>
+						<button type="button" class="toast-trigger" data-toast="warning">Avviso</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Con azione e persistente</h2>
+				<div class="stage">
+					<div class="toast-buttons">
+						<button type="button" class="toast-trigger toast-trigger--ghost" data-toast="action">Con “Annulla”</button>
+						<button type="button" class="toast-trigger toast-trigger--ghost" data-toast="sticky">Resta finché lo chiudi</button>
+					</div>
+				</div>
+			</section>
+
+			<p class="demo__note">
+				Una regione <code>aria-live="polite"</code> annuncia i messaggi agli screen reader senza rubare il
+				focus. Ne restano al massimo tre alla volta; ingresso e uscita sono transizioni CSS
+				(<code>@starting-style</code>), quindi si possono interrompere a metà.
+			</p>
+		</main>
+
+		<div class="toast-region" id="toast-region" role="region" aria-label="Notifiche" aria-live="polite"></div>
+		<script src="../_shared/studio.js"></script>
+	</body>
 </html>

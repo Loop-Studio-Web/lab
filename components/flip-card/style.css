@@ -1,0 +1,242 @@
+/* Flip card — due schede in una pagina (.flip = quattro luoghi, .season = caldo/freddo). */
+
+@font-face {
+	font-family: 'Jura';
+	src: url('../_shared/fonts/jura-latin-500-normal.woff2') format('woff2');
+	font-weight: 500;
+	font-display: swap;
+}
+
+/* ——— 1. Quattro luoghi ——— */
+
+.places {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+	gap: 1.25rem;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.flip {
+	aspect-ratio: 4 / 5;
+	perspective: 62rem;
+	cursor: pointer;
+	border-radius: 0.9rem;
+	-webkit-tap-highlight-color: transparent;
+}
+.flip:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 4px;
+}
+.flip__inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform 0.7s var(--ease-in-out);
+}
+.flip.is-flipped .flip__inner,
+.flip:focus-visible .flip__inner {
+	transform: rotateY(180deg);
+}
+@media (hover: hover) and (pointer: fine) {
+	.flip:hover .flip__inner {
+		transform: rotateY(180deg);
+	}
+}
+.flip__face {
+	position: absolute;
+	inset: 0;
+	border-radius: 0.9rem;
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
+	box-shadow: 0 0.5rem 1.25rem rgb(0 0 0 / 0.45);
+	text-align: center;
+	color: #fff;
+}
+.flip__front {
+	background:
+		linear-gradient(to top, rgb(0 0 0 / 0.8), rgb(0 0 0 / 0.1) 60%),
+		var(--photo) center / cover;
+}
+.flip__back {
+	transform: rotateY(180deg);
+	background:
+		linear-gradient(rgb(0 0 0 / 0.78), rgb(0 0 0 / 0.78)),
+		var(--photo) center / cover;
+}
+/* Il testo sta davanti alla card (translateZ): quando gira si muove di più. Lo scale
+   compensa l'ingrandimento che la prospettiva gli darebbe, così a riposo ha la sua misura. */
+.flip__text {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1.75rem 1.5rem;
+	transform: translateZ(3.75rem) scale(0.94);
+}
+.flip__back .flip__text {
+	justify-content: center;
+}
+.flip__text h3 {
+	position: relative;
+	padding-bottom: 0.9rem;
+	font-size: 1.7rem;
+	text-shadow: 0 0 1.5rem rgb(0 0 0 / 0.5);
+}
+.flip__text h3::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	width: 3rem;
+	height: 2px;
+	translate: -50% 0;
+	background: var(--accent);
+}
+.flip__text p {
+	font-size: 0.9375rem;
+	line-height: 1.55;
+	color: rgb(255 255 255 / 0.85);
+}
+.flip__front .flip__text p {
+	font-weight: 300;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+/* ——— 2. Caldo e freddo ——— */
+
+.season {
+	width: min(24rem, 100%);
+	aspect-ratio: 400 / 480;
+	perspective: 70rem;
+}
+.season__inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform 0.9s var(--ease-in-out);
+}
+.season.is-flipped .season__inner {
+	transform: rotateY(180deg);
+}
+.season__face {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	padding: 1.5rem;
+	border-radius: 0.9rem;
+	backface-visibility: hidden;
+	box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.5);
+	color: #fff;
+}
+.season__face--hot {
+	background: linear-gradient(160deg, #dc2f1e, #9c1610);
+}
+.season__face--hot h3,
+.season__face--hot p,
+.season__face--hot .season__btn {
+	font-family: var(--font-display);
+}
+.season__face--cold {
+	transform: rotateY(180deg);
+	background: linear-gradient(160deg, #2872c4, #14407a);
+}
+.season__face--cold h3,
+.season__face--cold p,
+.season__face--cold .season__btn {
+	font-family: 'Jura', var(--font-text);
+	font-weight: 500;
+}
+.season__face img {
+	width: 100%;
+	height: 44%;
+	margin-bottom: 1rem;
+	object-fit: cover;
+	border-radius: 0.55rem;
+	box-shadow: 0 1rem 1.5rem -0.75rem rgb(0 0 0 / 0.6);
+}
+.season__face h3 {
+	font-size: 2.2rem;
+	line-height: 1;
+}
+.season__face p {
+	margin: 0.75rem 0 auto;
+	padding-left: 1rem;
+	border-left: 2px solid #fff;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+.season__edge {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+.season__edge rect {
+	fill: none;
+	stroke-width: 2.5;
+	stroke-linecap: round;
+	stroke-dasharray: 0.22 0.78;
+	animation: season-run 6s linear infinite;
+}
+.season__face--hot .season__edge rect {
+	stroke: url(#edge-hot);
+}
+.season__face--cold .season__edge rect {
+	stroke: url(#edge-cold);
+}
+@keyframes season-run {
+	to {
+		stroke-dashoffset: -1;
+	}
+}
+
+.season__btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.6rem;
+	width: 100%;
+	margin-top: 1rem;
+	padding: 0.7rem 1rem;
+	font-size: 1rem;
+	color: inherit;
+	background: rgb(255 255 255 / 0.12);
+	border: 1px solid rgb(255 255 255 / 0.55);
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition:
+		background-color 0.2s var(--ease-out),
+		color 0.2s var(--ease-out),
+		scale 0.12s var(--ease-out);
+}
+.season__btn svg {
+	width: 1.1rem;
+	height: 1.1rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+.season__btn:active {
+	scale: 0.97;
+}
+.season__btn:focus-visible {
+	outline-color: #fff;
+}
+@media (hover: hover) and (pointer: fine) {
+	.season__btn:hover {
+		color: #000;
+		background: #fff;
+	}
+}

@@ -1,0 +1,223 @@
+/* Bordi animati — tre tecniche: gradiente conico con alone (.glow), bordo
+   elettrico con filtro SVG (.electric), tratto a pennarello (.marker). */
+
+/* Le animazioni continue girano solo quando la sezione è visibile (script.js
+   aggiunge .is-live): fuori dallo schermo costerebbero CPU per niente. */
+.stage:not(.is-live) *,
+.stage:not(.is-live) *::before,
+.stage:not(.is-live) *::after {
+	animation-play-state: paused !important;
+}
+
+/* ——— 1. Gradiente conico con alone ——— */
+
+@property --a {
+	syntax: '<angle>';
+	initial-value: 0deg;
+	inherits: false;
+}
+
+.glows {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+	gap: 2.25rem;
+	width: 100%;
+	padding: 0.75rem;
+}
+.glow {
+	--b: 0.375rem;
+	box-sizing: border-box;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	object-fit: cover;
+	border: solid var(--b) transparent;
+	border-radius: calc(2 * var(--b));
+	/* L'angolo di partenza è una proprietà registrata (@property --a): è ciò che
+	   permette di animarlo e far girare il gradiente conico lungo il bordo. */
+	background: repeating-conic-gradient(from var(--a, 0deg), var(--l, #0000 0% 70%, #0000ff7f)) border-box;
+	filter: var(--f, url(#glow-0));
+	animation: glow-turn 2.4s linear infinite;
+}
+@keyframes glow-turn {
+	to {
+		--a: 1turn;
+	}
+}
+
+/* ——— 2. Bordo elettrico ——— */
+
+.electric {
+	--edge: var(--accent);
+	--tint: color-mix(in srgb, var(--accent) 35%, transparent);
+	position: relative;
+	isolation: isolate;
+	width: min(18rem, 100%);
+	padding: 2px;
+	border-radius: 1.5rem;
+	background:
+		linear-gradient(-30deg, var(--tint), transparent, var(--tint)),
+		linear-gradient(#171717, #171717);
+}
+.electric__inner {
+	position: relative;
+}
+.electric__outer {
+	padding-right: 4px;
+	padding-bottom: 4px;
+	border: 2px solid color-mix(in srgb, var(--edge) 50%, transparent);
+	border-radius: 1.5rem;
+}
+.electric__edge {
+	width: 100%;
+	height: 25rem;
+	margin: -4px 0 0 -4px;
+	border: 2px solid var(--edge);
+	border-radius: 1.5rem;
+	filter: url(#electric);
+}
+.electric__halo {
+	position: absolute;
+	inset: 0;
+	border: 2px solid color-mix(in srgb, var(--edge) 60%, transparent);
+	border-radius: 1.5rem;
+	filter: blur(1px);
+}
+.electric__halo--2 {
+	border-color: var(--edge);
+	filter: blur(4px);
+}
+.electric__sheen {
+	position: absolute;
+	inset: 0;
+	border-radius: 1.5rem;
+	transform: scale(1.1);
+	mix-blend-mode: overlay;
+	opacity: 0.45;
+	filter: blur(16px);
+	background: linear-gradient(-30deg, #fff, transparent 30%, transparent 70%, #fff);
+	pointer-events: none;
+}
+.electric__sheen--2 {
+	opacity: 0.2;
+}
+.electric__bloom {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	border-radius: 1.5rem;
+	transform: scale(1.1);
+	opacity: 0.3;
+	filter: blur(32px);
+	background: linear-gradient(-30deg, var(--edge), transparent, var(--edge));
+}
+.electric__content {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	padding: 2.25rem;
+}
+.electric__badge {
+	align-self: flex-start;
+	position: relative;
+	padding: 0.4rem 0.9rem;
+	border-radius: 0.9rem;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: rgb(255 255 255 / 0.85);
+	background: rgb(255 255 255 / 0.05);
+	box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.22);
+}
+.electric h3 {
+	margin-top: auto;
+	font-size: 2rem;
+	font-weight: 500;
+}
+.electric hr {
+	margin: 1.25rem 0 1rem;
+	height: 1px;
+	border: 0;
+	background: currentColor;
+	opacity: 0.15;
+}
+.electric__text {
+	font-size: 0.9375rem;
+	line-height: 1.5;
+	color: rgb(255 255 255 / 0.7);
+}
+
+/* ——— 3. Tratto a pennarello ——— */
+
+.markers {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+	gap: 1.75rem;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.marker {
+	position: relative;
+	display: flex;
+	padding: 1.25rem;
+	isolation: isolate;
+}
+.marker svg {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+	fill: none;
+	pointer-events: none;
+	filter: drop-shadow(0 0 0.6rem var(--c));
+}
+.marker path {
+	stroke: var(--c);
+	stroke-width: 3px;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	vector-effect: non-scaling-stroke;
+	stroke-dasharray: var(--dash);
+	animation: marker-run var(--t) linear infinite;
+}
+@keyframes marker-run {
+	to {
+		stroke-dashoffset: -100;
+	}
+}
+.marker figure {
+	position: relative;
+	margin: 0;
+	padding: 1.75rem;
+	width: 100%;
+	border-radius: 0.6rem;
+	background: #0d0d0d;
+}
+.marker figure::after {
+	content: '';
+	position: absolute;
+	top: -0.9rem;
+	right: -0.9rem;
+	width: 3.4rem;
+	height: 3.4rem;
+	border: 0.9rem solid var(--c);
+	border-radius: 50%;
+	pointer-events: none;
+}
+.marker h3 {
+	margin-bottom: 0.85rem;
+	font-size: 1.5rem;
+}
+.marker p {
+	padding-left: 1rem;
+	border-left: 1px solid rgb(255 255 255 / 0.5);
+	font-size: 0.9375rem;
+	line-height: 1.55;
+	color: #cfcfcf;
+}

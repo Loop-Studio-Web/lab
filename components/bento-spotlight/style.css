@@ -1,39 +1,3 @@
-:root {
-	--color-bg: #000000;
-	--color-surface: #1a1a1a;
-	--color-white: #ffffff;
-	--color-red: #ff3b30;
-	--color-muted: #8a8a8a;
-
-	color-scheme: dark;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-
-body {
-	background: var(--color-bg);
-	color: var(--color-white);
-	font-family: 'Hanken Grotesk', system-ui, sans-serif;
-}
-
-h1,
-h2 {
-	font-family: 'Bricolage Grotesque', 'Hanken Grotesk', system-ui, sans-serif;
-	margin: 0;
-}
-
-p {
-	margin: 0;
-}
-
 .page {
 	max-width: 64rem;
 	margin: 0 auto;
@@ -48,7 +12,7 @@ p {
 	font-size: clamp(1.8rem, 5vw, 2.6rem);
 }
 .page__lead {
-	color: var(--color-muted);
+	color: var(--muted);
 	max-width: 34rem;
 	margin: 0.75rem auto 0;
 	line-height: 1.5;
@@ -72,10 +36,10 @@ p {
 	justify-content: center;
 	gap: 0.5rem;
 	padding: 1.5rem;
-	background: var(--color-surface);
-	border: 1px solid #2a2a2a;
+	background: var(--surface);
+	border: 1px solid var(--line);
 	border-radius: 16px;
-	animation: tile-in 0.5s ease backwards;
+	animation: tile-in 0.5s var(--ease-out) backwards;
 	animation-delay: var(--delay, 0ms);
 }
 @keyframes tile-in {
@@ -101,7 +65,8 @@ p {
 	transition: opacity 0.4s ease;
 	pointer-events: none;
 }
-.bento-tile:hover::before {
+.bento-tile:hover::before,
+.bento-tile:focus::before {
 	opacity: 1;
 }
 
@@ -117,7 +82,7 @@ p {
 .bento-tile__icon {
 	width: 1.75rem;
 	height: 1.75rem;
-	color: var(--color-red);
+	color: var(--accent);
 	flex-shrink: 0;
 }
 .bento-tile--hero .bento-tile__icon {
@@ -135,7 +100,7 @@ p {
 }
 
 .bento-tile__text {
-	color: var(--color-muted);
+	color: var(--muted);
 	font-size: 0.88rem;
 	line-height: 1.5;
 	position: relative;
@@ -148,7 +113,7 @@ p {
 .bento-tile__more {
 	position: relative;
 	z-index: 1;
-	color: var(--color-muted);
+	color: var(--muted);
 	font-size: 0.85rem;
 	line-height: 1.5;
 	max-height: 0;
@@ -158,7 +123,8 @@ p {
 		max-height 0.4s ease,
 		opacity 0.3s ease;
 }
-.bento-tile--hero:hover .bento-tile__more {
+.bento-tile--hero:hover .bento-tile__more,
+.bento-tile--hero:focus .bento-tile__more {
 	max-height: 8rem;
 	opacity: 1;
 	margin-top: 0.25rem;
@@ -167,13 +133,13 @@ p {
 .page__note {
 	margin-top: 2.5rem;
 	padding-top: 1.5rem;
-	border-top: 1px solid #2a2a2a;
-	color: var(--color-muted);
+	border-top: 1px solid var(--line);
+	color: var(--muted);
 	font-size: 0.85rem;
 	line-height: 1.6;
 }
 .page__note code {
-	background: var(--color-surface);
+	background: var(--surface);
 	padding: 0.1rem 0.4rem;
 	border-radius: 4px;
 	font-size: 0.82em;
@@ -192,12 +158,3 @@ p {
 	}
 }
 
-@media (prefers-reduced-motion: reduce) {
-	*,
-	*::before,
-	*::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-	}
-}

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Campi di testo — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Campi di testo</h1>
+				<p class="demo__lead">
+					Il punto in cui il visitatore ci scrive qualcosa: un buon campo si capisce a colpo d’occhio
+					e non fa perdere tempo. Prima quelli con un carattere forte, poi quelli di tutti i giorni.
+				</p>
+			</header>
+
+			<h2 class="group">Campi</h2>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Cursore luminoso</h2>
+				<div class="stage stage--glow">
+					<label class="glow">
+						<span class="sr-only">Scrivi qualcosa</span>
+						<input type="text" class="glow__input" placeholder="Scrivi qualcosa…" autocomplete="off" />
+						<span class="glow__caret" aria-hidden="true"></span>
+					</label>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Polvere di fata</h2>
+				<div class="stage stage--dust" data-dust>
+					<canvas class="dust__canvas" aria-hidden="true"></canvas>
+					<label class="dust__field">
+						<span class="sr-only">Scrivi per far uscire la polvere</span>
+						<input type="text" class="dust__input" placeholder="Scrivi per la polvere di fata…" autocomplete="off" />
+					</label>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Il fantasma</h2>
+				<div class="stage stage--ghost">
+					<div class="ghost-wrap" data-ghost>
+						<p class="ghost__bubble" role="status" data-ghost-bubble>Scrivimi un messaggio e premi Invio</p>
+						<input type="text" class="ghost__input" placeholder="Scrivi un messaggio" aria-label="Messaggio per il fantasma" autocomplete="off" />
+						<div class="ghost" aria-hidden="true">
+							<div class="ghost__face">
+								<div class="ghost__eyes"><span class="ghost__eye ghost__eye--l"></span><span class="ghost__eye ghost__eye--r"></span></div>
+								<div class="ghost__mouth"></div>
+							</div>
+							<div class="ghost__torso"></div>
+							<div class="ghost__hands"><span class="ghost__hand ghost__hand--r"></span><span class="ghost__hand ghost__hand--l"></span></div>
+							<div class="ghost__legs"></div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Dalla lente al cursore</h2>
+				<div class="stage stage--search">
+					<form class="srch" role="search" onsubmit="return false">
+						<label for="srch-input" class="sr-only">Cerca</label>
+						<input id="srch-input" class="srch__input" type="search" pattern=".*\S.*" required />
+						<span class="srch__caret" aria-hidden="true"></span>
+					</form>
+				</div>
+			</section>
+
+			<h2 class="group">Verifica e password</h2>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Etichetta che sale</h2>
+				<div class="stage stage--fl">
+					<div class="fl-grid">
+						<label class="fl fl--outline"><input type="text" placeholder=" " autocomplete="name" /><span>Nome e cognome</span></label>
+						<label class="fl fl--line"><input type="email" placeholder=" " autocomplete="email" /><span>Email</span></label>
+						<label class="fl fl--fill"><input type="tel" placeholder=" " autocomplete="tel" /><span>Telefono</span></label>
+						<label class="fl fl--pill"><input type="text" placeholder=" " autocomplete="organization" /><span>Azienda</span></label>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Codice a sei cifre</h2>
+				<div class="stage stage--otp">
+					<div class="otp" data-otp role="group" aria-label="Codice di verifica a sei cifre">
+						<input class="otp__d" inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Cifra 1" />
+						<input class="otp__d" inputmode="numeric" maxlength="1" aria-label="Cifra 2" />
+						<input class="otp__d" inputmode="numeric" maxlength="1" aria-label="Cifra 3" />
+						<input class="otp__d" inputmode="numeric" maxlength="1" aria-label="Cifra 4" />
+						<input class="otp__d" inputmode="numeric" maxlength="1" aria-label="Cifra 5" />
+						<input class="otp__d" inputmode="numeric" maxlength="1" aria-label="Cifra 6" />
+					</div>
+					<p class="otp__msg" data-otp-msg role="status">Incolla il codice oppure scrivilo: passa da solo alla casella dopo.</p>
+
+					<label class="otp-line">
+						<span class="sr-only">Codice di verifica, versione a campo unico</span>
+						<input type="text" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="······" data-otp-line />
+					</label>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Password</h2>
+				<div class="stage stage--pw">
+					<div class="pw">
+						<label class="pw__label" for="pw1">Mostra e nascondi</label>
+						<div class="pw__wrap">
+							<input id="pw1" type="password" class="pw__input" autocomplete="new-password" placeholder="Scegli una password" />
+							<button type="button" class="pw__eye" aria-pressed="false" aria-label="Mostra la password" data-eye>
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path class="pw__open" d="M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+									<path class="pw__shut" d="M10.73 5.08A10.43 10.43 0 0 1 12 5c4.5 0 8.3 2.6 9.94 6.65a1 1 0 0 1 0 .7 10.8 10.8 0 0 1-1.67 2.68M6.61 6.61A10.7 10.7 0 0 0 2.06 11.65a1 1 0 0 0 0 .7C3.7 16.4 7.5 19 12 19a10.7 10.7 0 0 0 5.39-1.61M14.12 14.12a3 3 0 1 1-4.24-4.24M2 2l20 20" />
+								</svg>
+							</button>
+						</div>
+					</div>
+
+					<div class="pw">
+						<label class="pw__label" for="pw2">Con misuratore di robustezza</label>
+						<input id="pw2" type="password" class="pw__input" autocomplete="new-password" placeholder="Prova a scrivere" data-strength />
+						<div class="meter" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+						<p class="pw__hint" role="status" data-strength-text>Almeno 8 caratteri, con maiuscole, numeri e simboli.</p>
+						<ul class="rules" data-rules>
+							<li data-rule="len">8 caratteri o più</li>
+							<li data-rule="case">Maiuscole e minuscole</li>
+							<li data-rule="num">Un numero</li>
+							<li data-rule="sym">Un simbolo</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

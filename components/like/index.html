@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Like — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+			<symbol id="heart" viewBox="0 0 24 24">
+				<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+			</symbol>
+		</svg>
+
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Il “mi piace” in sette versioni</h1>
+				<p class="demo__lead">
+					Lo stesso gesto, sette livelli di cura. Ogni cuore è un vero pulsante a due stati
+					(<code>aria-pressed</code>): clicca, e clicca ancora per togliere.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Doppio clic sulla foto</h2>
+				<div class="stage stage--photo">
+					<figure class="photo" data-dbl>
+						<img src="../_shared/img/manarola-m.webp" alt="Case colorate su una scogliera sul mare a Manarola" width="900" height="600" />
+						<svg class="photo__pop" aria-hidden="true"><use href="#heart" /></svg>
+						<figcaption class="photo__bar">
+							<span>Manarola, Cinque Terre</span>
+							<button type="button" class="chip" data-like aria-pressed="false" aria-label="Mi piace">
+								<svg class="chip__heart" aria-hidden="true"><use href="#heart" /></svg>
+								<span class="chip__count" data-count="128">128</span>
+							</button>
+						</figcaption>
+					</figure>
+					<p class="hint">Doppio clic (o doppio tocco) sulla foto, oppure il pulsante.</p>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Cuore che esplode</h2>
+				<div class="stage">
+					<button type="button" class="burst" data-like aria-pressed="false" aria-label="Mi piace">
+						<svg class="burst__heart" aria-hidden="true"><use href="#heart" /></svg>
+						<svg class="burst__rays" viewBox="0 0 100 100" aria-hidden="true">
+							<path d="M50 6V18M50 82V94M6 50H18M82 50H94M19 19l8 8M73 73l8 8M81 19l-8 8M27 73l-8 8" />
+						</svg>
+					</button>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Cuore con scintille (senza immagini né JS per l’effetto)</h2>
+				<div class="stage">
+					<button type="button" class="spark" data-like aria-pressed="false" aria-label="Mi piace">
+						<svg class="spark__heart" aria-hidden="true"><use href="#heart" /></svg>
+					</button>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Cuore che oscilla</h2>
+				<div class="stage stage--dots">
+					<button type="button" class="wiggle" data-like aria-pressed="false">
+						<svg class="wiggle__heart" aria-hidden="true"><use href="#heart" /></svg>
+						<span>Mi piace</span>
+					</button>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Contatore che scorre</h2>
+				<div class="stage stage--roll">
+					<button type="button" class="roll" data-like aria-pressed="false">
+						<span class="roll__main">
+							<svg class="roll__heart" aria-hidden="true"><use href="#heart" /></svg>
+							<span>Mi piace</span>
+						</span>
+						<span class="roll__count" aria-hidden="true">
+							<span class="roll__n">68</span>
+							<span class="roll__n">69</span>
+						</span>
+						<span class="sr-only" data-live aria-live="polite"></span>
+					</button>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Cuoricini che salgono</h2>
+				<div class="stage stage--light">
+					<div class="jumpy">
+						<button type="button" class="pill" data-like aria-pressed="false">
+							<span class="pill__icon" aria-hidden="true"><svg><use href="#heart" /></svg><i></i><i></i></span>
+							Mi piace
+						</button>
+						<button type="button" class="pill" data-like aria-pressed="false">
+							<span class="pill__icon" aria-hidden="true"><svg><use href="#heart" /></svg><i></i><i></i></span>
+							Lo adoro
+						</button>
+						<button type="button" class="pill" data-like aria-pressed="false">
+							<span class="pill__icon" aria-hidden="true"><svg><use href="#heart" /></svg><i></i><i></i></span>
+							Preferito
+						</button>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Smash that like</h2>
+				<div class="stage stage--pink">
+					<button type="button" class="smash" data-like aria-pressed="false" aria-label="Mi piace">
+						<span class="smash__ripple"></span>
+						<svg class="smash__heart" aria-hidden="true"><use href="#heart" /></svg>
+						<span class="smash__particles" aria-hidden="true">
+							<i style="--i: 1; --c: #7642f0"></i><i style="--i: 2; --c: #afd27f"></i><i style="--i: 3; --c: #de8f4f"></i>
+							<i style="--i: 4; --c: #d0516b"></i><i style="--i: 5; --c: #5686f2"></i><i style="--i: 6; --c: #d53ef3"></i>
+						</span>
+					</button>
+				</div>
+			</section>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

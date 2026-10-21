@@ -1,0 +1,97 @@
+/* Il "sito" è un palco con una pagina finta dietro: l'avviso vive dentro il palco
+   (position: absolute), non sulla finestra, così si vede anche nel box del Lab. */
+.site { position: relative; display: block; min-height: 22rem; padding: 0; }
+.site:has(.ck--modal) { min-height: 32rem; }
+.site__page { display: grid; gap: 0.9rem; padding: 1.75rem; }
+.site__page i { display: block; height: 0.85rem; background: #262626; border-radius: 0.4rem; }
+.site__page i:nth-child(1) { width: 45%; height: 1.4rem; }
+.site__page i:nth-child(2) { width: 90%; }
+.site__page i:nth-child(3) { width: 78%; }
+.site__page i:nth-child(4) { width: 60%; }
+
+.ck { color: var(--text); background: #222; border: 1px solid #353535; border-radius: 1rem; box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.5); }
+.ck h3 { font-size: 1.15rem; }
+.ck p { font-size: 0.9rem; color: #bdbdbd; }
+.ck a { color: var(--text); text-underline-offset: 3px; }
+.ck__icon { width: 2.4rem; height: 2.4rem; flex: none; }
+
+/* Accetta e Rifiuta: stessa forma, stesso peso. */
+.ck__actions { display: flex; gap: 0.6rem; }
+.ck__btn {
+	flex: 1;
+	padding: 0.65rem 1.1rem;
+	font: inherit;
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: var(--text);
+	cursor: pointer;
+	background: #2f2f2f;
+	border: 1px solid #454545;
+	border-radius: 0.7rem;
+	transition: transform 160ms var(--ease-out), background-color 160ms ease, border-color 160ms ease;
+}
+.ck__btn:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .ck__btn:hover { background: #3a3a3a; border-color: #5a5a5a; } }
+
+/* Entrata e uscita comuni: opacità e un piccolo spostamento, mai da zero. */
+.ck[data-ck][data-open],
+.ck-wrap[data-open] { opacity: 1; visibility: visible; transform: none; transition: opacity 260ms var(--ease-out), transform 320ms var(--ease-out), visibility 0s; }
+.ck[data-ck]:not([data-open]),
+.ck-wrap:not([data-open]) { opacity: 0; visibility: hidden; transition: opacity 180ms ease, transform 220ms ease, visibility 0s linear 220ms; }
+
+/* ---------- Scheda ---------- */
+.ck--card { position: absolute; left: 1.25rem; bottom: 1.25rem; display: grid; gap: 0.7rem; width: min(20rem, calc(100% - 2.5rem)); padding: 1.25rem; }
+.ck--card:not([data-open]) { transform: translateY(1rem); }
+.ck--card .ck__icon { position: absolute; top: -1.2rem; right: 1.1rem; width: 3rem; height: 3rem; }
+
+/* ---------- Barra ---------- */
+.ck--bar { position: absolute; inset: auto 1rem 1rem 1rem; display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.1rem; }
+.ck--bar:not([data-open]) { transform: translateY(100%); }
+.ck--bar p { flex: 1; }
+.ck--bar .ck__actions { flex: none; }
+.ck--bar .ck__btn { flex: none; min-width: 6.5rem; }
+
+/* ---------- Finestra ---------- */
+.ck-wrap { position: absolute; inset: 0; display: grid; place-items: center; padding: 1rem; background: rgb(0 0 0 / 0.55); }
+.ck-wrap:not([data-open]) .ck--modal { transform: scale(0.96); }
+.ck--modal { display: grid; gap: 0.9rem; width: min(28rem, 100%); padding: 1.4rem; transform-origin: center; transition: transform 300ms var(--ease-out); }
+.ck--modal .ck__icon { width: 2.2rem; height: 2.2rem; }
+.prefs { display: grid; gap: 0.6rem; margin: 0; padding: 0; list-style: none; }
+.prefs li { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.7rem 0.9rem; background: #1b1b1b; border: 1px solid #303030; border-radius: 0.7rem; }
+.prefs strong { display: block; font-size: 0.92rem; }
+.prefs span { font-size: 0.8rem; color: var(--muted); }
+.ck__actions--three { flex-wrap: wrap; }
+.ck__actions--three .ck__btn { min-width: 7rem; }
+
+.sw { position: relative; flex: none; cursor: pointer; }
+.sw input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.sw__t { display: flex; align-items: center; width: 2.6rem; height: 1.5rem; background: #444; border-radius: 1rem; transition: background-color 200ms ease; }
+.sw__t span { display: block; width: 1.1rem; height: 1.1rem; margin: 0 0 0 0.2rem; background: #fff; border-radius: 50%; transition: transform 220ms var(--ease-out); }
+.sw input:checked + .sw__t { background: var(--accent); }
+.sw input:checked + .sw__t span { transform: translateX(1.1rem); }
+.sw input:disabled + .sw__t { opacity: 0.55; }
+.sw input:focus-visible + .sw__t { outline: 2px solid #fff; outline-offset: 2px; }
+
+.again {
+	position: absolute;
+	inset: auto 1.25rem 1.25rem auto;
+	padding: 0.55rem 1.1rem;
+	font: inherit;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--text);
+	cursor: pointer;
+	background: #2a2a2a;
+	border: 1px solid #454545;
+	border-radius: 999px;
+	transition: transform 160ms var(--ease-out), background-color 160ms ease;
+}
+.again[hidden] { display: none; }
+.again:active { transform: scale(0.96); }
+@media (hover: hover) and (pointer: fine) { .again:hover { background: #343434; } }
+
+@media (max-width: 40rem) {
+	.ck--bar { flex-wrap: wrap; }
+	.ck--bar .ck__actions { width: 100%; }
+	.ck--bar .ck__btn { flex: 1; }
+}

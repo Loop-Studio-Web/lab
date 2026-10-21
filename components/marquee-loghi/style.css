@@ -1,0 +1,151 @@
+/* Marquee: due copie identiche del gruppo, ognuna scorre di -100% della propria
+   larghezza; quando la prima esce, la seconda ha preso il suo posto. */
+
+.stage--marquee {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1.25rem;
+	padding-inline: 0;
+}
+.marquee {
+	--t: 32s;
+	--gap: 3rem;
+	display: flex;
+	overflow: hidden;
+	/* Sfumatura ai lati: i marchi entrano ed escono senza tagli netti. */
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+	mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee__group {
+	display: flex;
+	flex: none;
+	min-width: 100%;
+	align-items: center;
+	justify-content: space-around;
+	gap: var(--gap);
+	margin: 0;
+	padding: 0 calc(var(--gap) / 2);
+	list-style: none;
+	animation: marquee var(--t) linear infinite;
+}
+.marquee--reverse .marquee__group {
+	animation-direction: reverse;
+}
+@keyframes marquee {
+	to {
+		transform: translateX(-100%);
+	}
+}
+/* Pausa: dal pulsante, passando sopra (solo con mouse) o con il focus dentro. */
+.marquee.is-paused .marquee__group,
+.marquee:focus-within .marquee__group {
+	animation-play-state: paused;
+}
+@media (hover: hover) and (pointer: fine) {
+	.marquee:hover .marquee__group {
+		animation-play-state: paused;
+	}
+}
+
+.marquee a,
+.marquee li > span {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.65rem;
+	font-family: var(--font-display);
+	font-size: 1.5rem;
+	font-weight: 700;
+	white-space: nowrap;
+	color: var(--muted);
+	text-decoration: none;
+	transition: color 0.25s var(--ease-out);
+}
+.marquee svg {
+	width: 2.25rem;
+	height: 2.25rem;
+	flex: none;
+	fill: currentColor;
+}
+.marquee a:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 6px;
+	border-radius: 0.25rem;
+}
+@media (hover: hover) and (pointer: fine) {
+	.marquee a:hover {
+		color: #fff;
+	}
+	.marquee a:hover svg {
+		color: var(--accent);
+	}
+}
+
+.marquee--pills {
+	--gap: 1rem;
+}
+.marquee--pills li > span {
+	padding: 0.65rem 1.25rem;
+	font-size: 1.05rem;
+	color: #fff;
+	background: var(--bg);
+	border: 1px solid var(--line);
+	border-radius: 100vmax;
+}
+.marquee--pills svg {
+	width: 1.4rem;
+	height: 1.4rem;
+	color: var(--accent);
+}
+
+.marquee__toggle {
+	align-self: center;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem 1rem;
+	font: inherit;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var(--text);
+	background: transparent;
+	border: 1px solid var(--line);
+	border-radius: 100vmax;
+	cursor: pointer;
+	transition:
+		background-color 0.2s var(--ease-out),
+		scale 0.12s var(--ease-out);
+}
+.marquee__toggle:active {
+	scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+	.marquee__toggle:hover {
+		background: rgb(255 255 255 / 0.08);
+	}
+}
+.marquee__toggle svg {
+	width: 1.1rem;
+	height: 1.1rem;
+	fill: currentColor;
+}
+.marquee__toggle .i-play,
+.marquee__toggle[aria-pressed='true'] .i-pause {
+	display: none;
+}
+.marquee__toggle[aria-pressed='true'] .i-play {
+	display: block;
+}
+
+/* Movimento ridotto: nessuna animazione, la fila si scorre con il dito o la rotella. */
+@media (prefers-reduced-motion: reduce) {
+	.marquee {
+		overflow-x: auto;
+		-webkit-mask-image: none;
+		mask-image: none;
+	}
+	.marquee__group[aria-hidden='true'],
+	.marquee__toggle {
+		display: none;
+	}
+}

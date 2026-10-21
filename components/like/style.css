@@ -1,0 +1,425 @@
+.demo__lead code {
+	padding: 0.1rem 0.4rem;
+	background: var(--surface);
+	border-radius: 4px;
+	font-size: 0.85em;
+}
+.stage {
+	min-height: 11rem;
+}
+.stage--photo { gap: 0.75rem; }
+.stage--dots { background: #212121; }
+.stage--roll { background: #121212; }
+.stage--light { background: #fbfbfb; border-color: #e3e3e3; }
+.stage--pink { background: #fdf1f2; border-color: #f1d6d9; }
+.hint {
+	font-size: 0.8rem;
+	color: var(--muted);
+}
+
+/* Tutti i cuori condividono lo stesso disegno (#heart): spento è solo
+   contorno, acceso si riempie. */
+/* :where() azzera la specificità: le classi dei singoli cuori vincono sempre. */
+:where(svg:has(> use[href='#heart']), .pill__icon svg) {
+	display: block;
+	width: 1.5rem;
+	height: 1.5rem;
+	fill: transparent;
+	stroke: currentColor;
+	stroke-width: 1.6;
+	stroke-linejoin: round;
+	transition:
+		fill 250ms var(--ease-out),
+		color 250ms ease;
+}
+button {
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Doppio clic ---------- */
+.photo {
+	position: relative;
+	width: min(100%, 26rem);
+	margin: 0;
+	overflow: hidden;
+	background: #000;
+	border-radius: 1rem;
+	touch-action: manipulation;
+	user-select: none;
+	-webkit-user-select: none;
+}
+.photo img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+}
+.photo__pop {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: 6rem;
+	height: 6rem;
+	fill: #fff;
+	stroke: none;
+	opacity: 0;
+	filter: drop-shadow(0 0.5rem 1.5rem rgb(0 0 0 / 0.45));
+	pointer-events: none;
+}
+.photo.is-pop .photo__pop {
+	animation: pop 800ms var(--ease-out);
+}
+@keyframes pop {
+	0% { opacity: 0; transform: scale(0.5); }
+	20% { opacity: 1; transform: scale(1.15); }
+	40% { transform: scale(0.95); }
+	60% { opacity: 1; transform: scale(1); }
+	100% { opacity: 0; transform: scale(1.1) translateY(-0.5rem); }
+}
+.photo__bar {
+	position: absolute;
+	inset: auto 0 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 2rem 1rem 0.8rem;
+	font-family: var(--font-display);
+	font-weight: 600;
+	background: linear-gradient(to top, rgb(0 0 0 / 0.75), transparent);
+}
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	padding: 0.4rem 0.8rem 0.4rem 0.6rem;
+	font: inherit;
+	font-size: 0.9rem;
+	color: #fff;
+	cursor: pointer;
+	background: rgb(255 255 255 / 0.16);
+	border: 0;
+	border-radius: 999px;
+	backdrop-filter: blur(8px);
+	transition: transform 160ms var(--ease-out);
+}
+.chip:active { transform: scale(0.95); }
+.chip__heart { width: 1.2rem !important; height: 1.2rem !important; }
+.chip[aria-pressed='true'] .chip__heart { fill: #ff3b5c; color: #ff3b5c; }
+
+/* ---------- Cuore che esplode ---------- */
+.burst {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 4.5rem;
+	height: 4.5rem;
+	padding: 0;
+	color: #b3b3b3;
+	cursor: pointer;
+	background: none;
+	border: 0;
+	border-radius: 50%;
+}
+.burst__heart { width: 3.2rem !important; height: 3.2rem !important; }
+.burst[aria-pressed='true'] { color: #ff5b89; }
+.burst[aria-pressed='true'] .burst__heart { fill: #ff5b89; }
+.burst__rays {
+	position: absolute;
+	inset: -0.9rem;
+	width: calc(100% + 1.8rem);
+	height: calc(100% + 1.8rem);
+	fill: none;
+	stroke: #ff5b89;
+	stroke-width: 3;
+	stroke-linecap: round;
+	opacity: 0;
+	pointer-events: none;
+}
+.burst.is-burst .burst__heart { animation: heart-in 600ms var(--ease-out); }
+.burst.is-burst .burst__rays { animation: rays 500ms var(--ease-out) forwards; }
+@keyframes heart-in {
+	0% { transform: scale(0); }
+	25% { transform: scale(1.2); }
+	50% { transform: scale(1); filter: brightness(1.4); }
+}
+@keyframes rays {
+	0% { opacity: 1; transform: scale(0.7); }
+	100% { opacity: 0; transform: scale(1.35); }
+}
+
+/* ---------- Cuore con scintille ---------- */
+.spark {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	padding: 0;
+	color: #5a5a5a;
+	cursor: pointer;
+	background: none;
+	border: 0;
+}
+.spark__heart { width: 2.4rem !important; height: 2.4rem !important; }
+.spark[aria-pressed='true'] { color: #e2264d; }
+.spark[aria-pressed='true'] .spark__heart { fill: #e2264d; }
+/* Anello che si apre e scintille (box-shadow di 12 puntini in cerchio). */
+.spark::before,
+.spark::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	pointer-events: none;
+}
+.spark::before {
+	width: 4.5rem;
+	height: 4.5rem;
+	margin: -2.25rem;
+	border: solid 2.25rem #e2264d;
+	box-sizing: border-box;
+	opacity: 0;
+	transform: scale(0);
+}
+.spark::after {
+	width: 0.375rem;
+	height: 0.375rem;
+	margin: -0.1875rem;
+	opacity: 0;
+}
+.spark.is-burst .spark__heart { animation: spark-heart 900ms cubic-bezier(0.17, 0.89, 0.32, 1.49); }
+.spark.is-burst::before { animation: ring 700ms ease-out; }
+.spark.is-burst::after { animation: sparkles 800ms ease-out; }
+@keyframes spark-heart {
+	0%, 17% { transform: scale(0); }
+	100% { transform: scale(1); }
+}
+@keyframes ring {
+	15% { opacity: 1; transform: scale(1); border-color: #cc8ef5; border-width: 2.25rem; }
+	30%, 100% { opacity: 0; transform: scale(1); border-width: 0; }
+}
+@keyframes sparkles {
+	0%, 20% { opacity: 0; box-shadow: 0.00rem -2.10rem 0 -0.19rem #ff8080, 1.05rem -1.82rem 0 -0.19rem #ffed80, 1.82rem -1.05rem 0 -0.19rem #a4ff80, 2.10rem 0.00rem 0 -0.19rem #80ffc8, 1.82rem 1.05rem 0 -0.19rem #80c8ff, 1.05rem 1.82rem 0 -0.19rem #a480ff, 0.00rem 2.10rem 0 -0.19rem #ff80ed, -1.05rem 1.82rem 0 -0.19rem #ff8080, -1.82rem 1.05rem 0 -0.19rem #ffed80, -2.10rem 0.00rem 0 -0.19rem #a4ff80, -1.82rem -1.05rem 0 -0.19rem #80ffc8, -1.05rem -1.82rem 0 -0.19rem #80c8ff; }
+	35% { opacity: 1; box-shadow: 0.00rem -2.50rem 0 0 #ff8080, 1.25rem -2.17rem 0 0 #ffed80, 2.17rem -1.25rem 0 0 #a4ff80, 2.50rem 0.00rem 0 0 #80ffc8, 2.17rem 1.25rem 0 0 #80c8ff, 1.25rem 2.17rem 0 0 #a480ff, 0.00rem 2.50rem 0 0 #ff80ed, -1.25rem 2.17rem 0 0 #ff8080, -2.17rem 1.25rem 0 0 #ffed80, -2.50rem 0.00rem 0 0 #a4ff80, -2.17rem -1.25rem 0 0 #80ffc8, -1.25rem -2.17rem 0 0 #80c8ff; }
+	100% { opacity: 0; box-shadow: 0.00rem -2.90rem 0 -0.19rem #ff8080, 1.45rem -2.51rem 0 -0.19rem #ffed80, 2.51rem -1.45rem 0 -0.19rem #a4ff80, 2.90rem 0.00rem 0 -0.19rem #80ffc8, 2.51rem 1.45rem 0 -0.19rem #80c8ff, 1.45rem 2.51rem 0 -0.19rem #a480ff, 0.00rem 2.90rem 0 -0.19rem #ff80ed, -1.45rem 2.51rem 0 -0.19rem #ff8080, -2.51rem 1.45rem 0 -0.19rem #ffed80, -2.90rem 0.00rem 0 -0.19rem #a4ff80, -2.51rem -1.45rem 0 -0.19rem #80ffc8, -1.45rem -2.51rem 0 -0.19rem #80c8ff; }
+}
+
+/* ---------- Cuore che oscilla ---------- */
+.wiggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	padding: 0.6rem 1.1rem 0.6rem 0.9rem;
+	font: inherit;
+	font-weight: 800;
+	color: #fff;
+	cursor: pointer;
+	background: #313131;
+	border: 1px solid #3d3d3d;
+	border-radius: 0.5rem;
+	box-shadow: 0 0 1rem 0.5rem rgb(0 0 0 / 0.1);
+	transition: transform 160ms var(--ease-out);
+}
+.wiggle:active { transform: scale(0.96); }
+.wiggle[aria-pressed='true'] .wiggle__heart { fill: #f52121; color: #f52121; }
+.wiggle.is-burst .wiggle__heart { animation: wiggle 500ms ease-in-out; }
+@keyframes wiggle {
+	0%, 100% { transform: rotate(0); }
+	25% { transform: rotate(-12deg); }
+	50% { transform: rotate(12deg); }
+	75% { transform: rotate(-6deg); }
+}
+
+/* ---------- Contatore che scorre ---------- */
+.roll {
+	position: relative;
+	display: flex;
+	width: 9rem;
+	height: 3rem;
+	padding: 0;
+	overflow: hidden;
+	color: #fcfcfc;
+	font: inherit;
+	cursor: pointer;
+	background: #1d1d1d;
+	border: 0;
+	border-radius: 1rem;
+	box-shadow:
+		inset -2px -2px 5px rgb(255 255 255 / 0.15),
+		inset 2px 2px 5px rgb(0 0 0 / 0.1),
+		4px 4px 10px rgb(0 0 0 / 0.4),
+		-2px -2px 8px rgb(255 255 255 / 0.08);
+	transition: transform 160ms var(--ease-out);
+}
+.roll:active { transform: scale(0.97); }
+.roll__main {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 70%;
+	height: 100%;
+}
+.roll__heart { color: #505050; width: 1.5rem !important; height: 1.5rem !important; }
+.roll[aria-pressed='true'] .roll__heart { fill: #fc4e4e; color: #fc4e4e; }
+.roll.is-burst .roll__heart { animation: enlarge 250ms var(--ease-out); }
+@keyframes enlarge {
+	from { transform: scale(0.5); }
+	to { transform: scale(1.2); }
+}
+.roll__count {
+	position: absolute;
+	inset: 0 0 0 auto;
+	width: 30%;
+	overflow: hidden;
+	color: #8a8a8a;
+	border-left: 2px solid #4e4e4e;
+}
+.roll__n {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	transition: transform 500ms var(--ease-out);
+}
+.roll__n:last-child { transform: translateY(100%); }
+.roll[aria-pressed='true'] .roll__n:first-child { transform: translateY(-100%); }
+.roll[aria-pressed='true'] .roll__n:last-child { transform: translateY(0); }
+
+/* ---------- Cuoricini che salgono ---------- */
+.jumpy {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+}
+.pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	padding: 0.45rem 0.9rem 0.45rem 0.75rem;
+	font: inherit;
+	font-weight: 700;
+	color: #878787;
+	cursor: pointer;
+	background: #fff;
+	border: 2px solid #c7c7c7;
+	border-radius: 2.5rem;
+	transition:
+		color 250ms var(--ease-out),
+		border-color 250ms var(--ease-out),
+		transform 160ms var(--ease-out);
+}
+.pill:active { transform: scale(0.95); }
+.pill[aria-pressed='true'] { color: #ff6e6f; border-color: currentColor; }
+.pill__icon {
+	position: relative;
+	display: block;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+.pill__icon svg { width: 1.5rem; height: 1.5rem; }
+.pill[aria-pressed='true'] .pill__icon svg { fill: #ff6e6f; color: #ff6e6f; }
+.pill.is-burst .pill__icon svg { animation: pulse 250ms var(--ease-out); }
+.pill__icon i {
+	position: absolute;
+	inset: 0.2rem 0 auto 0.2rem;
+	width: 0.9rem;
+	height: 0.8rem;
+	margin: auto;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ff6e6f' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") center / contain no-repeat;
+	opacity: 0;
+	pointer-events: none;
+}
+.pill.is-burst .pill__icon i:nth-of-type(1) { animation: float-a 1000ms var(--ease-out) both; }
+.pill.is-burst .pill__icon i:nth-of-type(2) { animation: float-b 1000ms 100ms var(--ease-out) both; }
+@keyframes pulse {
+	50% { transform: scale(1.5); }
+}
+@keyframes float-a {
+	0% { opacity: 0; transform: translate(0) rotate(0); }
+	40% { opacity: 1; transform: translate(0.2rem, -1.6rem) rotate(-20deg); }
+	100% { opacity: 0; transform: translate(0.5rem, -2.4rem) rotate(-30deg); }
+}
+@keyframes float-b {
+	0% { opacity: 0; transform: translate(0) rotate(0) scale(0.4); }
+	40% { opacity: 0.9; transform: translate(-0.7rem, -2.2rem) rotate(25deg) scale(1); }
+	100% { opacity: 0; transform: translate(-1rem, -3rem) rotate(35deg) scale(0.9); }
+}
+
+/* ---------- Smash that like ---------- */
+.smash {
+	--heart: #ea442b;
+	--ease: cubic-bezier(0.7, 0, 0.3, 1);
+	--dur: 500ms;
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 6.5rem;
+	height: 6.5rem;
+	padding: 0;
+	cursor: pointer;
+	background: #fff;
+	border: 0;
+	border-radius: 50%;
+	box-shadow: 0 0.3rem 0.8rem rgb(0 0 0 / 0.25);
+	transition:
+		transform var(--dur) var(--ease),
+		box-shadow var(--dur) var(--ease);
+}
+.smash:active {
+	transform: translateY(4%) scale(0.9);
+	box-shadow: 0 0.15rem 0.4rem rgb(0 0 0 / 0.3);
+}
+.smash__heart {
+	width: 3.2rem !important;
+	height: 3.2rem !important;
+	color: var(--heart);
+	transform-origin: center 80%;
+	transition: fill var(--dur) var(--ease);
+}
+.smash[aria-pressed='true'] .smash__heart { fill: var(--heart); }
+.smash.is-burst .smash__heart { animation: bounce var(--dur) var(--ease); }
+@keyframes bounce {
+	40% { transform: scale(0.7); }
+	0%, 80%, 100% { transform: scale(1); }
+}
+.smash__ripple {
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: var(--heart);
+	opacity: 0;
+	transform: scale(0.5);
+	pointer-events: none;
+}
+.smash.is-burst .smash__ripple { animation: ripple var(--dur) var(--ease) forwards; }
+@keyframes ripple {
+	0% { opacity: 0.35; transform: scale(0.6); }
+	100% { opacity: 0; transform: scale(1.6); }
+}
+.smash__particles {
+	position: absolute;
+	inset: 50%;
+	width: 1px;
+	height: 1px;
+	pointer-events: none;
+}
+.smash__particles i {
+	--theta: calc(var(--i) / 6 * 1turn);
+	position: absolute;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 0.3rem;
+	background: var(--c);
+	opacity: 0;
+	transform: translate(-50%, -50%) rotate(var(--theta)) translateY(0) scaleY(0);
+}
+.smash.is-burst .smash__particles i { animation: particle 700ms var(--ease) forwards; }
+@keyframes particle {
+	0% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--theta)) translateY(1.8rem) scaleY(0); }
+	40% { opacity: 1; transform: translate(-50%, -50%) rotate(var(--theta)) translateY(3rem) scaleY(1.6); }
+	100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--theta)) translateY(4rem) scaleY(0); }
+}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tab e controlli segmentati — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Tab e controlli segmentati</h1>
+				<p class="demo__lead">
+					Tre modi di cambiare vista senza cambiare pagina. Sono tab veri: frecce, Home e Fine per
+					spostarsi, e un solo tab nell’ordine di tabulazione.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Il colore che scorre</h2>
+				<div class="stage">
+					<div class="tabs" data-tabs>
+						<div class="seg seg--flow">
+							<div class="seg__base" role="tablist" aria-label="Servizi">
+								<button type="button" role="tab" id="t1a" aria-controls="p1a" aria-selected="true">Siti web</button>
+								<button type="button" role="tab" id="t1b" aria-controls="p1b" aria-selected="false" tabindex="-1">Foto e video</button>
+								<button type="button" role="tab" id="t1c" aria-controls="p1c" aria-selected="false" tabindex="-1">Social</button>
+							</div>
+							<!-- Copia del solo aspetto: il suo ritaglio segue il tab attivo, così anche il colore del testo scorre -->
+							<div class="seg__lit" aria-hidden="true" data-lit>
+								<span>Siti web</span><span>Foto e video</span><span>Social</span>
+							</div>
+						</div>
+						<div class="panels">
+							<div role="tabpanel" id="p1a" aria-labelledby="t1a" tabindex="0"><h3>Siti web</h3><p>Pagine veloci, pensate per essere trovate e per convincere in pochi secondi. Dalla vetrina semplice al sito che vende.</p></div>
+							<div role="tabpanel" id="p1b" aria-labelledby="t1b" tabindex="0" hidden><h3>Foto e video</h3><p>Immagini e filmati che raccontano l’attività com’è davvero, pronti per il sito e per i social.</p></div>
+							<div role="tabpanel" id="p1c" aria-labelledby="t1c" tabindex="0" hidden><h3>Social</h3><p>Un calendario di contenuti coerente, scritto e pubblicato da noi, con un resoconto mensile.</p></div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Sottolineatura che si sposta</h2>
+				<div class="stage">
+					<div class="tabs" data-tabs>
+						<div class="line" role="tablist" aria-label="Fasi del progetto">
+							<button type="button" role="tab" id="t2a" aria-controls="p2a" aria-selected="true">Idea</button>
+							<button type="button" role="tab" id="t2b" aria-controls="p2b" aria-selected="false" tabindex="-1">Progetto</button>
+							<button type="button" role="tab" id="t2c" aria-controls="p2c" aria-selected="false" tabindex="-1">Sviluppo</button>
+							<button type="button" role="tab" id="t2d" aria-controls="p2d" aria-selected="false" tabindex="-1">Lancio</button>
+							<span class="line__bar" aria-hidden="true"></span>
+						</div>
+						<div class="panels">
+							<div role="tabpanel" id="p2a" aria-labelledby="t2a" tabindex="0"><p>Ci raccontate l’attività, il pubblico e cosa volete ottenere. Noi ascoltiamo e prendiamo appunti.</p></div>
+							<div role="tabpanel" id="p2b" aria-labelledby="t2b" tabindex="0" hidden><p>Una proposta di struttura e di stile da approvare prima di scrivere una riga di codice.</p></div>
+							<div role="tabpanel" id="p2c" aria-labelledby="t2c" tabindex="0" hidden><p>Costruiamo le pagine e ve le mostriamo a metà lavoro, così si corregge in tempo.</p></div>
+							<div role="tabpanel" id="p2d" aria-labelledby="t2d" tabindex="0" hidden><p>Pubblichiamo, controlliamo che tutto funzioni su telefono vero e restiamo a disposizione.</p></div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Pillole con icona</h2>
+				<div class="stage">
+					<div class="tabs" data-tabs>
+						<div class="pills" role="tablist" aria-label="Vista">
+							<button type="button" role="tab" id="t3a" aria-controls="p3a" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>Griglia</button>
+							<button type="button" role="tab" id="t3b" aria-controls="p3b" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" /></svg>Elenco</button>
+							<button type="button" role="tab" id="t3c" aria-controls="p3c" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" /></svg>Calendario</button>
+						</div>
+						<div class="panels">
+							<div role="tabpanel" id="p3a" aria-labelledby="t3a" tabindex="0"><div class="mini mini--grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+							<div role="tabpanel" id="p3b" aria-labelledby="t3b" tabindex="0" hidden><div class="mini mini--list" aria-hidden="true"><i></i><i></i><i></i></div></div>
+							<div role="tabpanel" id="p3c" aria-labelledby="t3c" tabindex="0" hidden><div class="mini mini--cal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

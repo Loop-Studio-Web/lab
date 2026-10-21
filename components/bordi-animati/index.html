@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bordi animati — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<!-- I filtri vivono qui: nessun elemento li mostra, il CSS li richiama con url(#id). -->
+		<svg width="0" height="0" style="position: absolute" aria-hidden="true" data-smil>
+			<filter id="glow-0" x="-.25" y="-.25" width="1.5" height="1.5">
+				<feComponentTransfer><feFuncA type="table" tableValues="0 2 0" /></feComponentTransfer>
+				<feGaussianBlur stdDeviation="2" />
+				<feComponentTransfer result="rond"><feFuncA type="table" tableValues="-2 3" /></feComponentTransfer>
+				<feMorphology operator="dilate" radius="3" />
+				<feGaussianBlur stdDeviation="6" />
+				<feBlend in="rond" result="glow" />
+				<feComponentTransfer in="SourceGraphic"><feFuncA type="table" tableValues="0 0 1" /></feComponentTransfer>
+				<feBlend in2="glow" />
+			</filter>
+			<filter id="glow-1" x="-.25" y="-.25" width="1.5" height="1.5">
+				<feComponentTransfer in="SourceGraphic" result="grad"><feFuncA type="table" tableValues="0 2 0" /></feComponentTransfer>
+				<feMorphology operator="dilate" radius="3" />
+				<feGaussianBlur stdDeviation="6" result="glow" />
+				<feTurbulence type="fractalNoise" baseFrequency="7.13" />
+				<feDisplacementMap in="glow" scale="12" yChannelSelector="R" />
+				<feComponentTransfer><feFuncA type="linear" slope=".8" /></feComponentTransfer>
+				<feBlend in="grad" result="out" />
+				<feComponentTransfer in="SourceGraphic"><feFuncA type="table" tableValues="0 0 1" /></feComponentTransfer>
+				<feBlend in2="out" />
+			</filter>
+
+			<filter id="electric" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+				<feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="4" result="n1" seed="1" />
+				<feOffset in="n1" dx="0" dy="0" result="o1"><animate attributeName="dy" values="700; 0" dur="6s" repeatCount="indefinite" calcMode="linear" /></feOffset>
+				<feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="4" result="n2" seed="1" />
+				<feOffset in="n2" dx="0" dy="0" result="o2"><animate attributeName="dy" values="0; -700" dur="6s" repeatCount="indefinite" calcMode="linear" /></feOffset>
+				<feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="4" result="n3" seed="2" />
+				<feOffset in="n3" dx="0" dy="0" result="o3"><animate attributeName="dx" values="490; 0" dur="6s" repeatCount="indefinite" calcMode="linear" /></feOffset>
+				<feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="4" result="n4" seed="2" />
+				<feOffset in="n4" dx="0" dy="0" result="o4"><animate attributeName="dx" values="0; -490" dur="6s" repeatCount="indefinite" calcMode="linear" /></feOffset>
+				<feComposite in="o1" in2="o2" result="p1" />
+				<feComposite in="o3" in2="o4" result="p2" />
+				<feBlend in="p1" in2="p2" mode="color-dodge" result="noise" />
+				<feDisplacementMap in="SourceGraphic" in2="noise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+			</filter>
+		</svg>
+
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Bordi animati</h1>
+				<p class="demo__lead">
+					Tre modi di dare vita a un bordo: un gradiente che gira con l’alone, una scarica elettrica e un
+					tratto di pennarello che corre sul contorno. Sono animazioni continue: si fermano quando escono
+					dallo schermo e con <code>prefers-reduced-motion</code>.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Gradiente conico con alone</h2>
+				<div class="stage stage--glow">
+					<div class="glows">
+						<img
+							class="glow"
+							src="../_shared/img/aurora-m.webp"
+							alt="Aurora boreale sopra un lago"
+							width="900"
+							height="600"
+							style="--f: url(#glow-1); --l: #ff45457f, #00ff997f, #006aff7f, #ff00957f, #ff45457f"
+						/>
+						<img
+							class="glow"
+							src="../_shared/img/alpine-lake-m.webp"
+							alt="Lago alpino tra le montagne"
+							width="900"
+							height="600"
+							style="--l: #0000 0% 35%, #24004619, #3c096c32, #5a189a4b, #7b2cbf64, #9d4edd7f"
+						/>
+						<img
+							class="glow"
+							src="../_shared/img/desert-m.webp"
+							alt="Dune del deserto al tramonto"
+							width="900"
+							height="600"
+							style="--l: #0000 0% 25%, #f3b70019 0%, #faa30032, #e57c044b, #ff620164, #f63e027f 50%"
+						/>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Bordo elettrico</h2>
+				<div class="stage stage--electric">
+					<article class="electric">
+						<div class="electric__inner">
+							<div class="electric__outer"><div class="electric__edge"></div></div>
+							<div class="electric__halo electric__halo--1"></div>
+							<div class="electric__halo electric__halo--2"></div>
+						</div>
+						<div class="electric__sheen"></div>
+						<div class="electric__sheen electric__sheen--2"></div>
+						<div class="electric__bloom"></div>
+						<div class="electric__content">
+							<p class="electric__badge">Drammatico</p>
+							<h3>Bordo elettrico</h3>
+							<hr />
+							<p class="electric__text">Quando una cosa deve emergere, e deve farlo con una certa teatralità.</p>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Tratto a pennarello</h2>
+				<div class="stage stage--marker">
+					<ul class="markers">
+						<li class="marker" style="--c: #ff3b30; --dash: 78 22; --t: 7s">
+							<svg viewBox="0 0 108 108" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M7.84999 4.52304C10.4167 4.87174 12.9833 4.7961 15.55 4.29611C18.1167 3.79612 20.6833 3.77393 23.25 4.22954C25.8167 4.68515 28.3833 4.63313 30.95 4.07349C33.5167 3.51385 36.0833 3.30905 38.65 3.45907C41.2167 3.6091 43.7833 3.64025 46.35 3.55252C48.9167 3.46479 51.4833 3.72872 54.05 4.34432C56.6167 4.95992 59.1833 5.05995 61.75 4.64441C64.3167 4.22888 66.8833 3.95074 69.45 3.81001C72.0167 3.66928 74.5833 3.51867 77.15 3.35817C79.7167 3.19768 82.2833 3.08289 84.85 3.0138C87.4166 2.94472 89.9833 3.10282 92.55 3.48811C95.1167 3.8734 97.5238 4.0717 99.7714 4.08301C102.019 4.09432 103.173 5.38331 103.232 7.94997C103.292 10.5166 103.67 13.0833 104.365 15.65C105.06 18.2166 105.138 20.7833 104.597 23.35C104.057 25.9166 103.853 28.4833 103.984 31.05C104.115 33.6166 103.921 36.1833 103.402 38.75C102.883 41.3166 102.633 43.8833 102.652 46.45C102.671 49.0166 102.93 51.5833 103.427 54.15C103.924 56.7166 104.256 59.2833 104.424 61.85C104.592 64.4166 104.434 66.9833 103.95 69.5499C103.466 72.1166 103.173 74.6833 103.071 77.2499C102.968 79.8166 103.161 82.3833 103.649 84.9499C104.137 87.5166 104.182 90.0833 103.785 92.6499C103.388 95.2166 103.291 97.854 103.494 100.562C103.698 103.27 102.517 104.445 99.95 104.088C97.3834 103.73 94.8167 103.807 92.25 104.318C89.6834 104.83 87.1167 104.777 84.55 104.159C81.9834 103.541 79.4167 103.494 76.8501 104.017C74.2834 104.54 71.7167 104.474 69.1501 103.82C66.5834 103.165 64.0167 102.893 61.4501 103.003C58.8834 103.114 56.3167 103.442 53.7501 103.989C51.1834 104.536 48.6167 104.517 46.0501 103.933C43.4834 103.348 40.9167 103.085 38.3501 103.144C35.7834 103.202 33.2167 103.585 30.65 104.292C28.0834 104.999 25.5167 104.974 22.95 104.217C20.3834 103.46 17.8167 103.267 15.25 103.638C12.6834 104.009 10.049 104.112 7.3471 103.947C4.64516 103.782 3.21816 102.417 3.06612 99.85C2.91407 97.2833 3.27189 94.7166 4.13956 92.15C5.00724 89.5833 5.22889 87.0166 4.80451 84.45C4.38014 81.8833 4.37256 79.3166 4.78179 76.75C5.19101 74.1833 5.23802 71.6166 4.92281 69.0499C4.60759 66.4833 4.31893 63.9166 4.05682 61.3499C3.7947 58.7833 3.76382 56.2166 3.96416 53.6499C4.1645 51.0832 4.12396 48.5166 3.84252 45.9499C3.56109 43.3832 3.70993 40.8166 4.28905 38.2499C4.86817 35.6832 5.17886 33.1165 5.22111 30.5499C5.26336 27.9832 4.95095 25.4165 4.28387 22.8499C3.61679 20.2832 3.15862 17.7165 2.90935 15.1499C2.66007 12.5832 2.77953 10.0832 3.26771 7.64992C3.7559 5.21663 5.28332 4.17434 7.84999 4.52304Z" /></svg>
+							<figure>
+								<h3>Disegnato a mano</h3>
+								<p>Il contorno non è un rettangolo: è una linea imperfetta che si ripete come tratto di pennarello.</p>
+							</figure>
+						</li>
+						<li class="marker" style="--c: #ffffff; --dash: 62 38; --t: 9s">
+							<svg viewBox="0 0 108 108" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M7.84999 4.52304C10.4167 4.87174 12.9833 4.7961 15.55 4.29611C18.1167 3.79612 20.6833 3.77393 23.25 4.22954C25.8167 4.68515 28.3833 4.63313 30.95 4.07349C33.5167 3.51385 36.0833 3.30905 38.65 3.45907C41.2167 3.6091 43.7833 3.64025 46.35 3.55252C48.9167 3.46479 51.4833 3.72872 54.05 4.34432C56.6167 4.95992 59.1833 5.05995 61.75 4.64441C64.3167 4.22888 66.8833 3.95074 69.45 3.81001C72.0167 3.66928 74.5833 3.51867 77.15 3.35817C79.7167 3.19768 82.2833 3.08289 84.85 3.0138C87.4166 2.94472 89.9833 3.10282 92.55 3.48811C95.1167 3.8734 97.5238 4.0717 99.7714 4.08301C102.019 4.09432 103.173 5.38331 103.232 7.94997C103.292 10.5166 103.67 13.0833 104.365 15.65C105.06 18.2166 105.138 20.7833 104.597 23.35C104.057 25.9166 103.853 28.4833 103.984 31.05C104.115 33.6166 103.921 36.1833 103.402 38.75C102.883 41.3166 102.633 43.8833 102.652 46.45C102.671 49.0166 102.93 51.5833 103.427 54.15C103.924 56.7166 104.256 59.2833 104.424 61.85C104.592 64.4166 104.434 66.9833 103.95 69.5499C103.466 72.1166 103.173 74.6833 103.071 77.2499C102.968 79.8166 103.161 82.3833 103.649 84.9499C104.137 87.5166 104.182 90.0833 103.785 92.6499C103.388 95.2166 103.291 97.854 103.494 100.562C103.698 103.27 102.517 104.445 99.95 104.088C97.3834 103.73 94.8167 103.807 92.25 104.318C89.6834 104.83 87.1167 104.777 84.55 104.159C81.9834 103.541 79.4167 103.494 76.8501 104.017C74.2834 104.54 71.7167 104.474 69.1501 103.82C66.5834 103.165 64.0167 102.893 61.4501 103.003C58.8834 103.114 56.3167 103.442 53.7501 103.989C51.1834 104.536 48.6167 104.517 46.0501 103.933C43.4834 103.348 40.9167 103.085 38.3501 103.144C35.7834 103.202 33.2167 103.585 30.65 104.292C28.0834 104.999 25.5167 104.974 22.95 104.217C20.3834 103.46 17.8167 103.267 15.25 103.638C12.6834 104.009 10.049 104.112 7.3471 103.947C4.64516 103.782 3.21816 102.417 3.06612 99.85C2.91407 97.2833 3.27189 94.7166 4.13956 92.15C5.00724 89.5833 5.22889 87.0166 4.80451 84.45C4.38014 81.8833 4.37256 79.3166 4.78179 76.75C5.19101 74.1833 5.23802 71.6166 4.92281 69.0499C4.60759 66.4833 4.31893 63.9166 4.05682 61.3499C3.7947 58.7833 3.76382 56.2166 3.96416 53.6499C4.1645 51.0832 4.12396 48.5166 3.84252 45.9499C3.56109 43.3832 3.70993 40.8166 4.28905 38.2499C4.86817 35.6832 5.17886 33.1165 5.22111 30.5499C5.26336 27.9832 4.95095 25.4165 4.28387 22.8499C3.61679 20.2832 3.15862 17.7165 2.90935 15.1499C2.66007 12.5832 2.77953 10.0832 3.26771 7.64992C3.7559 5.21663 5.28332 4.17434 7.84999 4.52304Z" /></svg>
+							<figure>
+								<h3>Più sobrio</h3>
+								<p>Stesso gesto, colore neutro e un tratto più corto: si nota meno, si perdona di più.</p>
+							</figure>
+						</li>
+						<li class="marker" style="--c: #8a8a8a; --dash: 90 10; --t: 5s">
+							<svg viewBox="0 0 108 108" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M7.84999 4.52304C10.4167 4.87174 12.9833 4.7961 15.55 4.29611C18.1167 3.79612 20.6833 3.77393 23.25 4.22954C25.8167 4.68515 28.3833 4.63313 30.95 4.07349C33.5167 3.51385 36.0833 3.30905 38.65 3.45907C41.2167 3.6091 43.7833 3.64025 46.35 3.55252C48.9167 3.46479 51.4833 3.72872 54.05 4.34432C56.6167 4.95992 59.1833 5.05995 61.75 4.64441C64.3167 4.22888 66.8833 3.95074 69.45 3.81001C72.0167 3.66928 74.5833 3.51867 77.15 3.35817C79.7167 3.19768 82.2833 3.08289 84.85 3.0138C87.4166 2.94472 89.9833 3.10282 92.55 3.48811C95.1167 3.8734 97.5238 4.0717 99.7714 4.08301C102.019 4.09432 103.173 5.38331 103.232 7.94997C103.292 10.5166 103.67 13.0833 104.365 15.65C105.06 18.2166 105.138 20.7833 104.597 23.35C104.057 25.9166 103.853 28.4833 103.984 31.05C104.115 33.6166 103.921 36.1833 103.402 38.75C102.883 41.3166 102.633 43.8833 102.652 46.45C102.671 49.0166 102.93 51.5833 103.427 54.15C103.924 56.7166 104.256 59.2833 104.424 61.85C104.592 64.4166 104.434 66.9833 103.95 69.5499C103.466 72.1166 103.173 74.6833 103.071 77.2499C102.968 79.8166 103.161 82.3833 103.649 84.9499C104.137 87.5166 104.182 90.0833 103.785 92.6499C103.388 95.2166 103.291 97.854 103.494 100.562C103.698 103.27 102.517 104.445 99.95 104.088C97.3834 103.73 94.8167 103.807 92.25 104.318C89.6834 104.83 87.1167 104.777 84.55 104.159C81.9834 103.541 79.4167 103.494 76.8501 104.017C74.2834 104.54 71.7167 104.474 69.1501 103.82C66.5834 103.165 64.0167 102.893 61.4501 103.003C58.8834 103.114 56.3167 103.442 53.7501 103.989C51.1834 104.536 48.6167 104.517 46.0501 103.933C43.4834 103.348 40.9167 103.085 38.3501 103.144C35.7834 103.202 33.2167 103.585 30.65 104.292C28.0834 104.999 25.5167 104.974 22.95 104.217C20.3834 103.46 17.8167 103.267 15.25 103.638C12.6834 104.009 10.049 104.112 7.3471 103.947C4.64516 103.782 3.21816 102.417 3.06612 99.85C2.91407 97.2833 3.27189 94.7166 4.13956 92.15C5.00724 89.5833 5.22889 87.0166 4.80451 84.45C4.38014 81.8833 4.37256 79.3166 4.78179 76.75C5.19101 74.1833 5.23802 71.6166 4.92281 69.0499C4.60759 66.4833 4.31893 63.9166 4.05682 61.3499C3.7947 58.7833 3.76382 56.2166 3.96416 53.6499C4.1645 51.0832 4.12396 48.5166 3.84252 45.9499C3.56109 43.3832 3.70993 40.8166 4.28905 38.2499C4.86817 35.6832 5.17886 33.1165 5.22111 30.5499C5.26336 27.9832 4.95095 25.4165 4.28387 22.8499C3.61679 20.2832 3.15862 17.7165 2.90935 15.1499C2.66007 12.5832 2.77953 10.0832 3.26771 7.64992C3.7559 5.21663 5.28332 4.17434 7.84999 4.52304Z" /></svg>
+							<figure>
+								<h3>Quasi continuo</h3>
+								<p>Una pausa minuscola nel giro: basta a far capire che qualcosa si muove.</p>
+							</figure>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<p class="demo__note">
+				L’alone del primo gruppo è un filtro SVG applicato alla foto: è bello ma costa, per questo ne basta
+				uno per scheda e l’animazione parte solo quando la sezione è visibile. Foto: Unsplash.
+			</p>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

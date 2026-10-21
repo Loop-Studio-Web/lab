@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Flip card — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Flip card</h1>
+				<p class="demo__lead">
+					Due modi di girare una card: quattro foto che si voltano con il testo che galleggia sopra,
+					e una carta a due stagioni con il bordo che corre. Passa il mouse, tocca o usa Tab.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Quattro luoghi, testo in profondità</h2>
+				<div class="stage stage--places">
+					<ul class="places">
+						<li class="flip" tabindex="0" style="--photo: url(../_shared/img/manarola-m.webp)">
+							<div class="flip__inner">
+								<div class="flip__face flip__front">
+									<div class="flip__text">
+										<h3>Manarola</h3>
+										<p>Liguria</p>
+									</div>
+								</div>
+								<div class="flip__face flip__back">
+									<div class="flip__text">
+										<p>Case color pastello appese alla scogliera: si arriva a piedi, in treno o dal mare.</p>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="flip" tabindex="0" style="--photo: url(../_shared/img/waterfall-m.webp)">
+							<div class="flip__inner">
+								<div class="flip__face flip__front">
+									<div class="flip__text">
+										<h3>La cascata</h3>
+										<p>Giungla</p>
+									</div>
+								</div>
+								<div class="flip__face flip__back">
+									<div class="flip__text">
+										<p>Un’ora di sentiero tra le felci, poi il rumore si sente prima di vedere l’acqua.</p>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="flip" tabindex="0" style="--photo: url(../_shared/img/desert-m.webp)">
+							<div class="flip__inner">
+								<div class="flip__face flip__front">
+									<div class="flip__text">
+										<h3>Le dune</h3>
+										<p>Sahara</p>
+									</div>
+								</div>
+								<div class="flip__face flip__back">
+									<div class="flip__text">
+										<p>La sabbia cambia colore ogni mezz’ora: il momento migliore è subito prima del tramonto.</p>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="flip" tabindex="0" style="--photo: url(../_shared/img/pagoda-m.webp)">
+							<div class="flip__inner">
+								<div class="flip__face flip__front">
+									<div class="flip__text">
+										<h3>La pagoda</h3>
+										<p>Kyoto</p>
+									</div>
+								</div>
+								<div class="flip__face flip__back">
+									<div class="flip__text">
+										<p>Cinque piani di legno e silenzio: all’alba, prima dei gruppi, si ha quasi tutto per sé.</p>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Caldo e freddo, con il bordo che corre</h2>
+				<div class="stage stage--season">
+					<div class="season" data-season>
+						<div class="season__inner">
+							<article class="season__face season__face--hot" aria-label="Estate">
+								<svg class="season__edge" viewBox="0 0 400 480" preserveAspectRatio="none" aria-hidden="true">
+									<defs>
+										<linearGradient id="edge-hot" x1="0" y1="0" x2="400" y2="480" gradientUnits="userSpaceOnUse">
+											<stop stop-color="#ffe14a" />
+											<stop offset="1" stop-color="#ffe14a" stop-opacity="0" />
+										</linearGradient>
+									</defs>
+									<rect x="2" y="2" width="396" height="476" rx="14" pathLength="1" />
+								</svg>
+								<img src="../_shared/img/beach-m.webp" alt="Una spiaggia con acqua turchese" width="900" height="600" />
+								<h3>Estate</h3>
+								<p>Benvenuto sul lato caldo: sabbia, acqua trasparente e giornate che non finiscono mai.</p>
+								<button type="button" class="season__btn" data-flip>
+									<span>Vai all’inverno</span>
+									<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3l4 4-4 4M21 7H8M7 21l-4-4 4-4M3 17h13" /></svg>
+								</button>
+							</article>
+							<article class="season__face season__face--cold" aria-label="Inverno" inert>
+								<svg class="season__edge" viewBox="0 0 400 480" preserveAspectRatio="none" aria-hidden="true">
+									<defs>
+										<linearGradient id="edge-cold" x1="0" y1="0" x2="400" y2="480" gradientUnits="userSpaceOnUse">
+											<stop stop-color="#ffffff" />
+											<stop offset="1" stop-color="#ffffff" stop-opacity="0" />
+										</linearGradient>
+									</defs>
+									<rect x="2" y="2" width="396" height="476" rx="14" pathLength="1" />
+								</svg>
+								<img src="../_shared/img/snow-lake-m.webp" alt="Un lago di montagna innevato in inverno" width="900" height="600" />
+								<h3>Inverno</h3>
+								<p>Benvenuto sul lato freddo: aria tagliente, silenzio e un lago che sembra di vetro.</p>
+								<button type="button" class="season__btn" data-flip>
+									<span>Torna all’estate</span>
+									<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3l4 4-4 4M21 7H8M7 21l-4-4 4-4M3 17h13" /></svg>
+								</button>
+							</article>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<p class="demo__note">
+				Le foto dei luoghi sono su due facce di un solo elemento: <code>backface-visibility: hidden</code>
+				nasconde il retro di ciascuna. Il testo sta più vicino all’occhio (<code>translateZ</code>), per questo
+				si muove di più della card quando gira. Foto: Unsplash.
+			</p>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

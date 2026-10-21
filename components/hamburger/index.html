@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Hamburger — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Il pulsante del menu</h1>
+				<p class="demo__lead">
+					Tre righe che diventano una croce, in quindici modi. Ogni icona è un vero
+					<code>&lt;button&gt;</code> con <code>aria-expanded</code>: si annuncia “espanso” o “chiuso” anche
+					a chi usa uno screen reader.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Menu a ventaglio</h2>
+				<div class="stage stage--fan">
+					<div class="fan" data-fan>
+						<button type="button" class="fan__toggle" data-fan-toggle aria-expanded="false" aria-controls="fan-items" aria-label="Menu">
+							<span></span><span></span><span></span>
+						</button>
+						<div class="fan__items" id="fan-items">
+							<a href="#" class="fan__item" style="--i: 0; --c: #e5372a" aria-label="Home" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+  <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg></a>
+							<a href="#" class="fan__item" style="--i: 1; --c: #f08c1a" aria-label="Calendario" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3" />
+  <path d="M16 2v3" />
+  <rect x="3" y="3" width="18" height="18" rx="2" />
+  <path d="M3 9h18" /></svg></a>
+							<a href="#" class="fan__item" style="--i: 2; --c: #e3b505" aria-label="Dove siamo" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+  <circle cx="12" cy="10" r="3" /></svg></a>
+							<a href="#" class="fan__item" style="--i: 3; --c: #2e9d52" aria-label="Scrivici" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+  <rect x="2" y="4" width="20" height="16" rx="2" /></svg></a>
+							<a href="#" class="fan__item" style="--i: 4; --c: #2a5cd8" aria-label="Profilo" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+  <circle cx="12" cy="7" r="4" /></svg></a>
+							<a href="#" class="fan__item" style="--i: 5; --c: #6a2fb5" aria-label="Preferiti" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></a>
+							
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Il percorso che si intreccia</h2>
+				<div class="stage stage--path">
+					<button type="button" class="hb-path" data-hb aria-expanded="false" aria-label="Menu">
+						<svg viewBox="0 0 64 48" aria-hidden="true">
+							<path d="M19,15 L45,15 C70,15 58,-2 49.0177126,7 L19,37"></path>
+							<path d="M19,24 L45,24 C61.2371586,24 57,49 41,33 L32,24"></path>
+							<path d="M45,33 L19,33 C-8,33 6,-2 22,14 L45,37"></path>
+						</svg>
+					</button>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Tre righe al neon</h2>
+				<div class="stage stage--neon">
+					<button type="button" class="nb nb--one" data-hb aria-expanded="false" aria-label="Menu, neon rosa"><span></span><span></span><span></span></button>
+					<button type="button" class="nb nb--two" data-hb aria-expanded="false" aria-label="Menu, neon verde"><span></span><span></span><span></span><span></span></button>
+					<button type="button" class="nb nb--three" data-hb aria-expanded="false" aria-label="Menu, neon giallo"><span></span><span></span><span></span></button>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Dieci piccole trasformazioni</h2>
+				<div class="stage stage--ten">
+					<div class="ten">
+						<div class="ten__cell"><button type="button" class="hb hb01" data-hb aria-expanded="false" aria-label="Menu, stile 1"><span></span><span></span><span></span></button></div>
+						<div class="ten__cell"><button type="button" class="hb hb02" data-hb aria-expanded="false" aria-label="Menu, stile 2"><span></span><span></span><span></span></button></div>
+						<div class="ten__cell"><button type="button" class="hb hb03" data-hb aria-expanded="false" aria-label="Menu, stile 3"><span></span><span></span><span></span></button></div>
+						<div class="ten__cell"><button type="button" class="hb hb04" data-hb aria-expanded="false" aria-label="Menu, stile 4"><span></span><span></span><span></span></button></div>
+						<div class="ten__cell"><button type="button" class="hb hb05" data-hb aria-expanded="false" aria-label="Menu, stile 5"><span></span><span></span><span></span></button></div>
+						<div class="ten__cell"><button type="button" class="hb hb06" data-hb aria-expanded="false" aria-label="Menu, stile 6"><span></span><span></span><span></span></button></div>
+						<div class="ten__cell"><button type="button" class="hb hb07" data-hb aria-expanded="false" aria-label="Menu, stile 7"><span></span><span></span><span></span></button></div>
+						<div class="ten__cell"><button type="button" class="hb hb08" data-hb aria-expanded="false" aria-label="Menu, stile 8"><span></span><span></span><span></span></button></div>
+						<div class="ten__cell"><button type="button" class="hb hb09" data-hb aria-expanded="false" aria-label="Menu, stile 9"><span></span><span></span><span></span></button></div>
+						<div class="ten__cell"><button type="button" class="hb hb10" data-hb aria-expanded="false" aria-label="Menu, stile 10"><span></span><span></span><span></span></button></div>
+						
+					</div>
+				</div>
+			</section>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

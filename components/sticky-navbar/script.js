@@ -1,15 +1,10 @@
-const navbarElement = document.querySelector(".navbar");
-const bottomContainerElement = document.querySelector(".bottom-container");
-console.log(bottomContainerElement.offsetTop);
+// La barra diventa solida quando l'immagine iniziale esce dallo schermo.
+// Un IntersectionObserver avvisa solo al passaggio della soglia: niente
+// listener su "scroll" che scatta a ogni pixel.
+const nav = document.querySelector('[data-nav]');
+const hero = document.querySelector('[data-hero]');
 
-window.addEventListener("scroll", () => {
-  //   console.log(window.scrollY);
-  if (
-    window.scrollY >
-    bottomContainerElement.offsetTop - navbarElement.offsetHeight - 50
-  ) {
-    navbarElement.classList.add("active");
-  } else {
-    navbarElement.classList.remove("active");
-  }
-});
+const navHeight = nav.offsetHeight;
+new IntersectionObserver(([entry]) => nav.classList.toggle('is-solid', !entry.isIntersecting), {
+	rootMargin: `-${navHeight}px 0px 0px 0px`,
+}).observe(hero);

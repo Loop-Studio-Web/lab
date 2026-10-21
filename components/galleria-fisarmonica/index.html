@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Galleria a fisarmonica — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Galleria a fisarmonica</h1>
+				<p class="demo__lead">
+					Quattro foto che si sovrappongono come le lame di un ventaglio. Passa sopra una lama (o toccala,
+					o raggiungila con Tab) e si apre, mentre le altre si stringono. L’angolo tagliato sul lato
+					sinistro svanisce sulla lama aperta.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Quattro architetture</h2>
+				<div class="stage stage--fan">
+					<div class="fan" role="group" aria-label="Quattro fotografie di architettura">
+						<figure class="fan__item" tabindex="0">
+							<img src="img/arch-1.webp" alt="Un palazzo bianco a blocchi sovrapposti contro il cielo" width="900" height="800" />
+						</figure>
+						<figure class="fan__item" tabindex="0">
+							<img src="img/arch-2.webp" alt="Una facciata ondulata di lamelle grigie sotto un cielo blu" width="900" height="800" />
+						</figure>
+						<figure class="fan__item" tabindex="0">
+							<img src="img/arch-3.webp" alt="Due edifici a fasce blu che si piegano uno verso l’altro" width="900" height="800" />
+						</figure>
+						<figure class="fan__item" tabindex="0">
+							<img src="img/arch-4.webp" alt="Un edificio a finestre quadrate, in bianco e nero, sopra un basamento scuro" width="900" height="800" />
+						</figure>
+					</div>
+				</div>
+			</section>
+
+			<p class="demo__note">
+				Ogni lama occupa tre colonne di una griglia da nove e le lame si sovrappongono di una colonna. Al
+				passaggio la colonna diventa più larga e <code>grid-template-columns</code> si anima. L’angolo
+				tagliato usa <code>corner-shape: notch</code>, dove non è supportato resta un angolo arrotondato.
+				Foto: Unsplash.
+			</p>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

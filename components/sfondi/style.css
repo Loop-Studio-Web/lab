@@ -1,0 +1,420 @@
+/* Sfondi — sette riquadri. Ogni .bg è un "contenitore" (container-type: size):
+   così stelle, foglie e colonne si muovono in cqw/cqh, cioè in proporzione al
+   riquadro e non alla finestra del browser. */
+
+.bg {
+	container-type: size;
+	display: block;
+	height: 22rem;
+	padding: 0;
+}
+.bg__layer {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+}
+.bg__tag {
+	position: absolute;
+	left: 1rem;
+	bottom: 1rem;
+	z-index: 5;
+	padding: 0.3rem 0.7rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	color: rgb(255 255 255 / 0.85);
+	background: rgb(0 0 0 / 0.55);
+	border-radius: 100vmax;
+}
+.bg__tag code {
+	background: transparent;
+	padding: 0;
+}
+.bg__title {
+	position: absolute;
+	inset: 0;
+	z-index: 4;
+	display: grid;
+	place-items: center;
+	font-size: clamp(2rem, 8cqw, 4rem);
+	text-shadow: 0 0.2rem 1.5rem #000;
+	pointer-events: none;
+}
+
+/* Le animazioni continue girano solo con la sezione in vista (.is-live, da script.js). */
+.bg:not(.is-live) *,
+.bg:not(.is-live) *::before,
+.bg:not(.is-live) *::after {
+	animation-play-state: paused !important;
+}
+
+/* ——— Stelle cadenti ——— */
+
+.bg--stars {
+	background: #000030 url(img/cielo.webp) center 40% / cover;
+}
+.star {
+	position: absolute;
+	top: 0;
+	left: var(--x);
+	width: 0.45rem;
+	height: 0.45rem;
+	border-radius: 50%;
+	background: #7ff0e0;
+	opacity: 0;
+	animation: star-fall var(--dur) linear var(--d) infinite;
+}
+.star::after {
+	content: '';
+	position: absolute;
+	right: 50%;
+	bottom: 50%;
+	width: 1px;
+	height: 1.6rem;
+	background: linear-gradient(to top, #7ff0e0, transparent);
+	transform-origin: bottom center;
+	rotate: var(--ang);
+}
+@keyframes star-fall {
+	0% {
+		translate: 0 -0.5rem;
+	}
+	10% {
+		opacity: 0.5;
+	}
+	12% {
+		opacity: 1;
+		box-shadow: 0 0 0.25rem #fff;
+	}
+	15% {
+		opacity: 0.5;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		translate: var(--dx) 100cqh;
+		opacity: 0;
+	}
+}
+
+/* ——— Lucciole ——— */
+
+.bg--fireflies {
+	background:
+		linear-gradient(rgb(3 10 22 / 0.62), rgb(3 10 22 / 0.62)),
+		#04070a url(img/bosco.webp) center / cover;
+}
+.firefly {
+	position: absolute;
+	left: var(--x);
+	top: var(--y);
+	width: 0.4rem;
+	height: 0.4rem;
+	animation: ff-x var(--tx) ease-in-out var(--dx) infinite alternate;
+}
+.firefly b {
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: #fff6b0;
+	opacity: 0;
+	animation:
+		ff-y var(--ty) ease-in-out var(--dy) infinite alternate,
+		ff-flash var(--tf) ease-in-out var(--df) infinite;
+}
+@keyframes ff-x {
+	from {
+		translate: calc(var(--ax) * -1) 0;
+	}
+	to {
+		translate: var(--ax) 0;
+	}
+}
+@keyframes ff-y {
+	from {
+		transform: translateY(calc(var(--ay) * -1)) scale(var(--s));
+	}
+	to {
+		transform: translateY(var(--ay)) scale(var(--s));
+	}
+}
+@keyframes ff-flash {
+	0%,
+	30%,
+	100% {
+		opacity: 0;
+		box-shadow: 0 0 0 0 #ffd84a;
+	}
+	6% {
+		opacity: 1;
+		box-shadow: 0 0 1rem 0.3rem #ffd84a;
+	}
+}
+
+/* ——— Foglie ——— */
+
+.bg--leaves {
+	background: radial-gradient(#333, #000);
+}
+.leaf {
+	position: absolute;
+	top: 0;
+	left: var(--x);
+	width: var(--size);
+	height: var(--size);
+	animation:
+		leaf-fall var(--dur) linear var(--d) infinite,
+		leaf-sway 3.6s ease-in-out var(--d) infinite alternate;
+}
+@keyframes leaf-fall {
+	from {
+		translate: 0 -20cqh;
+	}
+	to {
+		translate: 0 110cqh;
+	}
+}
+@keyframes leaf-sway {
+	from {
+		transform: translateX(-1.5rem) rotate(var(--r0));
+	}
+	to {
+		transform: translateX(1.5rem) rotate(var(--r1));
+	}
+}
+
+/* ——— Pioggia arcobaleno ——— */
+
+.bg--rain {
+	background: #000;
+}
+.rain {
+	position: absolute;
+	top: -12rem;
+	left: calc(var(--i) * 100% / 144);
+	width: calc(100% / 144);
+	height: 12rem;
+	background: linear-gradient(#000, hsl(var(--h) 100% 50% / 0.8));
+	animation: rain-drop 4s ease-in var(--d) infinite;
+}
+.rain::after {
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: -0.45cqw;
+	width: 0.9cqw;
+	height: 0.9cqw;
+	margin-left: -0.45cqw;
+	border-radius: 50%;
+	background: hsl(var(--h) 100% 50%);
+}
+@keyframes rain-drop {
+	80% {
+		opacity: 1;
+	}
+	100% {
+		transform: translate3d(0, calc(100cqh + 13rem), 0);
+		opacity: 0;
+	}
+}
+
+/* ——— Strisce in parallasse ——— */
+
+.bg--strips {
+	background: #2f2f2f;
+}
+.strip {
+	--l: 0cqw;
+	position: absolute;
+	top: 50%;
+	left: var(--l);
+	translate: 0 -50%;
+	background: url(img/lago.webp) calc(var(--l) * -1) 50% / 100cqw auto no-repeat;
+	box-shadow: 0 0 1.5rem rgb(0 0 0 / 0.8);
+}
+.strip--1 {
+	--l: 0cqw;
+	z-index: 2;
+	width: 15cqw;
+	height: 30cqh;
+	animation: strip-1 16s ease-in-out infinite;
+}
+.strip--2 {
+	--l: 10cqw;
+	z-index: 1;
+	width: 25cqw;
+	height: 55cqh;
+	animation: strip-2 16s ease-in-out infinite;
+}
+.strip--3 {
+	--l: 25cqw;
+	z-index: 3;
+	width: 40cqw;
+	height: 100cqh;
+	animation: strip-3 16s ease-in-out infinite;
+}
+.strip--4 {
+	--l: 60cqw;
+	z-index: 1;
+	width: 25cqw;
+	height: 80cqh;
+	animation: strip-4 16s ease-in-out infinite;
+}
+@keyframes strip-1 {
+	0%,
+	8%,
+	92%,
+	100% {
+		width: 15cqw;
+		background-position-x: 0;
+	}
+	45%,
+	55% {
+		width: 95cqw;
+		background-position-x: -2.5cqw;
+	}
+}
+@keyframes strip-2 {
+	0%,
+	8%,
+	92%,
+	100% {
+		background-position-x: -10cqw;
+	}
+	45%,
+	55% {
+		background-position-x: -14cqw;
+	}
+}
+@keyframes strip-3 {
+	0%,
+	8%,
+	92%,
+	100% {
+		background-position-x: -25cqw;
+	}
+	45%,
+	55% {
+		background-position-x: -30cqw;
+	}
+}
+@keyframes strip-4 {
+	0%,
+	8%,
+	92%,
+	100% {
+		background-position-x: -60cqw;
+	}
+	45%,
+	55% {
+		background-position-x: -66cqw;
+	}
+}
+
+/* ——— Onde concentriche ——— */
+
+.bg--ripple {
+	background: #000;
+}
+.ring {
+	position: absolute;
+	left: calc(50% - var(--s) / 2);
+	bottom: calc(var(--s) / -2);
+	width: var(--s);
+	height: var(--s);
+	border-radius: 50%;
+	background: rgb(255 59 48 / var(--o));
+	box-shadow: 0 0 0 1px rgb(255 120 110 / 0.35);
+	animation: ripple 15s ease-in-out infinite;
+}
+.ring--1 {
+	--s: 10rem;
+	--o: 0.9;
+}
+.ring--2 {
+	--s: 20rem;
+	--o: 0.55;
+}
+.ring--3 {
+	--s: 30rem;
+	--o: 0.35;
+}
+.ring--4 {
+	--s: 40rem;
+	--o: 0.2;
+}
+.ring--5 {
+	--s: 50rem;
+	--o: 0.1;
+}
+@keyframes ripple {
+	0%,
+	100% {
+		transform: scale(0.8);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+}
+
+/* ——— Illusione diagonale ——— */
+
+@property --pat {
+	syntax: '<color>';
+	initial-value: #000;
+	inherits: true;
+}
+.bg--diag {
+	--pat: #000;
+	font-size: 0.7rem;
+	background: #fd5;
+	transition: --pat 1s;
+	cursor: pointer;
+}
+.bg--diag:hover,
+.bg--diag:focus-visible,
+.bg--diag.is-revealed {
+	--pat: #0000;
+}
+.bg--diag::before,
+.bg--diag::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	width: 300em;
+	height: 300em;
+	background:
+		repeating-linear-gradient(#0000 0 18em, #000 0 20em),
+		conic-gradient(at 1em 8em, #0000 75%, var(--pat) 0) 0 -5em / 2em 20em;
+}
+.bg--diag::before {
+	transform: skewY(-45deg);
+}
+.bg--diag::after {
+	transform: rotate(90deg) skewY(45deg) translate(0.25em, 12em);
+}
+.bg--diag .bg__tag {
+	background: #000;
+}
+
+/* Movimento ridotto: restano immagini ferme, senza elementi che spariscono. */
+@media (prefers-reduced-motion: reduce) {
+	.leaf {
+		animation: none;
+		translate: 0 var(--y);
+	}
+	.rain {
+		animation: none;
+		transform: translateY(calc(var(--y) * 1cqh + 12rem));
+	}
+	.firefly b {
+		opacity: 0.8;
+		box-shadow: 0 0 0.8rem 0.2rem #ffd84a;
+	}
+	.strip {
+		animation: none;
+	}
+}

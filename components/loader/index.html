@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Loader e progress — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Caricamenti e avanzamento</h1>
+				<p class="demo__lead">
+					Cinque modi di far aspettare con garbo, e due per dire quanto manca. Restano in movimento
+					anche con “riduci animazioni”: qui il movimento è l’informazione.
+				</p>
+			</header>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Preloader con il logo</h2>
+				<div class="stage stage--pre" data-motion-ok>
+					<div class="pre" role="img" aria-label="Caricamento in corso">
+						<span class="pre__ring pre__ring--5"></span><span class="pre__ring pre__ring--4"></span>
+						<span class="pre__ring pre__ring--3"></span><span class="pre__ring pre__ring--2"></span>
+						<span class="pre__ring pre__ring--1"></span>
+						<svg class="pre__logo" viewBox="521 1413 1465 753" aria-hidden="true">
+							<path class="pre__logo-red" d="M1255.524 1631.138c7.94 8.89 14.16 18.729 20.53 28.786 75.91 119.898 157.1 324.287 323.57 331.995 172.52 7.987 279.68-203.057 158.07-337.307a202.97 202.97 0 0 0-141.09-67.904c-79.85-3.783-140.81 40.206-191.25 98.107-11.68 13.404-21.97 28.34-33.99 41.37-2.55-.383-2.84-.053-4.24-2.516-16.94-29.768-33.16-59.35-50.86-88.77-5.3-8.795-10.17-16.355-16.51-25.717-6.19-9.132-22.84-27.216-21.76-39.212.43-4.836 13.44-16.22 16.92-20.02 31.35-31.006 67.1-62.206 105.34-84.21 45.83-26.38 96.6-45.56 149.4-51.396 14.65-1.62 29.57-.73 44.14-.925 32.25-.431 63.78 4.203 94.92 12.879a374.08 374.08 0 0 1 226.99 174.595 378.36 378.36 0 0 1 36.55 287.835c-56.86 201.184-260.01 317.992-461.97 264.215-96.44-25.679-192.11-110.354-251.51-188.536-16.71-21.984-100.26-151.977-103.46-172.55 3.03-5.887 11.96-18.331 16.04-25.076l56.86-92.81c4.18-6.833 23.25-39.02 27.31-42.833" />
+							<path class="pre__logo-white" d="M890.438 1412.87c-48.33 1.012-96.625 11.164-140.042 29.047-18.2 7.497-26.468 13.028-42.84 22.272-149.854 84.605-218.458 264.966-172.972 429.13 4.932 17.803 13.219 35.84 19.586 53.243 25.819 59.682 78.3 118.798 132.16 154.619 4.876 3.244 16.417 12.28 19.922 13.828 20.216 8.918 35.067 18.016 56.336 26.178 82.399 31.623 183.514 34.53 265.617.957 58-23.721 111.159-62.01 154.469-107.037 7.37-7.664 21.67-20.801 27.59-29.13-14.72-18.453-27.769-39.936-41.569-59.087-1.8-2.5-3.63-9.76-5.24-11.637-20.66-23.986-32.01-56.35-49.42-82.017-49.79 63.614-104.001 126.45-189.351 137.263-113.637 14.397-217.653-71.729-227.038-185.373-9.297-112.572 78.046-211.35 190.112-218.797 111.504-7.41 188.706 82.285 243.166 167.502 4.7 7.385 18.44 34.192 24.39 38.026 3.03-5.888 11.96-18.332 16.04-25.077l56.86-92.81c4.18-6.833 23.25-39.018 27.31-42.832-6.65-16.662-15.42-24.234-26.44-38.443a501 501 0 0 0-198.389-154.028c-43.56-18.678-91.928-26.808-140.258-25.797" />
+						</svg>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Bolle</h2>
+				<div class="stage ld ld1" data-motion-ok role="img" aria-label="Caricamento in corso">
+					<div class="pl">
+						<div class="pl__bubble">
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+						</div>
+						<div class="pl__bubble">
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+						</div>
+						<div class="pl__bubble">
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+							<div class="pl__bubble-drop"></div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Tazza di caffè</h2>
+				<div class="stage ld ld2" data-motion-ok>
+					<div class="coffee" role="img" aria-label="Coffee cup spinning and stretching from side to side">
+						<div class="coffee__cup">
+							<div class="coffee__cup-part coffee__cup-part--a"></div>
+							<div class="coffee__cup-part coffee__cup-part--b"></div>
+							<div class="coffee__cup-part coffee__cup-part--c"></div>
+							<div class="coffee__cup-part coffee__cup-part--d"></div>
+							<div class="coffee__cup-part coffee__cup-part--e"></div>
+							<svg class="coffee__cup-part coffee__cup-part--f" width="96px" height="60px" viewBox="0 0 96 60" aria-hidden="true">
+								<g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+									<path class="coffee__cup-handle" d="M64,4.413s6.64-2.913,11-2.913c11.739,0,19.5,10.759,19.5,22.497,0,23.475-45,22.497-45,22.497"/>
+								</g>
+							</svg>
+						</div>
+						<svg class="coffee__steam" width="56px" height="56px" viewBox="0 0 56 56" aria-hidden="true">
+							<g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+								<path class="coffee__steam-part coffee__steam-part--a" d="M13.845,54s-5.62-10.115-4.496-16.859,6.83-11.497,8.992-17.983c1.037-3.11,.161-6.937-1.083-10.158"/>
+								<path class="coffee__steam-part coffee__steam-part--b" d="M27.844,54s-5.652-10.174-4.522-16.957,6.869-11.564,9.043-18.087c2.261-6.783-4.522-16.957-4.522-16.957"/>
+								<path class="coffee__steam-part coffee__steam-part--c" d="M40.434,50.999c-1.577-3.486-3.818-9.462-3.071-13.944,1.121-6.723,6.809-11.462,8.964-17.928,1.033-3.1,.161-6.916-1.08-10.127"/>
+							</g>
+						</svg>
+						<svg class="coffee__steam coffee__steam--right" width="56px" height="56px" viewBox="0 0 56 56" aria-hidden="true">
+							<g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+								<path class="coffee__steam-part coffee__steam-part--d" d="M19.845,54s-5.62-10.115-4.496-16.859,6.83-11.497,8.992-17.983c1.037-3.11,.161-6.937-1.083-10.158"/>
+								<path class="coffee__steam-part coffee__steam-part--e" d="M34.434,44c-1.577-3.486-3.818-9.462-3.071-13.944,1.121-6.723,6.809-11.462,8.964-17.928,1.033-3.1,.161-6.916-1.08-10.127"/>
+							</g>
+						</svg>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Puntini</h2>
+				<div class="stage ld ld3" data-motion-ok role="img" aria-label="Caricamento in corso">
+					<div class="pl">
+						<div class="pl__dot"></div>
+						<div class="pl__dot"></div>
+						<div class="pl__dot pl__dot--red pl__dot--sm"></div>
+						<div class="pl__dot"></div>
+						<div class="pl__dot pl__dot--yellow pl__dot--lg"></div>
+						<div class="pl__dot"></div>
+						<div class="pl__dot pl__dot--blue pl__dot--sm"></div>
+						<div class="pl__dot"></div>
+						<div class="pl__dot pl__dot--green pl__dot--sm"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Pila di card</h2>
+				<div class="stage ld ld4" data-motion-ok role="img" aria-label="Caricamento in corso">
+					<div class="stack">
+						<div class="stack__card"></div>
+						<div class="stack__card"></div>
+						<div class="stack__card"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Anello di avanzamento</h2>
+				<div class="stage stage--ring" data-motion-ok>
+					<div class="ring" role="progressbar" aria-label="Avanzamento" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-ring>
+						<svg viewBox="0 0 100 100" aria-hidden="true">
+							<defs>
+								<linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
+									<stop offset="0" stop-color="#ff3b30" /><stop offset="1" stop-color="#ffb199" />
+								</linearGradient>
+							</defs>
+							<circle class="ring__track" cx="50" cy="50" r="42" pathLength="100" />
+							<circle class="ring__bar" cx="50" cy="50" r="42" pathLength="100" data-ring-bar />
+						</svg>
+						<span class="ring__value"><span data-ring-num>0</span><small>%</small></span>
+					</div>
+					<button type="button" class="replay" data-replay="ring">Ripeti</button>
+				</div>
+			</section>
+
+			<section class="demo__section">
+				<h2 class="demo__label">Barra di caricamento</h2>
+				<div class="stage stage--bar" data-motion-ok>
+					<div class="bar" role="progressbar" aria-label="Caricamento file" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-bar>
+						<div class="bar__top"><span>caricamento-foto.zip</span><span data-bar-num>0%</span></div>
+						<div class="bar__track"><div class="bar__fill" data-bar-fill></div></div>
+					</div>
+					<div class="bar bar--indeterminate" role="progressbar" aria-label="Attesa senza durata nota">
+						<div class="bar__top"><span>Attesa senza durata nota</span></div>
+						<div class="bar__track"><div class="bar__fill"></div></div>
+					</div>
+					<button type="button" class="replay" data-replay="bar">Ripeti</button>
+				</div>
+			</section>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

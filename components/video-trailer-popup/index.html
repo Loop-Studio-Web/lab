@@ -1,37 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Video Trailer Popup</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="shortcut icon" href="take.svg" type="image/x-icon" />
-  </head>
-  <body>
-    <div class="main-container">
-      <img
-        src="https://images.pexels.com/photos/3062545/pexels-photo-3062545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        alt="movie-image"
-      />
-      <h1>Behind the Scenes</h1>
-      <p>
-        A short trailer popup, triggered on click and closed on demand —
-        useful for a portfolio reel, a client testimonial video, or a
-        product showcase, without sending the visitor away from the page.
-      </p>
-      <button class="btn">Watch Now</button>
-    </div>
-    <div class="trailer-container active">
-      <video src="trailer.mp4" controls></video>
-      <i class="fas fa-times fa-2x close-icon"></i>
-    </div>
-  </body>
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Popup video — Loop Studio Lab</title>
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<section class="feature">
+				<div class="feature__media">
+					<img src="poster.webp" alt="Valle alpina vista dall’alto con una strada che sale tra i pascoli" width="1280" height="720" />
+				</div>
+				<div class="feature__copy">
+					<p class="feature__eyebrow">Dietro le quinte</p>
+					<h1>Un video che si apre senza far uscire dalla pagina</h1>
+					<p>
+						Utile per un reel di portfolio, la testimonianza di un cliente o la presentazione di un
+						prodotto. Il video si carica solo quando lo apri.
+					</p>
+					<button type="button" class="play" data-open>
+						<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L8.5 4.64A1 1 0 0 0 7 5.5Z" /></svg>
+						Guarda il video
+					</button>
+				</div>
+			</section>
+		</main>
+
+		<dialog class="player" data-dialog aria-label="Video: dietro le quinte">
+			<button type="button" class="player__close" data-close aria-label="Chiudi il video">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+			</button>
+			<video controls playsinline preload="none" poster="poster.webp" data-video>
+				<source src="alpi.mp4" type="video/mp4" />
+			</video>
+		</dialog>
+		<script src="../_shared/studio.js"></script>
+	</body>
 </html>
