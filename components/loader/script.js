@@ -18,7 +18,7 @@ const ring = document.querySelector('[data-ring]');
 const ringBar = ring.querySelector('[data-ring-bar]');
 const ringNum = ring.querySelector('[data-ring-num]');
 function playRing() {
-	run(2400, 87, (v) => {
+	run(2400, 100, (v) => {
 		ringBar.style.strokeDashoffset = String(100 - v);
 		ringNum.textContent = String(Math.round(v));
 		ring.setAttribute('aria-valuenow', String(Math.round(v)));
