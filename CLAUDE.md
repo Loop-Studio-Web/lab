@@ -80,7 +80,7 @@ dell'autore, push solo dopo il via esplicito** (il deploy parte dal push su `mai
 ## Stato del rinnovo dei Componenti (aggiornato 2026-10-22)
 
 Rinnovo della sezione Componenti (gli Esperimenti vengono dopo). Fasi 1-3 (concept, struttura, asset) chiuse e approvate.
-**Tutto è solo locale, NON committato** (né qui né nel sito); repo allineata al remoto al 21-22/10.
+**Committato in locale il 22/10 (Lab `3e40adc`, sito `070bb23`) ma NON pushato: si pusha tutto insieme alla fine del lotto 4**, dopo il via esplicito (controllare prima l'allineamento git su entrambe le repo). Il sito (`lab-components.ts`) è ancora quello vecchio.
 
 - **Lotto 1 (approvato)**: bento-spotlight, toast-notification, sticky-navbar, rotating-image-gallery, video-trailer-popup.
 - **Lotto 2 (approvato)**: bottoni, like, interruttori, hamburger, campi-testo, loader, prezzi-toggle, tab-segmented, stepper-timeline, cookie.
