@@ -16,5 +16,5 @@ const observer = new IntersectionObserver(
 	},
 	{ rootMargin: '80px' },
 );
-document.querySelectorAll('.stage').forEach((s) => observer.observe(s));
+document.querySelectorAll('.stage, .glow').forEach((s) => observer.observe(s));
 reduce.addEventListener('change', setSmil);

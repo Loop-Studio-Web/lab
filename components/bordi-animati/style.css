@@ -39,6 +39,11 @@
 	filter: var(--f, url(#glow-0));
 	animation: glow-turn 2.4s linear infinite;
 }
+/* Ogni alone gira solo se è lui stesso in vista: su telefono i tre riquadri sono impilati e
+   ne vedi uno o due; il filtro SVG ricalcola il bordo a ogni fotogramma ed è la parte più cara. */
+.glow:not(.is-live) {
+	animation-play-state: paused;
+}
 @keyframes glow-turn {
 	to {
 		--a: 1turn;
