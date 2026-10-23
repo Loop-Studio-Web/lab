@@ -157,7 +157,14 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
      Identità propria (notte + luna, non il nero/rosso dello studio). **Trappole**: la spia dei chip ha misura fissa, sennò scegliere un allergene fa andare a capo gli altri e sposta le card; il velo di
      contrasto sta in `.piatto__testi::before` (segue l'altezza del testo: con la riga del motivo il velo fisso falliva a 4,07:1; ora ≥ 6,1:1); per misurare il contrasto nascondere SOLO le parole, non il
      blocco che contiene il velo; in `drive.mjs` `eval` e `wait` nello stesso passo: l'eval parte PRIMA dell'attesa (separarli) e il tasto Escape non esiste (chiudere il dialog con `.close()`).
-   - **Prossimi**: ondata B (convertitore di valute con Worker; FAQ con ricerca e conto alla rovescia solo se abbastanza ricchi, altrimenti Componenti). A fine lotto: README
+   - **Convertitore di valute** (24/10, bozza in locale): `convertitore-valute/` = agenzia di fantasia "Tre Timbri" (Kyoto, Marrakech, New York, Londra), JS puro (modulo ES), niente librerie.
+     Cartoline con prezzi nella valuta scelta + biglietto del cambio (importo, da/a, risultato) + grafico SVG 30/90 giorni (puntatore e frecce, `role="slider"`). I tassi NON si chiamano dal browser:
+     arrivano dal Worker `lab-cambio` (repo `Websites\lab-cambio-worker`, `/rates` e `/series`, cache 1 h / 6 h, CORS solo per le nostre origini, dati Frankfurter v2 = banche centrali, MAD viene dalla banca del Marocco, non dalla BCE).
+     `API` in `data.js`: in locale `http://127.0.0.1:8787` (`npx wrangler dev` nella repo del Worker), online `https://lab-cambio.loop-studio.workers.dev` (DA VERIFICARE dopo il deploy: il sottodominio dipende dall'account).
+     Se il Worker non risponde: tassi di esempio (`TASSI_ESEMPIO`) e timbro tratteggiato. Identità propria e CHIARA dentro il palco scuro (foglio sabbia, terracotta `#a63a18`, petrolio, senape; Anton + Hanken + Playwrite IS solo per gli appunti).
+     **Trappole**: `date` di `/rates` = la più vecchia tra le valute (le altre sono datate un giorno dopo); la serie non passa `to` (Frankfurter arriva all'ultimo giorno); la cache locale di `wrangler dev` sopravvive ai riavvii (`.wrangler/state`);
+     terracotta `#b8431f` falliva il contrasto sulla sabbia (4,3:1) → `#a63a18`; `Intl` it-IT scrive "USD" e non "$" (voluto, non ambiguo).
+   - **Prossimi**: ondata B (FAQ con ricerca e conto alla rovescia solo se abbastanza ricchi, altrimenti Componenti). A fine lotto: README
      (aggiungere le Demo nuove e il badge del conteggio), push (Lab prima del sito), axe + PSI, repo personali, proxy meteo sull'org; poi, a Demo finite, decidere se portare il Preventivatore nel sito madre
      (prezzi veri da concordare, tabelle pacchetti da leggere).
    - **Prestazioni** (skill Emil `animation-performance`, installata): `bordi-animati` ha `filter: blur(32px)` su `.electric__bloom`; 2 `transition: all`

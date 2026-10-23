@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Convertitore di valute — Loop Studio Lab</title>
+		<link rel="icon" href="data:," />
+		<link rel="preload" as="font" type="font/woff2" href="../components/_shared/fonts/anton-latin-400-normal.woff2" crossorigin />
+		<link rel="preload" as="font" type="font/woff2" href="../components/_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" crossorigin />
+		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<main class="viaggi" id="viaggi">
+			<div class="foglio">
+				<!-- Il banco dell'agenzia: il nome (di fantasia) e la valuta in cui il visitatore vuole vedere i prezzi. -->
+				<header class="banco">
+					<div class="marchio">
+						<svg class="timbri" viewBox="0 0 76 44" width="76" height="44" aria-hidden="true" focusable="false">
+							<g fill="none" stroke-width="2.2">
+								<circle cx="22" cy="22" r="17" stroke="#a63a18" />
+								<circle cx="22" cy="22" r="12.5" stroke="#a63a18" stroke-dasharray="1.5 3.2" stroke-linecap="round" />
+								<circle cx="38" cy="22" r="17" stroke="#1e5b53" />
+								<circle cx="38" cy="22" r="12.5" stroke="#1e5b53" stroke-dasharray="1.5 3.2" stroke-linecap="round" />
+								<circle cx="54" cy="22" r="17" stroke="#d9a52b" />
+								<circle cx="54" cy="22" r="12.5" stroke="#d9a52b" stroke-dasharray="1.5 3.2" stroke-linecap="round" />
+							</g>
+						</svg>
+						<div>
+							<p class="kicker">Agenzia di fantasia</p>
+							<h1>Tre Timbri</h1>
+							<p class="sotto">Viaggi su misura</p>
+						</div>
+					</div>
+
+					<div class="mostra">
+						<p class="kicker" id="mostra-lbl">Mostra i prezzi in</p>
+						<div class="seg" role="group" aria-labelledby="mostra-lbl" id="mostra"></div>
+					</div>
+				</header>
+
+				<!-- Quattro cartoline = quattro viaggi. Il clic ne porta la valuta nel convertitore qui sotto. -->
+				<ul class="cartoline" id="cartoline" role="list" aria-label="Viaggi in catalogo"></ul>
+
+				<!-- Il biglietto del cambio: importo, da/a, risultato e andamento. -->
+				<section class="cambio" id="cambio" aria-labelledby="cambio-t">
+					<div class="cambio__testa">
+						<div>
+							<p class="kicker">Per il tuo viaggio a <span id="cambio-dest">Kyoto</span></p>
+							<h2 id="cambio-t">Cambio</h2>
+						</div>
+						<p class="timbro" id="timbro" role="status" data-stato="carico">
+							<span class="timbro__t">Tassi in arrivo</span>
+							<span class="timbro__s">un attimo…</span>
+						</p>
+					</div>
+
+					<div class="cambio__corpo">
+						<div class="cambio__calcolo">
+							<form class="campi" id="campi" autocomplete="off">
+								<label class="campo campo--importo">
+									<span>Importo</span>
+									<input id="importo" type="text" inputmode="decimal" value="500" spellcheck="false" />
+								</label>
+								<label class="campo">
+									<span>Da</span>
+									<select id="da"></select>
+								</label>
+								<button type="button" class="scambia" id="scambia" aria-label="Scambia le due valute">
+									<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+										<path d="M7 4 3 8l4 4M3 8h14M17 12l4 4-4 4M21 16H7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+									</svg>
+								</button>
+								<label class="campo">
+									<span>A</span>
+									<select id="a"></select>
+								</label>
+							</form>
+
+							<div class="risultato" aria-live="polite" aria-atomic="true">
+								<p class="risultato__in" id="r-in">500 € =</p>
+								<p class="risultato__out" id="r-out" aria-busy="true"><span class="cifra">…</span></p>
+								<p class="risultato__tasso" id="r-tasso">&nbsp;</p>
+							</div>
+						</div>
+
+						<figure class="grafico" id="grafico-box">
+							<figcaption class="grafico__testa">
+								<span class="kicker" id="g-titolo">Andamento</span>
+								<span class="seg" role="group" aria-label="Periodo del grafico" id="periodo">
+									<button type="button" data-g="30" aria-pressed="true">30 giorni</button>
+									<button type="button" data-g="90" aria-pressed="false">90 giorni</button>
+								</span>
+							</figcaption>
+							<div class="grafico__tela" id="g-tela" tabindex="0" role="slider" aria-orientation="horizontal" aria-label="Valori giorno per giorno: usa le frecce" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="Andamento in caricamento">
+								<svg id="g-svg" aria-hidden="true" focusable="false"></svg>
+								<div class="grafico__tip" id="g-tip" hidden></div>
+								<p class="grafico__vuoto" id="g-vuoto" hidden></p>
+							</div>
+							<p class="grafico__sintesi" id="g-sintesi" aria-live="polite">&nbsp;</p>
+						</figure>
+					</div>
+				</section>
+
+				<p class="avviso">
+					Agenzia e prezzi sono di fantasia. I tassi sono veri: banche centrali (la BCE per quasi tutte le valute), tramite Frankfurter,
+					pubblicati a scopo informativo. Sono indicativi e non vanno usati per pagamenti: il pagamento resterebbe in euro.
+				</p>
+			</div>
+
+			<p class="demo__note crediti">
+				Foto su Unsplash: Nathalie Lays (Kyoto), Abdou Faiz (Marrakech), Luca Bravo (New York), David Monaghan (Londra).
+				Il browser non chiama mai il fornitore dei tassi: parla con un piccolo Worker nostro, che tiene i dati in cache per un’ora.
+			</p>
+		</main>
+
+		<script type="module" src="script.js"></script>
+		<script src="../components/_shared/studio.js"></script>
+	</body>
+</html>

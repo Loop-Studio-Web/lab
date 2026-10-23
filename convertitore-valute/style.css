@@ -1,0 +1,655 @@
+/* Convertitore di valute: il banco di un’agenzia di viaggi (di fantasia, "Tre Timbri").
+   Dentro il solito palco scuro del Lab vive un foglio color sabbia con cartoline, timbri e un biglietto
+   per il cambio. Palette volutamente lontana dal Preventivatore (carta + blu): qui terracotta, petrolio, senape.
+   Font: Anton (titoli, cifre), Hanken Grotesk (testo, da base.css), Playwrite IS (solo gli appunti a margine). */
+
+@font-face {
+	font-family: 'Anton';
+	src: url('../components/_shared/fonts/anton-latin-400-normal.woff2') format('woff2');
+	font-weight: 400;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Playwrite IS';
+	src: url('../components/_shared/fonts/playwrite-is-latin-400-normal.woff2') format('woff2');
+	font-weight: 400;
+	font-display: swap;
+}
+
+[hidden] {
+	display: none !important;
+}
+
+.viaggi {
+	--sabbia: #efe3cb;
+	--carta: #faf4e6;
+	--inchiostro: #1f2a27;
+	--inchiostro-2: #4a5651; /* testo secondario: ≈5,9:1 sulla sabbia */
+	--petrolio: #1e5b53;
+	--terracotta: #a63a18; /* ≈5,1:1 sulla sabbia, ≈5,9:1 sulla carta */
+	--senape: #d9a52b;
+	--linea: #cdbb98;
+	--font-titoli: 'Anton', 'Bricolage Grotesque', Impact, sans-serif;
+	--font-appunti: 'Playwrite IS', 'Hanken Grotesk', cursive;
+
+	container: v / inline-size;
+	max-width: 80rem;
+	margin: 0 auto;
+	padding: 0.25rem clamp(1rem, 3vw, 2rem) 2rem;
+}
+
+/* ───────── Il foglio ───────── */
+.foglio {
+	padding: clamp(1.1rem, 3cqw, 2.25rem);
+	background: var(--sabbia);
+	color: var(--inchiostro);
+	border-radius: 1.25rem;
+}
+.foglio :focus-visible {
+	outline: 2px solid var(--petrolio);
+	outline-offset: 3px;
+}
+.kicker {
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--inchiostro-2);
+}
+.sotto {
+	color: var(--inchiostro-2);
+	font-size: 0.9rem;
+}
+
+/* ───────── Banco: nome e valuta dei prezzi ───────── */
+.banco {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 1.25rem 2rem;
+	margin-bottom: 1.5rem;
+}
+.marchio {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+.timbri {
+	flex: none;
+	width: 4.75rem;
+	height: auto;
+}
+.marchio h1 {
+	font-family: var(--font-titoli);
+	font-weight: 400;
+	font-size: clamp(2.4rem, 6cqw, 3.6rem);
+	line-height: 0.95;
+	letter-spacing: 0.01em;
+	text-transform: uppercase;
+	margin: 0.1rem 0;
+}
+.mostra .kicker {
+	margin-bottom: 0.4rem;
+}
+
+/* Gruppo di bottoni a pillola (valuta, periodo) */
+.seg {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0.2rem;
+	padding: 0.2rem;
+	border: 1px solid var(--linea);
+	border-radius: 999px;
+}
+.seg button {
+	min-height: 2.25rem;
+	padding: 0.35rem 0.85rem;
+	border: 0;
+	border-radius: 999px;
+	background: transparent;
+	color: var(--inchiostro);
+	font: 700 0.85rem/1 var(--font-text);
+	letter-spacing: 0.02em;
+	cursor: pointer;
+	transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), scale 0.15s var(--ease-out);
+}
+.seg button:active {
+	scale: 0.97;
+}
+.seg button[aria-pressed='true'] {
+	background: var(--petrolio);
+	color: var(--carta);
+}
+@container v (max-width: 30rem) {
+	.seg button {
+		padding-inline: 0.6rem;
+	}
+}
+@media (hover: hover) and (pointer: fine) {
+	.seg button[aria-pressed='false']:hover {
+		background: rgb(30 91 83 / 0.12);
+	}
+}
+
+/* ───────── Cartoline ───────── */
+.cartoline {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: clamp(0.6rem, 1.6cqw, 1.1rem);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+@container v (max-width: 46rem) {
+	.cartoline {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+.cartoline > li {
+	container: carta / inline-size;
+	animation: entra 0.6s var(--ease-out) both;
+	animation-delay: calc(var(--i) * 70ms);
+}
+@keyframes entra {
+	from {
+		opacity: 0;
+		translate: 0 0.9rem;
+	}
+}
+
+.cartolina {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 0;
+	border: 0;
+	border-radius: 0.9rem;
+	background: var(--carta);
+	box-shadow: 0 0.1rem 0.75rem rgb(31 42 39 / 0.14);
+	color: inherit;
+	font: inherit;
+	text-align: start;
+	cursor: pointer;
+	transition: translate 0.35s var(--ease-out), rotate 0.35s var(--ease-out), box-shadow 0.2s var(--ease-out), scale 0.15s var(--ease-out);
+}
+.cartolina:active {
+	scale: 0.98;
+}
+.cartolina[aria-pressed='true'] {
+	box-shadow: 0 0 0 3px var(--petrolio), 0 0.35rem 1.1rem rgb(31 42 39 / 0.22);
+}
+@media (hover: hover) and (pointer: fine) {
+	.cartolina:hover {
+		translate: 0 -0.3rem;
+		rotate: -0.6deg;
+	}
+	.cartolina:hover img {
+		scale: 1.05;
+	}
+}
+.cartolina__foto {
+	position: relative;
+	display: block;
+	aspect-ratio: 4 / 5;
+	overflow: hidden;
+	border-radius: 0.9rem 0.9rem 0 0;
+	background: #1c2530;
+}
+.cartolina img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: scale 0.9s var(--ease-out);
+}
+
+/* Bollino sulla cartolina scelta: carta con anello terracotta, "batte" quando compare. */
+.bollino {
+	position: absolute;
+	top: 0.6rem;
+	right: 0.6rem;
+	display: grid;
+	place-items: center;
+	width: 3.6rem;
+	height: 3.6rem;
+	padding: 0.2rem;
+	border-radius: 50%;
+	background: var(--carta);
+	color: var(--terracotta);
+	box-shadow: 0 0 0 2px var(--terracotta), inset 0 0 0 3px var(--carta), inset 0 0 0 4px var(--terracotta);
+	font: 400 0.82rem/1 var(--font-titoli);
+	letter-spacing: 0.05em;
+	text-align: center;
+	text-transform: uppercase;
+	rotate: -12deg;
+	opacity: 0;
+	scale: 1.5;
+	transition: opacity 0.2s var(--ease-out), scale 0.28s var(--ease-out);
+}
+.cartolina[aria-pressed='true'] .bollino {
+	opacity: 1;
+	scale: 1;
+}
+
+.cartolina__corpo {
+	position: relative;
+	display: block;
+	padding: 0.85rem 1rem 0.95rem;
+}
+.cartolina__paese {
+	display: block;
+	font-size: 0.68rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--inchiostro-2);
+}
+.cartolina__nome {
+	display: block;
+	font: 400 clamp(1.35rem, 9cqw, 1.9rem) / 1.05 var(--font-titoli);
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+.cartolina__appunto {
+	display: block;
+	min-height: 2.6em;
+	margin-top: 0.3rem;
+	color: var(--petrolio);
+	font: 400 clamp(0.66rem, 4.4cqw, 0.8rem) / 1.45 var(--font-appunti);
+}
+
+/* Lo "stacco" del talloncino: linea tratteggiata e due tacche ai lati. */
+.cartolina__stacco {
+	position: relative;
+	display: block;
+	margin: 0.55rem 0 0.7rem;
+	border-top: 2px dashed var(--linea);
+}
+.cartolina__stacco::before,
+.cartolina__stacco::after {
+	content: '';
+	position: absolute;
+	top: -0.65rem;
+	width: 1.1rem;
+	height: 1.1rem;
+	border-radius: 50%;
+	background: var(--sabbia);
+}
+.cartolina__stacco::before {
+	left: -1.55rem;
+}
+.cartolina__stacco::after {
+	right: -1.55rem;
+}
+.cartolina__da {
+	display: block;
+	font-size: 0.7rem;
+	font-weight: 600;
+	color: var(--inchiostro-2);
+}
+.cartolina__prezzo {
+	display: block;
+	margin-top: 0.1rem;
+	font: 400 clamp(1.3rem, 10.5cqw, 2rem) / 1.1 var(--font-titoli);
+	letter-spacing: 0.01em;
+	font-variant-numeric: tabular-nums;
+	color: var(--terracotta);
+	overflow-wrap: anywhere;
+}
+.cartolina__orig {
+	display: block;
+	min-height: 1.1em;
+	font-size: 0.72rem;
+	color: var(--inchiostro-2);
+}
+
+/* ───────── Il biglietto del cambio ───────── */
+.cambio {
+	--pad: clamp(1rem, 2.6cqw, 1.9rem);
+	margin-top: 1.9rem;
+	padding: var(--pad);
+	border-radius: 1rem;
+	background: var(--carta);
+	box-shadow: 0 0.1rem 0.75rem rgb(31 42 39 / 0.12);
+}
+.cambio__testa {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 0.75rem 1.5rem;
+	padding-bottom: 1.1rem;
+	margin-bottom: 1.4rem;
+	border-bottom: 2px dashed var(--linea);
+}
+.cambio__testa::before,
+.cambio__testa::after {
+	content: '';
+	position: absolute;
+	bottom: -0.65rem;
+	width: 1.1rem;
+	height: 1.1rem;
+	border-radius: 50%;
+	background: var(--sabbia);
+}
+.cambio__testa::before {
+	left: calc(-1 * var(--pad) - 0.55rem);
+}
+.cambio__testa::after {
+	right: calc(-1 * var(--pad) - 0.55rem);
+}
+.cambio h2 {
+	font: 400 clamp(1.8rem, 5cqw, 2.6rem) / 1 var(--font-titoli);
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+/* Il timbro con la data dei tassi. Tre stati: vivo (pieno), di esempio (tratteggiato), in arrivo (sbiadito). */
+.timbro {
+	display: grid;
+	justify-items: center;
+	gap: 0.1rem;
+	padding: 0.4rem 0.9rem;
+	border: 2px solid var(--terracotta);
+	border-radius: 0.4rem;
+	outline: 1px solid var(--terracotta);
+	outline-offset: 3px;
+	color: var(--terracotta);
+	rotate: -4deg;
+	transition: opacity 0.2s var(--ease-out);
+}
+.timbro__t {
+	font: 400 1.05rem/1.1 var(--font-titoli);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+.timbro__s {
+	font-size: 0.62rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+.timbro[data-stato='carico'] {
+	opacity: 0.55;
+}
+.timbro[data-stato='esempio'] {
+	border-style: dashed;
+	outline-style: dashed;
+	color: var(--inchiostro-2);
+	border-color: var(--inchiostro-2);
+	outline-color: var(--inchiostro-2);
+}
+.timbro.batti {
+	animation: timbra 0.34s var(--ease-out) both;
+}
+@keyframes timbra {
+	from {
+		opacity: 0;
+		scale: 1.45;
+		rotate: -13deg;
+	}
+	55% {
+		opacity: 1;
+	}
+}
+
+.cambio__corpo {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+	gap: 1.75rem clamp(1.5rem, 4cqw, 3rem);
+	align-items: start;
+}
+@container v (max-width: 56rem) {
+	.cambio__corpo {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+/* Campi */
+.campi {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 0.75rem;
+}
+.campo {
+	display: grid;
+	gap: 0.3rem;
+	flex: 1 1 9rem;
+	min-width: 0;
+}
+.campo--importo {
+	flex: 1 1 100%;
+}
+.campo > span {
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--inchiostro-2);
+}
+.campo input,
+.campo select {
+	width: 100%;
+	min-height: 3rem;
+	padding: 0.5rem 0.85rem;
+	border: 1.5px solid var(--linea);
+	border-radius: 0.7rem;
+	background-color: #fffcf4;
+	color: var(--inchiostro);
+	font: 600 1rem/1.2 var(--font-text); /* 16px: iOS non ingrandisce la pagina al tocco */
+	transition: border-color 0.2s var(--ease-out);
+}
+.campo input {
+	font: 400 1.6rem/1.2 var(--font-titoli);
+	letter-spacing: 0.02em;
+	font-variant-numeric: tabular-nums;
+}
+.campo select {
+	appearance: none;
+	padding-right: 2.2rem;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%231f2a27' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 0.85rem center;
+	background-size: 0.75rem;
+	text-overflow: ellipsis;
+}
+@media (hover: hover) and (pointer: fine) {
+	.campo input:hover,
+	.campo select:hover {
+		border-color: var(--petrolio);
+	}
+}
+.campo input:focus-visible,
+.campo select:focus-visible {
+	border-color: var(--petrolio);
+}
+.scambia {
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	border: 1.5px solid var(--linea);
+	border-radius: 50%;
+	background: transparent;
+	color: var(--petrolio);
+	cursor: pointer;
+	transition: background-color 0.2s var(--ease-out), rotate 0.4s var(--ease-out), scale 0.15s var(--ease-out);
+}
+.scambia:active {
+	scale: 0.95;
+}
+.scambia.gira {
+	rotate: 180deg;
+}
+@media (hover: hover) and (pointer: fine) {
+	.scambia:hover {
+		background: rgb(30 91 83 / 0.1);
+	}
+}
+
+/* Risultato */
+.risultato {
+	margin-top: 1.4rem;
+}
+.risultato__in {
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: var(--inchiostro-2);
+	font-variant-numeric: tabular-nums;
+}
+.risultato__out {
+	margin: 0.1rem 0 0.35rem;
+	font: 400 clamp(2.3rem, 8cqw, 4rem) / 1.05 var(--font-titoli);
+	letter-spacing: 0.01em;
+	font-variant-numeric: tabular-nums;
+	color: var(--petrolio);
+	overflow-wrap: anywhere;
+}
+.risultato__tasso {
+	font-size: 0.85rem;
+	color: var(--inchiostro-2);
+}
+
+/* Le cifre che cambiano entrano dal basso, una dopo l’altra. */
+.tick {
+	display: inline-block;
+	animation: tick 0.34s var(--ease-out) both;
+	animation-delay: calc(var(--i, 0) * 45ms);
+}
+@keyframes tick {
+	from {
+		opacity: 0;
+		translate: 0 0.4em;
+	}
+}
+
+/* ───────── Grafico ───────── */
+.grafico {
+	margin: 0;
+}
+.grafico__testa {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem 1rem;
+	margin-bottom: 0.6rem;
+}
+.grafico__tela {
+	position: relative;
+	height: 13rem;
+	border-radius: 0.7rem;
+	background: #fffcf4;
+	border: 1.5px solid var(--linea);
+	touch-action: pan-y;
+}
+.grafico__tela svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.g-griglia {
+	stroke: var(--linea);
+	stroke-width: 1;
+	stroke-dasharray: 3 4;
+}
+.g-etichetta {
+	fill: var(--inchiostro-2);
+	font: 600 11px/1 var(--font-text);
+}
+.g-area {
+	fill: rgb(30 91 83 / 0.12);
+}
+.g-linea {
+	fill: none;
+	stroke: var(--petrolio);
+	stroke-width: 2.5;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+}
+.g-linea.disegna {
+	stroke-dasharray: 1;
+	stroke-dashoffset: 1;
+	animation: disegna 0.8s var(--ease-in-out) forwards;
+}
+@keyframes disegna {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+.g-fine {
+	fill: var(--terracotta);
+}
+.g-guida {
+	stroke: var(--inchiostro);
+	stroke-width: 1;
+	stroke-dasharray: 2 3;
+}
+.g-punto {
+	fill: var(--carta);
+	stroke: var(--terracotta);
+	stroke-width: 2.5;
+}
+.grafico__tip {
+	position: absolute;
+	top: 0.5rem;
+	left: 0;
+	padding: 0.3rem 0.55rem;
+	border-radius: 0.45rem;
+	background: var(--inchiostro);
+	color: var(--carta);
+	font-size: 0.78rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+	pointer-events: none;
+}
+.grafico__vuoto {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	padding: 1rem;
+	text-align: center;
+	color: var(--inchiostro-2);
+	font-size: 0.9rem;
+}
+.grafico__sintesi {
+	margin-top: 0.6rem;
+	font-size: 0.85rem;
+	color: var(--inchiostro-2);
+	min-height: 2.6em;
+}
+/* Scheletro mentre arriva la serie */
+.grafico__tela[aria-busy='true']::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: linear-gradient(100deg, transparent 30%, rgb(205 187 152 / 0.45) 50%, transparent 70%);
+	background-size: 250% 100%;
+	animation: luce 1.4s linear infinite;
+}
+@keyframes luce {
+	from {
+		background-position: 120% 0;
+	}
+	to {
+		background-position: -120% 0;
+	}
+}
+
+.avviso {
+	margin-top: 1.4rem;
+	font-size: 0.8rem;
+	line-height: 1.6;
+	color: var(--inchiostro-2);
+}
+.crediti {
+	max-width: 60rem;
+	margin-inline: auto;
+}
