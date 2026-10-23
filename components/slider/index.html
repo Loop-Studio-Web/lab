@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Slider — Loop Studio Lab</title>
+		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+			<symbol id="sl-prev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+			<symbol id="sl-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+			<symbol id="sl-up" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+			<symbol id="sl-down" viewBox="0 0 24 24"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+		</svg>
+
+		<main class="demo">
+			<header class="demo__head">
+				<h1>Slider</h1>
+				<p class="demo__lead">
+					Sei slider a riquadro intero, ognuno con il suo movimento. Frecce, tastiera e trascinamento col dito;
+					l’avanzamento automatico parte solo quando lo slider è in vista e si ferma al primo gesto.
+				</p>
+			</header>
+
+			<!-- ——— Fruit soda ——— -->
+			<section class="demo__section" id="fruit-soda">
+				<h2 class="demo__label">Fruit soda</h2>
+				<div class="stage sl fs" data-slider="fruit" data-i="0" role="group" aria-roledescription="carosello" aria-label="Gusti di Loop Soda">
+					<div class="fs__list">
+						<div class="fs__item is-active" style="--bg: #ea3d41" role="group" aria-roledescription="slide" aria-label="1 di 3">
+							<h3 class="fs__name">fragola</h3>
+							<img class="fs__fruit" src="img/fruit-fragola.webp" width="1024" height="700" alt="" />
+						</div>
+						<div class="fs__item" style="--bg: #2d5643" role="group" aria-roledescription="slide" aria-label="2 di 3" inert>
+							<h3 class="fs__name">avocado</h3>
+							<img class="fs__fruit" src="img/fruit-avocado.webp" width="1024" height="700" alt="" />
+						</div>
+						<div class="fs__item" style="--bg: #e7a043" role="group" aria-roledescription="slide" aria-label="3 di 3" inert>
+							<h3 class="fs__name">arancia</h3>
+							<img class="fs__fruit" src="img/fruit-arancia.webp" width="1024" height="700" alt="" />
+						</div>
+					</div>
+					<div class="fs__leaves" aria-hidden="true"></div>
+					<div class="fs__shadow" aria-hidden="true"></div>
+					<div class="fs__can" aria-hidden="true"></div>
+					<button class="sl__btn fs__btn fs__btn--prev" type="button" data-prev aria-label="Gusto precedente">
+						<svg width="24" height="24" aria-hidden="true"><use href="#sl-prev" /></svg>
+					</button>
+					<button class="sl__btn fs__btn fs__btn--next" type="button" data-next aria-label="Gusto successivo">
+						<svg width="24" height="24" aria-hidden="true"><use href="#sl-next" /></svg>
+					</button>
+					<p class="sr-only" aria-live="polite" data-live></p>
+				</div>
+			</section>
+
+			<!-- ——— Film: la locandina diventa sfondo ——— -->
+			<section class="demo__section" id="film">
+				<h2 class="demo__label">Film</h2>
+				<div class="stage sl rot mv" data-slider="rot" data-ms="6500" role="group" aria-roledescription="carosello" aria-label="Film in uscita">
+					<div class="rot__list">
+						<article class="rot__item" data-title="La Ruota di Vetro" data-genre="Fantascienza" data-pos="62%">
+							<img src="img/film-1.webp" width="1672" height="941" alt="Un esploratore in tuta spaziale, di spalle, su una duna davanti a un grande anello spezzato" />
+							<div class="rot__content">
+								<p class="mv__date">Dal 12 marzo · ore 21:00</p>
+								<h3 class="mv__title">La Ruota di Vetro</h3>
+								<p class="mv__rating"><span class="mv__badge">Pubblico</span> 8,4/10</p>
+								<p class="mv__desc">Su un pianeta deserto, un esploratore trova un anello di vetro grande come una città. Chi l’ha costruito, e perché è ancora acceso?</p>
+								<div class="rot__btns">
+									<button class="rot__btn rot__btn--main" type="button">Guarda ora</button>
+									<button class="rot__btn rot__btn--alt" type="button">+ Lista</button>
+								</div>
+							</div>
+						</article>
+						<article class="rot__item" data-title="Ultima Corsa" data-genre="Noir" data-pos="78%">
+							<img src="img/film-2.webp" width="1672" height="941" alt="Un uomo in impermeabile e cappello cammina sotto la pioggia verso un’auto d’epoca con i fari accesi" loading="lazy" decoding="async" />
+							<div class="rot__content">
+								<p class="mv__date">Dal 19 marzo · ore 21:30</p>
+								<h3 class="mv__title">Ultima Corsa</h3>
+								<p class="mv__rating"><span class="mv__badge">Pubblico</span> 7,9/10</p>
+								<p class="mv__desc">Una notte di pioggia, un’auto con i fari accesi e un uomo che ha un solo giro per scoprire chi lo ha incastrato.</p>
+								<div class="rot__btns">
+									<button class="rot__btn rot__btn--main" type="button">Guarda ora</button>
+									<button class="rot__btn rot__btn--alt" type="button">+ Lista</button>
+								</div>
+							</div>
+						</article>
+						<article class="rot__item" data-title="La Corona di Cenere" data-genre="Fantasy" data-pos="66%">
+							<img src="img/film-3.webp" width="1672" height="941" alt="Un cavaliere in armatura scura in ginocchio tra le rovine di un castello in fiamme" loading="lazy" decoding="async" />
+							<div class="rot__content">
+								<p class="mv__date">Dal 26 marzo · ore 20:45</p>
+								<h3 class="mv__title">La Corona di Cenere</h3>
+								<p class="mv__rating"><span class="mv__badge">Pubblico</span> 8,1/10</p>
+								<p class="mv__desc">Il regno è bruciato, la corona è a terra. Un cavaliere senza stemma deve decidere se rimetterla o lasciarla dov’è.</p>
+								<div class="rot__btns">
+									<button class="rot__btn rot__btn--main" type="button">Guarda ora</button>
+									<button class="rot__btn rot__btn--alt" type="button">+ Lista</button>
+								</div>
+							</div>
+						</article>
+						<article class="rot__item" data-title="Il Faro Spento" data-genre="Horror" data-pos="85%">
+							<img src="img/film-4.webp" width="1672" height="941" alt="Un faro su una scogliera battuta dalle onde, con una sola finestra accesa" loading="lazy" decoding="async" />
+							<div class="rot__content">
+								<p class="mv__date">Dal 2 aprile · ore 22:00</p>
+								<h3 class="mv__title">Il Faro Spento</h3>
+								<p class="mv__rating"><span class="mv__badge">Pubblico</span> 7,6/10</p>
+								<p class="mv__desc">Da vent’anni nessuno sale quel faro. Stanotte, in cima, una finestra si è accesa.</p>
+								<div class="rot__btns">
+									<button class="rot__btn rot__btn--main" type="button">Guarda ora</button>
+									<button class="rot__btn rot__btn--alt" type="button">+ Lista</button>
+								</div>
+							</div>
+						</article>
+						<article class="rot__item" data-title="Rotta Nord" data-genre="Avventura" data-pos="72%">
+							<img src="img/film-5.webp" width="1672" height="941" alt="Un vecchio veliero bloccato tra gli iceberg, sotto un’aurora verde" loading="lazy" decoding="async" />
+							<div class="rot__content">
+								<p class="mv__date">Dal 9 aprile · ore 20:30</p>
+								<h3 class="mv__title">Rotta Nord</h3>
+								<p class="mv__rating"><span class="mv__badge">Pubblico</span> 8,0/10</p>
+								<p class="mv__desc">La nave è bloccata tra i ghiacci e le provviste durano trenta giorni. Il passaggio, forse, esiste davvero.</p>
+								<div class="rot__btns">
+									<button class="rot__btn rot__btn--main" type="button">Guarda ora</button>
+									<button class="rot__btn rot__btn--alt" type="button">+ Lista</button>
+								</div>
+							</div>
+						</article>
+						<article class="rot__item" data-title="Le Ore Blu" data-genre="Romantico" data-pos="88%">
+							<img src="img/film-6.webp" width="1672" height="941" alt="Due persone di spalle, sedute su un muretto, guardano un borgo illuminato sul mare all’ora blu" loading="lazy" decoding="async" />
+							<div class="rot__content">
+								<p class="mv__date">Dal 16 aprile · ore 21:00</p>
+								<h3 class="mv__title">Le Ore Blu</h3>
+								<p class="mv__rating"><span class="mv__badge">Pubblico</span> 7,8/10</p>
+								<p class="mv__desc">Due persone, un borgo sul mare e l’ora in cui il giorno finisce: quella in cui si dicono le cose che non si dicono mai.</p>
+								<div class="rot__btns">
+									<button class="rot__btn rot__btn--main" type="button">Guarda ora</button>
+									<button class="rot__btn rot__btn--alt" type="button">+ Lista</button>
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="rot__thumbs" aria-hidden="true"></div>
+					<div class="rot__arrows">
+						<button class="sl__btn rot__arrow" type="button" data-prev aria-label="Film precedente">
+							<svg width="24" height="24" aria-hidden="true"><use href="#sl-prev" /></svg>
+						</button>
+						<button class="sl__btn rot__arrow" type="button" data-next aria-label="Film successivo">
+							<svg width="24" height="24" aria-hidden="true"><use href="#sl-next" /></svg>
+						</button>
+					</div>
+					<p class="sr-only" aria-live="polite" data-live></p>
+				</div>
+			</section>
+
+			<!-- ——— Moda: pannelli che scorrono in verticale in versi opposti ——— -->
+			<section class="demo__section" id="moda">
+				<h2 class="demo__label">Moda</h2>
+				<div class="stage sl vs" data-slider="vs" data-i="0" style="--n: 7" role="group" aria-roledescription="carosello" aria-label="Look della nuova collezione">
+					<div class="vs__left">
+						<div class="vs__panel" style="--tint: #0e7490">
+							<span class="vs__num" aria-hidden="true">01</span>
+							<p class="vs__tag">Nuova collezione</p>
+							<h3 class="vs__title">Streetwear</h3>
+							<p class="vs__text">T-shirt, felpe e colori pieni per muoversi in città.</p>
+							<button class="vs__cta" type="button">Scopri la collezione</button>
+						</div>
+						<div class="vs__panel" style="--tint: #1e3a8a" inert>
+							<span class="vs__num" aria-hidden="true">02</span>
+							<p class="vs__tag">Nuova collezione</p>
+							<h3 class="vs__title">Coordinati</h3>
+							<p class="vs__text">Completi in due pezzi, dall’ufficio all’aperitivo senza cambiarsi.</p>
+							<button class="vs__cta" type="button">Scopri la collezione</button>
+						</div>
+						<div class="vs__panel" style="--tint: #525252" inert>
+							<span class="vs__num" aria-hidden="true">03</span>
+							<p class="vs__tag">Nuova collezione</p>
+							<h3 class="vs__title">Gioielli</h3>
+							<p class="vs__text">Anelli e orecchini che fanno il look da soli.</p>
+							<button class="vs__cta" type="button">Scopri la collezione</button>
+						</div>
+						<div class="vs__panel" style="--tint: #b7791f" inert>
+							<span class="vs__num" aria-hidden="true">04</span>
+							<p class="vs__tag">Nuova collezione</p>
+							<h3 class="vs__title">Mare</h3>
+							<p class="vs__text">Costumi e schiena scoperta per le giornate che non finiscono.</p>
+							<button class="vs__cta" type="button">Scopri la collezione</button>
+						</div>
+						<div class="vs__panel" style="--tint: #4b6b6b" inert>
+							<span class="vs__num" aria-hidden="true">05</span>
+							<p class="vs__tag">Nuova collezione</p>
+							<h3 class="vs__title">Camicie</h3>
+							<p class="vs__text">Cotone leggero e tagli morbidi: stanno bene con tutto.</p>
+							<button class="vs__cta" type="button">Scopri la collezione</button>
+						</div>
+						<div class="vs__panel" style="--tint: #8a4b2d" inert>
+							<span class="vs__num" aria-hidden="true">06</span>
+							<p class="vs__tag">Nuova collezione</p>
+							<h3 class="vs__title">Cappotti</h3>
+							<p class="vs__text">Pelle e tessuti pesanti per le sere fredde.</p>
+							<button class="vs__cta" type="button">Scopri la collezione</button>
+						</div>
+						<div class="vs__panel" style="--tint: #9a5b2e" inert>
+							<span class="vs__num" aria-hidden="true">07</span>
+							<p class="vs__tag">Nuova collezione</p>
+							<h3 class="vs__title">Foulard</h3>
+							<p class="vs__text">Un turbante, un nodo, un gesto: il look è fatto.</p>
+							<button class="vs__cta" type="button">Scopri la collezione</button>
+						</div>
+					</div>
+					<div class="vs__right">
+						<figure class="vs__shot" style="--py: 30%">
+							<img src="img/look-1.webp" width="900" height="1350" alt="Giovane donna con i capelli rossi e una t-shirt bianca davanti a un telaio azzurro" />
+							<figcaption class="vs__credit">Foto: Ayo Ogunseinde · Unsplash</figcaption>
+						</figure>
+						<figure class="vs__shot" style="--py: 8%" inert>
+							<img src="img/look-2.webp" width="900" height="1200" alt="Donna con completo blu a due pezzi e occhiali da sole davanti a un muro di graffiti" loading="lazy" decoding="async" />
+							<figcaption class="vs__credit">Foto: Napat Saeng · Unsplash</figcaption>
+						</figure>
+						<figure class="vs__shot" style="--py: 35%" inert>
+							<img src="img/look-3.webp" width="900" height="1350" alt="Ritratto in bianco e nero con giacca, cravatta e anelli alle mani" loading="lazy" decoding="async" />
+							<figcaption class="vs__credit">Foto: Ben Iwara · Unsplash</figcaption>
+						</figure>
+						<figure class="vs__shot" style="--py: 25%" inert>
+							<img src="img/look-4.webp" width="900" height="1350" alt="Giovane donna di spalle, con il capo girato, su fondo giallo" loading="lazy" decoding="async" />
+							<figcaption class="vs__credit">Foto: Rafaella Mendes Diniz · Unsplash</figcaption>
+						</figure>
+						<figure class="vs__shot" style="--py: 35%" inert>
+							<img src="img/look-5.webp" width="900" height="1199" alt="Giovane donna con camicia bianca e capelli lunghi" loading="lazy" decoding="async" />
+							<figcaption class="vs__credit">Foto: Dmitry Reshetnikov · Unsplash</figcaption>
+						</figure>
+						<figure class="vs__shot" style="--py: 15%" inert>
+							<img src="img/look-6.webp" width="900" height="1352" alt="Giovane donna con cappotto di pelle e jeans davanti a un muro di mattoni" loading="lazy" decoding="async" />
+							<figcaption class="vs__credit">Foto: Oleg Ivanov · Unsplash</figcaption>
+						</figure>
+						<figure class="vs__shot" style="--py: 25%" inert>
+							<img src="img/look-7.webp" width="900" height="1350" alt="Donna con turbante color sabbia e grandi orecchini a cerchio su fondo bianco" loading="lazy" decoding="async" />
+							<figcaption class="vs__credit">Foto: Gideon Hezekiah · Unsplash</figcaption>
+						</figure>
+					</div>
+					<div class="vs__track" aria-hidden="true"></div>
+					<div class="vs__btns">
+						<button class="sl__btn vs__btn" type="button" data-next aria-label="Look successivo">
+							<svg width="24" height="24" aria-hidden="true"><use href="#sl-up" /></svg>
+						</button>
+						<button class="sl__btn vs__btn" type="button" data-prev aria-label="Look precedente">
+							<svg width="24" height="24" aria-hidden="true"><use href="#sl-down" /></svg>
+						</button>
+					</div>
+					<p class="sr-only" aria-live="polite" data-live></p>
+				</div>
+			</section>
+
+			<!-- ——— Animali: la foto diventa miniatura e viceversa ——— -->
+			<section class="demo__section" id="animali">
+				<h2 class="demo__label">Animali</h2>
+				<div class="stage sl rot an" data-slider="rot" data-ms="7000" data-thumbs="click" role="group" aria-roledescription="carosello" aria-label="Animali selvatici">
+					<div class="rot__list">
+						<article class="rot__item" data-title="Alce" data-genre="Lago nebbioso" data-pos="55%">
+							<img src="img/animali-alce-lago.webp" width="1500" height="841" alt="Un alce sul bordo di un lago nebbioso, con le montagne sullo sfondo" />
+							<div class="rot__content">
+								<p class="an__kicker">Atlante selvatico</p>
+								<h3 class="an__topic">Alce</h3>
+								<p class="an__desc">Un alce sul bordo di un lago nebbioso, con le montagne che si perdono nella foschia.</p>
+								<div class="rot__btns">
+									<button class="rot__btn rot__btn--alt" type="button">Scopri</button>
+									<button class="rot__btn rot__btn--ghost" type="button">Iscriviti</button>
+								</div>
+							</div>
+						</article>
+						<article class="rot__item" data-title="Altopiano" data-genre="Cresta" data-pos="50%">
+							<img src="img/animali-alce-cresta.webp" width="1500" height="841" alt="Un alce su una cresta rocciosa, con i palchi contro un cielo chiaro" loading="lazy" decoding="async" />
+							<div class="rot__content">
+								<p class="an__kicker">Atlante selvatico</p>
+								<h3 class="an__topic">Altopiano</h3>
+								<p class="an__desc">La stessa sagoma su una cresta battuta dal vento, i palchi contro il cielo pallido del mattino.</p>
+								<div class="rot__btns">
+									<button class="rot__btn rot__btn--alt" type="button">Scopri</button>
+									<button class="rot__btn rot__btn--ghost" type="button">Iscriviti</button>
+								</div>
+							</div>
+						</article>
+						<article class="rot__item" data-title="Elefante" data-genre="Foresta" data-pos="50%">
+							<img src="img/animali-elefante.webp" width="1500" height="857" alt="Un elefante africano con le orecchie spalancate in una radura della foresta" loading="lazy" decoding="async" />
+							<div class="rot__content">
+								<p class="an__kicker">Atlante selvatico</p>
+								<h3 class="an__topic">Elefante</h3>
+								<p class="an__desc">Un incontro ravvicinato con un elefante africano, le orecchie aperte in una radura della foresta pluviale.</p>
+								<div class="rot__btns">
+									<button class="rot__btn rot__btn--alt" type="button">Scopri</button>
+									<button class="rot__btn rot__btn--ghost" type="button">Iscriviti</button>
+								</div>
+							</div>
+						</article>
+						<article class="rot__item" data-title="Giaguaro" data-genre="Sottobosco" data-pos="75%">
+							<img src="img/animali-giaguaro.webp" width="1500" height="841" alt="Un giaguaro che osserva dal sottobosco, tra le foglie" loading="lazy" decoding="async" />
+							<div class="rot__content">
+								<p class="an__kicker">Atlante selvatico</p>
+								<h3 class="an__topic">Giaguaro</h3>
+								<p class="an__desc">Un giaguaro osserva in silenzio dal sottobosco, il manto maculato confuso con la luce filtrata.</p>
+								<div class="rot__btns">
+									<button class="rot__btn rot__btn--alt" type="button">Scopri</button>
+									<button class="rot__btn rot__btn--ghost" type="button">Iscriviti</button>
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="rot__thumbs" aria-hidden="true"></div>
+					<div class="rot__arrows">
+						<button class="sl__btn rot__arrow" type="button" data-prev aria-label="Animale precedente">
+							<svg width="24" height="24" aria-hidden="true"><use href="#sl-prev" /></svg>
+						</button>
+						<button class="sl__btn rot__arrow" type="button" data-next aria-label="Animale successivo">
+							<svg width="24" height="24" aria-hidden="true"><use href="#sl-next" /></svg>
+						</button>
+					</div>
+					<p class="sr-only" aria-live="polite" data-live></p>
+				</div>
+			</section>
+
+			<!-- ——— Caffè: il pannello si apre a cerchio, i bicchieri scorrono ——— -->
+			<section class="demo__section" id="caffe">
+				<h2 class="demo__label">Caffè</h2>
+				<div class="stage sl cf next" data-slider="cf" role="group" aria-roledescription="carosello" aria-label="Novità dal bancone">
+					<div class="cf__list">
+						<article class="cf__item is-o1" style="--bg: #e0b48a" inert>
+							<div class="cf__main">
+								<div class="cf__text">
+									<h3>Caffè Latte, <br />una novità</h3>
+									<p class="cf__price">€ 4,50</p>
+									<p class="cf__desc">Il nostro Caffè Latte unisce un espresso ricco e il latte montato a vellutata. Chicchi selezionati, consistenza cremosa e un gusto pieno: caldo o freddo, è la pausa che serve a metà mattina.</p>
+									<button class="cf__add" type="button">Aggiungi al carrello</button>
+								</div>
+							</div>
+							<figure class="cf__image">
+								<img src="img/caffe-latte.webp" width="358" height="715" alt="" />
+								<figcaption>Caffè Latte, <br />una novità</figcaption>
+							</figure>
+						</article>
+						<article class="cf__item is-active" style="--bg: #f5bfaf">
+							<div class="cf__main">
+								<div class="cf__text">
+									<h3>Mocha alla fragola, <br />una novità</h3>
+									<p class="cf__price">€ 5,50</p>
+									<p class="cf__desc">Espresso, cioccolato e fragole mature in un’unica tazza. La nota intensa del mocha incontra il dolce fresco della frutta, con latte caldo e un ciuffo di panna: per chi vuole un caffè che sorprende.</p>
+									<button class="cf__add" type="button">Aggiungi al carrello</button>
+								</div>
+							</div>
+							<figure class="cf__image">
+								<img src="img/caffe-mocha.webp" width="376" height="721" alt="" />
+								<figcaption>Mocha alla fragola, <br />una novità</figcaption>
+							</figure>
+						</article>
+						<article class="cf__item is-o2" style="--bg: #dedfe1" inert>
+							<div class="cf__main">
+								<div class="cf__text">
+									<h3>Doppio espresso, <br />una novità</h3>
+									<p class="cf__price">€ 2,50</p>
+									<p class="cf__desc">Due shot di espresso puro, corposo e con la crema in superficie. Concentrato, deciso e senza fronzoli: la scelta di chi il caffè lo vuole forte e subito.</p>
+									<button class="cf__add" type="button">Aggiungi al carrello</button>
+								</div>
+							</div>
+							<figure class="cf__image">
+								<img src="img/caffe-doppio.webp" width="356" height="717" alt="" />
+								<figcaption>Doppio espresso, <br />una novità</figcaption>
+							</figure>
+						</article>
+						<article class="cf__item" style="--bg: #7eb63d" inert>
+							<div class="cf__main">
+								<div class="cf__text">
+									<h3>Matcha latte macchiato, <br />una novità</h3>
+									<p class="cf__price">€ 5,00</p>
+									<p class="cf__desc">Strati di latte vellutato e matcha di qualità cerimoniale. Un tè verde delicato, terroso e appena dolce: l’alternativa al caffè per una pausa più calma.</p>
+									<button class="cf__add" type="button">Aggiungi al carrello</button>
+								</div>
+							</div>
+							<figure class="cf__image">
+								<img src="img/caffe-matcha.webp" width="352" height="710" alt="" />
+								<figcaption>Matcha latte macchiato, <br />una novità</figcaption>
+							</figure>
+						</article>
+					</div>
+					<div class="cf__arrows">
+						<button class="sl__btn cf__arrow" type="button" data-prev aria-label="Prodotto precedente">
+							<svg width="24" height="24" aria-hidden="true"><use href="#sl-prev" /></svg>
+						</button>
+						<button class="sl__btn cf__arrow" type="button" data-next aria-label="Prodotto successivo">
+							<svg width="24" height="24" aria-hidden="true"><use href="#sl-next" /></svg>
+						</button>
+					</div>
+					<p class="sr-only" aria-live="polite" data-live></p>
+				</div>
+			</section>
+
+			<!-- ——— Magia di luce: cerchi che ruotano e sfocano ——— -->
+			<section class="demo__section" id="magia">
+				<h2 class="demo__label">Magia di luce</h2>
+				<div class="stage sl mg" data-slider="mg" role="group" aria-roledescription="carosello" aria-label="Paesaggi al tramonto">
+					<div class="mg__list">
+						<div class="mg__item is-active" role="group" aria-roledescription="slide" aria-label="1 di 3">
+							<div class="mg__image" style="--url: url('img/magic-1.webp')" aria-hidden="true"></div>
+							<div class="mg__content">
+								<h3>Luce alpina</h3>
+								<p>Dorsali di montagne sovrapposte sfumano nella foschia azzurra mentre l’ultima luce buca le nuvole.</p>							</div>
+						</div>
+						<div class="mg__item" role="group" aria-roledescription="slide" aria-label="2 di 3" inert>
+							<div class="mg__image" style="--url: url('img/magic-2.webp')" aria-hidden="true"></div>
+							<div class="mg__content">
+								<h3>Valle del fiume</h3>
+								<p>Un fiume tranquillo taglia le colline mentre la valle si addormenta nella luce della sera.</p>							</div>
+						</div>
+						<div class="mg__item" role="group" aria-roledescription="slide" aria-label="3 di 3" inert>
+							<div class="mg__image" style="--url: url('img/magic-3.webp')" aria-hidden="true"></div>
+							<div class="mg__content">
+								<h3>Mare di nuvole</h3>
+								<p>Le nuvole scivolano oltre la cresta all’alba e rotolano sugli altipiani come una marea.</p>							</div>
+						</div>
+					</div>
+					<div class="mg__arrows">
+						<button class="sl__btn mg__btn" type="button" data-prev aria-label="Paesaggio precedente">
+							<svg width="28" height="28" aria-hidden="true"><use href="#sl-prev" /></svg>
+						</button>
+						<button class="sl__btn mg__btn" type="button" data-next aria-label="Paesaggio successivo">
+							<svg width="28" height="28" aria-hidden="true"><use href="#sl-next" /></svg>
+						</button>
+					</div>
+					<p class="sr-only" aria-live="polite" data-live></p>
+				</div>
+			</section>
+
+			<p class="demo__note">
+				Ogni slider vive nel suo riquadro (<code>container-type: size</code>): misure in <code>cqw/cqh</code>, quindi
+				si adatta al box in cui lo guardi e non alla finestra. Uno slider può muoversi solo al clic sulle frecce o
+				ruotare anche da solo: è una scelta di progetto, qui il giro automatico c’è ma parte solo con lo slider in
+				vista e si ferma al primo gesto. Le immagini sono WebP. Foto della sezione Moda:
+				Unsplash, con il nome del fotografo sotto ogni slide. Locandine dei film, etichetta della lattina e
+				bicchieri sono nostri.
+			</p>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

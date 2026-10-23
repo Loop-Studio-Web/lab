@@ -13,7 +13,7 @@
 
 **Front-end experiments and UI components,<br>kept small, self-contained and a little bit playful.**
 
-[![Live](https://img.shields.io/badge/lab-live-fe3b30?style=flat-square&labelColor=0b0b0c)](https://loop-studio-web.github.io/lab/) [![Components](https://img.shields.io/badge/components-28-fe3b30?style=flat-square&labelColor=0b0b0c)](#components) [![Experiments](https://img.shields.io/badge/experiments-11-fe3b30?style=flat-square&labelColor=0b0b0c)](#experiments) [![axe-core](https://img.shields.io/badge/axe--core-0%20violations-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built) [![PageSpeed](https://img.shields.io/badge/PageSpeed%20mobile-98%E2%80%93100-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built)
+[![Live](https://img.shields.io/badge/lab-live-fe3b30?style=flat-square&labelColor=0b0b0c)](https://loop-studio-web.github.io/lab/) [![Components](https://img.shields.io/badge/components-29-fe3b30?style=flat-square&labelColor=0b0b0c)](#components) [![Experiments](https://img.shields.io/badge/experiments-5-fe3b30?style=flat-square&labelColor=0b0b0c)](#experiments) [![axe-core](https://img.shields.io/badge/axe--core-0%20violations-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built) [![PageSpeed](https://img.shields.io/badge/PageSpeed%20mobile-98%E2%80%93100-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built)
 
 [**Open the Lab →**](https://loop-studio-web.github.io/lab/)
 
@@ -38,7 +38,7 @@ The Lab is plain static files served as-is by GitHub Pages, so there is **no bui
 
 ## Components
 
-Twenty-eight demo pages in [`components/`](components), one folder each. Most gather several variants of the same idea, so there are well over a hundred small pieces in all. Every page opens on its own, on a fixed dark stage, with real buttons, keyboard and touch support, and `prefers-reduced-motion` respected. Click any picture to open the live page.
+Twenty-nine demo pages in [`components/`](components), one folder each. Most gather several variants of the same idea, so there are well over a hundred small pieces in all. Every page opens on its own, on a fixed dark stage, with real buttons, keyboard and touch support, and `prefers-reduced-motion` respected. Click any picture to open the live page.
 
 ### Layout
 
@@ -206,6 +206,10 @@ Twenty-eight demo pages in [`components/`](components), one folder each. Most ga
     <td width="34%" valign="top"><a href="https://loop-studio-web.github.io/lab/components/marquee-loghi/"><img src="docs/img/components/marquee-loghi.webp" alt="A row of grey logos scrolling horizontally"></a></td>
     <td valign="top"><b><a href="https://loop-studio-web.github.io/lab/components/marquee-loghi/">Logo marquee</a></b><br>A row of logos that scrolls forever. It stops on hover and with the reduced-motion preference.<br><sub><b>Variants:</b> one grey row · two rows in opposite directions</sub><br><sub><a href="components/marquee-loghi">source</a></sub></td>
   </tr>
+  <tr>
+    <td width="34%" valign="top"><a href="https://loop-studio-web.github.io/lab/components/slider/"><img src="docs/img/components/slider.webp" alt="A red slide with a strawberry soda can, a giant word behind it and flying strawberries"></a></td>
+    <td valign="top"><b><a href="https://loop-studio-web.github.io/lab/components/slider/">Sliders</a></b><br>Six full-width sliders, each with its own motion. They move with the arrows, the keyboard and a swipe, or turn by themselves while in view and stop at the first gesture.<br><sub><b>Variants:</b> fruit soda · film posters · fashion (vertical) · animals with thumbnails · coffee · rotating light</sub><br><sub><a href="components/slider">source</a></sub></td>
+  </tr>
 </table>
 
 <br>
@@ -223,16 +227,6 @@ The earlier, free-form work: full pages and small apps, each in its own folder, 
   <tr>
     <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/three-js-animation/"><img src="docs/img/experiments/three-js-animation.webp" alt="A giant 3D ANIMATION title over a white flower"></a><br><b><a href="https://loop-studio-web.github.io/lab/three-js-animation/">3D scroll</a></b> &nbsp;<sub><code>Three.js</code></sub><br><sub>A 3D scene driven by scroll: a flower model that moves as you go down the page.</sub></td>
     <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/skyTracker/"><img src="docs/img/experiments/skyTracker.webp" alt="A weather app search box over a stormy landscape"></a><br><b><a href="https://loop-studio-web.github.io/lab/skyTracker/">SkyTracker</a></b> &nbsp;<sub><code>JS · Cloudflare Worker</code></sub><br><sub>A weather app: city search and a three-day forecast, through a small proxy.</sub></td>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/animals-webpage/"><img src="docs/img/experiments/animals-webpage.webp" alt="A moose in a misty lake with a thumbnail strip"></a><br><b><a href="https://loop-studio-web.github.io/lab/animals-webpage/">Animal slider</a></b> &nbsp;<sub><code>CSS · JS</code></sub><br><sub>A full-screen slider with a thumbnail strip.</sub></td>
-  </tr>
-  <tr>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/movies-slider/"><img src="docs/img/experiments/movies-slider.webp" alt="A film poster slider with a hooded assassin"></a><br><b><a href="https://loop-studio-web.github.io/lab/movies-slider/">Movie slider</a></b> &nbsp;<sub><code>CSS · JS</code></sub><br><sub>A movie-themed slider with a thumbnail strip.</sub></td>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/slider-fruit-soda/"><img src="docs/img/experiments/slider-fruit-soda.webp" alt="A red slide with a strawberry soda can and flying strawberries"></a><br><b><a href="https://loop-studio-web.github.io/lab/slider-fruit-soda/">Fruit soda slider</a></b> &nbsp;<sub><code>CSS · JS</code></sub><br><sub>A product slider with a giant word behind the can.</sub></td>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/slider-magic-effects/"><img src="docs/img/experiments/slider-magic-effects.webp" alt="A hiker on a rock under a giant title"></a><br><b><a href="https://loop-studio-web.github.io/lab/slider-magic-effects/">Magic effects slider</a></b> &nbsp;<sub><code>CSS · JS</code></sub><br><sub>A slider with layered mountain ridges behind a big title.</sub></td>
-  </tr>
-  <tr>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/vertical-slider/"><img src="docs/img/experiments/vertical-slider.webp" alt="A fashion photo with a Crop Tops title"></a><br><b><a href="https://loop-studio-web.github.io/lab/vertical-slider/">Vertical slider</a></b> &nbsp;<sub><code>CSS · JS</code></sub><br><sub>A slider that moves on the vertical axis.</sub></td>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/starbucks-coffee/"><img src="docs/img/experiments/starbucks-coffee.webp" alt="A strawberry mocha cup branded Loop Studio on a pink page"></a><br><b><a href="https://loop-studio-web.github.io/lab/starbucks-coffee/">Loop Studio Coffee</a></b> &nbsp;<sub><code>CSS · JS</code></sub><br><sub>A coffee landing page study with a product carousel.</sub></td>
     <td width="33%"></td>
   </tr>
 </table>

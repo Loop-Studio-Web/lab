@@ -1,0 +1,1227 @@
+/* Slider — sei riquadri. Ogni .sl è un "contenitore" (container-type: size): le misure
+   interne sono in cqw/cqh, cioè in proporzione al riquadro e non alla finestra.
+   Ogni slider ha il suo prefisso (fs- fruit soda, …) così i nomi non si scontrano. */
+
+.sl {
+	container-type: size;
+	display: block;
+	height: 36rem;
+	padding: 0;
+	isolation: isolate;
+	touch-action: pan-y;
+	-webkit-user-select: none;
+	user-select: none;
+}
+@media (max-width: 40rem) {
+	.sl {
+		height: 30rem;
+	}
+}
+
+/* Pulsante base degli slider: ogni slider ci mette sopra la sua "pelle". */
+.sl__btn {
+	position: absolute;
+	z-index: 20;
+	display: grid;
+	place-items: center;
+	padding: 0;
+	border: 0;
+	color: #fff;
+	cursor: pointer;
+	transition:
+		transform 0.16s var(--ease-out),
+		background-color 0.2s ease;
+}
+.sl__btn:active {
+	transform: scale(0.97);
+}
+.sl__btn svg {
+	width: 1.4rem;
+	height: 1.4rem;
+}
+
+/* ——— Fruit soda ——— */
+
+.fs {
+	--can: min(50cqh, 42cqw);
+	background: #ea3d41;
+	--from: 50cqh; /* da dove entra il nuovo frutto */
+	--to: -150cqh; /* dove esce il vecchio */
+}
+.fs[data-dir='prev'] {
+	--from: -50cqh;
+	--to: 50cqh;
+}
+.fs[data-i='1'] .fs__can {
+	--left: 50%;
+}
+.fs[data-i='2'] .fs__can {
+	--left: 100%;
+}
+.fs__list {
+	position: absolute;
+	inset: 0;
+}
+.fs__item {
+	display: none;
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	background: var(--bg);
+}
+.fs__item.is-active {
+	display: block;
+}
+.fs__item.is-leaving {
+	display: block;
+	z-index: 1;
+	background: transparent;
+	pointer-events: none;
+}
+.fs__name {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	font-size: clamp(3rem, 17cqw, 11rem);
+	font-weight: 800;
+	text-transform: uppercase;
+	white-space: nowrap;
+	color: #eee;
+}
+.fs__fruit {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 15;
+	width: 90cqw;
+	max-width: none;
+	height: auto;
+	translate: -50% -50%;
+	pointer-events: none;
+}
+@keyframes fs-in {
+	from {
+		translate: -50% calc(-50% + var(--from));
+		opacity: 0;
+	}
+}
+@keyframes fs-out {
+	from {
+		translate: -50% -50%;
+		opacity: 1;
+	}
+}
+.fs__item.is-active .fs__fruit {
+	animation: fs-in 0.5s var(--ease-in-out) both;
+}
+.fs__item.is-active .fs__name {
+	animation: fs-in 0.8s var(--ease-in-out) both;
+}
+.fs__item.is-leaving .fs__fruit {
+	translate: -50% calc(-50% + var(--to));
+	opacity: 0;
+	animation: fs-out 0.8s var(--ease-in-out) both;
+}
+.fs__item.is-leaving .fs__name {
+	opacity: 0;
+}
+
+/* Lattina: sagoma (lattina.webp) usata sia come base sia come maschera; l'etichetta
+   (tre fasce, una per gusto) scorre sotto di essa con background-position e si fonde in "multiply".
+   La scatola ha la larghezza esatta della lattina: ogni fascia = 0%, 50%, 100%. */
+.fs__can {
+	--left: 0%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: var(--can);
+	aspect-ratio: 371 / 673;
+	translate: -50% -50%;
+	background-image: url(img/lattina.webp), url(img/lattina-etichetta.webp);
+	background-position:
+		0 0,
+		var(--left) 0;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	background-blend-mode: multiply;
+	-webkit-mask: url(img/lattina.webp) 0 0 / auto 100% no-repeat;
+	mask: url(img/lattina.webp) 0 0 / auto 100% no-repeat;
+	transition: background-position 0.5s var(--ease-in-out);
+}
+.fs__leaves {
+	position: absolute;
+	top: calc(50% - var(--can) * 0.96);
+	left: calc(50% - var(--can) * 0.12);
+	width: calc(var(--can) * 0.69);
+	aspect-ratio: 299 / 283;
+	background: url(img/foglie.webp) center / 100% no-repeat;
+}
+.fs__shadow {
+	position: absolute;
+	top: calc(50% + var(--can) * 0.42);
+	left: 50%;
+	width: calc(var(--can) * 0.9);
+	height: calc(var(--can) * 0.26);
+	translate: -50% 0;
+	border-radius: 50%;
+	background: rgb(0 0 0 / 0.5);
+	filter: blur(1.1rem);
+}
+.fs__btn {
+	top: 50%;
+	width: 3rem;
+	height: 3rem;
+	margin-top: -1.5rem;
+	border-radius: 50%;
+	background: rgb(0 0 0 / 0.35);
+	box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.55);
+}
+.fs__btn--prev {
+	left: 1rem;
+}
+.fs__btn--next {
+	right: 1rem;
+}
+@media (hover: hover) and (pointer: fine) {
+	.fs__btn:hover {
+		background: rgb(0 0 0 / 0.55);
+	}
+}
+@media (max-width: 40rem) {
+	.fs {
+		--can: min(46cqh, 52cqw);
+	}
+	.fs__btn {
+		top: auto;
+		bottom: 1rem;
+		width: 2.75rem;
+		height: 2.75rem;
+		margin-top: 0;
+	}
+	.fs__btn--prev {
+		left: calc(50% - 3.25rem);
+	}
+	.fs__btn--next {
+		right: calc(50% - 3.25rem);
+	}
+}
+
+/* ——— Meccanica a miniature (film e animali) ———
+   Le slide sono impilate; la prima del DOM è quella visibile. "Avanti" sposta la prima in fondo, "indietro"
+   porta l'ultima in testa (lo fa script.js). Le classi .next / .prev, messe per ~1,3 s, fanno partire i
+   movimenti: la foto nuova si apre dal posto della sua miniatura (next) oppure quella vecchia si chiude
+   nella miniatura (prev). L'apertura usa clip-path, non width/height: niente ricalcolo del layout. */
+
+.rot {
+	--tw: clamp(5rem, 15cqw, 9.5rem); /* larghezza miniatura */
+	--th: calc(var(--tw) * 1.5);
+	--tx: 54%; /* dove parte la fila di miniature */
+	--tb: 2rem; /* distanza dal bordo basso */
+	--gap: 0.9rem;
+	--c-left: var(--tx);
+	--c-bottom: var(--tb);
+	--c-right: calc(100% - var(--tx) - var(--tw));
+	--c-top: calc(100% - var(--tb) - var(--th));
+	background: #000;
+	color: #fff;
+}
+.rot__list {
+	position: absolute;
+	inset: 0;
+}
+.rot__item {
+	position: absolute;
+	inset: 0;
+}
+.rot__item:nth-child(1) {
+	z-index: 1;
+}
+.rot__item > img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.rot__content {
+	position: absolute;
+	top: 15%;
+	left: 6cqw;
+	width: min(40cqw, 32rem);
+	text-shadow: 0 0.2rem 0.8rem rgb(0 0 0 / 0.6);
+}
+.rot__btns {
+	display: flex;
+	gap: 0.75rem;
+	margin-top: 1.25rem;
+}
+.rot__btn {
+	padding: 0.7rem 1.1rem;
+	border: 1px solid transparent;
+	border-radius: 0.4rem;
+	font: 600 0.8rem/1 var(--font-text);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition:
+		transform 0.16s var(--ease-out),
+		background-color 0.2s ease,
+		color 0.2s ease,
+		border-color 0.2s ease;
+}
+.rot__btn:active {
+	transform: scale(0.97);
+}
+.rot__btn--main {
+	background: var(--accent-strong);
+	color: #fff;
+}
+.rot__btn--alt {
+	background: #fff;
+	color: #000;
+}
+.rot__btn--ghost {
+	background: transparent;
+	border-color: #fff;
+	color: #fff;
+}
+@media (hover: hover) and (pointer: fine) {
+	.rot__btn--main:hover {
+		background: #fff;
+		color: var(--accent-strong);
+	}
+	.rot__btn--alt:hover {
+		background: var(--accent-strong);
+		color: #fff;
+	}
+	.rot__btn--ghost:hover {
+		background: #fff;
+		color: #000;
+	}
+}
+
+/* Il contenuto della slide in testa entra a scaglioni; quello della slide che esce (prev) si dissolve verso l'alto. */
+.rot__item:nth-child(1) .rot__content > * {
+	animation: rot-in 0.5s var(--ease-out) calc(0.4s + var(--k, 0) * 0.07s) both;
+}
+.rot__content > :nth-child(2) {
+	--k: 1;
+}
+.rot__content > :nth-child(3) {
+	--k: 2;
+}
+.rot__content > :nth-child(4) {
+	--k: 3;
+}
+.rot__content > :nth-child(5) {
+	--k: 4;
+}
+.rot.prev .rot__item:nth-child(2) .rot__content > * {
+	animation: rot-out 0.6s var(--ease-in-out) both;
+}
+@keyframes rot-in {
+	from {
+		opacity: 0;
+		translate: 0 2rem;
+		filter: blur(0.6rem);
+	}
+}
+@keyframes rot-out {
+	to {
+		opacity: 0;
+		translate: 0 -6rem;
+		filter: blur(0.6rem);
+	}
+}
+
+/* La foto si apre dalla miniatura (next) o si chiude in essa (prev). */
+@keyframes rot-reveal {
+	from {
+		clip-path: inset(var(--c-top) var(--c-right) var(--c-bottom) var(--c-left) round 1rem);
+	}
+	to {
+		clip-path: inset(0 0 0 0 round 0);
+	}
+}
+.rot.next .rot__item:nth-child(1) > img {
+	animation: rot-reveal 0.5s var(--ease-in-out) both;
+}
+.rot.prev .rot__item:nth-child(2) {
+	z-index: 2;
+}
+.rot.prev .rot__item:nth-child(2) > img {
+	animation: rot-reveal 0.5s var(--ease-in-out) reverse both;
+}
+
+.rot__thumbs {
+	position: absolute;
+	z-index: 5;
+	bottom: var(--tb);
+	left: var(--tx);
+	display: flex;
+	gap: var(--gap);
+}
+.rot__thumb {
+	position: relative;
+	flex: none;
+	width: var(--tw);
+	height: var(--th);
+	border-radius: 1rem;
+	overflow: hidden;
+	transform-origin: left center;
+}
+[data-thumbs='click'] .rot__thumb {
+	cursor: pointer;
+}
+.rot__thumb img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: var(--pos, 50%) 50%;
+}
+.rot__thumb::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(transparent 45%, rgb(0 0 0 / 0.75));
+}
+.rot__thumb-text {
+	position: absolute;
+	z-index: 1;
+	left: 0.65rem;
+	right: 0.65rem;
+	bottom: 0.6rem;
+	font-size: 0.8rem;
+	line-height: 1.25;
+}
+.rot__thumb-text b {
+	display: block;
+	font-weight: 600;
+}
+.rot__thumb-text span {
+	font-weight: 300;
+	opacity: 0.85;
+}
+.rot.next .rot__thumbs {
+	animation: rot-slide-next 0.5s var(--ease-in-out) both;
+}
+.rot.prev .rot__thumbs {
+	animation: rot-slide-prev 0.5s var(--ease-in-out) both;
+}
+.rot.next .rot__thumb:last-child,
+.rot.prev .rot__thumb:first-child {
+	animation: rot-thumb-in 0.5s var(--ease-in-out) both;
+}
+@keyframes rot-slide-next {
+	from {
+		translate: calc(var(--tw) + var(--gap)) 0;
+	}
+}
+@keyframes rot-slide-prev {
+	from {
+		translate: calc((var(--tw) + var(--gap)) * -1) 0;
+	}
+}
+@keyframes rot-thumb-in {
+	from {
+		scale: 0 1;
+		opacity: 0;
+	}
+}
+
+.rot__arrows {
+	position: absolute;
+	z-index: 6;
+	bottom: var(--tb);
+	right: calc(100% - var(--tx) + 1rem);
+	display: flex;
+	gap: 0.6rem;
+}
+.rot__arrow {
+	position: static;
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 50%;
+	background: rgb(255 255 255 / 0.18);
+	box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.4);
+}
+@media (hover: hover) and (pointer: fine) {
+	.rot__arrow:hover {
+		background: #fff;
+		color: #000;
+	}
+}
+@media (max-width: 40rem) {
+	.rot {
+		--tw: 4.75rem;
+		--tx: 46%;
+		--tb: 1rem;
+		--gap: 0.6rem;
+	}
+	.rot__content {
+		top: 9%;
+		left: 1.25rem;
+		width: calc(100% - 2.5rem);
+	}
+	.rot__btns {
+		margin-top: 0.85rem;
+	}
+	.rot__thumb {
+		border-radius: 0.6rem;
+	}
+	.rot__thumb-text {
+		font-size: 0.65rem;
+		left: 0.4rem;
+		right: 0.4rem;
+		bottom: 0.4rem;
+	}
+	.rot__arrows {
+		right: calc(100% - var(--tx) + 0.75rem);
+	}
+	.rot__arrow {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+}
+
+/* ——— Film ——— */
+
+.mv__date {
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+.mv__title {
+	margin-top: 0.3rem;
+	font-size: clamp(2rem, 5.2cqw, 3.4rem);
+	font-weight: 800;
+	line-height: 1.05;
+}
+.mv__rating {
+	margin-top: 0.5rem;
+	font-size: 0.95rem;
+	font-weight: 500;
+	letter-spacing: 0.04em;
+}
+.mv__badge {
+	padding: 0.15rem 0.45rem;
+	margin-right: 0.3rem;
+	background: var(--accent-strong);
+	border-radius: 0.25rem;
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+.mv__desc {
+	margin-top: 0.9rem;
+	font-size: 0.9rem;
+	line-height: 1.55;
+	max-width: 30rem;
+}
+@media (max-width: 40rem) {
+	.mv__title {
+		font-size: 1.9rem;
+	}
+	.mv__desc {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		margin-top: 0.6rem;
+		font-size: 0.85rem;
+	}
+}
+
+/* ——— Animali ——— */
+
+.an__kicker {
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	opacity: 0.9;
+}
+.an__topic {
+	margin-top: 0.2rem;
+	font-size: clamp(2.6rem, 8cqw, 5.2rem);
+	font-weight: 800;
+	line-height: 1;
+	text-transform: uppercase;
+	color: #ff6a5f;
+}
+.an__desc {
+	margin-top: 0.8rem;
+	max-width: 26rem;
+	font-size: 0.95rem;
+	line-height: 1.55;
+}
+@media (max-width: 40rem) {
+	.an__topic {
+		font-size: 2.4rem;
+	}
+	.an__desc {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		font-size: 0.85rem;
+	}
+}
+
+/* ——— Moda ———
+   Due strisce alte n riquadri: i pannelli di testo a sinistra scendono, le foto a destra salgono
+   (--i = slide corrente, scritto da script.js). */
+
+.vs {
+	--split: 42%;
+	background: #000;
+}
+.vs__left,
+.vs__right {
+	position: absolute;
+	top: 0;
+	height: calc(var(--n) * 100%);
+	transition: translate 0.6s var(--ease-in-out);
+}
+.vs__left {
+	left: 0;
+	width: var(--split);
+	top: calc((1 - var(--n)) * 100%);
+	display: flex;
+	flex-direction: column-reverse; /* la prima del DOM sta in basso: scendendo la striscia compare in ordine */
+	translate: 0 calc(var(--i, 0) * 100cqh);
+	pointer-events: none;
+}
+.vs__right {
+	left: var(--split);
+	width: calc(100% - var(--split));
+	translate: 0 calc(var(--i, 0) * -100cqh);
+}
+.vs__panel {
+	position: relative;
+	flex: none;
+	height: 100cqh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 3.5rem 0 3.25rem;
+	overflow: hidden;
+	background:
+		radial-gradient(70% 45% at 90% 100%, rgb(255 255 255 / 0.1), transparent),
+		linear-gradient(160deg, #000 0%, var(--tint) 170%);
+}
+.vs__num {
+	position: absolute;
+	left: 1.5rem;
+	bottom: -3cqh;
+	font: 800 44cqh/0.8 var(--font-display);
+	color: transparent;
+	-webkit-text-stroke: 1px rgb(255 255 255 / 0.22);
+	letter-spacing: -0.04em;
+	pointer-events: none;
+}
+.vs__tag {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin-bottom: 0.9rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: #ff6a5f;
+}
+.vs__tag::before {
+	content: '';
+	width: 1.75rem;
+	height: 2px;
+	background: currentColor;
+}
+.vs__title {
+	font-size: clamp(2rem, 5.4cqw, 3.6rem);
+	font-weight: 800;
+	letter-spacing: -0.02em;
+	line-height: 1;
+}
+.vs__text {
+	margin-top: 0.9rem;
+	max-width: 17rem;
+	font-size: 0.95rem;
+	line-height: 1.55;
+	color: rgb(255 255 255 / 0.78);
+}
+.vs__cta {
+	position: relative;
+	z-index: 1;
+	align-self: flex-start;
+	margin-top: 1.4rem;
+	padding: 0.8rem 1.2rem;
+	border: 0;
+	border-radius: 100vmax;
+	background: var(--accent-strong);
+	color: #fff;
+	font: 600 0.8rem/1 var(--font-text);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	cursor: pointer;
+	pointer-events: auto;
+	transition:
+		transform 0.16s var(--ease-out),
+		background-color 0.2s ease,
+		color 0.2s ease;
+}
+.vs__cta:active {
+	transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+	.vs__cta:hover {
+		background: #fff;
+		color: #000;
+	}
+}
+.vs__shot {
+	position: relative;
+	height: 100cqh;
+	margin: 0;
+}
+.vs__shot img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% var(--py, 30%);
+}
+.vs__shot::after {
+	content: '';
+	position: absolute;
+	inset: 55% 0 0;
+	background: linear-gradient(transparent, rgb(0 0 0 / 0.6));
+	pointer-events: none;
+}
+.vs__credit {
+	position: absolute;
+	z-index: 1;
+	right: 0.9rem;
+	bottom: 0.6rem;
+	font-size: 0.7rem;
+	letter-spacing: 0.03em;
+	color: rgb(255 255 255 / 0.85);
+}
+.vs__track {
+	position: absolute;
+	z-index: 5;
+	left: 1.25rem;
+	top: 50%;
+	width: 2px;
+	height: 9rem;
+	translate: 0 -50%;
+	background: rgb(255 255 255 / 0.2);
+	overflow: hidden;
+}
+.vs__track::after {
+	content: '';
+	position: absolute;
+	inset: 0 0 auto;
+	height: calc(100% / var(--n));
+	background: #ff6a5f;
+	translate: 0 calc(var(--i, 0) * 100%);
+	transition: translate 0.6s var(--ease-in-out);
+}
+.vs__btns {
+	position: absolute;
+	z-index: 20;
+	left: var(--split);
+	top: 50%;
+	display: grid;
+	gap: 0.5rem;
+	translate: -50% -50%;
+}
+.vs__btn {
+	position: static;
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: 50%;
+	background: #fff;
+	color: #1a1a1a;
+	box-shadow: 0 0.4rem 1.2rem rgb(0 0 0 / 0.4);
+}
+@media (hover: hover) and (pointer: fine) {
+	.vs__btn:hover {
+		background: var(--accent-strong);
+		color: #fff;
+	}
+}
+@media (max-width: 40rem) {
+	.vs__left {
+		width: 100%;
+		z-index: 2;
+	}
+	.vs__right {
+		left: 0;
+		width: 100%;
+	}
+	.vs__panel {
+		justify-content: flex-end;
+		padding: 0 4.5rem 1.6rem 1.25rem;
+		background: linear-gradient(to top, rgb(0 0 0 / 0.9) 15%, transparent 65%);
+	}
+	.vs__num,
+	.vs__track {
+		display: none;
+	}
+	.vs__title {
+		font-size: 2.2rem;
+	}
+	.vs__text {
+		font-size: 0.85rem;
+		max-width: none;
+	}
+	.vs__btns {
+		left: auto;
+		right: 1rem;
+		translate: 0 -50%;
+	}
+	.vs__credit {
+		bottom: auto;
+		top: 0.7rem;
+	}
+}
+
+/* ——— Caffè ——— */
+
+.cf {
+	background: #4f8b69;
+	color: #1a1a1a;
+	--wi: 30cqw; /* larghezza della colonna con i bicchieri */
+	--k: 1.5;
+}
+.cf__list {
+	position: absolute;
+	inset: 0;
+}
+/* Due righe sottili che incorniciano la colonna dei bicchieri e un alone rosso morbido (gradiente, non blur). */
+.cf__list::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: calc(100% - var(--wi) * var(--k));
+	z-index: 10;
+	width: var(--wi);
+	height: 100%;
+	border-inline: 1px solid rgb(255 255 255 / 0.33);
+	pointer-events: none;
+}
+.cf__list::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 10;
+	background: radial-gradient(40% 55% at 18% 18%, rgb(255 59 48 / 0.35), transparent);
+	pointer-events: none;
+}
+.cf__item {
+	position: absolute;
+	inset: 0;
+	display: none;
+}
+.cf__item.is-active,
+.cf__item.is-o1,
+.cf__item.is-o2 {
+	display: block;
+}
+.cf__item.is-active {
+	z-index: 2;
+}
+.cf__item.is-o1,
+.cf__item.is-o2 {
+	pointer-events: none;
+}
+.cf__main {
+	height: 100%;
+	display: grid;
+	grid-template-columns: calc(100% - var(--wi) * var(--k));
+	background: var(--bg);
+}
+.cf__item.is-active .cf__main {
+	animation: cf-open 1s var(--ease-in-out) both;
+}
+@keyframes cf-open {
+	from {
+		clip-path: circle(0% at 70% 50%);
+	}
+	to {
+		clip-path: circle(100% at 70% 50%);
+	}
+}
+.cf__text {
+	padding: 4rem 1.25rem 1.25rem 3rem;
+}
+.cf__text h3 {
+	font-size: clamp(1.4rem, 3.4cqw, 2.1rem);
+	font-weight: 800;
+	line-height: 1.15;
+}
+.cf__price {
+	margin: 0.75rem 0;
+	font: 800 1.4rem var(--font-display);
+}
+.cf__desc {
+	max-width: 30rem;
+	font-size: 0.95rem;
+	line-height: 1.55;
+}
+.cf__add {
+	margin-top: 1.1rem;
+	padding: 0.75rem 1.6rem;
+	border: 0;
+	border-radius: 100vmax;
+	background: #1a1a1a;
+	color: #fff;
+	font: 600 1rem/1 var(--font-text);
+	cursor: pointer;
+	transition:
+		transform 0.16s var(--ease-out),
+		background-color 0.2s ease;
+}
+.cf__add:active {
+	transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+	.cf__add:hover {
+		background: var(--accent-strong);
+	}
+}
+.cf__image {
+	position: absolute;
+	top: 0;
+	left: calc(100% - var(--wi) * var(--k));
+	width: var(--wi);
+	height: 100%;
+	margin: 0;
+	padding: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	font-weight: 500;
+}
+.cf__image img {
+	width: auto;
+	height: 70%;
+	max-width: 90%;
+	margin-bottom: 1.25rem;
+	filter: drop-shadow(0 4rem 2rem rgb(158 12 12 / 0.33));
+}
+.cf__image figcaption {
+	width: 80%;
+	margin-bottom: 1.5rem;
+	font: 800 1.05rem/1.25 var(--font-display);
+	text-align: center;
+}
+
+/* Movimento dei bicchieri: --from è dove partono, arrivano spostati di una colonna. */
+@keyframes cf-next {
+	from {
+		translate: var(--from) 0;
+	}
+	to {
+		translate: calc(var(--from) - var(--wi)) 0;
+	}
+}
+@keyframes cf-prev {
+	from {
+		translate: var(--from) 0;
+	}
+	to {
+		translate: calc(var(--from) + var(--wi)) 0;
+	}
+}
+.cf.next .cf__image img,
+.cf.next .cf__image figcaption {
+	animation: cf-next 0.5s var(--ease-in-out) both;
+}
+.cf.next .cf__item.is-o1 {
+	z-index: 1;
+}
+.cf.next .cf__item.is-active .cf__image {
+	--from: var(--wi);
+}
+.cf.next .cf__item.is-o1 .cf__image {
+	--from: 0px;
+	z-index: 3;
+	overflow: hidden;
+}
+.cf.next .cf__item.is-o2 .cf__image {
+	--from: calc(var(--wi) * 2);
+	z-index: 3;
+}
+.cf.prev .cf__image img,
+.cf.prev .cf__image figcaption {
+	animation: cf-prev 0.5s var(--ease-in-out) both;
+}
+.cf.prev .cf__item.is-active .cf__image {
+	--from: calc(var(--wi) * -1);
+	overflow: hidden;
+}
+.cf.prev .cf__item.is-o1 .cf__image {
+	--from: 0px;
+	z-index: 3;
+}
+.cf.prev .cf__item.is-o2 .cf__image {
+	--from: var(--wi);
+	z-index: 3;
+}
+.cf.prev .cf__item.is-o2 .cf__main {
+	opacity: 0;
+}
+
+.cf__arrows {
+	position: absolute;
+	z-index: 10;
+	bottom: 1.25rem;
+	right: calc(var(--wi) * var(--k) + 1.25rem);
+	display: flex;
+	gap: 0.6rem;
+}
+.cf__arrow {
+	position: static;
+	width: 3rem;
+	height: 3rem;
+	background: transparent;
+	color: #1a1a1a;
+	box-shadow: inset 0 0 0 1px rgb(26 26 26 / 0.45);
+}
+@media (hover: hover) and (pointer: fine) {
+	.cf__arrow:hover {
+		background: rgb(26 26 26 / 0.12);
+	}
+}
+@media (max-width: 61rem) {
+	.cf {
+		--k: 1;
+		--wi: 36cqw;
+	}
+	.cf__arrows {
+		bottom: 1.25rem;
+	}
+}
+@media (max-width: 47.9375rem) {
+	.cf {
+		--k: 1;
+		--wi: 100cqw;
+	}
+	.cf__list::before,
+	.cf__list::after {
+		display: none;
+	}
+	.cf__main {
+		grid-template-columns: 100%;
+	}
+	.cf__text {
+		display: none;
+	}
+	.cf__image {
+		left: 0;
+		justify-content: center;
+		padding-block: 1rem 4.5rem;
+	}
+	.cf__image img {
+		height: 62%;
+		max-width: 80%;
+		margin-bottom: 0.75rem;
+	}
+	.cf__image figcaption {
+		width: 100%;
+		margin-bottom: 0;
+	}
+	.cf__arrows {
+		right: auto;
+		left: 50%;
+		translate: -50% 0;
+		bottom: 0.75rem;
+	}
+}
+
+/* ——— Magia di luce ——— */
+
+@font-face {
+	font-family: 'Anton';
+	src: url('../_shared/fonts/anton-latin-400-normal.woff2') format('woff2');
+	font-weight: 400;
+	font-display: swap;
+}
+.mg {
+	background: #243a3d;
+	color: #eee;
+}
+.mg__list {
+	position: absolute;
+	inset: 0;
+}
+.mg__item {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 1s;
+}
+.mg__item.is-active {
+	opacity: 1;
+	pointer-events: auto;
+}
+/* Il cerchio-foto è grande come la diagonale del riquadro, così ruotando non scopre mai gli angoli.
+   Dentro, due cerchi più piccoli (::before/::after) con la stessa foto ruotano con angoli diversi. */
+.mg__image {
+	--d: hypot(100cqw, 100cqh);
+	position: relative;
+	flex: none;
+	width: var(--d);
+	height: var(--d);
+	border-radius: 50%;
+	background: var(--url) center / auto var(--d) no-repeat;
+	rotate: -60deg;
+	filter: blur(1rem);
+	transition:
+		rotate 1s var(--ease-in-out),
+		filter 1s ease;
+}
+.mg__image::before,
+.mg__image::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 70%;
+	height: 70%;
+	border-radius: 50%;
+	translate: -50% -50%;
+	background:
+		linear-gradient(#0004, #0004) center / 100% 100% no-repeat,
+		var(--url) center / auto var(--d) no-repeat;
+	transition: rotate 1s var(--ease-in-out);
+}
+.mg__image::before {
+	rotate: -120deg;
+}
+.mg__image::after {
+	width: 30%;
+	height: 30%;
+	rotate: -170deg;
+	background: var(--url) center / auto var(--d) no-repeat;
+}
+.mg__item.is-active .mg__image {
+	rotate: 0deg;
+	filter: blur(0);
+}
+.mg__item.is-active .mg__image::before,
+.mg__item.is-active .mg__image::after {
+	rotate: 0deg;
+}
+.mg__item.is-active ~ .mg__item .mg__image {
+	rotate: 60deg;
+}
+.mg__item.is-active ~ .mg__item .mg__image::before {
+	rotate: 120deg;
+}
+.mg__item.is-active ~ .mg__item .mg__image::after {
+	rotate: 170deg;
+}
+/* Testo a sinistra del soggetto: la sagoma in primo piano sta al centro e non lo copre. */
+.mg__content {
+	position: absolute;
+	top: 11%;
+	left: 6cqw;
+	display: grid;
+	grid-template-columns: auto minmax(0, 21cqw);
+	gap: 3cqw;
+	align-items: start;
+	font-size: clamp(0.7rem, 1.5cqw, 0.95rem);
+	text-transform: uppercase;
+	text-shadow: 0 0 4rem #000;
+}
+.mg__content h3 {
+	font: 400 clamp(3.2rem, 13cqw, 8rem) / 0.95 'Anton', var(--font-display);
+	translate: 0 -100%;
+	transition: translate 1s ease;
+}
+.mg__content p {
+	padding-top: 0.6rem;
+}
+.mg__item.is-active .mg__content h3 {
+	translate: 0 0;
+}
+.mg__item.is-active ~ .mg__item .mg__content h3 {
+	translate: 0 100%;
+}
+/* La sagoma in primo piano, sempre in vista, entra una volta sola. */
+.mg__list::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	height: 74cqh;
+	aspect-ratio: 1400 / 923;
+	translate: -50% 0;
+	background: url(img/magic-sagoma.webp) top / cover no-repeat;
+	pointer-events: none;
+	animation: mg-model 1s var(--ease-out) both;
+}
+@keyframes mg-model {
+	from {
+		translate: -50% 5.5rem;
+		scale: 1.5;
+	}
+}
+.mg__arrows {
+	position: absolute;
+	z-index: 20;
+	left: 1.5rem;
+	right: 1.5rem;
+	bottom: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	pointer-events: none;
+}
+.mg__btn {
+	position: static;
+	width: 3.75rem;
+	height: 3.75rem;
+	border-radius: 50%;
+	background: rgb(0 0 0 / 0.35);
+	box-shadow:
+		inset 0 0 0 1px rgb(255 255 255 / 0.4),
+		0 0.5rem 1.5rem rgb(0 0 0 / 0.3);
+	pointer-events: auto;
+}
+@media (hover: hover) and (pointer: fine) {
+	.mg__btn:hover {
+		background: rgb(255 255 255 / 0.22);
+		transform: scale(1.06);
+	}
+	.mg__btn:hover:active {
+		transform: scale(0.97);
+	}
+}
+@media (max-width: 40rem) {
+	.mg__content {
+		grid-template-columns: 1fr;
+		left: 1.25rem;
+		top: 3.5rem;
+	}
+	.mg__content h3 {
+		font-size: 3.6rem;
+	}
+	.mg__content p {
+		display: none;
+	}
+	.mg__btn {
+		width: 3rem;
+		height: 3rem;
+	}
+}

@@ -29,7 +29,7 @@ deploy, sulle pagine online. **Commit solo con l'ok dell'autore, push solo dopo 
 - `components/<id>/`: `index.html` (+ `style.css`, `script.js`, `img/`, `video/`, `fonts/` se servono). Ogni scheda apribile da sola.
 - Ogni pagina nuova: `<link rel="stylesheet" href="../_shared/base.css">`, `<link rel="icon" href="data:,">`, `<html lang="it">`,
   titolo "Nome — Loop Studio Lab", `<main class="demo">`, il tag script di `studio.js`.
-- Sito madre: `src/data/lab-components.ts` (28 schede, array ordinato a mano: id = nome cartella, title, category, description,
+- Sito madre: `src/data/lab-components.ts` (29 schede, array ordinato a mano: id = nome cartella, title, category, description,
   previewUrl) + `src/pages/lab.astro` (filtro categorie, badge conteggio). Il modal del sito ha `allow="clipboard-write"`.
   Categorie: Layout, Navigazione, Interazione, Form, Card, Feedback, Effetti, Galleria e media.
 
@@ -107,12 +107,14 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
    filtri non serve (misurato). Rimedi veri = cambiare tecnica (es. gradiente ruotato con `transform`, alone con `box-shadow`): decisione dell'autore.
 2. Prova su telefono vero a discrezione dell'autore; filtri SVG e `feTurbulence` (sfondi, bordi) sono i candidati a rallentare su telefoni lenti.
 3. **Esperimenti: piano deciso il 23/10/2026, da eseguire a lotti** (si parte dal lotto 1, mostrando prima di passare al successivo):
-   - **Slider**: i 6 (animals, fruit soda, magic effects, movie, vertical, coffee) NON si ritirano: diventano UNA scheda
-     `components/slider/` (Componente n. 29, categoria "Galleria e media"), sezioni impilate come `sfondi`, prima fruit soda; CSS in scope,
-     `vh/vw` → `cqw/cqh`, rotella disattivata, immagini WebP nel pool. Le vecchie cartelle restano come redirect a `components/slider/#id`.
-   - **Diritti da risolvere**: locandine e dati di film veri nel movie slider (→ 6 film inventati con poster generati: prompt ancora da
-     preparare), "lundev" sul barattolo di fruit soda (→ nostra etichetta), foto della modella nel vertical (→ foto del pool), provenienza
-     delle immagini di animals e magic effects da verificare.
+   - **Slider — FATTO in locale il 23/10 (non committato)**: i 6 sono UNA scheda `components/slider/` (Componente n. 29, "Galleria e media";
+     ancora da aggiungere a `lab-components.ts` del sito madre). Sezioni: fruit-soda, film, moda, animali, caffe, magia. CSS in scope con prefisso
+     (`fs-`, `rot-` per film+animali, `vs-`, `cf-`, `mg-`), misure in `cqw/cqh`, rotella non intercettata, WebP (1,8 MB contro 12,8). Le vecchie
+     cartelle sono rimandi di una riga a `components/slider/#id`. Tutto in italiano. Diritti risolti: locandine dei film generate da noi
+     (`Assets\Lab_Componenti\slider-film-prompt.md`), etichetta della lattina nostra, moda = 7 foto Unsplash con il fotografo citato in
+     piccolo sotto OGNI slide (scelta dell'autore, in deroga alla regola "solo la fonte"), animali e magic = free to use (confermato).
+     Trappola: `@container` non può stilare il contenitore stesso → le variabili che cambiano col riquadro stanno sui figli o si usa `@media`.
+     Da fare: aggiungere la scheda al sito madre; axe + PSI dopo il deploy.
    - **Esperimenti rimasti** (calendario, booking, reviews, skytracker, 3D scroll): font self-hosted, via FontAwesome/Skypack/cdnfonts, three e gsap
      in locale, `bg.png` 18 MB e modello 3D in versione leggera, firma `studio.js`, testi e `lang` in italiano, screenshot 16:9 rigenerati.
      Sorgenti React di booking e reviews: repo private `Loop-Studio-Web/lab-booking-widget` e `lab-google-reviews-widget`.
