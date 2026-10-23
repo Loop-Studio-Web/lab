@@ -125,6 +125,16 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
      tessere `<button>`, dettaglio `<dialog>`, suono spento di default con pulsante "Suono"; audio in `audio/`, Web Audio dopo un gesto; la foto che vola
      usa il file grande con `object-position` uguale al punto focale del ritaglio 4:5 così il passaggio non salta). Trappola: Draggable fa `preventDefault`
      sul mousedown, quindi il clic col mouse non mette il focus sulla tessera (il ritorno del focus vale per la tastiera).
+   - **Galleria da riordinare** (24/10, bozza non committata): `galleria-riordinabile/`, 16 foto di animali (Unsplash, fotografi nel codice e nei crediti), mosaico
+     la cui FORMA dipende dalla posizione (`:nth-child`: 1ª 2×2, 4ª 2×1, le prime 4 = vetrina). Solo GSAP core + Flip (`gsap.min.js`, `Flip.min.js`), niente Draggable: il
+     trascinamento è fatto con pointer events (una COPIA `.fantasma` fixed segue il puntatore, la cella originale diventa segnaposto tratteggiato e si riordina nel DOM
+     con `Flip.getState` → `killFlipsOf` → `clearProps` → mutazione → `Flip.from`). Mouse da qualunque punto, tocco solo dalla maniglia (`touch-action: none` solo su
+     quella, altrimenti la pagina non scorre), tastiera Spazio/frecce/Esc con regione `aria-live`. Salva = localStorage. Proiezione a tutto schermo con luce ambiente
+     (stessa foto sfocata), swipe, link al fotografo. **Trappole**: (1) un `::before` è il primo figlio e un'immagine posizionata dopo lo copre → velo di contrasto
+     e anello vanno con `z-index` esplicito; (2) un `outline` su un bottone che contiene un'`<img>` viene dipinto SOTTO l'immagine: per l'anello di focus/sollevata
+     usare un `::after` sulla cella (`:has(.tessera:focus-visible)`); (3) `setPointerCapture` va fatto SOLO quando il trascinamento parte (a `pointerdown` sposterebbe
+     il `click` sul contenitore); (4) spostare un nodo nel DOM gli toglie il focus: dopo `Flip` rimettere `focus()` e ignorare il `focusout` con un flag; (5) misurare il
+     contrasto delle etichette sullo sfondo SENZA testo (nascondere `.tessera__testi` e fotografare), altrimenti i bordi sfumati delle lettere falsano la misura.
    - **Sito madre**: `src/data/lab-demos.ts` (le demo non stanno più in `portfolio-projects.ts`), filtro per categoria condiviso (`CategoryFilter.astro`),
      titolo e introduzione alla sezione, screenshot 16:9 rigenerati. Categorie: Animazioni 3D, Scroll e gallerie, Widget e strumenti, Dati e API (decise il 23/10).
    - **Prossimi**: nuove Demo, prima ondata: Preventivatore (React, repo propria; prima solo Demo, poi si valuta il sito madre), Report social

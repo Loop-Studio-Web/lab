@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Galleria da riordinare — Loop Studio Lab</title>
+		<link rel="icon" href="data:," />
+		<link rel="preload" as="font" type="font/woff2" href="../components/_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" crossorigin />
+		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<main class="app">
+			<!-- Pannello dei comandi: titolo, istruzioni, salva / annulla / ricomincia. -->
+			<aside class="pannello">
+				<p class="kicker">Pannello foto</p>
+				<h1>Riordina le foto.</h1>
+				<p class="lead">Afferra una foto e portala dove vuoi: le altre si scansano. Le prime quattro, le più grandi, sono la vetrina del sito.</p>
+
+				<div class="comandi">
+					<button class="btn btn--primario" id="salva" type="button" disabled>Salva ordine</button>
+					<button class="btn" id="annulla" type="button" disabled>Annulla</button>
+					<button class="btn btn--testo" id="ricomincia" type="button" disabled>Ricomincia</button>
+				</div>
+				<p class="stato" id="stato" data-stato="iniziale">Ordine iniziale</p>
+
+				<p class="aiuto">
+					<span class="aiuto__riga">Si trascina col mouse da qualunque punto, col dito dalla maniglia <svg class="aiuto__presa" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-presa" /></svg> in alto a destra.</span>
+					<span class="aiuto__riga">Da tastiera: <kbd>Spazio</kbd> solleva, le frecce spostano, <kbd>Spazio</kbd> posa, <kbd>Esc</kbd> annulla.</span>
+				</p>
+				<p class="nota">In questa demo l’ordine si salva nel tuo browser. Su un sito vero serve un pannello di gestione che lo scriva sul sito: va previsto nel preventivo.</p>
+			</aside>
+
+			<!-- Il mosaico: 16 foto generate da script.js. Le prime 4 sono più grandi (vetrina). -->
+			<div class="mosaico-wrap">
+				<ol class="mosaico" id="mosaico" aria-label="Foto, in ordine di vetrina"></ol>
+			</div>
+		</main>
+
+		<!-- Icona della maniglia (sei puntini), riusata nelle tessere. -->
+		<svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+			<symbol id="i-presa" viewBox="0 0 16 16"><g fill="currentColor"><circle cx="5.5" cy="3.5" r="1.4" /><circle cx="10.5" cy="3.5" r="1.4" /><circle cx="5.5" cy="8" r="1.4" /><circle cx="10.5" cy="8" r="1.4" /><circle cx="5.5" cy="12.5" r="1.4" /><circle cx="10.5" cy="12.5" r="1.4" /></g></symbol>
+			<symbol id="i-freccia" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+		</svg>
+
+		<p class="sr-only" id="aiuto-tastiera">Invio ingrandisce la foto. Spazio la solleva: poi le frecce la spostano, Spazio la posa, Esc annulla.</p>
+		<p class="sr-only" id="annuncio" role="status" aria-live="polite"></p>
+
+		<!-- Proiezione: la foto a tutto schermo, con la sua stessa immagine sfocata come luce ambiente.
+		     Dialog nativo: focus, Esc e inerzia dello sfondo li gestisce il browser. -->
+		<dialog class="proiezione" id="proiezione" aria-label="Foto in grande" tabindex="-1">
+			<div class="p-ambiente" aria-hidden="true"><img id="p-amb" alt="" /></div>
+			<figure class="p-scena" id="p-scena"><img id="p-foto" alt="" decoding="async" /></figure>
+
+			<button class="p-chiudi" id="p-chiudi" type="button">
+				<span>Chiudi</span>
+				<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+			</button>
+			<button class="p-freccia p-freccia--prec" id="p-prec" type="button" aria-label="Foto precedente">
+				<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+			</button>
+			<button class="p-freccia p-freccia--succ" id="p-succ" type="button" aria-label="Foto successiva">
+				<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+			</button>
+
+			<div class="p-barra" id="p-barra">
+				<div class="p-testi">
+					<p class="p-vetrina" id="p-vetrina">In vetrina</p>
+					<h2 id="p-nome"></h2>
+					<p class="p-luogo" id="p-luogo"></p>
+					<p class="p-credito" id="p-credito"></p>
+				</div>
+				<p class="p-pos" id="p-pos"></p>
+			</div>
+		</dialog>
+
+		<script src="../components/_shared/gsap/gsap.min.js"></script>
+		<script src="../components/_shared/gsap/Flip.min.js"></script>
+		<script src="script.js"></script>
+		<script src="../components/_shared/studio.js"></script>
+	</body>
+</html>
