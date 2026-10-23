@@ -120,7 +120,7 @@
 	transform: translateX(-50%);
 }
 .ghost { --body: #fff; color: var(--body); }
-.ghost * { transition: all 300ms; }
+.ghost * { transition: transform 300ms, background-color 300ms, box-shadow 300ms, border-color 300ms, border-bottom-left-radius 300ms, border-bottom-right-radius 300ms; }
 .ghost > * { position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); }
 .ghost__face { margin-bottom: 1em; }
 .ghost__eyes { position: relative; width: 3em; height: 1.2em; }
@@ -187,7 +187,7 @@
 	min-height: 11rem;
 }
 .srch { position: relative; width: min(100%, 17em); font-size: 1.15rem; color: var(--fg); }
-.srch__input, .srch__caret { display: block; margin: auto; transition: all calc(var(--dur) * 0.5) linear; }
+.srch__input, .srch__caret { display: block; margin: auto; transition: width, height, padding, background-color, border-radius, box-shadow, transform; transition-duration: calc(var(--dur) * 0.5); transition-timing-function: linear; }
 .srch__input {
 	width: 2em;
 	height: 2em;
