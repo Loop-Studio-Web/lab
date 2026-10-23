@@ -142,10 +142,16 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
      protagonista rosso, il resto grigio, mai testo rosso. Linea con curva monotona, descrizione al passaggio/frecce, vista Tabella (anche mappa oraria), «In breve» scritta
      dal codice, barre che si riordinano (`--r` + `translate` su righe assolute di altezza fissa), mappa `color-mix`. Sotto 52rem i contenuti migliori sono una fila a scorrimento
      (`scroll-snap`). **Trappole**: `Intl` it-IT non mette il punto nei numeri a 4 cifre (`useGrouping: 'always'`); `container-type` sul `.rep` fa valere `cqw` nei figli;
-     `drive.mjs` accetta solo i tasti " ", Tab, Enter (frecce: `dispatchEvent` in `eval`) e uno step con due `eval` perde il primo.
-   - **Prossimi**: Preventivatore (React, repo propria `Loop-Studio-Web/lab-preventivatore`; prima solo Demo, poi si valuta il sito madre), poi ondata B (menù allergeni,
-     convertitore di valute con Worker; FAQ con ricerca e conto alla rovescia solo se abbastanza ricchi, altrimenti Componenti). A fine lotto: README (aggiungere le Demo
-     nuove e il badge del conteggio), push (Lab prima del sito), axe + PSI, repo personali, proxy meteo sull'org.
+     `drive.mjs` accetta i tasti " ", Tab, Enter, ArrowLeft/Right, Home, End (ArrowUp/Down crashano: `dispatchEvent` in `eval`; pulisce da solo il profilo di Chrome) e uno step con due `eval` perde il primo.
+   - **Preventivatore FATTO (24/10, approvato)**: `preventivatore/` = build Vite+React della repo `Websites\lab-preventivatore` (da creare su `Loop-Studio-Web/lab-preventivatore` al push;
+     `npm run build`, copia di `dist/*`, `npm test` per il calcolo). Impresa di fantasia "Ti Pittu" (nome dell'autore). Identità PROPRIA e chiara (carta, inchiostro, blu `#0267b6` dal logo,
+     Cormorant + Noto Sans Mono dal pool) perché il widget è del cliente e deve sembrare diverso da booking. Tutti i prezzi in `src/prezzi.js`, calcolo puro in `src/calcola.js`, scelte
+     nell'hash dell'URL (`stato.js`), scontrino sticky (barra in basso sotto 52rem, normale nell'ultimo passo). **Trappole**: Cormorant ha cifre old-style di default → `font-variant-numeric: lining-nums`;
+     `position: static` sullo scontrino sposta lo zigzag `::after` assoluto (usare `relative`); `url()` dei font nell'`index.html` sorgente (non nel CSS importato, Vite non li risolve); più `click()` nello
+     stesso `eval` di `drive.mjs` non lasciano ridisegnare React (serve `wait` tra un passo e l'altro). Aperto: il logo è IA? (CREDITS.md) e se dichiararlo.
+   - **Prossimi**: ondata B (menù allergeni, convertitore di valute con Worker; FAQ con ricerca e conto alla rovescia solo se abbastanza ricchi, altrimenti Componenti). A fine lotto: README
+     (aggiungere le Demo nuove e il badge del conteggio), push (Lab prima del sito), axe + PSI, repo personali, proxy meteo sull'org; poi, a Demo finite, decidere se portare il Preventivatore nel sito madre
+     (prezzi veri da concordare, tabelle pacchetti da leggere).
    - **Prestazioni** (skill Emil `animation-performance`, installata): `bordi-animati` ha `filter: blur(32px)` su `.electric__bloom`; 2 `transition: all`
      da togliere (`campi-testo/style.css` righe 123 e 190; quello di movies-slider è sparito con la scheda Slider).
    Anche le Demo vanno firmate con il logo (`studio.js`).
