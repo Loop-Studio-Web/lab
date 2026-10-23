@@ -13,7 +13,7 @@
 
 **Front-end demos and UI components,<br>kept small, self-contained and a little bit playful.**
 
-[![Live](https://img.shields.io/badge/lab-live-fe3b30?style=flat-square&labelColor=0b0b0c)](https://loop-studio-web.github.io/lab/) [![Components](https://img.shields.io/badge/components-29-fe3b30?style=flat-square&labelColor=0b0b0c)](#components) [![Demos](https://img.shields.io/badge/demos-7-fe3b30?style=flat-square&labelColor=0b0b0c)](#demos) [![axe-core](https://img.shields.io/badge/axe--core-0%20violations-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built) [![PageSpeed](https://img.shields.io/badge/PageSpeed%20mobile-98%E2%80%93100-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built)
+[![Live](https://img.shields.io/badge/lab-live-fe3b30?style=flat-square&labelColor=0b0b0c)](https://loop-studio-web.github.io/lab/) [![Components](https://img.shields.io/badge/components-29-fe3b30?style=flat-square&labelColor=0b0b0c)](#components) [![Demos](https://img.shields.io/badge/demos-15-fe3b30?style=flat-square&labelColor=0b0b0c)](#demos) [![axe-core](https://img.shields.io/badge/axe--core-0%20violations-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built) [![PageSpeed](https://img.shields.io/badge/PageSpeed%20mobile-98%E2%80%93100-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built)
 
 [**Open the Lab →**](https://loop-studio-web.github.io/lab/)
 
@@ -216,7 +216,7 @@ Twenty-nine demo pages in [`components/`](components), one folder each. Most gat
 
 ## Demos
 
-Full pages and small apps, each in its own folder, each opening on its own: scroll-driven 3D scenes, widgets the studio built for clients, an app that talks to an external API. The studio site presents them in the Demo section of [/lab](https://theloopstudio.org/lab/), with a short technical note for each.
+Full pages and small apps, each in its own folder, each opening on its own: scroll-driven 3D scenes, widgets the studio built for clients, pages that talk to an external API through a small Worker. The studio site presents them in the Demo section of [/lab](https://theloopstudio.org/lab/), with a short technical note for each.
 
 <table>
   <tr>
@@ -225,18 +225,28 @@ Full pages and small apps, each in its own folder, each opening on its own: scro
     <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/3d-farfalla/"><img src="docs/img/demos/3d-farfalla.webp" alt="A red 3D butterfly flying over a field of flowers, with four colour choices below"></a><br><b><a href="https://loop-studio-web.github.io/lab/3d-farfalla/">Interactive butterfly</a></b> &nbsp;<sub><code>Three.js · GLSL</code></sub><br><sub>A butterfly that follows your pointer and flies on its own when you stop. Pick the colours of the wings.</sub></td>
   </tr>
   <tr>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/booking-widget/"><img src="docs/img/demos/booking-widget.webp" alt="A booking widget with a service chooser on a dark page"></a><br><b><a href="https://loop-studio-web.github.io/lab/booking-widget/">Booking widget</a></b> &nbsp;<sub><code>React</code></sub><br><sub>An appointment booking flow in steps, starting from the choice of the service.</sub></td>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/google-reviews-widget/"><img src="docs/img/demos/google-reviews-widget.webp" alt="A grid of review cards under a 4.8 rating"></a><br><b><a href="https://loop-studio-web.github.io/lab/google-reviews-widget/">Reviews widget</a></b> &nbsp;<sub><code>React</code></sub><br><sub>A reviews carousel with sample data and a rating summary.</sub></td>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/skyTracker/"><img src="docs/img/demos/skyTracker.webp" alt="A weather app search box over a stormy landscape"></a><br><b><a href="https://loop-studio-web.github.io/lab/skyTracker/">SkyTracker</a></b> &nbsp;<sub><code>JS · Cloudflare Worker</code></sub><br><sub>A weather app: city search and a three-day forecast, through a small proxy.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/storytelling-css/"><img src="docs/img/demos/storytelling-css.webp" alt="A scroll-driven story page with a sticky stage"></a><br><b><a href="https://loop-studio-web.github.io/lab/storytelling-css/">Scroll storytelling</a></b> &nbsp;<sub><code>CSS only</code></sub><br><sub>A story told while you scroll, in pure CSS: one named timeline, a sticky stage and a path to follow. It falls back to a stacked page where scroll-driven animation is missing.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/galleria-trascinabile/"><img src="docs/img/demos/galleria-trascinabile.webp" alt="A gallery of photo tiles that can be dragged and thrown around"></a><br><b><a href="https://loop-studio-web.github.io/lab/galleria-trascinabile/">Draggable gallery</a></b> &nbsp;<sub><code>GSAP · Draggable · Web Audio</code></sub><br><sub>Photo tiles you drag, throw and open full size, with inertia and an optional sound. A showpiece, and honest about it.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/galleria-riordinabile/"><img src="docs/img/demos/galleria-riordinabile.webp" alt="A mosaic of animal photos whose tiles can be reordered"></a><br><b><a href="https://loop-studio-web.github.io/lab/galleria-riordinabile/">Reorderable gallery</a></b> &nbsp;<sub><code>GSAP Flip · CSS Grid</code></sub><br><sub>A mosaic whose shape depends on position: drag a photo to the front and it becomes the big one. Mouse, touch and keyboard, with a full-screen presentation.</sub></td>
   </tr>
   <tr>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/booking-widget/"><img src="docs/img/demos/booking-widget.webp" alt="A booking widget with a service chooser on a dark page"></a><br><b><a href="https://loop-studio-web.github.io/lab/booking-widget/">Booking widget</a></b> &nbsp;<sub><code>React</code></sub><br><sub>An appointment booking flow in steps, starting from the choice of the service.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/google-reviews-widget/"><img src="docs/img/demos/google-reviews-widget.webp" alt="A grid of review cards under a 4.8 rating"></a><br><b><a href="https://loop-studio-web.github.io/lab/google-reviews-widget/">Reviews widget</a></b> &nbsp;<sub><code>React</code></sub><br><sub>A reviews carousel with sample data and a rating summary.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/preventivatore/"><img src="docs/img/demos/preventivatore.webp" alt="A paper-style quote with a receipt that updates on every choice"></a><br><b><a href="https://loop-studio-web.github.io/lab/preventivatore/">Quote builder</a></b> &nbsp;<sub><code>React · Vite</code></sub><br><sub>A painter's quote that builds as you answer, with the price shown as a range on a receipt. Every number lives in one file; the choices live in the URL.</sub></td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/menu-su-misura/"><img src="docs/img/demos/menu-su-misura.webp" alt="A dark restaurant menu with allergen chips and dish cards"></a><br><b><a href="https://loop-studio-web.github.io/lab/menu-su-misura/">Menu made for you</a></b> &nbsp;<sub><code>JS · GSAP Flip</code></sub><br><sub>A restaurant menu that reorders itself around the allergens you pick: "for you", "ask the waiter", "not for you", plus a card to show the waiter.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/report-social/"><img src="docs/img/demos/report-social.webp" alt="A dark social media report with a line chart and bars"></a><br><b><a href="https://loop-studio-web.github.io/lab/report-social/">Social report</a></b> &nbsp;<sub><code>SVG · JavaScript</code></sub><br><sub>A client report drawn in plain SVG and HTML, no chart library. The data is fake but shaped like the Instagram API's.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/convertitore-valute/"><img src="docs/img/demos/convertitore-valute.webp" alt="A travel agency page with postcards and a currency exchange ticket"></a><br><b><a href="https://loop-studio-web.github.io/lab/convertitore-valute/">Currency converter</a></b> &nbsp;<sub><code>JS · Cloudflare Worker</code></sub><br><sub>Prices on postcards in the visitor's currency, a converter and a 30/90-day chart. The rates come from a small Worker of ours, never from the browser.</sub></td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/faq-ricerca/"><img src="docs/img/demos/faq-ricerca.webp" alt="A bike workshop FAQ with a search box and highlighted words"></a><br><b><a href="https://loop-studio-web.github.io/lab/faq-ricerca/">FAQ with search</a></b> &nbsp;<sub><code>JS · Highlight API</code></sub><br><sub>A search that understands synonyms and typos, highlights what it found, filters by topic and links straight to every answer.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/skyTracker/"><img src="docs/img/demos/skyTracker.webp" alt="A weather app search box over a stormy landscape"></a><br><b><a href="https://loop-studio-web.github.io/lab/skyTracker/">SkyTracker</a></b> &nbsp;<sub><code>JS · Cloudflare Worker</code></sub><br><sub>A weather app: city search and a three-day forecast, through a small Worker that keeps the key secret.</sub></td>
     <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/calendario/"><img src="docs/img/demos/calendario.webp" alt="A blue calendar over an animated WebGL background"></a><br><b><a href="https://loop-studio-web.github.io/lab/calendario/">Calendario</a></b> &nbsp;<sub><code>Astro · WebGL</code></sub><br><sub>A memo calendar with a hand-written WebGL background. Events stay in your browser. Build only; sources live in a private repository.</sub></td>
-    <td width="33%"></td>
-    <td width="33%"></td>
   </tr>
 </table>
 
-<sub>The sources of <code>calendario</code>, <code>booking-widget</code> and <code>google-reviews-widget</code> are not in this repository: only their compiled builds are published.</sub>
+<sub>Sources not in this repository (only the compiled builds are published): <code>calendario</code>, <code>booking-widget</code>, <code>google-reviews-widget</code> and <code>preventivatore</code>, kept in private repositories. The Workers behind <code>skyTracker</code> and <code>convertitore-valute</code> are private repositories too: no API key ever reaches the browser. The demos' businesses (Osteria Lunapiena, Tre Timbri, Pedivella, Ti Pittu) are made up, and so are their names, prices and data.</sub>
 
 <br>
 
@@ -264,7 +274,8 @@ components/
 ├── _shared/
 │   ├── base.css        → variables, reset, the demo/stage layout, reduced-motion rule
 │   ├── studio.js/.css  → the small "made by Loop Studio" signature on every page
-│   ├── fonts/          → Bricolage Grotesque, Hanken Grotesk, Anton, Jura (OFL)
+│   ├── fonts/          → Bricolage Grotesque, Hanken Grotesk, Anton, Jura, Cormorant Garamond, Noto Sans Mono, Playwrite IS (OFL)
+│   ├── three/, gsap/   → the small libraries some demos share (Three.js r129, GSAP core + plugins)
 │   └── img/            → the pool of photographs the demos share (WebP)
 └── <component>/
     ├── index.html
@@ -287,7 +298,7 @@ npx serve .
 
 ## Notes
 
-- Some pieces show third-party photos, films or brand names **for demonstration only**. They keep their own licences and owners; see [LICENSE](LICENSE). Stock photos come from Unsplash and Pexels, under their licences.
+- Some pieces show third-party photos, films or brand names **for demonstration only**. They keep their own licences and owners; see [LICENSE](LICENSE). Stock photos come from Unsplash and Pexels, under their licences. A few images (some logos, the allergen icons) were generated with AI; each page that uses one says so.
 - The code is published so you can read it and learn from it. It is **not open source**: reuse needs written permission, which you can ask for at [theloopstudio.org/contatti](https://theloopstudio.org/contatti/).
 - The finished, full-page work lives in a sibling repo: [**vetrine**](https://github.com/Loop-Studio-Web/vetrine).
 
