@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Galleria da trascinare — Loop Studio Lab</title>
+		<link rel="icon" href="data:," />
+		<link rel="preload" as="font" type="font/woff2" href="../components/_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" crossorigin />
+		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<!-- Marchio ufficiale (rosso + bianco), usato nella cella finale. -->
+		<svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+			<symbol id="i-infinity" viewBox="521 1413 1465 753">
+				<path fill="#ff3b30" d="M1255.524 1631.138c7.94 8.89 14.16 18.729 20.53 28.786 75.91 119.898 157.1 324.287 323.57 331.995 172.52 7.987 279.68-203.057 158.07-337.307a202.97 202.97 0 0 0-141.09-67.904c-79.85-3.783-140.81 40.206-191.25 98.107-11.68 13.404-21.97 28.34-33.99 41.37-2.55-.383-2.84-.053-4.24-2.516-16.94-29.768-33.16-59.35-50.86-88.77-5.3-8.795-10.17-16.355-16.51-25.717-6.19-9.132-22.84-27.216-21.76-39.212.43-4.836 13.44-16.22 16.92-20.02 31.35-31.006 67.1-62.206 105.34-84.21 45.83-26.38 96.6-45.56 149.4-51.396 14.65-1.62 29.57-.73 44.14-.925 32.25-.431 63.78 4.203 94.92 12.879a374.08 374.08 0 0 1 226.99 174.595 378.36 378.36 0 0 1 36.55 287.835c-56.86 201.184-260.01 317.992-461.97 264.215-96.44-25.679-192.11-110.354-251.51-188.536-16.71-21.984-100.26-151.977-103.46-172.55 3.03-5.887 11.96-18.331 16.04-25.076l56.86-92.81c4.18-6.833 23.25-39.02 27.31-42.833" />
+				<path fill="#fff" d="M890.438 1412.87c-48.33 1.012-96.625 11.164-140.042 29.047-18.2 7.497-26.468 13.028-42.84 22.272-149.854 84.605-218.458 264.966-172.972 429.13 4.932 17.803 13.219 35.84 19.586 53.243 25.819 59.682 78.3 118.798 132.16 154.619 4.876 3.244 16.417 12.28 19.922 13.828 20.216 8.918 35.067 18.016 56.336 26.178 82.399 31.623 183.514 34.53 265.617.957 58-23.721 111.159-62.01 154.469-107.037 7.37-7.664 21.67-20.801 27.59-29.13-14.72-18.453-27.769-39.936-41.569-59.087-1.8-2.5-3.63-9.76-5.24-11.637-20.66-23.986-32.01-56.35-49.42-82.017-49.79 63.614-104.001 126.45-189.351 137.263-113.637 14.397-217.653-71.729-227.038-185.373-9.297-112.572 78.046-211.35 190.112-218.797 111.504-7.41 188.706 82.285 243.166 167.502 4.7 7.385 18.44 34.192 24.39 38.026 3.03-5.888 11.96-18.332 16.04-25.077l56.86-92.81c4.18-6.833 23.25-39.018 27.31-42.832-6.65-16.662-15.42-24.234-26.44-38.443a501 501 0 0 0-198.389-154.028c-43.56-18.678-91.928-26.808-140.258-25.797" />
+			</symbol>
+		</svg>
+
+		<main class="galleria">
+			<div class="viewport" id="viewport">
+				<!-- La griglia (intro + 16 foto + cella finale) la genera script.js dai dati. -->
+				<ul class="canvas" id="canvas" role="list"></ul>
+			</div>
+
+			<p class="suggerimento" id="suggerimento">Trascina · tocca una foto</p>
+			<button class="suono" id="suono" type="button" aria-pressed="false" aria-label="Suono" title="Suono">
+				<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+					<path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="currentColor" />
+					<g class="suono__onde" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+						<path d="M15.5 9.2a4 4 0 0 1 0 5.6" />
+						<path d="M18.3 6.5a8 8 0 0 1 0 11" />
+					</g>
+					<path class="suono__croce" d="M15.5 9.5l5 5M20.5 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+				</svg>
+			</button>
+		</main>
+
+		<!-- Dettaglio: dialog nativo (focus, Esc e inerzia dello sfondo li gestisce il browser). -->
+		<dialog class="dettaglio" id="dettaglio" aria-labelledby="d-titolo" tabindex="-1" autofocus>
+			<div class="d-griglia">
+				<div class="d-foto" id="d-foto">
+					<img id="d-img" alt="" decoding="async" />
+				</div>
+				<div class="d-testo">
+					<div class="d-alto">
+						<p class="d-num" id="d-num"></p>
+						<button class="d-chiudi" id="d-chiudi" type="button">
+							<span>Chiudi</span>
+							<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+						</button>
+					</div>
+					<div class="d-corpo">
+						<p class="d-luogo" id="d-luogo"></p>
+						<h2 id="d-titolo"></h2>
+						<p class="d-desc" id="d-desc"></p>
+						<p class="d-credito" id="d-credito"></p>
+					</div>
+					<div class="d-nav">
+						<button class="d-freccia" id="d-prec" type="button" aria-label="Foto precedente">
+							<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+						</button>
+						<button class="d-freccia" id="d-succ" type="button" aria-label="Foto successiva">
+							<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+						</button>
+					</div>
+				</div>
+			</div>
+		</dialog>
+
+		<script src="../components/_shared/gsap/gsap.min.js"></script>
+		<script src="../components/_shared/gsap/Draggable.min.js"></script>
+		<script src="../components/_shared/gsap/Flip.min.js"></script>
+		<script src="../components/_shared/gsap/InertiaPlugin.min.js"></script>
+		<script src="script.js"></script>
+		<script src="../components/_shared/studio.js"></script>
+	</body>
+</html>

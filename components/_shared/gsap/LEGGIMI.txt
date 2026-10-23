@@ -1,0 +1,6 @@
+GSAP 3.15.0 (gsap, Draggable, Flip, InertiaPlugin), copiati da npm (pacchetto "gsap") il 24/10/2026.
+Licenza: "Standard 'no charge' license", https://gsap.com/standard-license (uso commerciale incluso; vietato solo
+usarlo in strumenti che competono con Webflow). Le intestazioni originali nei file NON vanno rimosse.
+Nota: la pagina della licenza non nomina uno per uno Draggable/Flip/Inertia né la ridistribuzione in una repo pubblica;
+il pacchetto npm li distribuisce con la stessa licenza.
+Per aggiornare: npm pack gsap e ricopiare i quattro .min.js.

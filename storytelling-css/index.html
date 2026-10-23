@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Storytelling a scorrimento — Loop Studio Lab</title>
+		<link rel="icon" href="data:," />
+		<link rel="preload" as="font" type="font/woff2" href="../components/_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" crossorigin />
+		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<main class="storia">
+			<!-- Palco: resta fermo a tutto schermo mentre i capitoli scorrono. Decorativo (le foto non
+			     portano informazioni che il testo non dica), quindi fuori dall'albero di accessibilità. -->
+			<div class="palco" aria-hidden="true">
+				<div class="fotos">
+					<img
+						class="foto"
+						style="--n: 0; --pos: 56% 50%"
+						src="img/fiocco-2000.webp"
+						srcset="img/fiocco-1000.webp 1000w, img/fiocco-2000.webp 2000w"
+						sizes="100vw"
+						width="2000"
+						height="1500"
+						alt=""
+						fetchpriority="high"
+					/>
+					<img
+						class="foto"
+						style="--n: 1; --da: 9%; --a: 16%; --pos: 40% 50%"
+						src="img/bosco-2000.webp"
+						srcset="img/bosco-1000.webp 1000w, img/bosco-2000.webp 2000w"
+						sizes="100vw"
+						width="2000"
+						height="1278"
+						alt=""
+						decoding="async"
+					/>
+					<img
+						class="foto"
+						style="--n: 2; --da: 34%; --a: 41%; --pos: 28% 50%"
+						src="img/cascata-2000.webp"
+						srcset="img/cascata-1000.webp 1000w, img/cascata-2000.webp 2000w"
+						sizes="100vw"
+						width="2000"
+						height="1384"
+						alt=""
+						decoding="async"
+					/>
+					<img
+						class="foto"
+						style="--n: 3; --da: 59%; --a: 66%; --pos: 72% 50%"
+						src="img/baia-2000.webp"
+						srcset="img/baia-1000.webp 1000w, img/baia-2000.webp 2000w"
+						sizes="100vw"
+						width="2000"
+						height="1333"
+						alt=""
+						decoding="async"
+					/>
+					<img
+						class="foto"
+						style="--n: 4; --da: 84%; --a: 91%; --pos: 50% 50%"
+						src="img/profondita-2000.webp"
+						srcset="img/profondita-1000.webp 1000w, img/profondita-2000.webp 2000w"
+						sizes="100vw"
+						width="2000"
+						height="1500"
+						alt=""
+						decoding="async"
+					/>
+				</div>
+
+				<!-- Fiume e quota: dove siamo nel viaggio. Il fiume si disegna con lo scroll, la goccia lo
+				     percorre, il numero scende. Tutto con la stessa timeline dei capitoli. -->
+				<div class="hud">
+					<p class="quota"><span class="quota__n"></span> <span class="quota__u">m</span></p>
+					<svg class="fiume" viewBox="0 0 40 600" focusable="false">
+						<path class="fiume__traccia" d="M20 4 C36 70 4 130 20 200 S36 330 20 400 S4 520 20 596" />
+						<path class="fiume__scia" pathLength="1" d="M20 4 C36 70 4 130 20 200 S36 330 20 400 S4 520 20 596" />
+						<circle class="tappa" r="3.5" style="offset-distance: 0%" />
+						<circle class="tappa" r="3.5" style="offset-distance: 25%" />
+						<circle class="tappa" r="3.5" style="offset-distance: 50%" />
+						<circle class="tappa" r="3.5" style="offset-distance: 75%" />
+						<circle class="tappa" r="3.5" style="offset-distance: 100%" />
+						<circle class="goccia" r="7" />
+					</svg>
+				</div>
+
+				<p class="scorri">Scorri</p>
+			</div>
+
+			<section class="capitolo" style="--n: 0" aria-labelledby="c1">
+				<div class="testo">
+					<p class="kicker">01 · 3000 m · Il fiocco</p>
+					<h1 id="c1">Il viaggio dell’<em>acqua</em></h1>
+					<p>
+						Comincia da un cristallo di pochi millimetri, a tremila metri di quota. Scorri: la seguiamo
+						fino al mare.
+					</p>
+				</div>
+			</section>
+
+			<section class="capitolo" style="--n: 1" aria-labelledby="c2">
+				<div class="testo">
+					<p class="kicker">02 · 1800 m · Il lungo inverno</p>
+					<h2 id="c2">La <em>neve</em> aspetta</h2>
+					<p>
+						Si posa, si compatta, resta. Per mesi il bosco non sente altro che silenzio. Poi arriva il
+						caldo e tutto, piano, comincia a muoversi.
+					</p>
+				</div>
+			</section>
+
+			<section class="capitolo capitolo--dx" style="--n: 2" aria-labelledby="c3">
+				<div class="testo">
+					<p class="kicker">03 · 600 m · La caduta</p>
+					<h2 id="c3">Per un attimo, <em>niente</em> sotto</h2>
+					<p>
+						Il disgelo la porta all’orlo di una parete. Per qualche secondo l’acqua non ha più nulla
+						sotto di sé: è la parte più rumorosa e più luminosa del viaggio.
+					</p>
+				</div>
+			</section>
+
+			<section class="capitolo" style="--n: 3" aria-labelledby="c4">
+				<div class="testo">
+					<p class="kicker">04 · 0 m · La riva</p>
+					<h2 id="c4">Il <em>fiume</em> finisce qui</h2>
+					<p>
+						Dopo tanta strada tocca la sabbia. Il fiume si ferma, e l’acqua smette di avere un nome tutto
+						suo: da qui in poi è mare.
+					</p>
+				</div>
+			</section>
+
+			<section class="capitolo capitolo--centro" style="--n: 4" aria-labelledby="c5">
+				<div class="testo">
+					<p class="kicker">05 · −30 m · Il mare</p>
+					<h2 id="c5">Poi <em>ricomincia</em></h2>
+					<p>
+						In profondità la luce si fa lenta e blu. L’acqua ha fatto il giro: tra un inverno e l’altro
+						qualcuno la rivedrà come un fiocco.
+					</p>
+					<p class="invito">Una storia da scorrere, anche per il tuo marchio. Parliamone.</p>
+					<p class="credito">Foto su Unsplash: Aaron Burden, Adam Chang, v2osk, Derek Thomson, Cristian Palmer.</p>
+				</div>
+			</section>
+		</main>
+
+		<script src="../components/_shared/studio.js"></script>
+	</body>
+</html>

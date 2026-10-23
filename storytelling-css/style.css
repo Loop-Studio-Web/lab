@@ -1,0 +1,403 @@
+/* Storytelling a scorrimento, solo CSS. Un palco fisso a tutto schermo (le foto, il fiume, la quota) e i
+   capitoli che gli scorrono sopra. Tutto il movimento è legato allo scroll con UNA timeline nominata
+   (--storia, su .storia): foto, fiume, goccia e quota si muovono con la stessa pagina e restano sincronizzati.
+   Colori e font da base.css.
+
+   Due regimi:
+   1. base = fallback: foto e capitoli si alternano in una pagina normale (browser senza scroll-driven
+      animations e «riduci movimento»). La storia si legge uguale, senza l'effetto.
+   2. dentro @supports + no-preference: il palco fisso e le animazioni. */
+
+body {
+	background: #011620; /* il blu in fondo alla foto finale: la pagina si chiude da sola */
+}
+
+/* Il logo in alto è in flusso (base.css): qui galleggia sopra la prima foto. */
+body > nav[aria-label='Loop Studio'] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 20;
+}
+.studio-mark {
+	position: relative;
+	z-index: 2;
+}
+
+/* ───────── Regime 1: fallback, pagina normale ───────── */
+.storia {
+	display: flex;
+	flex-direction: column;
+}
+.palco,
+.fotos {
+	display: contents; /* le foto diventano figlie di .storia e si intercalano ai capitoli con order */
+}
+.hud,
+.scorri {
+	display: none;
+}
+.foto {
+	order: calc(var(--n) * 2);
+	display: block;
+	width: 100%;
+	height: min(62svh, 36rem);
+	object-fit: cover;
+	object-position: var(--pos, 50% 50%);
+}
+.capitolo {
+	order: calc(var(--n) * 2 + 1);
+	display: grid;
+	align-items: center;
+	padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 6vw, 5rem);
+}
+
+/* ───────── Testi (comuni ai due regimi) ───────── */
+.testo {
+	position: relative;
+	isolation: isolate;
+	max-width: 28rem;
+	text-shadow: 0 1px 18px rgb(0 8 16 / 0.5);
+}
+/* Alone dietro al testo: lo schiarisce da dietro senza blur né pannelli, e vale su qualunque foto. */
+.testo::before {
+	content: '';
+	position: absolute;
+	inset: -4rem -3rem;
+	z-index: -1;
+	background: radial-gradient(closest-side, rgb(1 14 24 / 0.58), rgb(1 14 24 / 0.32) 55%, transparent);
+	pointer-events: none;
+}
+.kicker {
+	margin-bottom: 0.9rem;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: rgb(255 255 255 / 0.82);
+	font-variant-numeric: tabular-nums;
+}
+/* La parola chiave del titolo è «acqua»: un gradiente azzurro-bianco ritagliato nelle lettere, con
+   righe di luce che lo attraversano. Fermo di base; scorre con lo scroll nel regime 2 (sotto).
+   Più chiaro dell'alone scuro che ha dietro: contrasta meglio del rosso, che ha luminanza media. */
+.testo em {
+	font-style: normal;
+	color: transparent;
+	background:
+		repeating-linear-gradient(104deg, transparent 0 0.5em, rgb(255 255 255 / 0.6) 0.5em 0.62em, transparent 0.62em 1.15em),
+		linear-gradient(100deg, #8fdcff 0%, #ffffff 30%, #4fc3ff 52%, #e3f7ff 76%, #8fdcff 100%);
+	background-size: 100% 100%, 300% 100%;
+	background-position: 0 0, 0 0;
+	-webkit-background-clip: text;
+	background-clip: text;
+	text-shadow: none;
+}
+.testo h1,
+.testo h2 {
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.testo h1 {
+	font-size: clamp(3rem, 9vw, 6.25rem);
+	line-height: 0.98;
+}
+.testo h2 {
+	font-size: clamp(2rem, 5.2vw, 3.5rem);
+}
+.testo p:not(.kicker) {
+	margin-top: 1.1rem;
+	font-size: 1.0625rem;
+	line-height: 1.65;
+	color: rgb(255 255 255 / 0.93);
+	text-wrap: pretty;
+}
+.testo .invito {
+	margin-top: 1.75rem;
+	font-weight: 600;
+	color: #fff;
+}
+.testo .credito {
+	margin-top: 1rem;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	color: rgb(255 255 255 / 0.7);
+}
+.capitolo--dx .testo {
+	justify-self: end;
+}
+.capitolo--centro {
+	justify-items: center;
+	text-align: center;
+}
+
+/* ───────── Regime 2: palco fisso e movimento legato allo scroll ───────── */
+@supports (animation-timeline: view()) {
+	@media (prefers-reduced-motion: no-preference) {
+		.storia {
+			display: block;
+			position: relative;
+			view-timeline: --storia block;
+		}
+		/* Il palco occupa 100svh nel flusso e subito li restituisce (margine negativo): i capitoli gli
+		   scorrono sopra e l'altezza totale della storia resta quella dei soli capitoli. */
+		.palco {
+			display: block;
+			position: sticky;
+			top: 0;
+			height: 100svh;
+			margin-bottom: -100svh;
+			overflow: hidden;
+			background: #011620;
+		}
+		.fotos {
+			display: block;
+			position: absolute;
+			inset: 0;
+			animation: ingrandisci linear both;
+			animation-timeline: --storia;
+			animation-range: contain;
+		}
+		.foto {
+			position: absolute;
+			inset: 0;
+			height: 100%;
+			order: unset;
+		}
+		/* Dalla seconda foto in poi: dissolvenza a metà strada tra due capitoli. Finestra (--da → --a)
+		   in percentuale dello scorrimento totale, in linea sulla foto. */
+		.foto:nth-child(n + 2) {
+			opacity: 0;
+			animation: appare linear both;
+			animation-timeline: --storia;
+			animation-range: contain var(--da) contain var(--a);
+		}
+		/* Un velo molto leggero in alto (logo) e al centro: il resto lo fa l'alone dei testi. */
+		.palco::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(180deg, rgb(1 14 24 / 0.5), transparent 22%), rgb(1 14 24 / 0.14);
+			pointer-events: none;
+		}
+
+		.capitolo {
+			order: unset;
+			position: relative;
+			z-index: 1;
+			min-height: 100svh;
+			padding-block: 4rem;
+			padding-inline: clamp(1.5rem, 6vw, 5rem) clamp(3.5rem, 9vw, 7rem); /* a destra resta libero per il fiume */
+		}
+		.testo {
+			animation: testo linear both;
+			animation-timeline: view();
+			animation-range: entry 0% exit 100%;
+		}
+
+		.testo em {
+			animation: acqua linear both;
+			animation-timeline: view();
+			animation-range: entry 0% exit 100%;
+		}
+
+		/* Fiume + quota */
+		.hud {
+			position: absolute;
+			inset-block: 0;
+			right: clamp(0.75rem, 2.5vw, 2rem);
+			z-index: 2;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			justify-content: center;
+			gap: 0.9rem;
+			pointer-events: none;
+		}
+		.quota {
+			font-family: var(--font-display);
+			font-weight: 700;
+			font-size: clamp(1.25rem, 3vw, 1.75rem);
+			line-height: 1;
+			font-variant-numeric: tabular-nums;
+			text-shadow: 0 1px 14px rgb(0 8 16 / 0.6);
+		}
+		.quota__u {
+			font-size: 0.6em;
+			font-weight: 600;
+			color: rgb(255 255 255 / 0.75);
+		}
+		/* Il numero è un contatore CSS animato: 3000 → −30, con i valori esatti sui centri dei capitoli. */
+		.quota__n {
+			counter-reset: q var(--quota);
+			animation: quota linear both;
+			animation-timeline: --storia;
+			animation-range: contain;
+		}
+		.quota__n::before {
+			content: counter(q);
+		}
+
+		.fiume {
+			display: block;
+			height: min(58svh, 30rem);
+			width: auto;
+			aspect-ratio: 40 / 600;
+			margin-right: 0.35rem;
+			overflow: visible;
+		}
+		.fiume__traccia,
+		.fiume__scia {
+			fill: none;
+			stroke-linecap: round;
+		}
+		.fiume__traccia {
+			stroke: rgb(255 255 255 / 0.28);
+			stroke-width: 2;
+		}
+		.fiume__scia {
+			stroke: #fff;
+			stroke-width: 2.5;
+			stroke-dasharray: 1;
+			stroke-dashoffset: 1;
+			animation: disegna linear both;
+			animation-timeline: --storia;
+			animation-range: contain;
+		}
+		.tappa,
+		.goccia {
+			offset-path: path('M20 4 C36 70 4 130 20 200 S36 330 20 400 S4 520 20 596');
+			offset-rotate: 0deg;
+		}
+		.tappa {
+			fill: #011620;
+			stroke: rgb(255 255 255 / 0.7);
+			stroke-width: 1.5;
+		}
+		.goccia {
+			fill: var(--accent);
+			stroke: #fff;
+			stroke-width: 2;
+			offset-distance: 0%;
+			animation: percorri linear both;
+			animation-timeline: --storia;
+			animation-range: contain;
+		}
+
+		/* «Scorri»: un cenno solo all'arrivo, sparisce dopo i primi pixel. */
+		.scorri {
+			display: block;
+			position: absolute;
+			left: 50%;
+			bottom: 1.5rem;
+			translate: -50% 0;
+			font-size: 0.6875rem;
+			font-weight: 700;
+			letter-spacing: 0.14em;
+			text-transform: uppercase;
+			color: rgb(255 255 255 / 0.85);
+			animation: sparisci linear both;
+			animation-timeline: scroll(root);
+			animation-range: 0px 9rem;
+		}
+		.scorri::after {
+			content: '';
+			display: block;
+			width: 1px;
+			height: 2rem;
+			margin: 0.5rem auto 0;
+			background: linear-gradient(rgb(255 255 255 / 0.85), transparent);
+		}
+	}
+}
+
+@property --quota {
+	syntax: '<integer>';
+	inherits: false;
+	initial-value: 3000;
+}
+@keyframes acqua {
+	from {
+		background-position: 0 0, 0 0;
+	}
+	to {
+		background-position: 4.6em 0, 100% 0;
+	}
+}
+@keyframes appare {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes ingrandisci {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(1.12);
+	}
+}
+/* Il testo entra salendo e dissolvendosi, resta pieno mentre attraversa il centro, esce salendo ancora. */
+@keyframes testo {
+	entry 8% {
+		opacity: 0;
+		translate: 0 2.5rem;
+	}
+	entry 70% {
+		opacity: 1;
+		translate: 0 0;
+	}
+	exit 30% {
+		opacity: 1;
+		translate: 0 0;
+	}
+	exit 85% {
+		opacity: 0;
+		translate: 0 -1.5rem;
+	}
+}
+@keyframes quota {
+	0% {
+		--quota: 3000;
+	}
+	25% {
+		--quota: 1800;
+	}
+	50% {
+		--quota: 600;
+	}
+	75% {
+		--quota: 0;
+	}
+	100% {
+		--quota: -30;
+	}
+}
+@keyframes disegna {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes percorri {
+	to {
+		offset-distance: 100%;
+	}
+}
+@keyframes sparisci {
+	to {
+		opacity: 0;
+	}
+}
+
+/* Telefono: testo a tutta larghezza utile, fiume e quota più piccoli. */
+@media (max-width: 40rem) {
+	.testo::before {
+		inset: -3rem -1.5rem;
+	}
+	.testo p:not(.kicker) {
+		font-size: 1rem;
+	}
+}

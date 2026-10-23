@@ -1,0 +1,557 @@
+/* Galleria da trascinare. Una griglia di foto più grande dello schermo che si sposta con mouse, dito,
+   rotella o frecce; la foto scelta vola in un pannello (GSAP Flip) con il suo testo. Colori e font da base.css. */
+
+html,
+body {
+	overflow: hidden; /* l'app sta in una sola schermata: niente scroll della pagina */
+	height: 100%;
+}
+body {
+	overscroll-behavior: none;
+}
+
+/* La firma dello studio (studio.js) qui sta sopra la griglia: logo in alto, "Realizzato da" in basso. */
+body > nav[aria-label='Loop Studio'] {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 30;
+}
+.studio-corner {
+	opacity: 0.9;
+}
+.studio-corner img {
+	filter: drop-shadow(0 1px 6px rgb(0 0 0 / 0.65));
+}
+/* Più specifico di studio.css, che si carica dopo e altrimenti rimette la firma in colonna. */
+body > footer.studio-mark {
+	position: fixed;
+	left: 50%;
+	bottom: 0.9rem;
+	translate: -50% 0;
+	z-index: 30;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.6rem;
+	width: max-content;
+	padding: 0.3rem 0.9rem;
+	background: rgb(0 0 0 / 0.6);
+	border-radius: 99px;
+	pointer-events: none;
+}
+body > footer.studio-mark .studio-mark__link {
+	pointer-events: auto;
+	opacity: 0.85;
+}
+body > footer.studio-mark img {
+	height: 1.15rem;
+}
+
+.galleria {
+	position: fixed;
+	inset: 0;
+	overflow: hidden;
+	background: var(--bg);
+	--h: clamp(10rem, 36svh, 22rem); /* altezza di una tessera */
+	--w: calc(var(--h) * 0.8); /* 4:5 */
+	--gap: clamp(0.6rem, 1.6svh, 1rem);
+}
+.viewport {
+	position: absolute;
+	inset: 0;
+	cursor: grab;
+	touch-action: none; /* il trascinamento lo gestisce GSAP, la pagina non scorre */
+}
+.viewport.is-grabbing {
+	cursor: grabbing;
+}
+
+/* ───────── Griglia ───────── */
+.canvas {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: grid;
+	grid-template-columns: repeat(6, var(--w));
+	grid-auto-rows: var(--h);
+	gap: var(--gap);
+	margin: 0;
+	/* respiro per logo e comandi; in basso anche lo scarto delle colonne scese */
+	padding: calc(var(--gap) + 2.75rem) var(--gap) calc(var(--gap) + 3.5rem + var(--h) * 0.3);
+	list-style: none;
+	width: max-content;
+	will-change: transform;
+}
+.cella {
+	position: relative;
+}
+/* Colonne pari scese di un po': il mosaico non sembra una tabella. */
+.cella:nth-child(even) {
+	translate: 0 calc(var(--h) * 0.3);
+}
+
+/* Tessera: un vero bottone con la foto dentro. */
+.tessera {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	border-radius: 0.4rem;
+	overflow: hidden;
+	background: var(--surface);
+	color: #fff;
+	font: inherit;
+	text-align: start;
+	cursor: inherit;
+	transition: scale 0.35s var(--ease-out);
+}
+.tessera img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	-webkit-user-drag: none;
+	user-select: none;
+	transition: scale 0.5s var(--ease-out);
+}
+/* Numero sempre; titolo in basso a comparsa. Entrambi restano nel testo del bottone (nome accessibile). */
+.tessera__num,
+.tessera__nome {
+	position: absolute;
+	left: 0.7rem;
+	text-shadow: 0 1px 10px rgb(0 0 0 / 0.55);
+}
+.tessera__num {
+	top: 0.6rem;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	font-variant-numeric: tabular-nums;
+}
+.tessera__nome {
+	right: 0.7rem;
+	bottom: 0.7rem;
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: 1.05rem;
+	line-height: 1.15;
+	opacity: 0;
+	translate: 0 0.4rem;
+	transition: opacity 0.25s var(--ease-out), translate 0.25s var(--ease-out);
+}
+.tessera::before {
+	/* velo in alto: il numero resta leggibile anche su cieli chiari */
+	content: '';
+	position: absolute;
+	inset: 0 0 auto;
+	height: 3.2rem;
+	background: linear-gradient(rgb(0 0 0 / 0.4), transparent);
+	pointer-events: none;
+	z-index: 1;
+}
+.tessera__num,
+.tessera__nome {
+	z-index: 2;
+}
+.tessera::after {
+	content: '';
+	position: absolute;
+	inset: 45% 0 0;
+	background: linear-gradient(transparent, rgb(0 0 0 / 0.62));
+	opacity: 0;
+	transition: opacity 0.25s var(--ease-out);
+	pointer-events: none;
+}
+.tessera:focus-visible .tessera__nome,
+.tessera:focus-visible::after {
+	opacity: 1;
+	translate: 0 0;
+}
+.tessera:active {
+	scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+	.tessera:hover .tessera__nome,
+	.tessera:hover::after {
+		opacity: 1;
+		translate: 0 0;
+	}
+	.tessera:hover img {
+		scale: 1.04;
+	}
+}
+/* Mentre si trascina le tessere si rimpiccioliscono appena: la griglia sembra "presa in mano". */
+.canvas.is-dragging .tessera {
+	scale: 0.975;
+}
+
+/* Celle di testo: introduzione e chiusura. Ogni cella è un contenitore (container query): titoli e testi si
+   ridimensionano sulla CARTA, non sulla finestra, così non si tagliano su schermi bassi o stretti. */
+.cella--testo {
+	container-type: size;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: 0.4rem;
+	overflow: hidden;
+}
+/* Le unità cqw valgono per i figli del contenitore, non per il contenitore stesso: il respiro sta qui. */
+.cella__dentro {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 4cqw;
+	height: 100%;
+	padding: 8cqw;
+}
+.cella--testo .kicker {
+	font-size: clamp(0.6rem, 3.2cqw, 0.72rem);
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.cella--testo h1,
+.cella--testo h2 {
+	font-size: clamp(1.05rem, min(11cqw, 7.6cqh), 2.6rem);
+	line-height: 1.04;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.cella--testo p:not(.kicker) {
+	margin-top: 3cqw;
+	font-size: clamp(0.68rem, min(4.5cqw, 3.1cqh), 0.92rem);
+	line-height: 1.5;
+	color: rgb(255 255 255 / 0.82);
+}
+.cella__corpo {
+	display: flex;
+	flex-direction: column;
+}
+.cella--fine svg {
+	display: block;
+	width: min(52cqw, 7rem);
+	height: auto;
+	aspect-ratio: 1465 / 753;
+}
+.invito {
+	align-self: flex-start;
+	padding: clamp(0.4rem, 2.6cqh, 0.6rem) clamp(0.75rem, 5cqw, 1rem);
+	border-radius: 99px;
+	background: var(--accent-strong);
+	color: #fff;
+	font-size: clamp(0.72rem, 3.8cqw, 0.9rem);
+	font-weight: 700;
+	text-decoration: none;
+	transition: scale 0.15s var(--ease-out), background-color 0.2s var(--ease-out);
+}
+.invito:active {
+	scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+	.invito:hover {
+		background: #b8231a;
+	}
+}
+
+/* ───────── Comandi in basso ───────── */
+.suggerimento {
+	position: fixed;
+	bottom: 0.9rem;
+	left: 1rem;
+	z-index: 30;
+	padding: 0.45rem 0.9rem;
+	border-radius: 99px;
+	background: rgb(0 0 0 / 0.6);
+	color: rgb(255 255 255 / 0.9);
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	pointer-events: none;
+	transition: opacity 0.5s var(--ease-out);
+}
+.suggerimento.is-hidden {
+	opacity: 0;
+}
+
+/* Suono: un'icona in alto a destra (altoparlante con onde = acceso, con croce = spento). */
+.suono {
+	position: fixed;
+	top: 0.9rem;
+	right: 1rem;
+	z-index: 30;
+	display: grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgb(0 0 0 / 0.6);
+	color: rgb(255 255 255 / 0.92);
+	cursor: pointer;
+	transition: scale 0.15s var(--ease-out), background-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
+}
+.suono:active {
+	scale: 0.95;
+}
+@media (hover: hover) and (pointer: fine) {
+	.suono:hover {
+		background: rgb(0 0 0 / 0.82);
+	}
+}
+.suono svg {
+	display: block;
+	overflow: visible;
+}
+.suono__onde,
+.suono__croce {
+	transition: opacity 0.2s var(--ease-out);
+}
+.suono__onde {
+	opacity: 0;
+}
+.suono[aria-pressed='true'] {
+	color: var(--accent);
+}
+.suono[aria-pressed='true'] .suono__onde {
+	opacity: 1;
+}
+.suono[aria-pressed='true'] .suono__croce {
+	opacity: 0;
+}
+/* Anello dell'invito (bianco, per vedersi su ogni foto): parte dal bordo del pulsante e si allarga sfumando (solo trasformazione + opacità). */
+.suono::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	box-shadow: 0 0 0 1px rgb(0 0 0 / 0.45), inset 0 0 0 1px rgb(0 0 0 / 0.45); /* filo scuro: l'anello si vede anche su foto chiare */
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* ───────── Dettaglio ───────── */
+.dettaglio {
+	position: fixed;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	max-height: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	background: transparent; /* lo sfondo nero è su .d-griglia: così la foto che vola resta opaca mentre il pannello sfuma */
+	color: var(--text);
+}
+.dettaglio:focus {
+	outline: none; /* il focus iniziale sta sul dialog, non sul pulsante Chiudi: niente anello per chi usa il mouse */
+}
+.dettaglio::backdrop {
+	background: transparent;
+}
+.d-griglia {
+	background: var(--bg);
+	display: grid;
+	grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+	height: 100%;
+}
+.d-foto {
+	position: relative;
+	overflow: hidden;
+	background: var(--surface);
+}
+.d-foto img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: var(--pos, 50% 50%);
+}
+/* La copia della foto che vola dalla tessera al pannello (Flip). */
+.vola {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 5;
+	margin: 0;
+	object-fit: cover;
+	object-position: var(--pos, 50% 50%);
+	border-radius: 0.4rem;
+	pointer-events: none;
+}
+.d-testo {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 1.5rem;
+	min-height: 0;
+	padding: clamp(1.25rem, 3.4vw, 2.75rem);
+	padding-top: clamp(4rem, 8svh, 5.5rem); /* sotto il logo */
+}
+.d-alto {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+}
+.d-num {
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	color: var(--muted);
+	font-variant-numeric: tabular-nums;
+}
+.d-chiudi {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.55rem 1rem;
+	border: 1px solid var(--line);
+	border-radius: 99px;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	font-size: 0.85rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: scale 0.15s var(--ease-out), background-color 0.2s var(--ease-out);
+}
+.d-chiudi:active,
+.d-freccia:active {
+	scale: 0.95;
+}
+@media (hover: hover) and (pointer: fine) {
+	.d-chiudi:hover,
+	.d-freccia:hover {
+		background: var(--surface);
+	}
+}
+.d-corpo {
+	max-width: 30rem;
+}
+.d-luogo {
+	margin-bottom: 0.8rem;
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--accent);
+}
+.d-luogo:empty {
+	display: none;
+}
+.d-corpo h2 {
+	font-size: clamp(2.2rem, 5.2vw, 4rem);
+	line-height: 1;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.d-desc {
+	margin-top: 1.25rem;
+	font-size: 1.0625rem;
+	line-height: 1.65;
+	color: rgb(255 255 255 / 0.88);
+	text-wrap: pretty;
+}
+.d-credito {
+	margin-top: 1.25rem;
+	font-size: 0.8rem;
+	color: var(--muted);
+}
+.d-nav {
+	display: flex;
+	gap: 0.6rem;
+}
+.d-freccia {
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	padding: 0;
+	border: 1px solid var(--line);
+	border-radius: 50%;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	transition: scale 0.15s var(--ease-out), background-color 0.2s var(--ease-out);
+}
+
+/* Telefono o schermo verticale: foto sopra, testo sotto. */
+@media (max-width: 52rem), (max-aspect-ratio: 1 / 1) {
+	.d-griglia {
+		grid-template-columns: 1fr;
+		grid-template-rows: 44svh minmax(0, 1fr);
+	}
+	.d-testo {
+		padding-top: clamp(1rem, 3svh, 1.5rem);
+		overflow-y: auto;
+	}
+	.d-corpo h2 {
+		font-size: clamp(1.9rem, 8vw, 2.6rem);
+	}
+	.d-desc {
+		font-size: 1rem;
+	}
+	/* Il logo sta sopra la foto: il pulsante Chiudi resta raggiungibile in alto a destra della foto. */
+	.d-alto {
+		position: fixed;
+		top: 0.75rem;
+		right: 0.75rem;
+		left: auto;
+		z-index: 8;
+	}
+	.d-num {
+		display: none;
+	}
+	.d-chiudi {
+		background: rgb(0 0 0 / 0.55);
+		border-color: transparent;
+	}
+}
+
+/* ───────── Movimento ───────── */
+@keyframes anello {
+	from {
+		transform: scale(1);
+		opacity: 0.85;
+	}
+	to {
+		transform: scale(1.75);
+		opacity: 0;
+	}
+}
+@keyframes onda {
+	50% {
+		opacity: 0.35;
+	}
+}
+@media (prefers-reduced-motion: no-preference) {
+	/* Invito a premere: un anello bianco si allarga dal pulsante tre volte dopo l'arrivo, poi si ferma. */
+	.suono.invita::after {
+		animation: anello 1.4s var(--ease-out) 3;
+	}
+	/* Suono acceso: le onde pulsano piano. */
+	.suono[aria-pressed='true'] .suono__onde path:last-child {
+		animation: onda 1.6s var(--ease-in-out) infinite;
+	}
+}
+
+/* ───────── Telefono ───────── */
+@media (max-width: 40rem) {
+	.galleria {
+		--h: clamp(9rem, 28svh, 16rem);
+	}
+	.suggerimento {
+		display: none;
+	}
+	body > footer.studio-mark {
+		left: 1rem;
+		translate: none;
+	}
+}

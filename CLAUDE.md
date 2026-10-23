@@ -119,6 +119,12 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
      `Assets\Lab_Componenti\CREDITS.md`). Codice condiviso in `components/_shared/three/` (`kit.js` + three r129 minificato, `RoomEnvironment`); gli
      import usano un import map per `three`. Gli anelli dell'infinito vengono da contorni tracciati (`3d-infinito/marchio.js`), non dai path SVG,
      che si auto-intersecano. `three-js-animation/` è solo un rimando a `3d-medusa/`. In GLSL mai `smoothstep(a,b,x)` con a>b: usare `1.0 - smoothstep(b,a,x)`.
+   - **Ondata A, fatte in bozza (24/10, non committate)**: `storytelling-css/` (storia a scorrimento in solo CSS: una timeline nominata
+     `--storia`, palco sticky con margine negativo, `offset-path`, `@property` integer per la quota; fallback impilato con `display:contents` + `order`;
+     `@property` va a livello radice, non dentro `@supports`) e `galleria-trascinabile/` (GSAP Draggable+Flip+Inertia in `components/_shared/gsap/`,
+     tessere `<button>`, dettaglio `<dialog>`, suono spento di default con pulsante "Suono"; audio in `audio/`, Web Audio dopo un gesto; la foto che vola
+     usa il file grande con `object-position` uguale al punto focale del ritaglio 4:5 così il passaggio non salta). Trappola: Draggable fa `preventDefault`
+     sul mousedown, quindi il clic col mouse non mette il focus sulla tessera (il ritorno del focus vale per la tastiera).
    - **Sito madre**: `src/data/lab-demos.ts` (le demo non stanno più in `portfolio-projects.ts`), filtro per categoria condiviso (`CategoryFilter.astro`),
      titolo e introduzione alla sezione, screenshot 16:9 rigenerati. Categorie: Animazioni 3D, Scroll e gallerie, Widget e strumenti, Dati e API (decise il 23/10).
    - **Prossimi**: nuove Demo, prima ondata: Preventivatore (React, repo propria; prima solo Demo, poi si valuta il sito madre), Report social
