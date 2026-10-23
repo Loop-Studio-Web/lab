@@ -114,7 +114,9 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
    - **Demo (7)**: `calendario`, `booking-widget`, `google-reviews-widget`, `skyTracker`, `3d-medusa`, `3d-infinito`, `3d-farfalla`. Widget e SkyTracker
      ripuliti (font dal pool via `base.css`, firma `studio.js`, niente CDN/FontAwesome). Sorgenti React in repo private
      `lab-booking-widget` / `lab-google-reviews-widget` (clonate in `Websites\`, build con `npm run build` e copia di `dist/*`).
-     Proxy meteo di SkyTracker ancora su un account personale Cloudflare (da spostare sull'org a fine lavori).
+     Proxy meteo di SkyTracker: dal 24/10 è il Worker `lab-meteo` (`https://lab-meteo.domenicociardullo85.workers.dev`, repo `Websites\lab-meteo-worker`, chiave come secret `WEATHER_API_KEY`
+     messa dall'autore, cache 10 min, risposta ridotta, testi in italiano). Il VECCHIO `skytracker-weather-proxy` rispondeva 403 all'origine `loop-studio-web.github.io` (il SkyTracker online era
+     già rotto): da ritirare DOPO il push e la verifica online. Stessa chiave del vecchio (l'autore non l'ha cambiata).
    - **3D**: l'ape (modello CC-BY, 28 MB) è sostituita da tre pagine procedurali, ciascuna con foto Unsplash di fondo (crediti in pagina e in
      `Assets\Lab_Componenti\CREDITS.md`). Codice condiviso in `components/_shared/three/` (`kit.js` + three r129 minificato, `RoomEnvironment`); gli
      import usano un import map per `three`. Gli anelli dell'infinito vengono da contorni tracciati (`3d-infinito/marchio.js`), non dai path SVG,
