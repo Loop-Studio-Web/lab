@@ -261,7 +261,7 @@ The rules every component page follows. They are the part worth copying.
 | **Motion with manners** | `prefers-reduced-motion` always honoured. Continuous or heavy animations run **only while their section is in view** (an `IntersectionObserver` flips an `.is-live` class; out of view they pause). Never `transition: all`. |
 | **Repeated things are generated** | Stars, leaves, columns and the like are produced by JS from a seeded generator (mulberry32), not copied by hand, so they are reproducible and cheap to change. |
 | **Fits the frame** | Each page works inside the studio site's *Try it live* window (about 70rem by 85vh) and as a small miniature, with the strongest section first. Units follow the box (`container-type: size`, `cqw`/`cqh`), not the window. |
-| **Measured** | After every deploy, on the live pages: **axe-core 0 violations** on all 28 component pages and on the studio's [/lab page](https://theloopstudio.org/lab/) that presents them; **PageSpeed mobile 98 to 100** on the sample components (97 on the /lab page), accessibility 100, **CLS 0** (snapshot of 22 October 2026). |
+| **Measured** | After every deploy, on the live pages: **axe-core 0 violations** on all 28 component pages and on all 15 demo pages, and on the studio's [/lab page](https://theloopstudio.org/lab/) that presents them. **PageSpeed mobile 98 to 100** on the sample components (97 on the /lab page), accessibility 100, **CLS 0**. Demos (23 October 2026): 87 to 100 on 12 of 15; the three Three.js scenes score lower (35 to 78) because PageSpeed draws WebGL in software, which shows up as a huge blocking time that a phone with a GPU does not have. |
 
 <br>
 
