@@ -120,7 +120,7 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
      import usano un import map per `three`. Gli anelli dell'infinito vengono da contorni tracciati (`3d-infinito/marchio.js`), non dai path SVG,
      che si auto-intersecano. `three-js-animation/` è solo un rimando a `3d-medusa/`. In GLSL mai `smoothstep(a,b,x)` con a>b: usare `1.0 - smoothstep(b,a,x)`.
    - **Sito madre**: `src/data/lab-demos.ts` (le demo non stanno più in `portfolio-projects.ts`), filtro per categoria condiviso (`CategoryFilter.astro`),
-     titolo e introduzione alla sezione, screenshot 16:9 rigenerati. Categorie: Scroll e 3D, Widget per clienti, Dati e API, Strumenti.
+     titolo e introduzione alla sezione, screenshot 16:9 rigenerati. Categorie: Animazioni 3D, Scroll e gallerie, Widget e strumenti, Dati e API (decise il 23/10).
    - **Prossimi**: nuove Demo, prima ondata: Preventivatore (React, repo propria; prima solo Demo, poi si valuta il sito madre), Report social
      (dataviz SVG), griglia zoom trascinabile GSAP (zip `2026-07-14-draggable-zoom-grid-gallery-using-gsap`), storytelling a scorrimento in solo CSS.
    - **Prestazioni** (skill Emil `animation-performance`, installata): `bordi-animati` ha `filter: blur(32px)` su `.electric__bloom`; 2 `transition: all`
