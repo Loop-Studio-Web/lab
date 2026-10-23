@@ -747,3 +747,9 @@ dialog:focus {
 	object-fit: contain;
 	filter: drop-shadow(0.7px 0 0 #3b3025) drop-shadow(-0.7px 0 0 #3b3025) drop-shadow(0 0.7px 0 #3b3025) drop-shadow(0 -0.7px 0 #3b3025);
 }
+
+/* Il menù lo costruisce lo script: finché la lista è vuota la nota non deve vedersi in alto per poi sparire in fondo
+   (CLS su PageSpeed). Un elemento invisibile non conta come spostamento. */
+.menu:empty ~ .nota {
+	visibility: hidden;
+}

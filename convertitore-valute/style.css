@@ -653,3 +653,9 @@
 	max-width: 60rem;
 	margin-inline: auto;
 }
+
+/* Le cartoline le costruisce lo script: al primo disegno la lista è vuota e ciò che segue (il biglietto del cambio)
+   starebbe in alto, per poi essere spinto giù (CLS 0,69 su PageSpeed). Finché è vuota, il resto è invisibile. */
+.cartoline:empty ~ * {
+	visibility: hidden;
+}
