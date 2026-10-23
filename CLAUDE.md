@@ -166,7 +166,18 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
      Se il Worker non risponde: tassi di esempio (`TASSI_ESEMPIO`) e timbro tratteggiato. Identità propria e CHIARA dentro il palco scuro (foglio sabbia, terracotta `#a63a18`, petrolio, senape; Anton + Hanken + Playwrite IS solo per gli appunti).
      **Trappole**: `date` di `/rates` = la più vecchia tra le valute (le altre sono datate un giorno dopo); la serie non passa `to` (Frankfurter arriva all'ultimo giorno); la cache locale di `wrangler dev` sopravvive ai riavvii (`.wrangler/state`);
      terracotta `#b8431f` falliva il contrasto sulla sabbia (4,3:1) → `#a63a18`; `Intl` it-IT scrive "USD" e non "$" (voluto, non ambiguo).
-   - **Prossimi**: ondata B (FAQ con ricerca e conto alla rovescia solo se abbastanza ricchi, altrimenti Componenti). A fine lotto: README
+   - **FAQ con ricerca** (23/10, approvata, committata in locale): `faq-ricerca/` (NELLA RADICE del Lab come le altre Demo, non in `components/`) = ciclofficina di fantasia "Pedivella" (nome cercato sul web:
+     "Pedalia" esiste, "Pimp My Bike" è usato altrove), JS puro a moduli, niente librerie. `data.js` = 24 domande in 5 temi, ciascuna con `affini` (sinonimi che il cliente potrebbe scrivere, non mostrati);
+     `script.js`: normalizza (minuscole, senza accenti), `grado()` 3 uguale / 2 inizio parola / 1 un errore (distanza di Damerau-Levenshtein, stessa lettera iniziale), pesi titolo > affini > corpo, AND tra le parole
+     (se nessuna le contiene tutte, ripiega su OR e lo dichiara), parole vuote ignorate. Evidenziazione con **CSS Custom Highlight API** (`::highlight(trovato)`, Range sui nodi di testo: per questo titolo e risposte sono
+     nodi di testo semplici, niente markup dentro), senza ripiego `<mark>`. Estratto sotto la domanda chiusa (pezzo della risposta con la parola; se è solo un sinonimo, l'inizio della risposta). Stato nell'hash (`#q=…&t=…&r=…`,
+     `replaceState`); `r` = risposta aperta, `Copia link` riproduce lo stato. Dati strutturati FAQPage generati dallo script. Identità: abete `#103a24`, lime `#d7e51c`, avorio; Jura 500 + Hanken + Noto Sans Mono.
+     Logo **generato con Gemini** (dichiarato in pagina), foto di sfondo di camera obscura (Unsplash) **solo sfocata** (`img/officina-sfocata.webp`, 60 KB): nell'originale si leggono SONY, Michelin, Kenda, ecc. Crediti in `CREDITS.md`.
+     **Trappole**: (1) la `mask` con le tacche del tagliando taglia anche `outline` e `box-shadow` fuori dalla carta → anello del focus con `outline-offset` negativo; (2) un `<button>` eredita `text-align: center` (`text-align: start`);
+     (3) una griglia con figli a scorrimento orizzontale si allarga oltre lo schermo senza `grid-template-columns: minmax(0, 1fr)`; (4) nelle regole dentro `@container` serve più specificità se la regola base è scritta dopo;
+     (5) `toggle` di `<details>` arriva in ritardo: per distinguere apertura nostra e dell'utente si usa un valore atteso (`v.atteso`), non un flag con `setTimeout`; (6) `drive.mjs` non conosce i tasti `/` e le frecce su/giù: `dispatchEvent`
+     con `KeyboardEvent` nell'`eval`, e il clic vero (per la clipboard) con `down`/`up` alle coordinate. `::details-content` (apertura animata) solo Chrome/Edge: altrove si apre di colpo. Non provata su Safari/Firefox né su telefono vero.
+   - **Prossimi**: ondata B resta il conto alla rovescia (più un Componente che una Demo: valutare). A fine lotto: README
      (aggiungere le Demo nuove e il badge del conteggio), push (Lab prima del sito), axe + PSI, repo personali, proxy meteo sull'org; poi, a Demo finite, decidere se portare il Preventivatore nel sito madre
      (prezzi veri da concordare, tabelle pacchetti da leggere).
    - **Prestazioni** (skill Emil `animation-performance`, installata): `bordi-animati` ha `filter: blur(32px)` su `.electric__bloom`; 2 `transition: all`

@@ -1,0 +1,700 @@
+/* FAQ con ricerca: le domande frequenti di "Pedivella", ciclofficina di fantasia.
+   Identità propria dentro il palco scuro del Lab: verde abete (dal logo), avorio e un giallo-lime che è
+   anche il colore del testo trovato. Ogni domanda è un cartellino da officina con il suo tagliando.
+   Font dal pool: Jura (titoli), Hanken Grotesk (testo, da base.css), Noto Sans Mono (numeri e prezzi). */
+
+@font-face {
+	font-family: 'Jura';
+	src: url('../components/_shared/fonts/jura-latin-500-normal.woff2') format('woff2');
+	font-weight: 500;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Noto Sans Mono';
+	src: url('../components/_shared/fonts/noto-sans-mono-latin-400-normal.woff2') format('woff2');
+	font-weight: 400;
+	font-display: swap;
+}
+
+[hidden] {
+	display: none !important;
+}
+
+body {
+	background: #0a2616; /* = --abete-2 (le variabili stanno su .ciclo) */
+}
+
+.ciclo {
+	--abete: #103a24; /* il verde del logo */
+	--abete-2: #0a2616;
+	--abete-3: #164a2f;
+	--lime: #d7e51c; /* il lime del logo: ≈9,4:1 sull'abete */
+	--avorio: #f3ecd8;
+	--avorio-2: #e6dcc0;
+	--inchiostro: #14281d; /* ≈14:1 sull'avorio, ≈11,8:1 sul lime */
+	--inchiostro-2: #4d5a46; /* testo secondario sull'avorio: ≈6:1 */
+	--sul-verde: #cfdcc6; /* testo su abete: ≈8,7:1 */
+	--sul-verde-2: #a9bba0; /* testo secondario su abete: ≈6,2:1 */
+	--font-titoli: 'Jura', 'Hanken Grotesk', system-ui, sans-serif;
+	--font-numeri: 'Noto Sans Mono', ui-monospace, monospace;
+	--stub: 4.25rem;
+
+	container: ciclo / inline-size;
+	max-width: 72rem;
+	margin: 0 auto;
+	padding: 0.25rem clamp(1rem, 3vw, 2rem) 2rem;
+	color: var(--sul-verde);
+}
+.ciclo :focus-visible {
+	outline: 3px solid var(--lime);
+	outline-offset: 3px;
+}
+
+/* ───────── Il banco ───────── */
+.hero {
+	position: relative;
+	isolation: isolate;
+	display: grid;
+	gap: 1.5rem;
+	align-items: center;
+	padding: clamp(1.5rem, 4vw, 3rem);
+	border-radius: 1.25rem;
+	overflow: hidden;
+	background: var(--abete);
+}
+/* La foto sta su un ::before: così il velo scuro che garantisce il contrasto è parte dello sfondo, non del testo. */
+.hero::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background:
+		linear-gradient(100deg, rgb(10 38 22 / 0.94) 0%, rgb(10 38 22 / 0.82) 50%, rgb(10 38 22 / 0.52) 100%),
+		url('img/officina-sfocata.webp') center / cover;
+}
+.hero__logo {
+	display: block;
+	width: clamp(8.5rem, 24cqw, 12.5rem);
+	height: auto;
+}
+.hero h1 {
+	font-family: var(--font-titoli);
+	font-weight: 500;
+	font-size: clamp(2.1rem, 6.5cqw, 3.5rem);
+	line-height: 1;
+	letter-spacing: -0.01em;
+	color: var(--avorio);
+}
+.hero__lead {
+	margin-top: 0.75rem;
+	max-width: 34rem;
+	text-wrap: pretty;
+	color: var(--sul-verde);
+}
+.hero__lead em {
+	font-style: normal;
+	color: var(--lime);
+}
+@container ciclo (min-width: 46rem) {
+	.hero {
+		grid-template-columns: auto 1fr;
+		gap: clamp(2rem, 5cqw, 3.5rem);
+	}
+}
+
+/* Campo di ricerca: grande, avorio, sul banco. */
+.cerca {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin-top: 1.25rem;
+	max-width: 36rem;
+}
+.cerca__lente {
+	position: absolute;
+	inset-inline-start: 1rem;
+	color: var(--inchiostro-2);
+	pointer-events: none;
+}
+.cerca__campo {
+	appearance: none;
+	width: 100%;
+	height: 3.5rem;
+	padding: 0 3.25rem 0 3.1rem;
+	border: 0;
+	border-radius: 0.9rem;
+	background: var(--avorio);
+	color: var(--inchiostro);
+	font: inherit;
+	font-size: 1.125rem; /* sotto 16px iOS zooma la pagina */
+	box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.3);
+	transition: box-shadow 160ms var(--ease-out);
+}
+.cerca__campo::placeholder {
+	color: var(--inchiostro-2);
+	opacity: 1;
+}
+.cerca__campo::-webkit-search-cancel-button {
+	appearance: none;
+}
+.cerca__campo:focus-visible {
+	outline: 3px solid var(--lime);
+	outline-offset: 3px;
+}
+.cerca__tasto {
+	position: absolute;
+	inset-inline-end: 1rem;
+	display: grid;
+	place-items: center;
+	min-width: 1.75rem;
+	height: 1.75rem;
+	border: 1px solid rgb(20 40 29 / 0.35);
+	border-radius: 0.4rem;
+	color: var(--inchiostro-2);
+	font-family: var(--font-numeri);
+	font-size: 0.85rem;
+	pointer-events: none;
+}
+@media (hover: none) {
+	.cerca__tasto {
+		display: none;
+	}
+}
+.cerca__pulisci {
+	position: absolute;
+	inset-inline-end: 0.35rem;
+	display: grid;
+	place-items: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	border: 0;
+	border-radius: 0.7rem;
+	background: transparent;
+	color: var(--inchiostro);
+	cursor: pointer;
+	transition: transform 120ms var(--ease-out), background-color 160ms ease;
+}
+.cerca__pulisci:active {
+	transform: scale(0.94);
+}
+@media (hover: hover) and (pointer: fine) {
+	.cerca__pulisci:hover {
+		background: var(--avorio-2);
+	}
+}
+
+.hero__suggerite {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 1rem;
+}
+.hero__etichetta {
+	margin-inline-end: 0.25rem;
+	font-family: var(--font-numeri);
+	font-size: 0.75rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--sul-verde-2);
+}
+
+/* Chip: ricerca suggerita (contorno chiaro sul banco, contorno scuro sul fondo avorio). */
+.chip {
+	min-height: 2.25rem;
+	padding: 0.3rem 0.9rem;
+	border: 1px solid rgb(207 220 198 / 0.45);
+	border-radius: 999px;
+	background: rgb(10 38 22 / 0.55);
+	color: var(--avorio);
+	font: inherit;
+	font-size: 0.9rem;
+	cursor: pointer;
+	transition: transform 120ms var(--ease-out), background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+.chip:active {
+	transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+	.chip:hover {
+		border-color: var(--lime);
+		color: var(--lime);
+	}
+}
+.chip--chiaro {
+	border-color: rgb(20 40 29 / 0.4);
+	background: transparent;
+	color: var(--inchiostro);
+}
+@media (hover: hover) and (pointer: fine) {
+	.chip--chiaro:hover {
+		border-color: var(--inchiostro);
+		background: var(--lime);
+		color: var(--inchiostro);
+	}
+}
+
+/* ───────── Corpo: temi + risposte ───────── */
+.corpo {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr); /* senza, i temi a scorrimento allargano la griglia oltre lo schermo */
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+@container ciclo (min-width: 56rem) {
+	.corpo {
+		grid-template-columns: 13.5rem minmax(0, 1fr);
+		gap: 2rem;
+		align-items: start;
+	}
+	.temi {
+		position: sticky;
+		top: 1rem;
+	}
+}
+
+.temi__titolo,
+.conto {
+	font-family: var(--font-numeri);
+	font-size: 0.75rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--sul-verde-2);
+}
+.temi__titolo {
+	margin-bottom: 0.6rem;
+}
+.temi__lista {
+	display: flex;
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0 0 0.25rem;
+	list-style: none;
+	overflow-x: auto;
+	scroll-snap-type: x proximity;
+	scrollbar-width: thin;
+	scrollbar-color: rgb(207 220 198 / 0.35) transparent;
+}
+.temi__lista li {
+	flex: none;
+	scroll-snap-align: start;
+}
+@container ciclo (min-width: 56rem) {
+	.temi__lista {
+		flex-direction: column;
+		gap: 0.25rem;
+		overflow: visible;
+	}
+	.temi__lista li {
+		flex: initial;
+	}
+}
+.tema {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	width: 100%;
+	min-height: 2.75rem;
+	padding: 0.5rem 0.9rem;
+	border: 1px solid transparent;
+	border-radius: 0.75rem;
+	background: transparent;
+	color: var(--sul-verde);
+	font: inherit;
+	text-align: start; /* un <button> eredita il centro */
+	white-space: nowrap;
+	cursor: pointer;
+	transition: transform 120ms var(--ease-out), background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.tema:active {
+	transform: scale(0.97);
+}
+@media (hover: hover) and (pointer: fine) {
+	.tema:hover {
+		background: var(--abete-3);
+		color: var(--avorio);
+	}
+}
+.tema[aria-pressed='true'] {
+	background: var(--lime);
+	border-color: var(--lime);
+	color: var(--inchiostro);
+}
+.tema__n {
+	min-width: 1.5rem;
+	font-family: var(--font-numeri);
+	font-size: 0.8rem;
+	text-align: end;
+	color: var(--sul-verde-2);
+	transition: opacity 160ms ease;
+}
+.tema[aria-pressed='true'] .tema__n {
+	color: var(--inchiostro);
+}
+.tema__n[data-vuoto='true'] {
+	opacity: 0.55;
+}
+
+.conto {
+	margin-bottom: 0.9rem;
+}
+.parziale {
+	margin: -0.25rem 0 1rem;
+	padding: 0.7rem 1rem;
+	border-inline-start: 3px solid var(--lime);
+	background: var(--abete);
+	color: var(--sul-verde);
+	font-size: 0.925rem;
+}
+
+/* ───────── Il cartellino ───────── */
+.lista {
+	display: grid;
+	gap: 0.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.voce.entra {
+	animation: entra 180ms var(--ease-out) both;
+	animation-delay: calc(var(--i, 0) * 30ms);
+}
+@keyframes entra {
+	from {
+		opacity: 0;
+		transform: translateY(0.4rem);
+	}
+}
+
+.cart {
+	position: relative;
+	color: var(--inchiostro);
+	background: var(--avorio);
+	border-radius: 0.6rem;
+	interpolate-size: allow-keywords;
+	/* Le due tacche del tagliando, sopra e sotto la linea tratteggiata (due cerchi tolti dalla carta). */
+	mask:
+		radial-gradient(circle 0.55rem at var(--stub) 0, #0000 97%, #000) top / 100% 51% no-repeat,
+		radial-gradient(circle 0.55rem at var(--stub) 100%, #0000 97%, #000) bottom / 100% 51% no-repeat;
+}
+/* Il tagliando a sinistra: striscia a tutta altezza con la linea di strappo; diventa lime quando il cartellino è aperto. */
+.cart::before {
+	content: '';
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: var(--stub);
+	border-radius: 0.6rem 0 0 0.6rem;
+	background: var(--avorio-2);
+	border-right: 2px dashed rgb(20 40 29 / 0.35);
+	transition: background-color 220ms var(--ease-out);
+}
+.cart[open]::before {
+	background: var(--lime);
+}
+/* Lampo quando si arriva da un link diretto. */
+.voce.lampo .cart::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	background: var(--lime);
+	pointer-events: none;
+	animation: lampo 1.4s var(--ease-out) both;
+}
+@keyframes lampo {
+	from {
+		opacity: 0.85;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.cart__sum {
+	position: relative;
+	display: grid;
+	grid-template-columns: var(--stub) minmax(0, 1fr) 3rem;
+	align-items: start;
+	min-height: 4.5rem;
+	list-style: none;
+	cursor: pointer;
+	border-radius: 0.6rem;
+	-webkit-tap-highlight-color: transparent;
+}
+.cart__sum::-webkit-details-marker {
+	display: none;
+}
+/* L'anello del focus va DENTRO la carta: fuori verrebbe tagliato dalla maschera delle tacche. */
+.cart__sum:focus-visible {
+	outline: 3px solid var(--abete);
+	outline-offset: -5px;
+}
+.cart__stub {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.4rem;
+	padding-top: 0.7rem;
+}
+.cart__foro {
+	width: 0.95rem;
+	height: 0.95rem;
+	border-radius: 50%;
+	background: var(--abete);
+	box-shadow: inset 0 2px 3px rgb(0 0 0 / 0.55);
+}
+.cart__num {
+	font-family: var(--font-numeri);
+	font-size: 0.8rem;
+	letter-spacing: 0.04em;
+	color: var(--inchiostro);
+}
+.cart__corpo {
+	display: grid;
+	gap: 0.2rem;
+	padding: 0.95rem 0.5rem 0.95rem 1.1rem;
+}
+.cart__tema {
+	font-family: var(--font-numeri);
+	font-size: 0.7rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--inchiostro-2);
+}
+.cart__titolo {
+	font-family: var(--font-titoli);
+	font-weight: 500;
+	font-size: clamp(1.1rem, 2.6cqw, 1.3rem);
+	line-height: 1.25;
+}
+.cart__estratto {
+	margin-top: 0.15rem;
+	color: var(--inchiostro-2);
+	font-size: 0.9rem;
+	line-height: 1.45;
+}
+.cart[open] .cart__estratto {
+	display: none;
+}
+
+/* Telefono: il tagliando si stringe per lasciare spazio al testo. */
+@container ciclo (max-width: 36rem) {
+	.cart {
+		--stub: 3.25rem;
+	}
+	.ciclo .cart__corpo {
+		padding-inline-start: 0.9rem;
+	}
+	.ciclo .cart__sum {
+		grid-template-columns: var(--stub) minmax(0, 1fr) 2.5rem;
+	}
+	.ciclo .cart__risposta {
+		padding-inline: calc(var(--stub) + 0.9rem) 1rem;
+	}
+}
+
+/* Il segno + che diventa −: due righe, la verticale sparisce. */
+.cart__segno {
+	position: relative;
+	align-self: start;
+	justify-self: center;
+	width: 1.1rem;
+	height: 1.1rem;
+	margin-top: 1.25rem;
+}
+.cart__segno::before,
+.cart__segno::after {
+	content: '';
+	position: absolute;
+	inset: 50% auto auto 50%;
+	width: 100%;
+	height: 2px;
+	border-radius: 1px;
+	background: currentColor;
+	translate: -50% -50%;
+	transition: rotate 220ms var(--ease-out), opacity 220ms ease;
+}
+.cart__segno::after {
+	rotate: 90deg;
+}
+.cart[open] .cart__segno::after {
+	rotate: 0deg;
+	opacity: 0;
+}
+
+/* Apertura: l'altezza passa da 0 ad auto (interpolate-size). Dove non c'è, si apre di colpo. */
+.cart::details-content {
+	block-size: 0;
+	overflow: clip;
+	transition: block-size 220ms var(--ease-out), content-visibility 220ms allow-discrete;
+}
+.cart[open]::details-content {
+	block-size: auto;
+}
+
+.cart__risposta {
+	position: relative;
+	display: grid;
+	gap: 0.8rem;
+	padding: 0.1rem 1.25rem 1.25rem calc(var(--stub) + 1.1rem);
+	max-width: 46rem;
+	line-height: 1.65;
+}
+.cart__risposta p {
+	max-width: 60ch;
+}
+
+/* Listino: voce … prezzo, con i puntini di guida. */
+.listino {
+	display: grid;
+	gap: 0.15rem;
+	max-width: 30rem;
+	margin: 0.2rem 0 0;
+}
+.listino div {
+	display: flex;
+	align-items: baseline;
+	gap: 0.5rem;
+}
+.listino dt {
+	order: 0;
+	flex: none;
+	max-width: 70%;
+}
+.listino div::before {
+	content: '';
+	order: 1;
+	flex: 1;
+	min-width: 1rem;
+	border-bottom: 2px dotted rgb(20 40 29 / 0.35);
+	translate: 0 -0.2em;
+}
+.listino dd {
+	order: 2;
+	margin: 0;
+	font-family: var(--font-numeri);
+	font-size: 0.9rem;
+	text-align: end;
+}
+
+.cart__azioni {
+	display: flex;
+	margin-top: 0.2rem;
+}
+.copia {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	min-height: 2.5rem;
+	padding: 0.3rem 0.8rem;
+	border: 1px solid rgb(20 40 29 / 0.4);
+	border-radius: 999px;
+	background: transparent;
+	color: var(--inchiostro);
+	font: inherit;
+	font-size: 0.875rem;
+	cursor: pointer;
+	transition: transform 120ms var(--ease-out), background-color 160ms ease, border-color 160ms ease;
+}
+.copia:active {
+	transform: scale(0.97);
+}
+.copia:focus-visible {
+	outline: 3px solid var(--abete);
+	outline-offset: 2px;
+}
+@media (hover: hover) and (pointer: fine) {
+	.copia:hover {
+		border-color: var(--inchiostro);
+		background: var(--avorio-2);
+	}
+}
+.copia--fatto {
+	background: var(--lime);
+	border-color: var(--lime);
+}
+
+/* Il testo trovato (CSS Custom Highlight API: nessun elemento in più nell'HTML). */
+::highlight(trovato) {
+	background-color: var(--lime);
+	color: var(--inchiostro);
+}
+
+/* ───────── Nessun risultato, contatto, note ───────── */
+.vuoto {
+	padding: 1.5rem;
+	border-radius: 0.75rem;
+	background: var(--avorio);
+	color: var(--inchiostro);
+}
+.vuoto__titolo {
+	font-family: var(--font-titoli);
+	font-weight: 500;
+	font-size: 1.35rem;
+	line-height: 1.25;
+}
+.vuoto__testo {
+	margin-top: 0.4rem;
+	color: var(--inchiostro-2);
+}
+.vuoto__azioni {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-top: 1rem;
+}
+
+.contatto {
+	margin-top: 1.5rem;
+	padding: 1.1rem 1.25rem;
+	border: 1px dashed rgb(207 220 198 / 0.4);
+	border-radius: 0.75rem;
+	font-size: 0.95rem;
+}
+.contatto__titolo {
+	margin-bottom: 0.3rem;
+	font-family: var(--font-titoli);
+	font-weight: 500;
+	font-size: 1.15rem;
+	color: var(--avorio);
+}
+.contatto__mail {
+	font-family: var(--font-numeri);
+	font-size: 0.9em;
+	color: var(--lime);
+}
+
+.nota,
+.noscript {
+	margin-top: 2rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid rgb(207 220 198 / 0.2);
+	color: var(--sul-verde-2);
+	font-size: 0.85rem;
+	line-height: 1.65;
+}
+.nota p + p {
+	margin-top: 0.6rem;
+}
+.nota a {
+	color: var(--sul-verde);
+	text-underline-offset: 0.2em;
+}
+.nota code {
+	padding: 0.05rem 0.35rem;
+	border-radius: 4px;
+	background: var(--abete);
+	font-family: var(--font-numeri);
+	font-size: 0.9em;
+}
+
+/* Movimento ridotto: base.css accorcia già transizioni e animazioni; qui si tolgono anche scorrimenti e lampi. */
+@media (prefers-reduced-motion: reduce) {
+	.cart::details-content {
+		transition: none;
+	}
+	.voce.lampo .cart::after {
+		animation-duration: 0.6s !important;
+	}
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>FAQ con ricerca — Loop Studio Lab</title>
+		<link rel="icon" href="data:," />
+		<link rel="preload" as="font" type="font/woff2" href="../components/_shared/fonts/jura-latin-500-normal.woff2" crossorigin />
+		<link rel="preload" as="font" type="font/woff2" href="../components/_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" crossorigin />
+		<link rel="preload" as="image" href="img/officina-sfocata.webp" />
+		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<main class="ciclo" id="ciclo">
+			<!-- Il banco: nome (di fantasia) della ciclofficina, titolo e campo di ricerca. -->
+			<header class="hero">
+				<img
+					class="hero__logo"
+					src="img/pedivella-logo.webp"
+					width="616"
+					height="542"
+					alt="Pedivella, ciclofficina regionale"
+				/>
+				<div class="hero__testi">
+					<h1>Cosa vuoi sapere?</h1>
+					<p class="hero__lead">Scrivi una parola, anche sbagliata: <em>gomma</em>, <em>freni</em>, <em>batteria</em>. Oppure scegli un tema.</p>
+
+					<form class="cerca" role="search" id="cerca-form">
+						<label class="sr-only" for="cerca">Cerca nelle domande</label>
+						<svg class="cerca__lente" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+							<circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2" />
+							<path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+						</svg>
+						<input
+							class="cerca__campo"
+							id="cerca"
+							type="search"
+							placeholder="Cerca nelle domande"
+							autocomplete="off"
+							autocapitalize="off"
+							spellcheck="false"
+							enterkeyhint="search"
+							aria-describedby="cerca-aiuto"
+						/>
+						<kbd class="cerca__tasto" aria-hidden="true" id="cerca-tasto">/</kbd>
+						<button class="cerca__pulisci" type="button" id="cerca-pulisci" hidden aria-label="Cancella la ricerca">
+							<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+								<path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+							</svg>
+						</button>
+					</form>
+					<p class="sr-only" id="cerca-aiuto">Premi la barra obliqua per cercare da qualunque punto, Esc per cancellare, la freccia in giù per passare alle domande.</p>
+
+					<p class="hero__suggerite" id="suggerite">
+						<span class="hero__etichetta">Più cercate</span>
+					</p>
+				</div>
+			</header>
+
+			<div class="corpo">
+				<!-- Temi: elenco di pulsanti con il conteggio che segue la ricerca. -->
+				<nav class="temi" aria-label="Temi">
+					<p class="temi__titolo" aria-hidden="true">Temi</p>
+					<ul class="temi__lista" id="temi"></ul>
+				</nav>
+
+				<section class="risposte" aria-label="Risposte">
+					<p class="conto" id="conto" aria-hidden="true"></p>
+					<p class="sr-only" id="esito" role="status"></p>
+					<p class="parziale" id="parziale" hidden></p>
+
+					<ol class="lista" id="lista"></ol>
+
+					<div class="vuoto" id="vuoto" hidden>
+						<p class="vuoto__titolo" id="vuoto-titolo"></p>
+						<p class="vuoto__testo" id="vuoto-testo"></p>
+						<div class="vuoto__azioni" id="vuoto-azioni"></div>
+					</div>
+
+					<aside class="contatto" aria-labelledby="contatto-titolo">
+						<p class="contatto__titolo" id="contatto-titolo">Non trovi la tua domanda?</p>
+						<p>
+							Scrivici a <span class="contatto__mail">ciao@pedivella.example</span> o passa in officina, dal martedì al sabato, 9–12:30 e 15–19:30. Ti rispondiamo con la stessa
+							franchezza delle risposte qui sopra.
+						</p>
+					</aside>
+				</section>
+			</div>
+
+			<noscript>
+				<p class="noscript">Questa pagina costruisce l’elenco delle domande con JavaScript. In un sito vero l’HTML sarebbe già scritto, leggibile anche senza.</p>
+			</noscript>
+
+			<footer class="nota">
+				<p>
+					<strong>Pedivella è una ciclofficina di fantasia</strong>: nome, prezzi, orari e regole sono inventati per far provare la ricerca. Il logo è stato
+					generato con l’intelligenza artificiale (Gemini). Foto di sfondo di
+					<a href="https://unsplash.com/@cameraobscura2000" target="_blank" rel="noopener">camera obscura<span class="sr-only"> (si apre in una nuova scheda)</span></a>
+					su <a href="https://unsplash.com/photos/workshop-wall-with-tools-and-workbench-v-LAxH7JSzI" target="_blank" rel="noopener">Unsplash<span class="sr-only"> (si apre in una nuova scheda)</span></a>,
+					sfocata apposta perché nell’originale si leggono i marchi.
+				</p>
+				<p>
+					Provala: il testo trovato si evidenzia, ogni risposta ha un link diretto (<code>#r=…</code>) e anche la ricerca finisce nell’indirizzo.
+					Per Google la pagina descrive le domande come <code>FAQPage</code>; qui lo fa lo script, in un sito vero lo scrive la costruzione del sito.
+				</p>
+			</footer>
+		</main>
+
+		<script type="module" src="script.js"></script>
+		<script src="../components/_shared/studio.js"></script>
+	</body>
+</html>
