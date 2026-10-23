@@ -1,0 +1,237 @@
+/* Infinito 3D a scorrimento: palco "sticky" lungo 5 schermi; lo scroll è la manovella.
+   Fondo: tunnel fotografico che si ingrandisce e ruota piano con lo scroll (solo CSS). */
+
+body {
+	background: #04070a;
+}
+
+.corsa {
+	height: 520svh;
+	position: relative;
+}
+.palco {
+	position: sticky;
+	top: 0;
+	height: 100svh;
+	overflow: hidden;
+	isolation: isolate;
+}
+
+.fondo,
+.velo,
+#scena {
+	position: absolute;
+	inset: 0;
+}
+.fondo {
+	z-index: 0;
+	overflow: hidden;
+}
+.fondo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transform-origin: 50% 50%;
+}
+.velo {
+	z-index: 1;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse at center, transparent 30%, rgb(2 4 8 / 0.55)),
+		linear-gradient(180deg, rgb(2 4 8 / 0.55), transparent 28%, transparent 55%, rgb(2 4 8 / 0.8));
+}
+#scena {
+	z-index: 2;
+	pointer-events: none;
+}
+
+/* Il tunnel "viaggia" con lo scroll. Dove la scroll timeline non c'è resta fermo; con
+   «riduci movimento» pure. */
+@supports (animation-timeline: scroll()) {
+	@media (prefers-reduced-motion: no-preference) {
+		.fondo img {
+			animation: viaggio linear both;
+			animation-timeline: scroll(root block);
+		}
+		.avanzamento span {
+			animation: riempi linear both;
+			animation-timeline: scroll(root block);
+		}
+	}
+}
+@keyframes viaggio {
+	from {
+		transform: scale(1) rotate(0deg);
+	}
+	to {
+		transform: scale(2.1) rotate(24deg);
+	}
+}
+@keyframes riempi {
+	from {
+		transform: scaleY(0);
+	}
+	to {
+		transform: scaleY(1);
+	}
+}
+
+/* La firma sta in alto a sinistra sopra il palco; il piede "Realizzato da" è sotto la corsa. */
+body > nav[aria-label='Loop Studio'] {
+	position: fixed;
+	z-index: 5;
+	top: 0;
+	left: 0;
+}
+.studio-mark {
+	position: relative;
+	z-index: 5;
+	background: #04070a;
+	margin: 0;
+}
+
+.testa {
+	position: absolute;
+	z-index: 3;
+	top: clamp(1rem, 5svh, 2.5rem);
+	left: 0;
+	right: 0;
+	text-align: center;
+	padding-inline: 1.25rem;
+	pointer-events: none;
+}
+.kicker {
+	margin-bottom: 0.4rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: #ffb4ae;
+	text-shadow: 0 1px 12px rgb(0 0 0 / 0.8);
+}
+h1 {
+	font-size: clamp(1.5rem, 3.6vw, 2.5rem);
+	font-weight: 800;
+	letter-spacing: -0.015em;
+	text-shadow: 0 2px 24px rgb(0 0 0 / 0.7);
+}
+
+.didascalie {
+	position: absolute;
+	z-index: 3;
+	left: clamp(1.25rem, 6vw, 5rem);
+	bottom: clamp(1.5rem, 9svh, 5rem);
+	width: min(26rem, calc(100% - 2.5rem));
+	pointer-events: none;
+}
+.didascalia {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	opacity: 0;
+	translate: 0 0.75rem;
+	transition: opacity 0.35s var(--ease-out), translate 0.35s var(--ease-out);
+}
+.didascalia.is-on {
+	opacity: 1;
+	translate: 0 0;
+}
+.passo {
+	margin-bottom: 0.5rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	color: #ff8f87;
+}
+h2 {
+	margin-bottom: 0.6rem;
+	font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+	font-weight: 800;
+	line-height: 1.05;
+	letter-spacing: -0.015em;
+	text-shadow: 0 2px 24px rgb(0 0 0 / 0.8);
+}
+.didascalia p:last-child {
+	color: rgb(255 255 255 / 0.9);
+	line-height: 1.6;
+	text-shadow: 0 1px 14px rgb(0 0 0 / 0.85);
+}
+
+.avanzamento {
+	position: absolute;
+	z-index: 3;
+	right: clamp(1rem, 3vw, 2rem);
+	top: 25%;
+	bottom: 25%;
+	width: 2px;
+	background: rgb(255 255 255 / 0.18);
+	border-radius: 1px;
+}
+.avanzamento span {
+	position: absolute;
+	inset: 0;
+	background: var(--accent);
+	transform-origin: top;
+	transform: scaleY(0);
+}
+.suggerimento {
+	position: absolute;
+	z-index: 3;
+	left: 50%;
+	bottom: clamp(0.75rem, 3svh, 1.5rem);
+	translate: -50% 0;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: rgb(255 255 255 / 0.75);
+	animation: suggerisci 2.4s var(--ease-in-out) infinite;
+}
+.suggerimento.is-off {
+	animation: none;
+	opacity: 0;
+	transition: opacity 0.3s var(--ease-out);
+}
+@keyframes suggerisci {
+	0%,
+	100% {
+		opacity: 0.4;
+		translate: -50% 0;
+	}
+	50% {
+		opacity: 1;
+		translate: -50% 0.35rem;
+	}
+}
+.credito {
+	position: absolute;
+	z-index: 3;
+	right: 1rem;
+	bottom: 0.6rem;
+	font-size: 0.6875rem;
+	color: rgb(255 255 255 / 0.6);
+	text-shadow: 0 1px 6px rgb(0 0 0 / 0.8);
+}
+
+@media (max-width: 700px) {
+	.testa {
+		top: 4.6rem;
+	}
+	.didascalie {
+		left: 1.25rem;
+		right: 1.25rem;
+		width: auto;
+		bottom: 11svh;
+	}
+	.credito,
+	.avanzamento {
+		display: none;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.suggerimento {
+		animation: none;
+	}
+}

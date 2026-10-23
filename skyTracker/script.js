@@ -1,6 +1,6 @@
 const WEATHER_PROXY_URL =
   "https://skytracker-weather-proxy.domenicociardullo85.workers.dev/weather";
-const DEFAULT_CITY = "Milano";
+const DEFAULT_CITY = "Milan,Italy";
 
 const inputSearch = document.querySelector(".input-search");
 const btnSearch = document.querySelector(".btn-search");

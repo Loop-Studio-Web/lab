@@ -1,0 +1,149 @@
+/* Farfalla 3D interattiva: una sola scena a tutto schermo. Foto fissa di fondo (bokeh di cosmos),
+   canvas WebGL sopra, testi e scelta dei colori in primo piano. */
+
+body {
+	background: #0b1a10;
+	overflow: hidden;
+}
+
+.fondo,
+.velo,
+#scena {
+	position: fixed;
+	inset: 0;
+}
+.fondo {
+	z-index: 0;
+	overflow: hidden;
+}
+.fondo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 55% 50%;
+	display: block;
+}
+/* Velo: scurisce sopra (titolo) e sotto (scelta colori) e lascia vivo il centro, dove vola la farfalla. */
+.velo {
+	z-index: 1;
+	pointer-events: none;
+	background:
+		linear-gradient(180deg, rgb(4 14 8 / 0.7), rgb(4 14 8 / 0.15) 38%, rgb(4 14 8 / 0.15) 62%, rgb(4 14 8 / 0.75)),
+		radial-gradient(ellipse at center, transparent 40%, rgb(4 14 8 / 0.45));
+}
+#scena {
+	z-index: 2;
+	/* Il canvas riceve il tocco sulla farfalla; il puntatore si legge su tutta la pagina. */
+	pointer-events: none;
+}
+
+body > nav[aria-label='Loop Studio'],
+.studio-mark {
+	position: relative;
+	z-index: 4;
+}
+body > .studio-mark {
+	display: none; /* a tutto schermo senza scroll: resta il logo in alto a sinistra */
+}
+
+.palco {
+	position: fixed;
+	inset: 0;
+	z-index: 3;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding: clamp(3.5rem, 9svh, 5.5rem) 1.25rem clamp(1rem, 4svh, 2rem);
+	pointer-events: none;
+}
+.palco > * {
+	pointer-events: auto;
+}
+.testa {
+	text-align: center;
+	max-width: 40rem;
+	pointer-events: none;
+}
+.kicker {
+	margin-bottom: 0.75rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: #ffd1cd;
+	text-shadow: 0 1px 12px rgb(0 0 0 / 0.7);
+}
+h1 {
+	font-size: clamp(2rem, 5.4vw, 3.8rem);
+	font-weight: 800;
+	line-height: 1.02;
+	letter-spacing: -0.02em;
+	text-shadow: 0 2px 28px rgb(0 0 0 / 0.65);
+}
+.lead {
+	margin-top: 1rem;
+	color: rgb(255 255 255 / 0.92);
+	text-shadow: 0 1px 14px rgb(0 0 0 / 0.75);
+}
+
+.colori {
+	display: flex;
+	gap: 0.75rem;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.colore {
+	display: grid;
+	justify-items: center;
+	gap: 0.4rem;
+	padding: 0.5rem 0.75rem;
+	background: rgb(10 20 12 / 0.55);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgb(255 255 255 / 0.18);
+	border-radius: 1rem;
+	color: #fff;
+	font: inherit;
+	font-size: 0.8125rem;
+	cursor: pointer;
+	transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), scale 0.15s var(--ease-out);
+}
+.colore:active {
+	scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+	.colore:hover {
+		background: rgb(10 20 12 / 0.8);
+		border-color: rgb(255 255 255 / 0.4);
+	}
+}
+.colore[aria-pressed='true'] {
+	border-color: #fff;
+	background: rgb(10 20 12 / 0.85);
+}
+.colore__campione {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	background: linear-gradient(135deg, var(--a), var(--b));
+	box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.35);
+}
+
+.credito {
+	position: fixed;
+	right: 1rem;
+	bottom: 0.6rem;
+	font-size: 0.6875rem;
+	color: rgb(255 255 255 / 0.65);
+	pointer-events: none;
+	text-shadow: 0 1px 6px rgb(0 0 0 / 0.8);
+}
+
+@media (max-width: 700px) {
+	.credito {
+		display: none;
+	}
+	.colore__nome {
+		font-size: 0.75rem;
+	}
+}

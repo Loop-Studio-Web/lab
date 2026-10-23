@@ -46,47 +46,6 @@ a {
   padding-bottom: clamp(2rem, 6vw, 4rem);
 }
 
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1.25rem clamp(1rem, 4vw, 2.5rem);
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 999px;
-  padding: 0.4rem 0.9rem;
-}
-
-.brand__logo {
-  height: 28px;
-  width: auto;
-  display: block;
-}
-
-.site-nav {
-  display: flex;
-  gap: clamp(1rem, 3vw, 2rem);
-}
-
-.site-nav a {
-  color: var(--color-white);
-  font-weight: 500;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
-  transition: color 0.2s ease;
-}
-
-.site-nav a:hover {
-  color: var(--color-red);
-}
-
 .hero {
   text-align: center;
   padding: clamp(2rem, 8vw, 4.5rem) 1rem 0;
@@ -141,13 +100,20 @@ a {
   border-radius: 50%;
   background: var(--color-red);
   color: var(--color-white);
-  font-size: 1rem;
+  display: grid;
+  place-items: center;
   cursor: pointer;
-  transition: filter 0.2s ease;
+  transition: filter 0.2s ease, scale 0.15s ease;
 }
 
-.btn-search:hover {
-  filter: brightness(1.1);
+.btn-search:active {
+  scale: 0.97;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-search:hover {
+    filter: brightness(1.1);
+  }
 }
 
 /* ---------- Main / weather card ---------- */
@@ -328,7 +294,7 @@ main {
   display: none;
 }
 
-footer {
+.site-footer {
   margin-top: auto;
   padding: 2rem 1rem;
   display: flex;
@@ -340,20 +306,13 @@ footer {
   font-size: 0.8rem;
 }
 
-footer a:hover {
+.site-footer a:hover {
   color: var(--color-red);
 }
 
-footer p a {
+.site-footer p a {
   text-decoration: underline;
   text-underline-offset: 2px;
-}
-
-.attribution img {
-  height: 20px;
-  background: var(--color-white);
-  padding: 4px 8px;
-  border-radius: 6px;
 }
 
 /* ---------- Responsive ---------- */
@@ -370,9 +329,5 @@ footer p a {
 
   .weather-details {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .site-nav {
-    font-size: 0.85rem;
   }
 }

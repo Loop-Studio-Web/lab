@@ -115,9 +115,14 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
      piccolo sotto OGNI slide (scelta dell'autore, in deroga alla regola "solo la fonte"), animali e magic = free to use (confermato).
      Trappola: `@container` non può stilare il contenitore stesso → le variabili che cambiano col riquadro stanno sui figli o si usa `@media`.
      Da fare: aggiungere la scheda al sito madre; axe + PSI dopo il deploy.
-   - **Esperimenti rimasti** (calendario, booking, reviews, skytracker, 3D scroll): font self-hosted, via FontAwesome/Skypack/cdnfonts, three e gsap
-     in locale, `bg.png` 18 MB e modello 3D in versione leggera, firma `studio.js`, testi e `lang` in italiano, screenshot 16:9 rigenerati.
-     Sorgenti React di booking e reviews: repo private `Loop-Studio-Web/lab-booking-widget` e `lab-google-reviews-widget`.
+   - **Esperimenti rimasti — FATTI in locale il 23/10 (non committati)**: skyTracker, booking-widget, google-reviews-widget puliti (font dal pool via
+     `base.css`, firma `studio.js`, niente CDN/FontAwesome/logo bitmap/menu); calendario già a posto. Sorgenti React clonati in `Websites\lab-booking-widget`
+     e `Websites\lab-google-reviews-widget` (build con `npm run build`, poi copiare `dist/*` nella cartella del Lab). Resta da rigenerare gli screenshot 16:9.
+   - **3D — l'ape è stata sostituita** (modello CC-BY e font cdnfonts): tre pagine procedurali `3d-medusa/` (scroll tra sezioni), `3d-farfalla/` (segue il
+     puntatore, colori delle ali), `3d-infinito/` (palco sticky, lo scroll è la manovella), ciascuna con foto Unsplash di fondo (crediti in pagina e in
+     `CREDITS.md`). Codice condiviso in `components/_shared/three/` (`kit.js` + three r129 minificato, `RoomEnvironment`); gli import usano un import map
+     per `three`. Gli anelli dell'infinito vengono da contorni tracciati (`3d-infinito/marchio.js`), non dai path SVG, che si auto-intersecano.
+     `three-js-animation/` è solo un rimando a `3d-medusa/`. In GLSL mai `smoothstep(a,b,x)` con a>b: usare `1.0 - smoothstep(b,a,x)`.
    - **Sito madre**: nuovo `src/data/lab-experiments.ts` (via `'demo'` da `portfolio-projects.ts`), filtro per categoria anche sugli Esperimenti
      (pezzo condiviso con i Componenti), titolo e introduzione visibili alla sezione.
    - **Nuovi Esperimenti** (prima ondata): Preventivatore (React, repo propria; prima solo Esperimento, poi si valuta il sito madre), Report social

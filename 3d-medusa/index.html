@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Medusa 3D a scorrimento — Loop Studio Lab</title>
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script type="importmap">
+			{ "imports": { "three": "../components/_shared/three/three.module.min.js" } }
+		</script>
+		<script type="module" src="script.js"></script>
+	</head>
+
+	<body>
+		<div class="fondo" aria-hidden="true">
+			<picture>
+				<source media="(max-width: 700px)" srcset="img/fondo-verticale.webp" />
+				<img src="img/fondo.webp" alt="" width="2000" height="1333" fetchpriority="high" />
+			</picture>
+		</div>
+		<div class="velo" aria-hidden="true"></div>
+		<div id="scena" aria-hidden="true"></div>
+
+		<main>
+			<section class="sezione sezione--banner" id="banner">
+				<div class="contenuto">
+					<p class="kicker">Esperimento 3D · Loop Studio Lab</p>
+					<h1>Scorri.<br />Scendi con la medusa.</h1>
+					<p class="lead">
+						Un modello 3D che nuota da una sezione all’altra seguendo lo scroll. Nessun file 3D: è costruita
+						interamente in codice.
+					</p>
+				</div>
+			</section>
+
+			<section class="sezione sezione--sx" id="intro">
+				<div class="contenuto">
+					<p class="numero" aria-hidden="true">01</p>
+					<h2>Un modello, quattro posizioni</h2>
+					<p>
+						Mentre scorri, la medusa raggiunge la posizione della sezione in cui ti trovi: si sposta, si inclina e
+						cambia dimensione con un movimento morbido che si adatta se cambi direzione a metà strada. Pulsa da
+						sola, come farebbe davvero.
+					</p>
+				</div>
+			</section>
+
+			<section class="sezione sezione--dx" id="leggera">
+				<div class="contenuto">
+					<p class="numero" aria-hidden="true">02</p>
+					<h2>Leggera per scelta</h2>
+					<p>
+						Forma, tentacoli e movimento sono generati dal codice: non c’è nessun modello 3D da scaricare.
+						Si ferma da sola quando la scheda è nascosta e, con «riduci movimento» attivo, pulsa appena e
+						si sposta senza voli.
+					</p>
+				</div>
+			</section>
+
+			<section class="sezione sezione--contatti" id="contatti">
+				<div class="contenuto">
+					<p class="numero" aria-hidden="true">03</p>
+					<h2>Per il tuo sito</h2>
+					<p class="lead">Un elemento 3D che racconta la pagina può diventare il cuore di una home. Parliamone.</p>
+					<dl class="contatti">
+						<div><dt>Email</dt><dd>info@theloopstudio.org</dd></div>
+						<div><dt>Sito</dt><dd>theloopstudio.org</dd></div>
+						<div><dt>Instagram</dt><dd>@loopstudioweb</dd></div>
+					</dl>
+					<p class="credito">Foto di sfondo: Alex Rose su Unsplash.</p>
+				</div>
+			</section>
+		</main>
+
+		<script src="../components/_shared/studio.js"></script>
+	</body>
+</html>

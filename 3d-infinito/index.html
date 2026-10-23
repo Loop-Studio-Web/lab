@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Infinito 3D a scorrimento — Loop Studio Lab</title>
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script type="importmap">
+			{ "imports": { "three": "../components/_shared/three/three.module.min.js" } }
+		</script>
+		<script type="module" src="script.js"></script>
+	</head>
+
+	<body>
+		<div class="corsa">
+			<div class="palco">
+				<div class="fondo" aria-hidden="true">
+					<picture>
+						<source media="(max-width: 700px)" srcset="img/fondo-verticale.webp" />
+						<img src="img/fondo.webp" alt="" width="2000" height="1125" fetchpriority="high" />
+					</picture>
+				</div>
+				<div class="velo" aria-hidden="true"></div>
+				<div id="scena" aria-hidden="true"></div>
+
+				<header class="testa">
+					<p class="kicker">Esperimento 3D · Loop Studio Lab</p>
+					<h1>L’infinito, in tre dimensioni</h1>
+				</header>
+
+				<div class="didascalie">
+					<article class="didascalia is-on" data-i="0">
+						<p class="passo" aria-hidden="true">01 / 04</p>
+						<h2>Due anelli, un solo simbolo.</h2>
+						<p>Il nostro marchio costruito pezzo per pezzo: ogni anello è una forma vettoriale estrusa in 3D.</p>
+					</article>
+					<article class="didascalia" data-i="1">
+						<p class="passo" aria-hidden="true">02 / 04</p>
+						<h2>Ha uno spessore vero.</h2>
+						<p>Luce, riflessi e bordi smussati: ruota su sé stesso come un oggetto reale, non come un’immagine.</p>
+					</article>
+					<article class="didascalia" data-i="2">
+						<p class="passo" aria-hidden="true">03 / 04</p>
+						<h2>Si apre in due strati.</h2>
+						<p>Lo scroll fa da manovella: gli anelli si separano nello spazio e si vede come si incastrano.</p>
+					</article>
+					<article class="didascalia" data-i="3">
+						<p class="passo" aria-hidden="true">04 / 04</p>
+						<h2>E si richiude in un loop.</h2>
+						<p>Nessun file 3D da scaricare: la forma nasce dal nostro SVG, tutto il resto è codice.</p>
+					</article>
+				</div>
+
+				<div class="avanzamento" aria-hidden="true"><span></span></div>
+				<p class="suggerimento" aria-hidden="true">Scorri</p>
+				<p class="credito">Foto di sfondo: MJH Shikder su Unsplash.</p>
+			</div>
+		</div>
+
+		<script src="../components/_shared/studio.js"></script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Farfalla 3D interattiva — Loop Studio Lab</title>
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script type="importmap">
+			{ "imports": { "three": "../components/_shared/three/three.module.min.js" } }
+		</script>
+		<script type="module" src="script.js"></script>
+	</head>
+
+	<body>
+		<div class="fondo" aria-hidden="true">
+			<picture>
+				<source media="(max-width: 700px)" srcset="img/fondo-verticale.webp" />
+				<img src="img/fondo.webp" alt="" width="2000" height="1333" fetchpriority="high" />
+			</picture>
+		</div>
+		<div class="velo" aria-hidden="true"></div>
+		<div id="scena" aria-hidden="true"></div>
+
+		<main class="palco">
+			<header class="testa">
+				<p class="kicker">Esperimento 3D · Loop Studio Lab</p>
+				<h1>Muovi il puntatore.<br />La farfalla ti segue.</h1>
+				<p class="lead">Ali, corpo e volo sono generati dal codice. Tocca la farfalla o scegli i colori delle ali.</p>
+			</header>
+
+			<div class="colori" role="group" aria-label="Colori delle ali">
+				<button type="button" class="colore" data-colore="0" aria-pressed="true">
+					<span class="colore__campione" style="--a: #ff3b30; --b: #8f0f09"></span>
+					<span class="colore__nome">Rosso</span>
+				</button>
+				<button type="button" class="colore" data-colore="1" aria-pressed="false">
+					<span class="colore__campione" style="--a: #eaf6ff; --b: #4b9dff"></span>
+					<span class="colore__nome">Ghiaccio</span>
+				</button>
+				<button type="button" class="colore" data-colore="2" aria-pressed="false">
+					<span class="colore__campione" style="--a: #ffb02e; --b: #e85d00"></span>
+					<span class="colore__nome">Ambra</span>
+				</button>
+				<button type="button" class="colore" data-colore="3" aria-pressed="false">
+					<span class="colore__campione" style="--a: #8a5cff; --b: #22d3ee"></span>
+					<span class="colore__nome">Notte</span>
+				</button>
+			</div>
+			<p class="credito">Foto di sfondo: Roma Kaiuk su Unsplash.</p>
+		</main>
+
+		<script src="../components/_shared/studio.js"></script>
+	</body>
+</html>
