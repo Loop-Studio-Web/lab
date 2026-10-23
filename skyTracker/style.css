@@ -175,7 +175,6 @@ main {
 .weather-info__description {
   margin: 0;
   font-weight: 600;
-  text-transform: capitalize;
 }
 
 .weather-main__temp {
