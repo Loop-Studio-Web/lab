@@ -11,9 +11,9 @@
 
 # Loop Studio Lab
 
-**Front-end experiments and UI components,<br>kept small, self-contained and a little bit playful.**
+**Front-end demos and UI components,<br>kept small, self-contained and a little bit playful.**
 
-[![Live](https://img.shields.io/badge/lab-live-fe3b30?style=flat-square&labelColor=0b0b0c)](https://loop-studio-web.github.io/lab/) [![Components](https://img.shields.io/badge/components-29-fe3b30?style=flat-square&labelColor=0b0b0c)](#components) [![Experiments](https://img.shields.io/badge/experiments-5-fe3b30?style=flat-square&labelColor=0b0b0c)](#experiments) [![axe-core](https://img.shields.io/badge/axe--core-0%20violations-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built) [![PageSpeed](https://img.shields.io/badge/PageSpeed%20mobile-98%E2%80%93100-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built)
+[![Live](https://img.shields.io/badge/lab-live-fe3b30?style=flat-square&labelColor=0b0b0c)](https://loop-studio-web.github.io/lab/) [![Components](https://img.shields.io/badge/components-29-fe3b30?style=flat-square&labelColor=0b0b0c)](#components) [![Demos](https://img.shields.io/badge/demos-7-fe3b30?style=flat-square&labelColor=0b0b0c)](#demos) [![axe-core](https://img.shields.io/badge/axe--core-0%20violations-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built) [![PageSpeed](https://img.shields.io/badge/PageSpeed%20mobile-98%E2%80%93100-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built)
 
 [**Open the Lab →**](https://loop-studio-web.github.io/lab/)
 
@@ -32,7 +32,7 @@ The Lab is plain static files served as-is by GitHub Pages, so there is **no bui
 > [!NOTE]
 > The demo pages are written in Italian, because that is the language of the sites they are made for. Photos, films and brand names that appear in some of them are there for demonstration only (see [Notes](#notes)).
 
-**Jump to:** [Components](#components) · [Experiments](#experiments) · [How every piece is built](#how-every-piece-is-built) · [The shared foundation](#the-shared-foundation) · [Using it](#using-it) · [Notes](#notes)
+**Jump to:** [Components](#components) · [Demos](#demos) · [How every piece is built](#how-every-piece-is-built) · [The shared foundation](#the-shared-foundation) · [Using it](#using-it) · [Notes](#notes)
 
 <br>
 
@@ -214,19 +214,24 @@ Twenty-nine demo pages in [`components/`](components), one folder each. Most gat
 
 <br>
 
-## Experiments
+## Demos
 
-The earlier, free-form work: full pages and small apps, each in its own folder, each opening on its own. Some are studies of a single effect, others are widgets the studio built for its own use.
+Full pages and small apps, each in its own folder, each opening on its own: scroll-driven 3D scenes, widgets the studio built for clients, an app that talks to an external API. The studio site presents them in the Demo section of [/lab](https://theloopstudio.org/lab/), with a short technical note for each.
 
 <table>
   <tr>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/calendario/"><img src="docs/img/experiments/calendario.webp" alt="A blue calendar over an animated WebGL background"></a><br><b><a href="https://loop-studio-web.github.io/lab/calendario/">Calendario</a></b> &nbsp;<sub><code>Astro · WebGL</code></sub><br><sub>A memo calendar with a hand-written WebGL background. Events stay in your browser. Build only; sources live in a private repository.</sub></td>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/booking-widget/"><img src="docs/img/experiments/booking-widget.webp" alt="A booking widget with a service chooser on a dark page"></a><br><b><a href="https://loop-studio-web.github.io/lab/booking-widget/">Booking widget</a></b> &nbsp;<sub><code>React</code></sub><br><sub>An appointment booking flow in steps, starting from the choice of the service.</sub></td>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/google-reviews-widget/"><img src="docs/img/experiments/google-reviews-widget.webp" alt="A grid of review cards under a 4.8 rating"></a><br><b><a href="https://loop-studio-web.github.io/lab/google-reviews-widget/">Reviews widget</a></b> &nbsp;<sub><code>React</code></sub><br><sub>A reviews carousel with sample data and a rating summary.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/3d-medusa/"><img src="docs/img/demos/3d-medusa.webp" alt="A 3D jellyfish over an underwater photo, with a numbered section title"></a><br><b><a href="https://loop-studio-web.github.io/lab/3d-medusa/">Jellyfish 3D scroll</a></b> &nbsp;<sub><code>Three.js · GLSL</code></sub><br><sub>A jellyfish built entirely in code that swims from one section to the next as you scroll. No 3D file to download.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/3d-infinito/"><img src="docs/img/demos/3d-infinito.webp" alt="The studio mark as two extruded 3D rings, one red and one white, in a tunnel"></a><br><b><a href="https://loop-studio-web.github.io/lab/3d-infinito/">The infinity in 3D</a></b> &nbsp;<sub><code>Three.js · SVG</code></sub><br><sub>The studio mark built piece by piece: two extruded rings that open, interlock and close again. Scroll is the crank.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/3d-farfalla/"><img src="docs/img/demos/3d-farfalla.webp" alt="A red 3D butterfly flying over a field of flowers, with four colour choices below"></a><br><b><a href="https://loop-studio-web.github.io/lab/3d-farfalla/">Interactive butterfly</a></b> &nbsp;<sub><code>Three.js · GLSL</code></sub><br><sub>A butterfly that follows your pointer and flies on its own when you stop. Pick the colours of the wings.</sub></td>
   </tr>
   <tr>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/three-js-animation/"><img src="docs/img/experiments/three-js-animation.webp" alt="A giant 3D ANIMATION title over a white flower"></a><br><b><a href="https://loop-studio-web.github.io/lab/three-js-animation/">3D scroll</a></b> &nbsp;<sub><code>Three.js</code></sub><br><sub>A 3D scene driven by scroll: a flower model that moves as you go down the page.</sub></td>
-    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/skyTracker/"><img src="docs/img/experiments/skyTracker.webp" alt="A weather app search box over a stormy landscape"></a><br><b><a href="https://loop-studio-web.github.io/lab/skyTracker/">SkyTracker</a></b> &nbsp;<sub><code>JS · Cloudflare Worker</code></sub><br><sub>A weather app: city search and a three-day forecast, through a small proxy.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/booking-widget/"><img src="docs/img/demos/booking-widget.webp" alt="A booking widget with a service chooser on a dark page"></a><br><b><a href="https://loop-studio-web.github.io/lab/booking-widget/">Booking widget</a></b> &nbsp;<sub><code>React</code></sub><br><sub>An appointment booking flow in steps, starting from the choice of the service.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/google-reviews-widget/"><img src="docs/img/demos/google-reviews-widget.webp" alt="A grid of review cards under a 4.8 rating"></a><br><b><a href="https://loop-studio-web.github.io/lab/google-reviews-widget/">Reviews widget</a></b> &nbsp;<sub><code>React</code></sub><br><sub>A reviews carousel with sample data and a rating summary.</sub></td>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/skyTracker/"><img src="docs/img/demos/skyTracker.webp" alt="A weather app search box over a stormy landscape"></a><br><b><a href="https://loop-studio-web.github.io/lab/skyTracker/">SkyTracker</a></b> &nbsp;<sub><code>JS · Cloudflare Worker</code></sub><br><sub>A weather app: city search and a three-day forecast, through a small proxy.</sub></td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top"><a href="https://loop-studio-web.github.io/lab/calendario/"><img src="docs/img/demos/calendario.webp" alt="A blue calendar over an animated WebGL background"></a><br><b><a href="https://loop-studio-web.github.io/lab/calendario/">Calendario</a></b> &nbsp;<sub><code>Astro · WebGL</code></sub><br><sub>A memo calendar with a hand-written WebGL background. Events stay in your browser. Build only; sources live in a private repository.</sub></td>
+    <td width="33%"></td>
     <td width="33%"></td>
   </tr>
 </table>
@@ -282,7 +287,7 @@ npx serve .
 
 ## Notes
 
-- Some experiments show third-party photos, films or brand names **for demonstration only**. They keep their own licences and owners; see [LICENSE](LICENSE). Stock photos come from Unsplash and Pexels, under their licences.
+- Some pieces show third-party photos, films or brand names **for demonstration only**. They keep their own licences and owners; see [LICENSE](LICENSE). Stock photos come from Unsplash and Pexels, under their licences.
 - The code is published so you can read it and learn from it. It is **not open source**: reuse needs written permission, which you can ask for at [theloopstudio.org/contatti](https://theloopstudio.org/contatti/).
 - The finished, full-page work lives in a sibling repo: [**vetrine**](https://github.com/Loop-Studio-Web/vetrine).
 

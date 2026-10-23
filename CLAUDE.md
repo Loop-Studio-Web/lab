@@ -2,7 +2,7 @@
 
 Repo `Loop-Studio-Web/lab` (remoto `https://github.com/Loop-Studio-Web/lab`), pubblicata come **GitHub Pages**
 su `loop-studio-web.github.io/lab/`, nessun build. Contiene i **Componenti** (schede dimostrative, una cartella
-ciascuna in `components/<id>/`) e gli **Esperimenti**. Il sito madre (repo `Loop-Studio`) li presenta in
+ciascuna in `components/<id>/`) e le **Demo** (ex "Esperimenti", rinominate il 23/10/2026). Il sito madre (repo `Loop-Studio`) li presenta in
 `/lab/` con una miniatura e una modale "Prova dal vivo" che incornicia la pagina in un iframe.
 Regole generali, due PC, org GitHub, commit/push: nel CLAUDE.md di `Loop-Studio` (valgono anche qui).
 Spiegare cosa si fa e perché (l'autore è alle prime armi con Astro), critiche oneste.
@@ -106,27 +106,23 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
    schermo mobile e il punteggio sembrava 98. Già fatto: alone animato solo se in vista, un solo rumore per seme nell'elettrico. Stringere l'area dei
    filtri non serve (misurato). Rimedi veri = cambiare tecnica (es. gradiente ruotato con `transform`, alone con `box-shadow`): decisione dell'autore.
 2. Prova su telefono vero a discrezione dell'autore; filtri SVG e `feTurbulence` (sfondi, bordi) sono i candidati a rallentare su telefoni lenti.
-3. **Esperimenti: piano deciso il 23/10/2026, da eseguire a lotti** (si parte dal lotto 1, mostrando prima di passare al successivo):
-   - **Slider — FATTO in locale il 23/10 (non committato)**: i 6 sono UNA scheda `components/slider/` (Componente n. 29, "Galleria e media";
-     ancora da aggiungere a `lab-components.ts` del sito madre). Sezioni: fruit-soda, film, moda, animali, caffe, magia. CSS in scope con prefisso
-     (`fs-`, `rot-` per film+animali, `vs-`, `cf-`, `mg-`), misure in `cqw/cqh`, rotella non intercettata, WebP (1,8 MB contro 12,8). Le vecchie
-     cartelle sono rimandi di una riga a `components/slider/#id`. Tutto in italiano. Diritti risolti: locandine dei film generate da noi
-     (`Assets\Lab_Componenti\slider-film-prompt.md`), etichetta della lattina nostra, moda = 7 foto Unsplash con il fotografo citato in
-     piccolo sotto OGNI slide (scelta dell'autore, in deroga alla regola "solo la fonte"), animali e magic = free to use (confermato).
-     Trappola: `@container` non può stilare il contenitore stesso → le variabili che cambiano col riquadro stanno sui figli o si usa `@media`.
-     Da fare: aggiungere la scheda al sito madre; axe + PSI dopo il deploy.
-   - **Esperimenti rimasti — FATTI in locale il 23/10 (non committati)**: skyTracker, booking-widget, google-reviews-widget puliti (font dal pool via
-     `base.css`, firma `studio.js`, niente CDN/FontAwesome/logo bitmap/menu); calendario già a posto. Sorgenti React clonati in `Websites\lab-booking-widget`
-     e `Websites\lab-google-reviews-widget` (build con `npm run build`, poi copiare `dist/*` nella cartella del Lab). Resta da rigenerare gli screenshot 16:9.
-   - **3D — l'ape è stata sostituita** (modello CC-BY e font cdnfonts): tre pagine procedurali `3d-medusa/` (scroll tra sezioni), `3d-farfalla/` (segue il
-     puntatore, colori delle ali), `3d-infinito/` (palco sticky, lo scroll è la manovella), ciascuna con foto Unsplash di fondo (crediti in pagina e in
-     `CREDITS.md`). Codice condiviso in `components/_shared/three/` (`kit.js` + three r129 minificato, `RoomEnvironment`); gli import usano un import map
-     per `three`. Gli anelli dell'infinito vengono da contorni tracciati (`3d-infinito/marchio.js`), non dai path SVG, che si auto-intersecano.
-     `three-js-animation/` è solo un rimando a `3d-medusa/`. In GLSL mai `smoothstep(a,b,x)` con a>b: usare `1.0 - smoothstep(b,a,x)`.
-   - **Sito madre**: nuovo `src/data/lab-experiments.ts` (via `'demo'` da `portfolio-projects.ts`), filtro per categoria anche sugli Esperimenti
-     (pezzo condiviso con i Componenti), titolo e introduzione visibili alla sezione.
-   - **Nuovi Esperimenti** (prima ondata): Preventivatore (React, repo propria; prima solo Esperimento, poi si valuta il sito madre), Report social
+3. **Demo (ex Esperimenti): riorganizzazione del 23/10/2026**, lotto 1 FATTO in locale (non pushato). Sezione rinominata "Demo" (i Componenti
+   restano "Componenti"; "esperimenti" è ormai solo la pagina personale di Domenico). Stato:
+   - **Slider**: UNA scheda `components/slider/` (Componente n. 29); le 6 vecchie cartelle sono rimandi di una riga. Diritti risolti (locandine
+     film nostre, etichetta lattina nostra, moda = foto Unsplash con fotografo citato sotto OGNI slide, animali e magic free to use).
+     Trappola: `@container` non può stilare il contenitore stesso → variabili sui figli o `@media`.
+   - **Demo (7)**: `calendario`, `booking-widget`, `google-reviews-widget`, `skyTracker`, `3d-medusa`, `3d-infinito`, `3d-farfalla`. Widget e SkyTracker
+     ripuliti (font dal pool via `base.css`, firma `studio.js`, niente CDN/FontAwesome). Sorgenti React in repo private
+     `lab-booking-widget` / `lab-google-reviews-widget` (clonate in `Websites\`, build con `npm run build` e copia di `dist/*`).
+     Proxy meteo di SkyTracker ancora su un account personale Cloudflare (da spostare sull'org a fine lavori).
+   - **3D**: l'ape (modello CC-BY, 28 MB) è sostituita da tre pagine procedurali, ciascuna con foto Unsplash di fondo (crediti in pagina e in
+     `Assets\Lab_Componenti\CREDITS.md`). Codice condiviso in `components/_shared/three/` (`kit.js` + three r129 minificato, `RoomEnvironment`); gli
+     import usano un import map per `three`. Gli anelli dell'infinito vengono da contorni tracciati (`3d-infinito/marchio.js`), non dai path SVG,
+     che si auto-intersecano. `three-js-animation/` è solo un rimando a `3d-medusa/`. In GLSL mai `smoothstep(a,b,x)` con a>b: usare `1.0 - smoothstep(b,a,x)`.
+   - **Sito madre**: `src/data/lab-demos.ts` (le demo non stanno più in `portfolio-projects.ts`), filtro per categoria condiviso (`CategoryFilter.astro`),
+     titolo e introduzione alla sezione, screenshot 16:9 rigenerati. Categorie: Scroll e 3D, Widget per clienti, Dati e API, Strumenti.
+   - **Prossimi**: nuove Demo, prima ondata: Preventivatore (React, repo propria; prima solo Demo, poi si valuta il sito madre), Report social
      (dataviz SVG), griglia zoom trascinabile GSAP (zip `2026-07-14-draggable-zoom-grid-gallery-using-gsap`), storytelling a scorrimento in solo CSS.
-   - **Prestazioni** (skill Emil `animation-performance`, installata): `bordi-animati` ha `filter: blur(32px)` su `.electric__bloom`; 3 `transition: all`
-     da togliere (`campi-testo/style.css` righe 123 e 190, `movies-slider/style.css` riga 134).
-   Anche gli Esperimenti vanno firmati con il logo (`studio.js`).
+   - **Prestazioni** (skill Emil `animation-performance`, installata): `bordi-animati` ha `filter: blur(32px)` su `.electric__bloom`; 2 `transition: all`
+     da togliere (`campi-testo/style.css` righe 123 e 190; quello di movies-slider è sparito con la scheda Slider).
+   Anche le Demo vanno firmate con il logo (`studio.js`).
