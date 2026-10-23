@@ -1,0 +1,882 @@
+/* Report social. Un report mensile di un’attività di fantasia: numeri di testa, andamento, contenuti migliori,
+   formati e orari. Regola dei grafici: UN protagonista in rosso, tutto il resto grigio (il rosso non colora mai
+   il testo: sul nero regge come segno, non come lettera). Colori e font da base.css. */
+
+[hidden] {
+	display: none !important;
+}
+
+:root {
+	--barra: #6f6f6f; /* barre/linee di contesto: 3,4:1 sull’antracite */
+	--cella: #242424; /* cella vuota della mappa oraria */
+	--ink-2: rgb(255 255 255 / 0.84);
+}
+
+/* ───────── Struttura ───────── */
+.rep {
+	container: rep / inline-size;
+	max-width: 82rem;
+	margin: 0 auto;
+	padding: 0.25rem clamp(1rem, 3vw, 2rem) 2rem;
+}
+.kicker {
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.sotto {
+	margin-top: 0.2rem;
+	color: var(--muted);
+	font-size: 0.85rem;
+}
+
+/* ───────── Testata ───────── */
+.testata {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: 1.25rem 2rem;
+	margin: 0.75rem 0 1.5rem;
+}
+.testata__id {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+.luna {
+	flex: none;
+	width: 3.25rem;
+	height: 3.25rem;
+}
+.testata h1 {
+	margin-top: 0.15rem;
+	font-size: clamp(1.7rem, 3.4cqw, 2.5rem);
+	letter-spacing: -0.02em;
+}
+.handle {
+	margin-top: 0.2rem;
+	color: var(--muted);
+	font-size: 0.9rem;
+}
+.periodo-box {
+	display: grid;
+	justify-items: end;
+	gap: 0.5rem;
+}
+.periodo-testo {
+	color: var(--muted);
+	font-size: 0.82rem;
+	font-variant-numeric: tabular-nums;
+}
+
+/* Selettore a segmenti (come nel componente tab-segmented). */
+.seg {
+	display: inline-flex;
+	padding: 3px;
+	border: 1px solid var(--line);
+	border-radius: 99px;
+	background: #0d0d0d;
+}
+.seg button {
+	min-height: 2.25rem;
+	padding: 0 1rem;
+	border: 0;
+	border-radius: 99px;
+	background: transparent;
+	color: var(--muted);
+	font: 600 0.85rem var(--font-text);
+	cursor: pointer;
+	transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), scale 0.15s var(--ease-out);
+}
+.seg button[aria-pressed='true'] {
+	background: var(--text);
+	color: #000;
+}
+.seg button:active {
+	scale: 0.97;
+}
+.seg--piccolo button {
+	min-height: 2rem;
+	padding: 0 0.8rem;
+	font-size: 0.8rem;
+}
+@media (hover: hover) and (pointer: fine) {
+	.seg button[aria-pressed='false']:hover {
+		color: var(--text);
+	}
+}
+@media (pointer: coarse) {
+	.seg button {
+		min-height: 2.75rem;
+	}
+}
+
+/* ───────── Numeri di testa ───────── */
+.kpi {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 1rem;
+}
+.tessera {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-areas:
+		'nome nome'
+		'valore spark'
+		'delta delta'
+		'nota nota';
+	align-content: start;
+	column-gap: 0.75rem;
+	padding: 1.1rem 1.25rem 1.15rem;
+	border: 1px solid var(--line);
+	border-radius: 1rem;
+	background: var(--surface);
+	overflow: hidden;
+}
+.tessera--prima::before {
+	content: '';
+	position: absolute;
+	inset: 0 0 auto;
+	height: 3px;
+	background: var(--accent);
+}
+.tessera__nome {
+	grid-area: nome;
+	font: 600 0.8rem var(--font-text);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.tessera__valore {
+	grid-area: valore;
+	align-self: end;
+	margin-top: 0.4rem;
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 3.6cqw, 3rem);
+	font-weight: 700;
+	line-height: 1;
+	letter-spacing: -0.02em;
+	font-variant-numeric: tabular-nums;
+}
+.spark {
+	grid-area: spark;
+	align-self: end;
+	justify-self: end;
+	overflow: visible;
+	width: clamp(4.5rem, 6.5cqw, 7.5rem);
+	height: auto;
+}
+.spark path {
+	fill: none;
+	stroke: var(--barra);
+	stroke-width: 1.75;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+.spark circle {
+	fill: var(--text);
+}
+.tessera--prima .spark path {
+	stroke: var(--accent);
+}
+.tessera--prima .spark circle {
+	fill: var(--accent);
+}
+.delta {
+	grid-area: delta;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin-top: 0.6rem;
+	font-size: 0.82rem;
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+.delta svg {
+	flex: none;
+	width: 0.7rem;
+	height: 0.7rem;
+}
+.delta[data-dir='giu'] {
+	color: var(--ink-2);
+}
+.delta small {
+	color: var(--muted);
+	font-weight: 500;
+	font-size: inherit;
+}
+.tessera__nota {
+	grid-area: nota;
+	margin-top: 0.35rem;
+	color: var(--muted);
+	font-size: 0.8rem;
+	line-height: 1.4;
+	text-wrap: pretty;
+}
+
+/* ───────── Card, righe ───────── */
+.card {
+	margin: 0;
+	padding: clamp(1rem, 2.2cqw, 1.5rem);
+	border: 1px solid var(--line);
+	border-radius: 1rem;
+	background: var(--surface);
+	min-width: 0;
+}
+.card__testa {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 0.75rem 1rem;
+	margin-bottom: 1rem;
+}
+.card h2 {
+	font-size: 1.15rem;
+	letter-spacing: -0.01em;
+}
+.riga {
+	display: grid;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+.riga--grafico {
+	grid-template-columns: minmax(0, 1fr) 22rem;
+}
+.riga--due {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.migliori {
+	margin-top: 1rem;
+}
+
+/* ───────── Grafico a linee ───────── */
+.legenda {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3rem 1.1rem;
+	margin: 0.5rem 0 0;
+	padding: 0;
+	list-style: none;
+	color: var(--muted);
+	font-size: 0.8rem;
+}
+.legenda li {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+}
+.leg {
+	display: inline-block;
+	width: 1.2rem;
+	height: 0;
+}
+.leg--attuale {
+	border-top: 2px solid var(--accent);
+}
+.leg--prec {
+	border-top: 2px dashed var(--barra);
+}
+.leg--post {
+	width: 0.5rem;
+	height: 0.5rem;
+	border-radius: 50%;
+	background: var(--text);
+}
+.plot {
+	position: relative;
+	border-radius: 0.5rem;
+	touch-action: pan-y;
+	cursor: crosshair;
+}
+.plot svg {
+	display: block;
+	width: 100%;
+	overflow: visible;
+}
+.ax text {
+	fill: var(--muted);
+	font: 500 11px var(--font-text);
+}
+.ax line,
+.grid line {
+	stroke: var(--line);
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
+.l-attuale {
+	fill: none;
+	stroke: var(--accent);
+	stroke-width: 2;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+}
+.l-prec {
+	fill: none;
+	stroke: var(--barra);
+	stroke-width: 1.5;
+	stroke-dasharray: 5 4;
+	stroke-linecap: round;
+}
+.post-pt {
+	fill: var(--text);
+	stroke: var(--surface);
+	stroke-width: 2;
+}
+.guida {
+	stroke: rgb(255 255 255 / 0.5);
+	stroke-width: 1;
+	shape-rendering: crispEdges;
+}
+.punto-a {
+	fill: var(--accent);
+	stroke: var(--surface);
+	stroke-width: 2;
+}
+.punto-p {
+	fill: var(--surface);
+	stroke: var(--barra);
+	stroke-width: 2;
+}
+
+/* Descrizione al passaggio / alla tastiera (grafico e mappa). */
+.tip {
+	position: absolute;
+	z-index: 3;
+	left: 0;
+	top: 0;
+	min-width: 10rem;
+	max-width: 17rem;
+	padding: 0.6rem 0.8rem;
+	border: 1px solid #3a3a3a;
+	border-radius: 0.6rem;
+	background: #000;
+	box-shadow: 0 10px 28px rgb(0 0 0 / 0.55);
+	font-size: 0.8rem;
+	line-height: 1.45;
+	pointer-events: none;
+}
+.tip__data {
+	font-weight: 700;
+	color: var(--text);
+}
+.tip__riga {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	color: var(--ink-2);
+	font-variant-numeric: tabular-nums;
+}
+.tip__riga b {
+	color: var(--text);
+}
+.tip__riga--m {
+	color: var(--muted);
+}
+.tip__post {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin-top: 0.45rem;
+	padding-top: 0.45rem;
+	border-top: 1px solid var(--line);
+	color: var(--ink-2);
+}
+.tip__post svg {
+	flex: none;
+	width: 0.9rem;
+	height: 0.9rem;
+}
+
+/* ───────── Lettura ───────── */
+.lettura h2 {
+	margin-top: 0.3rem;
+	font-size: 1.5rem;
+}
+.lettura__lista {
+	display: grid;
+	gap: 0;
+	margin: 1rem 0 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: l;
+}
+.lettura__lista li {
+	counter-increment: l;
+	display: grid;
+	grid-template-columns: 1.75rem 1fr auto;
+	align-items: start;
+	gap: 0 0.75rem;
+	padding: 0.9rem 0;
+	border-top: 1px solid var(--line);
+	color: var(--ink-2);
+	font-size: 0.93rem;
+	line-height: 1.55;
+	text-wrap: pretty;
+}
+.lettura__lista li::before {
+	content: counter(l);
+	display: grid;
+	place-items: center;
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-top: 0.1rem;
+	border: 1px solid var(--line);
+	border-radius: 50%;
+	color: var(--muted);
+	font: 700 0.72rem var(--font-display);
+}
+.lettura__lista strong {
+	color: var(--text);
+	font-weight: 700;
+}
+.lettura__lista .mini {
+	grid-column: 3;
+	grid-row: 1;
+	width: 2.75rem;
+	height: 3.4rem;
+	border-radius: 0.45rem;
+	object-fit: cover;
+}
+.lettura__lista.cambia li {
+	animation: entra 0.5s var(--ease-out) backwards;
+	animation-delay: calc(var(--i, 0) * 60ms);
+}
+@keyframes entra {
+	from {
+		opacity: 0;
+		translate: 0 0.5rem;
+	}
+}
+
+/* ───────── Contenuti migliori ───────── */
+.carte {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: 0.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.carta {
+	position: relative;
+	display: block;
+	aspect-ratio: 4 / 5;
+	border-radius: 0.9rem;
+	background: #101010;
+	overflow: hidden;
+	isolation: isolate;
+	cursor: default;
+	transition: scale 0.2s var(--ease-out);
+}
+.carta:active {
+	scale: 0.985;
+}
+.carta--1 {
+	box-shadow: 0 0 0 2px var(--accent);
+}
+.carta img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: scale 0.7s var(--ease-out);
+}
+.carta::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: linear-gradient(to top, rgb(0 0 0 / 0.92) 0%, rgb(0 0 0 / 0.7) 32%, rgb(0 0 0 / 0) 62%);
+	pointer-events: none;
+}
+.carta__formato,
+.carta__rango {
+	position: absolute;
+	z-index: 2;
+	top: 0.6rem;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.28rem 0.6rem;
+	border-radius: 99px;
+	background: rgb(0 0 0 / 0.62);
+	color: var(--text);
+	font-size: 0.68rem;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+.carta__formato {
+	left: 0.6rem;
+}
+.carta__formato svg {
+	width: 0.85rem;
+	height: 0.85rem;
+}
+.carta__rango {
+	right: 0.6rem;
+	font-family: var(--font-display);
+	letter-spacing: 0.02em;
+}
+.carta--1 .carta__rango {
+	background: var(--accent-strong);
+}
+.carta__testi {
+	position: absolute;
+	z-index: 2;
+	inset: auto 0 0;
+	padding: 0 0.85rem 0.85rem;
+}
+.carta__titolo {
+	font: 600 0.98rem/1.2 var(--font-display);
+	text-wrap: balance;
+}
+.carta__meta {
+	margin-top: 0.4rem;
+	font-size: 0.8rem;
+	font-variant-numeric: tabular-nums;
+	color: var(--ink-2);
+}
+.carta__meta b {
+	color: var(--text);
+}
+.carta__dett {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 0.35s var(--ease-out);
+}
+.carta__dett-in {
+	overflow: hidden;
+	opacity: 0;
+	transition: opacity 0.25s var(--ease-out);
+}
+.carta__dett dl {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.2rem 0.75rem;
+	margin: 0;
+	padding-top: 0.55rem;
+	font-size: 0.76rem;
+}
+.carta__dett dt,
+.carta__dett dd {
+	display: inline;
+	margin: 0;
+}
+.carta__dett dt {
+	color: var(--muted);
+}
+.carta__dett dd {
+	margin-left: 0.3rem;
+	color: var(--text);
+	font-weight: 700;
+}
+.carta:focus .carta__dett,
+.carta:focus-visible .carta__dett {
+	grid-template-rows: 1fr;
+}
+.carta:focus .carta__dett-in,
+.carta:focus-visible .carta__dett-in {
+	opacity: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+	.carta:hover img {
+		scale: 1.05;
+	}
+	.carta:hover .carta__dett {
+		grid-template-rows: 1fr;
+	}
+	.carta:hover .carta__dett-in {
+		opacity: 1;
+	}
+}
+.carta--vuota {
+	display: grid;
+	place-items: center;
+	padding: 1rem;
+	border: 1px dashed #3a3a3a;
+	background: transparent;
+	color: var(--muted);
+	font-size: 0.85rem;
+	text-align: center;
+	text-wrap: balance;
+}
+.carta--vuota::after {
+	display: none;
+}
+.carta--vuota {
+	grid-column: span var(--sp, 1);
+	aspect-ratio: auto;
+	min-height: 8rem;
+}
+
+/* ───────── Barre dei formati ───────── */
+.barre {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	height: calc(var(--n, 4) * var(--rh));
+	--rh: 4.4rem;
+}
+.barre li {
+	position: absolute;
+	inset: 0 0 auto;
+	height: var(--rh);
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-content: center;
+	gap: 0.45rem 1rem;
+	translate: 0 calc(var(--r, 0) * var(--rh));
+	transition: translate 0.55s var(--ease-in-out);
+}
+.barre__nome {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.92rem;
+	font-weight: 600;
+}
+.barre__nome svg {
+	width: 1.05rem;
+	height: 1.05rem;
+	color: var(--muted);
+}
+.barre__nome small {
+	color: var(--muted);
+	font-weight: 500;
+	font-size: 0.78rem;
+}
+.barre__valore {
+	font: 700 1rem var(--font-display);
+	font-variant-numeric: tabular-nums;
+}
+.barre__pista {
+	grid-column: 1 / -1;
+	height: 0.85rem;
+	border-radius: 4px;
+	background: #262626;
+}
+.barre__riempi {
+	display: block;
+	width: calc(var(--w, 0) * 1%);
+	height: 100%;
+	border-radius: 0 4px 4px 0;
+	background: var(--barra);
+	transition: width 0.7s var(--ease-out), background-color 0.3s var(--ease-out);
+}
+.barre li.is-best .barre__riempi {
+	background: var(--accent);
+}
+
+/* ───────── Mappa oraria ───────── */
+.orari__best {
+	margin-bottom: 0.9rem;
+	color: var(--ink-2);
+	font-size: 0.93rem;
+}
+.orari__best strong {
+	color: var(--text);
+}
+.mappa {
+	position: relative;
+	border-radius: 0.5rem;
+	cursor: crosshair;
+}
+.mappa__griglia {
+	display: grid;
+	grid-template-columns: 2rem repeat(12, minmax(0, 1fr));
+	gap: 3px;
+}
+.mappa__etichetta {
+	align-self: center;
+	color: var(--muted);
+	font-size: 0.72rem;
+	font-weight: 600;
+}
+.mappa__ora {
+	grid-column: span 3;
+	color: var(--muted);
+	font-size: 0.7rem;
+	font-variant-numeric: tabular-nums;
+	padding-top: 0.15rem;
+}
+.cella {
+	position: relative;
+	aspect-ratio: 1 / 0.8;
+	border-radius: 4px;
+	background: color-mix(in oklab, var(--accent) calc(var(--v) * 100%), var(--cella));
+}
+.cella.is-best::after {
+	content: '';
+	position: absolute;
+	inset: 50% auto auto 50%;
+	width: 0.4rem;
+	height: 0.4rem;
+	translate: -50% -50%;
+	border-radius: 50%;
+	background: var(--text);
+}
+.cella.is-cur {
+	outline: 2px solid var(--text);
+	outline-offset: 1px;
+	z-index: 1;
+}
+.scala {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin-top: 0.9rem;
+	color: var(--muted);
+	font-size: 0.75rem;
+}
+.scala i {
+	width: 7rem;
+	height: 0.5rem;
+	border-radius: 99px;
+	background: linear-gradient(90deg, var(--cella), var(--accent));
+}
+
+.demo__note {
+	max-width: 58rem;
+	margin: 2.5rem auto 0;
+}
+.demo__note a {
+	color: var(--text);
+	text-underline-offset: 3px;
+}
+
+/* ───────── Tabelle (alternativa ai grafici) ───────── */
+.tabella-wrap {
+	max-height: 21rem;
+	overflow: auto;
+	border: 1px solid var(--line);
+	border-radius: 0.6rem;
+}
+.tabella-wrap table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.85rem;
+	font-variant-numeric: tabular-nums;
+}
+.tabella-wrap th,
+.tabella-wrap td {
+	padding: 0.45rem 0.7rem;
+	border-bottom: 1px solid var(--line);
+	text-align: left;
+	white-space: nowrap;
+}
+.tabella-wrap thead th {
+	position: sticky;
+	top: 0;
+	background: #111;
+	color: var(--muted);
+	font-weight: 600;
+}
+.tabella-wrap tbody th {
+	color: var(--ink-2);
+	font-weight: 600;
+}
+.tabella-wrap td:not(:first-child),
+.tabella-wrap th:not(:first-child) {
+	text-align: right;
+}
+#tab-linea td:last-child {
+	text-align: left;
+	color: var(--muted);
+}
+
+/* ───────── Entrata dei blocchi ───────── */
+html.js .rv {
+	opacity: 0;
+	translate: 0 14px;
+}
+html.js .rv.is-in {
+	opacity: 1;
+	translate: 0 0;
+	transition: opacity 0.6s var(--ease-out) var(--d, 0ms), translate 0.6s var(--ease-out) var(--d, 0ms), scale 0.2s var(--ease-out);
+}
+
+/* ───────── Misure del riquadro ───────── */
+@container rep (max-width: 68rem) {
+	.riga--grafico {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.lettura__lista {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		column-gap: 1.5rem;
+	}
+}
+@container rep (max-width: 52rem) {
+	.kpi {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.riga--due {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.periodo-box {
+		justify-items: start;
+	}
+	/* Sotto questa larghezza i contenuti diventano una fila da scorrere col dito: cinque schede in colonna
+	   sarebbero un chilometro di pagina, e tagliare una foto verticale in orizzontale la rovina. */
+	.carte {
+		grid-template-columns: none;
+		grid-auto-flow: column;
+		grid-auto-columns: min(15rem, 64%);
+		overflow-x: auto;
+		overscroll-behavior-x: contain;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: thin;
+		scrollbar-color: #3a3a3a transparent;
+		margin: -3px;
+		padding: 3px 3px 0.75rem;
+	}
+	.carta {
+		scroll-snap-align: start;
+	}
+	.carta--vuota {
+		grid-column: auto;
+	}
+}
+@container rep (max-width: 36rem) {
+	.lettura__lista {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.delta {
+		flex-wrap: wrap;
+		row-gap: 0.1rem;
+	}
+	.delta small {
+		flex-basis: 100%;
+	}
+	.tessera {
+		padding: 0.9rem 1rem 1rem;
+		grid-template-areas:
+			'nome nome'
+			'valore valore'
+			'delta delta'
+			'spark spark'
+			'nota nota';
+	}
+	.spark {
+		justify-self: start;
+		margin-top: 0.5rem;
+	}
+	.tessera__nota {
+		font-size: 0.75rem;
+	}
+	.carta__titolo {
+		font-size: 0.9rem;
+	}
+	.mappa__griglia {
+		grid-template-columns: 1.75rem repeat(12, minmax(0, 1fr));
+		gap: 2px;
+	}
+}

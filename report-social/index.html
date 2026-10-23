@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Report social — Loop Studio Lab</title>
+		<link rel="icon" href="data:," />
+		<link rel="preload" as="font" type="font/woff2" href="../components/_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" crossorigin />
+		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script>document.documentElement.classList.add('js');</script>
+	</head>
+
+	<body>
+		<main class="rep" id="rep">
+			<!-- Testata: l'attività (di fantasia), il periodo e il selettore. -->
+			<header class="testata">
+				<div class="testata__id">
+					<svg class="luna" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true" focusable="false">
+						<circle cx="24" cy="24" r="23" fill="#101010" stroke="#2a2a2a" />
+						<circle cx="24" cy="24" r="14" fill="#f2f2f2" />
+						<circle cx="19" cy="20" r="3.2" fill="#d9d9d9" />
+						<circle cx="29.5" cy="27.5" r="2.4" fill="#d9d9d9" />
+						<circle cx="26" cy="17.5" r="1.6" fill="#d9d9d9" />
+						<circle cx="24" cy="24" r="19.5" fill="none" stroke="#ff3b30" stroke-width="1.5" stroke-dasharray="2 5.4" stroke-linecap="round" />
+					</svg>
+					<div>
+						<p class="kicker">Report social · attività di fantasia</p>
+						<h1>Osteria Lunapiena</h1>
+						<p class="handle"><span>@osteria.lunapiena</span> <span aria-hidden="true">·</span> <span id="n-follower">5.200 follower</span></p>
+					</div>
+				</div>
+
+				<div class="periodo-box">
+					<div class="seg" role="group" aria-label="Periodo del report" id="periodo">
+						<button type="button" data-n="7" aria-pressed="false">7 giorni</button>
+						<button type="button" data-n="30" aria-pressed="true">30 giorni</button>
+						<button type="button" data-n="90" aria-pressed="false">90 giorni</button>
+					</div>
+					<p class="periodo-testo" id="periodo-testo" aria-live="polite"></p>
+				</div>
+			</header>
+
+			<!-- Quattro numeri di testa. Il primo (copertura) è il protagonista: rosso, gli altri restano neutri. -->
+			<section class="kpi" aria-label="Numeri principali">
+				<article class="tessera tessera--prima" id="k-copertura">
+					<h2 class="tessera__nome">Copertura</h2>
+					<p class="tessera__valore"><span data-valore>0</span></p>
+					<p class="delta" data-delta></p>
+					<svg class="spark" width="120" height="36" viewBox="0 0 120 36" aria-hidden="true" focusable="false"></svg>
+					<p class="tessera__nota">persone raggiunte</p>
+				</article>
+				<article class="tessera" id="k-follower">
+					<h2 class="tessera__nome">Nuovi follower</h2>
+					<p class="tessera__valore"><span data-valore>0</span></p>
+					<p class="delta" data-delta></p>
+					<svg class="spark" width="120" height="36" viewBox="0 0 120 36" aria-hidden="true" focusable="false"></svg>
+					<p class="tessera__nota">persone che hanno iniziato a seguirvi</p>
+				</article>
+				<article class="tessera" id="k-interazione">
+					<h2 class="tessera__nome">Interazione</h2>
+					<p class="tessera__valore"><span data-valore>0</span></p>
+					<p class="delta" data-delta></p>
+					<p class="tessera__nota">mi piace, commenti, salvataggi e condivisioni ogni 100 persone raggiunte</p>
+				</article>
+				<article class="tessera" id="k-contenuti">
+					<h2 class="tessera__nome">Contenuti</h2>
+					<p class="tessera__valore"><span data-valore>0</span></p>
+					<p class="delta" data-delta></p>
+					<p class="tessera__nota" data-formati></p>
+				</article>
+			</section>
+
+			<!-- Andamento + lettura scritta dai numeri. -->
+			<section class="riga riga--grafico">
+				<figure class="card grafico" id="c-linea">
+					<div class="card__testa">
+						<div>
+							<h2>Copertura, giorno per giorno</h2>
+							<ul class="legenda" aria-label="Legenda">
+								<li><i class="leg leg--attuale" aria-hidden="true"></i>Questo periodo</li>
+								<li><i class="leg leg--prec" aria-hidden="true"></i>Periodo precedente</li>
+								<li><i class="leg leg--post" aria-hidden="true"></i>Giorno di pubblicazione</li>
+							</ul>
+						</div>
+						<div class="seg seg--piccolo" role="group" aria-label="Vista del grafico" data-vista="linea">
+							<button type="button" data-v="grafico" aria-pressed="true">Grafico</button>
+							<button type="button" data-v="tabella" aria-pressed="false">Tabella</button>
+						</div>
+					</div>
+					<div class="plot" id="plot" tabindex="0" role="img" aria-describedby="plot-aiuto">
+						<svg id="linea" aria-hidden="true" focusable="false"></svg>
+						<div class="tip" id="tip-linea" role="presentation" hidden></div>
+					</div>
+					<p class="sr-only" id="plot-aiuto">Con le frecce sinistra e destra si scorrono i giorni; Home e Fine vanno al primo e all’ultimo.</p>
+					<p class="sr-only" id="plot-annuncio" role="status" aria-live="polite"></p>
+					<div class="tabella-wrap" id="tab-linea" hidden>
+						<table>
+							<caption class="sr-only">Copertura per giorno</caption>
+							<thead>
+								<tr><th scope="col">Giorno</th><th scope="col">Copertura</th><th scope="col">Periodo precedente</th><th scope="col">Contenuto</th></tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</figure>
+
+				<aside class="card lettura" aria-labelledby="t-lettura">
+					<p class="kicker">Scritto dai numeri</p>
+					<h2 id="t-lettura">In breve</h2>
+					<ol class="lettura__lista" id="lettura" aria-live="polite"></ol>
+				</aside>
+			</section>
+
+			<!-- I contenuti migliori del periodo. -->
+			<section class="card migliori" aria-labelledby="t-migliori">
+				<div class="card__testa">
+					<div>
+						<h2 id="t-migliori">I contenuti che hanno funzionato di più</h2>
+						<p class="sotto" id="migliori-sotto"></p>
+					</div>
+				</div>
+				<ol class="carte" id="carte"></ol>
+			</section>
+
+			<!-- Formati e orari. -->
+			<section class="riga riga--due">
+				<article class="card formati" id="c-formati" aria-labelledby="t-formati">
+					<div class="card__testa">
+						<div>
+							<h2 id="t-formati">Cosa funziona</h2>
+							<p class="sotto" id="formati-sotto">Per tipo di contenuto</p>
+						</div>
+						<div class="seg seg--piccolo" role="group" aria-label="Misura" data-vista="metrica">
+							<button type="button" data-m="reach" aria-pressed="true">Copertura</button>
+							<button type="button" data-m="tasso" aria-pressed="false">Interazione</button>
+						</div>
+					</div>
+					<ol class="barre" id="barre"></ol>
+				</article>
+
+				<article class="card orari" id="c-orari" aria-labelledby="t-orari">
+					<div class="card__testa">
+						<div>
+							<h2 id="t-orari">Quando i tuoi follower sono online</h2>
+							<p class="sotto">Media delle ultime 4 settimane</p>
+						</div>
+						<div class="seg seg--piccolo" role="group" aria-label="Vista della mappa" data-vista="orari">
+							<button type="button" data-v="grafico" aria-pressed="true">Mappa</button>
+							<button type="button" data-v="tabella" aria-pressed="false">Tabella</button>
+						</div>
+					</div>
+					<p class="orari__best" id="orari-best"></p>
+					<div class="mappa" id="mappa" tabindex="0" role="img" aria-describedby="mappa-aiuto">
+						<div class="mappa__griglia" id="mappa-griglia" aria-hidden="true"></div>
+						<div class="tip" id="tip-mappa" role="presentation" hidden></div>
+					</div>
+					<p class="sr-only" id="mappa-aiuto">Con le frecce ci si sposta tra giorni e fasce orarie.</p>
+					<p class="sr-only" id="mappa-annuncio" role="status" aria-live="polite"></p>
+					<div class="scala" aria-hidden="true"><span id="scala-min">meno</span><i></i><span id="scala-max">più</span></div>
+					<div class="tabella-wrap" id="tab-mappa" hidden>
+						<table>
+							<caption class="sr-only">Follower online per giorno e fascia oraria</caption>
+							<thead></thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</article>
+			</section>
+
+			<p class="demo__note">
+				Dati di esempio, generati dal codice, per un’attività inventata: hanno la forma di quelli che restituiscono le API di Instagram (serie giornaliere
+				e metriche per contenuto). Il report è pronto a riceverne di veri, ma collegare un account vero richiede un’app approvata da Meta e un token, e le
+				chiamate non si fanno dal browser: serve un piccolo servizio che le legge e le passa alla pagina.
+				Foto su <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a> di Tetiana Padurets, Joshua Glass, Lefteris Kallergis, Vinn Koonyosying, Hershe Go,
+				Monika Stawowy, Luna Hu, Mae Mu, Alexandr Popadin, James Hardman e Serghey Savchuk.
+			</p>
+		</main>
+
+		<!-- Icone dei formati e delle frecce. -->
+		<svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+			<symbol id="f-reel" viewBox="0 0 16 16"><rect x="2.2" y="2.2" width="11.6" height="11.6" rx="3" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M6.6 5.6v4.8l4-2.4z" fill="currentColor" /></symbol>
+			<symbol id="f-carosello" viewBox="0 0 16 16"><rect x="5.2" y="2.2" width="8.6" height="8.6" rx="2" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="M2.2 5.6v6.2a2 2 0 0 0 2 2h6.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></symbol>
+			<symbol id="f-foto" viewBox="0 0 16 16"><rect x="2.2" y="2.2" width="11.6" height="11.6" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.5" /><circle cx="6" cy="6" r="1.2" fill="currentColor" /><path d="M3 12l3.4-3.2 2.4 2 2-1.8L13 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round" /></symbol>
+			<symbol id="f-storia" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2.6 1.9" /><circle cx="8" cy="8" r="2.2" fill="currentColor" /></symbol>
+			<symbol id="i-su" viewBox="0 0 12 12"><path d="M6 2.2l4.2 7H1.8z" fill="currentColor" /></symbol>
+			<symbol id="i-giu" viewBox="0 0 12 12"><path d="M6 9.8l-4.2-7h8.4z" fill="currentColor" /></symbol>
+		</svg>
+
+		<script src="data.js"></script>
+		<script src="script.js"></script>
+		<script src="../components/_shared/studio.js"></script>
+	</body>
+</html>

@@ -125,7 +125,7 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
      tessere `<button>`, dettaglio `<dialog>`, suono spento di default con pulsante "Suono"; audio in `audio/`, Web Audio dopo un gesto; la foto che vola
      usa il file grande con `object-position` uguale al punto focale del ritaglio 4:5 così il passaggio non salta). Trappola: Draggable fa `preventDefault`
      sul mousedown, quindi il clic col mouse non mette il focus sulla tessera (il ritorno del focus vale per la tastiera).
-   - **Galleria da riordinare** (24/10, bozza non committata): `galleria-riordinabile/`, 16 foto di animali (Unsplash, fotografi nel codice e nei crediti), mosaico
+   - **Galleria da riordinare** (24/10, committata in locale): `galleria-riordinabile/`, 16 foto di animali (Unsplash, fotografi nel codice e nei crediti), mosaico
      la cui FORMA dipende dalla posizione (`:nth-child`: 1ª 2×2, 4ª 2×1, le prime 4 = vetrina). Solo GSAP core + Flip (`gsap.min.js`, `Flip.min.js`), niente Draggable: il
      trascinamento è fatto con pointer events (una COPIA `.fantasma` fixed segue il puntatore, la cella originale diventa segnaposto tratteggiato e si riordina nel DOM
      con `Flip.getState` → `killFlipsOf` → `clearProps` → mutazione → `Flip.from`). Mouse da qualunque punto, tocco solo dalla maniglia (`touch-action: none` solo su
@@ -137,8 +137,15 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
      contrasto delle etichette sullo sfondo SENZA testo (nascondere `.tessera__testi` e fotografare), altrimenti i bordi sfumati delle lettere falsano la misura.
    - **Sito madre**: `src/data/lab-demos.ts` (le demo non stanno più in `portfolio-projects.ts`), filtro per categoria condiviso (`CategoryFilter.astro`),
      titolo e introduzione alla sezione, screenshot 16:9 rigenerati. Categorie: Animazioni 3D, Scroll e gallerie, Widget e strumenti, Dati e API (decise il 23/10).
-   - **Prossimi**: nuove Demo, prima ondata: Preventivatore (React, repo propria; prima solo Demo, poi si valuta il sito madre), Report social
-     (dataviz SVG), griglia zoom trascinabile GSAP (zip `2026-07-14-draggable-zoom-grid-gallery-using-gsap`), storytelling a scorrimento in solo CSS.
+   - **Report social** (24/10, committata in locale): `report-social/` (`data.js` dati finti di un'attività di fantasia, "Osteria Lunapiena", generati con seme fisso
+     nella FORMA delle API di Instagram; `script.js` calcola 7/30/90 giorni vs periodo precedente e disegna tutto in SVG/HTML, niente librerie). Regola dei grafici: un
+     protagonista rosso, il resto grigio, mai testo rosso. Linea con curva monotona, descrizione al passaggio/frecce, vista Tabella (anche mappa oraria), «In breve» scritta
+     dal codice, barre che si riordinano (`--r` + `translate` su righe assolute di altezza fissa), mappa `color-mix`. Sotto 52rem i contenuti migliori sono una fila a scorrimento
+     (`scroll-snap`). **Trappole**: `Intl` it-IT non mette il punto nei numeri a 4 cifre (`useGrouping: 'always'`); `container-type` sul `.rep` fa valere `cqw` nei figli;
+     `drive.mjs` accetta solo i tasti " ", Tab, Enter (frecce: `dispatchEvent` in `eval`) e uno step con due `eval` perde il primo.
+   - **Prossimi**: Preventivatore (React, repo propria `Loop-Studio-Web/lab-preventivatore`; prima solo Demo, poi si valuta il sito madre), poi ondata B (menù allergeni,
+     convertitore di valute con Worker; FAQ con ricerca e conto alla rovescia solo se abbastanza ricchi, altrimenti Componenti). A fine lotto: README (aggiungere le Demo
+     nuove e il badge del conteggio), push (Lab prima del sito), axe + PSI, repo personali, proxy meteo sull'org.
    - **Prestazioni** (skill Emil `animation-performance`, installata): `bordi-animati` ha `filter: blur(32px)` su `.electric__bloom`; 2 `transition: all`
      da togliere (`campi-testo/style.css` righe 123 e 190; quello di movies-slider è sparito con la scheda Slider).
    Anche le Demo vanno firmate con il logo (`studio.js`).
