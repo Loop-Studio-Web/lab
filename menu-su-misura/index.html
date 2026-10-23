@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Menù su misura — Loop Studio Lab</title>
+		<link rel="icon" href="data:," />
+		<link rel="preload" as="font" type="font/woff2" href="../components/_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" crossorigin />
+		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<main class="app">
+			<!-- Testata: la domanda e i 14 allergeni come interruttori. -->
+			<header class="testata">
+				<span class="luna" aria-hidden="true"></span>
+				<p class="kicker">Osteria Lunapiena · Menù</p>
+				<h1>Cosa devi evitare?</h1>
+				<p class="lead">Tocca gli allergeni che contano per te: il menù si riordina da solo. In alto ciò che puoi ordinare, poi ciò che conviene chiedere in sala.</p>
+
+				<div class="chips" id="chips" role="group" aria-labelledby="chips-titolo">
+					<p class="chips__titolo" id="chips-titolo">I 14 allergeni da dichiarare per legge</p>
+				</div>
+			</header>
+
+			<!-- Il menù: fasce e card le genera script.js. Le card si riordinano con Flip. -->
+			<ol class="menu" id="menu" aria-label="Menù"></ol>
+
+			<!-- Barra di riepilogo: compare appena si sceglie un allergene. -->
+			<div class="barra" id="barra" inert>
+				<p class="barra__stato" id="barra-stato"></p>
+				<div class="barra__comandi">
+					<button class="btn btn--primario" id="b-cameriere" type="button" aria-haspopup="dialog">Mostra al cameriere</button>
+					<button class="btn" id="b-azzera" type="button">Azzera</button>
+				</div>
+			</div>
+
+			<p class="nota">
+				Dati di fantasia, di un’attività che non esiste. In un menù vero la tabella degli ingredienti la compila e la verifica il ristorante, e questo strumento non sostituisce la parola al cameriere: chi ha un’allergia grave deve sempre dirlo in sala.
+				Foto da Unsplash, con l’autore citato nella scheda di ogni piatto. Le icone degli allergeni sono state generate con ChatGPT e poi ritagliate.
+			</p>
+		</main>
+
+		<svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+			<symbol id="i-si" viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+			<symbol id="i-chiedi" viewBox="0 0 16 16"><path d="M5.8 6.2a2.3 2.3 0 114 1.5c-.8.8-1.8 1.1-1.8 2.3M8 12.4v.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+			<symbol id="i-no" viewBox="0 0 16 16"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></symbol>
+			<symbol id="i-chiudi" viewBox="0 0 16 16"><path d="M3 3l10 10M13 3L3 13" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></symbol>
+		</svg>
+
+		<p class="sr-only" id="annuncio" role="status" aria-live="polite"></p>
+
+		<!-- Scheda del piatto: foto, stato e ingredienti con gli allergeni evidenziati. Dialog nativo. -->
+		<dialog class="scheda" id="scheda" aria-labelledby="s-nome">
+			<div class="scheda__foto"><img id="s-img" alt="" /></div>
+			<div class="scheda__corpo">
+				<button class="chiudi" id="s-chiudi" type="button" aria-label="Chiudi">
+					<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chiudi" /></svg>
+				</button>
+				<p class="scheda__tipo" id="s-tipo"></p>
+				<h2 id="s-nome"></h2>
+				<p class="scheda__descr" id="s-descr"></p>
+				<p class="scheda__stato" id="s-stato"></p>
+				<h3>Ingredienti</h3>
+				<ul class="ing" id="s-ing"></ul>
+				<p class="scheda__tracce" id="s-tracce"></p>
+				<p class="scheda__credito" id="s-credito"></p>
+			</div>
+		</dialog>
+
+		<!-- Il cartello da mostrare in sala: scritto grande, in italiano e in inglese. -->
+		<dialog class="cameriere" id="cameriere" aria-labelledby="c-titolo">
+			<button class="chiudi" id="c-chiudi" type="button" aria-label="Chiudi">
+				<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chiudi" /></svg>
+			</button>
+			<p class="c-osteria">Osteria Lunapiena</p>
+			<h2 id="c-titolo">Buonasera. Non posso mangiare né bere:</h2>
+			<ul class="c-lista" id="c-lista"></ul>
+			<p class="c-testo">Vi chiedo di controllare ogni piatto con la cucina. Grazie.</p>
+			<div class="c-en" lang="en">
+				<p class="c-en__titolo">Hello. I cannot eat or drink:</p>
+				<p class="c-en__lista" id="c-en"></p>
+				<p class="c-testo">Please check every dish with the kitchen. Thank you.</p>
+			</div>
+		</dialog>
+
+		<script src="../components/_shared/gsap/gsap.min.js"></script>
+		<script src="../components/_shared/gsap/Flip.min.js"></script>
+		<script src="data.js"></script>		<script src="script.js"></script>
+		<script src="../components/_shared/studio.js"></script>
+	</body>
+</html>

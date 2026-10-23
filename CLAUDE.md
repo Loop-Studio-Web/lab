@@ -149,7 +149,15 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
      nell'hash dell'URL (`stato.js`), scontrino sticky (barra in basso sotto 52rem, normale nell'ultimo passo). **Trappole**: Cormorant ha cifre old-style di default → `font-variant-numeric: lining-nums`;
      `position: static` sullo scontrino sposta lo zigzag `::after` assoluto (usare `relative`); `url()` dei font nell'`index.html` sorgente (non nel CSS importato, Vite non li risolve); più `click()` nello
      stesso `eval` di `drive.mjs` non lasciano ridisegnare React (serve `wait` tra un passo e l'altro). Aperto: il logo è IA? (CREDITS.md) e se dichiararlo.
-   - **Prossimi**: ondata B (menù allergeni, convertitore di valute con Worker; FAQ con ricerca e conto alla rovescia solo se abbastanza ricchi, altrimenti Componenti). A fine lotto: README
+   - **Menù su misura** (24/10, bozza in locale): `menu-su-misura/` = Osteria Lunapiena (la stessa del Report social), 10 piatti + 5 bevande, JS puro + GSAP core/Flip, niente framework.
+     `data.js` descrive ogni piatto per INGREDIENTI (`a` = allergeni, `togli` = si può non servire, `tracce` = allergeni non ingredienti); `valuta()` in `script.js` ne ricava lo stato
+     `si` / `chiedi` (adattabile o solo tracce) / `no` (+ frase pronta). Fasce e card sono `li` di una stessa `ol`: senza scelte "Da mangiare"/"Da bere", con scelte "Per te"/"Chiedi in sala"/"Non per te";
+     le card si riordinano con Flip (le fasce solo in dissolvenza). Scelte nell'hash (`#glutine,latte`), barra di riepilogo sticky, scheda piatto e cartello "Mostra al cameriere" (IT+EN) in `<dialog>`.
+     Icone allergeni = foglio dell'autore (generato con ChatGPT, dichiarato in pagina) ritagliato (WebP con alpha in `img/allergeni/`, `iconaAllergene()` in `script.js`) su tondo avorio `.ai` CON contorno scuro (4 `drop-shadow` da 0,7px): senza, le parti bianche (latte, uovo) spariscono sull'avorio e le nere sul fondo notte.
+     Identità propria (notte + luna, non il nero/rosso dello studio). **Trappole**: la spia dei chip ha misura fissa, sennò scegliere un allergene fa andare a capo gli altri e sposta le card; il velo di
+     contrasto sta in `.piatto__testi::before` (segue l'altezza del testo: con la riga del motivo il velo fisso falliva a 4,07:1; ora ≥ 6,1:1); per misurare il contrasto nascondere SOLO le parole, non il
+     blocco che contiene il velo; in `drive.mjs` `eval` e `wait` nello stesso passo: l'eval parte PRIMA dell'attesa (separarli) e il tasto Escape non esiste (chiudere il dialog con `.close()`).
+   - **Prossimi**: ondata B (convertitore di valute con Worker; FAQ con ricerca e conto alla rovescia solo se abbastanza ricchi, altrimenti Componenti). A fine lotto: README
      (aggiungere le Demo nuove e il badge del conteggio), push (Lab prima del sito), axe + PSI, repo personali, proxy meteo sull'org; poi, a Demo finite, decidere se portare il Preventivatore nel sito madre
      (prezzi veri da concordare, tabelle pacchetti da leggere).
    - **Prestazioni** (skill Emil `animation-performance`, installata): `bordi-animati` ha `filter: blur(32px)` su `.electric__bloom`; 2 `transition: all`
