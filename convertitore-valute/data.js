@@ -4,7 +4,7 @@
 // Indirizzo del Worker. In locale (server di prova sulla 8765) si usa quello di `wrangler dev`.
 export const API = ['localhost', '127.0.0.1'].includes(location.hostname)
 	? 'http://127.0.0.1:8787'
-	: 'https://lab-cambio.loop-studio.workers.dev';
+	: 'https://lab-cambio.domenicociardullo85.workers.dev';
 
 // Valute del convertitore e dei prezzi (le stesse che il Worker inoltra).
 export const VALUTE = [
