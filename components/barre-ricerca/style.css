@@ -1,0 +1,625 @@
+@font-face {
+	font-family: 'Noto Sans Mono';
+	src: url('../_shared/fonts/noto-sans-mono-latin-400-normal.woff2') format('woff2');
+	font-weight: 400;
+	font-display: swap;
+}
+
+:root {
+	--field: #101010;
+	--line-strong: #3a3a3a;
+	--row: #262626;
+	--font-mono: 'Noto Sans Mono', ui-monospace, monospace;
+}
+
+/* Icona Lucide dallo sprite: il tratto prende il colore del testo. */
+.ic {
+	flex: none;
+	width: 1.15rem;
+	height: 1.15rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+kbd {
+	display: inline-grid;
+	place-items: center;
+	min-width: 1.5rem;
+	height: 1.5rem;
+	padding: 0 0.4rem;
+	font: 400 0.75rem/1 var(--font-mono);
+	color: var(--muted);
+	background: #1f1f1f;
+	border: 1px solid var(--line-strong);
+	border-bottom-width: 2px;
+	border-radius: 0.35rem;
+}
+kbd .ic {
+	width: 0.8rem;
+	height: 0.8rem;
+}
+.keys {
+	display: inline-flex;
+	gap: 0.25rem;
+}
+
+.stage {
+	min-height: 11rem;
+}
+.stage__hint {
+	color: var(--muted);
+	font-size: 0.875rem;
+}
+
+/* Campo di testo "nudo": lo stile sta sul contenitore o sul campo stesso. */
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button {
+	appearance: none;
+}
+:where(input[type='search'], input[type='text']) {
+	appearance: none;
+	font: inherit;
+	font-size: 1rem;
+	color: var(--text);
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+}
+input:focus {
+	outline: none;
+}
+::placeholder {
+	color: var(--muted);
+	opacity: 1;
+}
+
+/* ---------- 1. La lente che si apre ----------
+   --u è l'unità: l'anello è 3u, il manico lungo ~1u. Il manico è un'asticella
+   che, aprendosi il campo, ruota in verticale e si sposta dove sta il testo:
+   lì prende il posto del cursore vero. Tutto con transform; l'unica proprietà
+   di layout in gioco è la larghezza del campo. */
+.stage--lens {
+	min-height: 15rem;
+	background: radial-gradient(ellipse at 50% 120%, #2b1210 0%, var(--surface) 62%);
+}
+.stage--lens [role='search'] {
+	width: 100%;
+}
+.lens {
+	--u: 1.75rem;
+	--d: calc(var(--u) * 3);
+	--pl: calc(var(--u) * 0.7); /* dove comincia il testo */
+	--ease: cubic-bezier(0.77, 0, 0.175, 1);
+	--dur: 480ms;
+	position: relative;
+	display: block;
+	margin-inline: auto;
+	width: min(100%, calc(var(--u) * 15));
+	height: var(--d);
+	/* chiusa, l'anello sta al centro; aprendosi, il campo si allarga attorno */
+	transform: translateX(calc(50% - var(--d) / 2));
+	transition: transform var(--dur) var(--ease);
+	pointer-events: none;
+}
+.lens:is(:focus-within, :has(.lens__input:not(:placeholder-shown))) {
+	transform: translateX(0);
+}
+.lens__input,
+.lens__handle {
+	pointer-events: auto;
+}
+.lens__input {
+	width: var(--d);
+	height: var(--d);
+	padding: 0 1rem 0 var(--pl);
+	font-size: calc(var(--u) * 0.8);
+	cursor: pointer;
+	background: transparent;
+	border: 3px solid var(--text);
+	border-radius: 50%;
+	caret-color: transparent;
+	transition:
+		width var(--dur) var(--ease),
+		border-radius var(--dur) var(--ease),
+		border-width var(--dur) var(--ease),
+		border-color var(--dur) var(--ease),
+		background-color var(--dur) var(--ease),
+		caret-color 1ms linear;
+}
+.lens__input::placeholder {
+	color: transparent;
+	transition: color 200ms var(--ease-out);
+}
+.lens:is(:focus-within, :has(.lens__input:not(:placeholder-shown))) .lens__input {
+	width: 100%;
+	cursor: text;
+	background: var(--field);
+	border-width: 1px;
+	border-color: var(--line-strong);
+	border-radius: 1rem;
+	caret-color: var(--accent);
+	transition-delay: 0s, 0s, 0s, 0s, 0s, calc(var(--dur) - 20ms);
+}
+.lens:is(:focus-within, :has(.lens__input:not(:placeholder-shown))) .lens__input::placeholder {
+	color: var(--muted);
+	transition-delay: calc(var(--dur) * 0.6);
+}
+/* Il manico: chiuso, è la coda della lente a 45°; aperto, il cursore. */
+.lens__handle {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: calc(var(--u) * 0.3);
+	height: calc(var(--u) * 0.95);
+	background: var(--text);
+	border-radius: 99px;
+	cursor: pointer;
+	transform: translate(calc(var(--u) * 2.764), calc(var(--u) * 2.439)) rotate(-45deg) scale(1, 1);
+	transition:
+		transform var(--dur) var(--ease),
+		background-color var(--dur) var(--ease),
+		opacity 1ms linear;
+}
+.lens:is(:focus-within, :has(.lens__input:not(:placeholder-shown))) .lens__handle {
+	background: var(--accent);
+	opacity: 0;
+	pointer-events: none;
+	/* sta nel punto in cui comincia il testo: sx/sy riducono l'asticella a un cursore di ~2px */
+	transform: translate(calc(var(--pl) + 1px - var(--u) * 0.15 + 0.5px), calc(var(--u) * 1.025)) rotate(0deg)
+		scale(0.24, 1);
+	transition-delay: 0s, 0s, calc(var(--dur) - 20ms);
+}
+@media (hover: hover) and (pointer: fine) {
+	.lens:not(:focus-within, :has(.lens__input:not(:placeholder-shown))) .lens__input:hover {
+		border-color: var(--accent);
+	}
+}
+.lens__input:active {
+	scale: 0.97;
+}
+
+/* ---------- 2. Il cerchio che si espande ---------- */
+.orb {
+	display: grid;
+	width: 100%;
+}
+.orb__wrap {
+	--w: 3.5rem;
+	position: relative;
+	width: var(--w);
+	height: var(--w);
+	margin-inline: auto;
+	transition: width 480ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.orb__wrap label {
+	display: block;
+	height: 100%;
+}
+.orb__input {
+	width: 100%;
+	height: 100%;
+	padding: 0 1.25rem;
+	background: transparent;
+	border: 3px solid var(--accent);
+	border-radius: 2rem;
+	transition:
+		background-color 480ms cubic-bezier(0.77, 0, 0.175, 1),
+		border-radius 480ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.orb__input::placeholder {
+	color: transparent;
+	transition: color 200ms var(--ease-out);
+}
+.orb__icon {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: 1.4rem;
+	height: 1.4rem;
+	color: var(--accent);
+	pointer-events: none;
+	transition: opacity 160ms var(--ease-out);
+}
+.orb__wrap:focus-within,
+.orb__wrap:has(.orb__input:not(:placeholder-shown)) {
+	width: min(100%, 22rem);
+}
+.orb__wrap:focus-within .orb__input,
+.orb__wrap:has(.orb__input:not(:placeholder-shown)) .orb__input {
+	background: var(--field);
+	border-radius: 0.9rem;
+}
+.orb__wrap:focus-within .orb__input::placeholder,
+.orb__wrap:has(.orb__input:not(:placeholder-shown)) .orb__input::placeholder {
+	color: var(--muted);
+	transition-delay: 240ms;
+}
+.orb__wrap:focus-within .orb__icon,
+.orb__wrap:has(.orb__input:not(:placeholder-shown)) .orb__icon {
+	opacity: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+	.orb__wrap:hover {
+		width: min(100%, 22rem);
+	}
+	.orb__wrap:hover .orb__input {
+		background: var(--field);
+		border-radius: 0.9rem;
+	}
+	.orb__wrap:hover .orb__input::placeholder {
+		color: var(--muted);
+		transition-delay: 240ms;
+	}
+	.orb__wrap:hover .orb__icon {
+		opacity: 0;
+	}
+}
+
+/* ---------- 3. Cerca e svuota ---------- */
+.sf {
+	display: grid;
+	gap: 0.75rem;
+	width: min(100%, 26rem);
+}
+.sf__field {
+	position: relative;
+	display: grid;
+	align-items: center;
+	height: 3.25rem;
+	background: var(--field);
+	border: 1px solid var(--line-strong);
+	border-radius: 0.9rem;
+	transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+.sf__field:focus-within {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgb(255 59 48 / 0.22);
+}
+.sf__lens {
+	position: absolute;
+	left: 1rem;
+	color: var(--muted);
+	pointer-events: none;
+}
+.sf__field label {
+	display: block;
+}
+.sf__input {
+	width: 100%;
+	height: 3.25rem;
+	padding: 0 3rem 0 2.9rem;
+	border-radius: 0.9rem;
+}
+.sf__state {
+	position: absolute;
+	right: 0.5rem;
+	display: grid;
+	place-items: center;
+	width: 2.25rem;
+	height: 2.25rem;
+}
+.sf__spin,
+.sf__clear {
+	grid-area: 1 / 1;
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 100%;
+	color: var(--muted);
+	opacity: 0;
+	scale: 0.85;
+	pointer-events: none;
+	transition: opacity 150ms var(--ease-out), scale 150ms var(--ease-out), background-color 150ms var(--ease-out);
+}
+.sf__clear {
+	padding: 0;
+	cursor: pointer;
+	background: transparent;
+	border: 0;
+	border-radius: 50%;
+}
+.sf__clear:active {
+	scale: 0.92;
+}
+.sf__spin .ic {
+	animation: sf-spin 700ms linear infinite;
+}
+.sf[data-state='loading'] .sf__spin {
+	opacity: 1;
+	scale: 1;
+}
+.sf[data-state='done'] .sf__clear {
+	opacity: 1;
+	scale: 1;
+	pointer-events: auto;
+}
+@media (hover: hover) and (pointer: fine) {
+	.sf__clear:hover {
+		color: var(--text);
+		background: #2a2a2a;
+	}
+}
+.sf__status {
+	padding-inline: 0.25rem;
+	color: var(--muted);
+	font-size: 0.875rem;
+}
+.sf__status strong {
+	color: var(--text);
+	font-weight: 600;
+}
+@keyframes sf-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* ---------- 4. Suggerimenti e filtri ---------- */
+.stage--combo {
+	min-height: 25rem;
+	align-content: start;
+	justify-items: center;
+}
+.combo {
+	display: grid;
+	gap: 1rem;
+	width: min(100%, 30rem);
+}
+.combo__pills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+.chip {
+	padding: 0.4rem 0.95rem;
+	font: 600 0.8125rem/1.2 var(--font-text);
+	color: var(--muted);
+	cursor: pointer;
+	background: transparent;
+	border: 1px solid var(--line-strong);
+	border-radius: 99px;
+	transition: color 150ms var(--ease-out), background-color 150ms var(--ease-out), border-color 150ms var(--ease-out), scale 150ms var(--ease-out);
+}
+.chip:active {
+	scale: 0.97;
+}
+.chip[aria-pressed='true'] {
+	color: #fff;
+	background: var(--accent-strong);
+	border-color: var(--accent-strong);
+}
+@media (hover: hover) and (pointer: fine) {
+	.chip[aria-pressed='false']:hover {
+		color: var(--text);
+		border-color: var(--muted);
+	}
+}
+.combo__field {
+	position: relative;
+	display: grid;
+	align-items: center;
+	height: 3.25rem;
+	background: var(--field);
+	border: 1px solid var(--line-strong);
+	border-radius: 0.9rem;
+	transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+.combo__field:focus-within {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgb(255 59 48 / 0.22);
+}
+.combo__lens {
+	position: absolute;
+	left: 1rem;
+	color: var(--muted);
+	pointer-events: none;
+}
+.combo__input {
+	width: 100%;
+	height: 3.25rem;
+	padding: 0 1rem 0 2.9rem;
+	border-radius: 0.9rem;
+}
+.combo__pop {
+	position: absolute;
+	z-index: 3;
+	top: calc(100% + 0.5rem);
+	left: 0;
+	right: 0;
+	padding: 0.375rem;
+	background: #151515;
+	border: 1px solid var(--line-strong);
+	border-radius: 0.9rem;
+	box-shadow: 0 1.25rem 2.5rem rgb(0 0 0 / 0.5);
+	opacity: 0;
+	visibility: hidden;
+	translate: 0 -0.25rem;
+	transform-origin: top center;
+	transition: opacity 150ms var(--ease-out), translate 150ms var(--ease-out), visibility 0s linear 150ms;
+}
+.combo__pop.is-open {
+	opacity: 1;
+	visibility: visible;
+	translate: 0 0;
+	transition-delay: 0s;
+}
+.combo__none {
+	padding: 0.9rem 0.75rem;
+	color: var(--muted);
+	font-size: 0.9375rem;
+}
+.combo__msg {
+	color: var(--muted);
+	font-size: 0.875rem;
+	padding-inline: 0.25rem;
+}
+.combo__msg strong {
+	color: var(--text);
+	font-weight: 600;
+}
+
+/* Elenco di opzioni (suggerimenti e palette) */
+.opts {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.opt {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.6rem 0.75rem;
+	color: var(--text);
+	font-size: 0.9375rem;
+	cursor: pointer;
+	border-radius: 0.6rem;
+}
+.opt .ic {
+	color: var(--muted);
+}
+.opt__label {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.opt__cat {
+	color: var(--muted);
+	font-size: 0.75rem;
+}
+.opt[aria-selected='true'] {
+	background: var(--row);
+	box-shadow: inset 2px 0 0 var(--accent);
+}
+.opt[aria-selected='true'] .ic {
+	color: var(--accent);
+}
+.opt mark {
+	padding: 0 0.1rem;
+	margin-inline: -0.1rem;
+	color: #fff;
+	background: rgb(255 59 48 / 0.35);
+	border-radius: 0.2rem;
+}
+.opts__group {
+	padding: 0.7rem 0.75rem 0.3rem;
+	color: var(--muted);
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+/* ---------- 5. Palette dei comandi ---------- */
+.stage--pal {
+	justify-items: center;
+}
+.pal-open {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	width: min(100%, 24rem);
+	height: 3.25rem;
+	padding: 0 0.9rem 0 1rem;
+	font: inherit;
+	font-size: 0.9375rem;
+	color: var(--muted);
+	text-align: left;
+	cursor: pointer;
+	background: var(--field);
+	border: 1px solid var(--line-strong);
+	border-radius: 0.9rem;
+	transition: border-color 150ms var(--ease-out), color 150ms var(--ease-out), scale 150ms var(--ease-out);
+}
+.pal-open > span:first-of-type {
+	flex: 1;
+}
+.pal-open:active {
+	scale: 0.98;
+}
+@media (hover: hover) and (pointer: fine) {
+	.pal-open:hover {
+		color: var(--text);
+		border-color: var(--muted);
+	}
+}
+.pal-msg {
+	color: var(--muted);
+	font-size: 0.875rem;
+}
+.pal-msg strong {
+	color: var(--text);
+	font-weight: 600;
+}
+
+/* Nessuna animazione di apertura: è un gesto da tastiera, ripetuto di continuo. */
+.pal {
+	width: min(36rem, calc(100vw - 2rem));
+	margin: 12vh auto auto;
+	padding: 0;
+	color: var(--text);
+	background: #141414;
+	border: 1px solid var(--line-strong);
+	border-radius: 1rem;
+	box-shadow: 0 2rem 4rem rgb(0 0 0 / 0.6);
+	overflow: hidden;
+}
+.pal::backdrop {
+	background: rgb(0 0 0 / 0.65);
+}
+.pal__bar {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0 1rem;
+	height: 3.5rem;
+	color: var(--muted);
+	border-bottom: 1px solid var(--line);
+}
+.pal__input {
+	flex: 1;
+	min-width: 0;
+	height: 100%;
+}
+.opts--pal {
+	max-height: min(21rem, 50svh);
+	padding: 0.375rem;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+}
+.pal__none {
+	padding: 1.5rem 1rem;
+	color: var(--muted);
+	text-align: center;
+}
+.pal__foot {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 1.25rem;
+	padding: 0.65rem 1rem;
+	color: var(--muted);
+	font-size: 0.75rem;
+	border-top: 1px solid var(--line);
+}
+.pal__foot span {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+}
+.pal__foot kbd {
+	min-width: 1.35rem;
+	height: 1.35rem;
+}
+
+
+/* Sul telefono la scorciatoia da tastiera non c'è: si nasconde il suggerimento. */
+@media (hover: none) {
+	.keys {
+		display: none;
+	}
+}
