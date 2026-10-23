@@ -106,5 +106,20 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
    schermo mobile e il punteggio sembrava 98. Già fatto: alone animato solo se in vista, un solo rumore per seme nell'elettrico. Stringere l'area dei
    filtri non serve (misurato). Rimedi veri = cambiare tecnica (es. gradiente ruotato con `transform`, alone con `box-shadow`): decisione dell'autore.
 2. Prova su telefono vero a discrezione dell'autore; filtri SVG e `feTurbulence` (sfondi, bordi) sono i candidati a rallentare su telefoni lenti.
-3. **Esperimenti** (dopo): 5 slider a schermo intero sono troppi (ne terrei 2-3); la GSAP draggable zoom grid (zip `2026-07-14-draggable-zoom-grid-gallery-using-gsap`)
-   = nuovo Esperimento con contenuto nostro. Anche gli Esperimenti vanno firmati con il logo (`studio.js`).
+3. **Esperimenti: piano deciso il 23/10/2026, da eseguire a lotti** (si parte dal lotto 1, mostrando prima di passare al successivo):
+   - **Slider**: i 6 (animals, fruit soda, magic effects, movie, vertical, coffee) NON si ritirano: diventano UNA scheda
+     `components/slider/` (Componente n. 29, categoria "Galleria e media"), sezioni impilate come `sfondi`, prima fruit soda; CSS in scope,
+     `vh/vw` → `cqw/cqh`, rotella disattivata, immagini WebP nel pool. Le vecchie cartelle restano come redirect a `components/slider/#id`.
+   - **Diritti da risolvere**: locandine e dati di film veri nel movie slider (→ 6 film inventati con poster generati: prompt ancora da
+     preparare), "lundev" sul barattolo di fruit soda (→ nostra etichetta), foto della modella nel vertical (→ foto del pool), provenienza
+     delle immagini di animals e magic effects da verificare.
+   - **Esperimenti rimasti** (calendario, booking, reviews, skytracker, 3D scroll): font self-hosted, via FontAwesome/Skypack/cdnfonts, three e gsap
+     in locale, `bg.png` 18 MB e modello 3D in versione leggera, firma `studio.js`, testi e `lang` in italiano, screenshot 16:9 rigenerati.
+     Sorgenti React di booking e reviews: repo private `Loop-Studio-Web/lab-booking-widget` e `lab-google-reviews-widget`.
+   - **Sito madre**: nuovo `src/data/lab-experiments.ts` (via `'demo'` da `portfolio-projects.ts`), filtro per categoria anche sugli Esperimenti
+     (pezzo condiviso con i Componenti), titolo e introduzione visibili alla sezione.
+   - **Nuovi Esperimenti** (prima ondata): Preventivatore (React, repo propria; prima solo Esperimento, poi si valuta il sito madre), Report social
+     (dataviz SVG), griglia zoom trascinabile GSAP (zip `2026-07-14-draggable-zoom-grid-gallery-using-gsap`), storytelling a scorrimento in solo CSS.
+   - **Prestazioni** (skill Emil `animation-performance`, installata): `bordi-animati` ha `filter: blur(32px)` su `.electric__bloom`; 3 `transition: all`
+     da togliere (`campi-testo/style.css` righe 123 e 190, `movies-slider/style.css` riga 134).
+   Anche gli Esperimenti vanno firmati con il logo (`studio.js`).
