@@ -117,3 +117,10 @@ Ctrl/⌘ K, **senza animazione di apertura di proposito**, dichiarato nella nota
   parole chiave invisibili (es. "si" → "Manutenzione e supporto" per «assistenza»): l'autore l'ha trovato accettabile.
 - **Scartati dall'autore** fra le tre proposte: popover/menu a tendina con ancoraggio CSS (da riconsiderare) e accordion di testo (debole).
 - **Stato**: Lab chiuso a **30 Componenti + 15 Demo**. Si riapre solo dopo aver completato le altre sezioni del sito madre o per qualcosa di davvero interessante.
+
+## SEO delle schede (decisione dell'autore, 24/10/2026)
+
+le pagine del Lab restano INDICIZZABILI (niente `noindex`): possono portare sviluppatori e link in ingresso al sito madre. Da fare "per bene e con calma", insieme alla traduzione completa del sito: `<meta name="description">` in **inglese** su tutte le 45 pagine (30 Componenti + 15 Demo, scritte a mano, col nome della tecnica), `sitemap.xml` nella radice, e le pagine stesse tradotte (oggi `lang="it"` col corpo in italiano: una description in inglese su pagina italiana è incoerente; con la traduzione vanno `lang`, `hreflang` e canonical). Fino ad allora non aggiungere description né `noindex`. Nelle Demo Vite metterla anche nell'`index.html` della repo sorgente.
+
+
+Provato e scartato il `noindex` (mai pushato). PSI SEO 91 sulle schede = manca la description: noto e accettato fino ad allora.
