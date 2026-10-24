@@ -44,7 +44,7 @@
 			<section class="demo__section">
 				<h2 class="demo__label">La lente che si apre</h2>
 				<div class="stage stage--lens">
-					<div role="search">
+					<div role="search" aria-label="Ricerca con la lente">
 						<label class="lens">
 							<span class="sr-only">Cerca nel sito</span>
 							<input type="search" class="lens__input" placeholder="Cerca nel sito…" autocomplete="off" />
@@ -58,7 +58,7 @@
 			<section class="demo__section">
 				<h2 class="demo__label">Il cerchio che si espande</h2>
 				<div class="stage stage--orb">
-					<div role="search" class="orb">
+					<div role="search" class="orb" aria-label="Ricerca con il cerchio">
 						<div class="orb__wrap">
 							<label>
 								<span class="sr-only">Cerca nel sito</span>
@@ -73,7 +73,7 @@
 			<section class="demo__section">
 				<h2 class="demo__label">Cerca e svuota</h2>
 				<div class="stage stage--sf">
-					<form class="sf" role="search" data-sf data-state="idle" novalidate>
+					<form class="sf" role="search" aria-label="Cerca e svuota" data-sf data-state="idle" novalidate>
 						<div class="sf__field">
 							<svg class="ic sf__lens" aria-hidden="true"><use href="#i-search" /></svg>
 							<label>
