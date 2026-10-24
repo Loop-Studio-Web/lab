@@ -89,7 +89,7 @@ input:focus {
 	width: 100%;
 }
 .lens {
-	--u: 1.75rem;
+	--u: 1.2rem;
 	--d: calc(var(--u) * 3);
 	--pl: calc(var(--u) * 0.7); /* dove comincia il testo */
 	--ease: cubic-bezier(0.77, 0, 0.175, 1);
@@ -97,7 +97,7 @@ input:focus {
 	position: relative;
 	display: block;
 	margin-inline: auto;
-	width: min(100%, calc(var(--u) * 15));
+	width: min(100%, 26rem);
 	height: var(--d);
 	/* chiusa, l'anello sta al centro; aprendosi, il campo si allarga attorno */
 	transform: translateX(calc(50% - var(--d) / 2));
@@ -115,7 +115,7 @@ input:focus {
 	width: var(--d);
 	height: var(--d);
 	padding: 0 1rem 0 var(--pl);
-	font-size: calc(var(--u) * 0.8);
+	font-size: 1rem;
 	cursor: pointer;
 	background: transparent;
 	border: 3px solid var(--text);

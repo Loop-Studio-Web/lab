@@ -29,7 +29,7 @@ deploy, sulle pagine online. **Commit solo con l'ok dell'autore, push solo dopo 
 - `components/<id>/`: `index.html` (+ `style.css`, `script.js`, `img/`, `video/`, `fonts/` se servono). Ogni scheda apribile da sola.
 - Ogni pagina nuova: `<link rel="stylesheet" href="../_shared/base.css">`, `<link rel="icon" href="data:,">`, `<html lang="it">`,
   titolo "Nome — Loop Studio Lab", `<main class="demo">`, il tag script di `studio.js`.
-- Sito madre: `src/data/lab-components.ts` (29 schede, array ordinato a mano: id = nome cartella, title, category, description,
+- Sito madre: `src/data/lab-components.ts` (30 schede, array ordinato a mano: id = nome cartella, title, category, description,
   previewUrl) + `src/pages/lab.astro` (filtro categorie, badge conteggio). Il modal del sito ha `allow="clipboard-write"`.
   Categorie: Layout, Navigazione, Interazione, Form, Card, Feedback, Effetti, Galleria e media.
 
@@ -80,9 +80,9 @@ deploy, sulle pagine online. **Commit solo con l'ok dell'autore, push solo dopo 
 - Foto: Unsplash blocca curl (non aggirare): WebSearch → WebFetch della pagina foto per l'id CDN, poi `curl images.unsplash.com/photo-<id>?w=2400&q=80&fm=jpg`. Pexels video: `curl https://www.pexels.com/download/video/<id>/`.
 - Per scrivere file lunghi usare lo strumento Write (gli heredoc di Bash con tanti apici possono fallire in silenzio).
 
-## Stato (aggiornato 2026-10-23)
+## Stato (aggiornato 2026-10-24)
 
-Tutto **pubblicato** (online = `origin/main`): **29 Componenti** e **15 Demo**. Cronaca, scelte e trappole di ogni lotto e di ogni Demo: **`docs/demo-e-rinnovo.md`** (leggerla prima di toccare quella pagina).
+Tutto **pubblicato** (online = `origin/main`): **30 Componenti** e **15 Demo**. **Lab dichiarato concluso per ottobre 2026 (decisione dell'autore, 24/10): si aggiunge altro solo dopo aver completato le altre sezioni del sito madre, o se si trova qualcosa di davvero interessante.** Cronaca, scelte e trappole di ogni lotto e di ogni Demo: **`docs/demo-e-rinnovo.md`** (leggerla prima di toccare quella pagina).
 
 - **Demo** (stanno nella RADICE del Lab, non in `components/`; dati e schede nel sito madre in `src/data/lab-demos.ts`): `3d-medusa`, `3d-infinito`, `3d-farfalla`, `storytelling-css`, `galleria-trascinabile`, `galleria-riordinabile`, `booking-widget`, `google-reviews-widget`, `preventivatore`, `menu-su-misura`, `report-social`, `convertitore-valute`, `faq-ricerca`, `skyTracker`, `calendario`. Slider: una sola scheda `components/slider/`; le vecchie cartelle `animals-webpage`, `movies-slider`, `slider-fruit-soda`, `slider-magic-effects`, `starbucks-coffee`, `vertical-slider` (→ `components/slider/#id`) e `three-js-animation` (→ `3d-medusa/`) sono rimandi di una riga: le card vecchie online puntano a loro.
 - **Sorgenti fuori da questa repo** (repo private su `Loop-Studio-Web`, cartelle in `Websites\`): `lab-booking-widget`, `lab-google-reviews-widget`, `lab-preventivatore` (React/Vite: `npm run build`, poi copiare `dist/*` nella cartella della Demo; `npm test` per il calcolo), `lab-calendario` (Astro, cartella `Lab-Calendario-demo`: `npm run build`, copiare `dist/index.html` e `dist/assets`), e i Worker `lab-meteo-worker` e `lab-cambio-worker` (online su `domenicociardullo85.workers.dev`; le chiavi sono secret di Cloudflare, mai in repo; PowerShell: `npx.cmd`).

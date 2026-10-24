@@ -105,3 +105,15 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
    - **Prestazioni** (skill Emil `animation-performance`, installata): `bordi-animati` ha `filter: blur(32px)` su `.electric__bloom`; 2 `transition: all`
      da togliere (`campi-testo/style.css` righe 123 e 190; quello di movies-slider è sparito con la scheda Slider).
    Anche le Demo vanno firmate con il logo (`studio.js`).
+
+## Componente n. 30: Barre di ricerca (24/10/2026, chiude il Lab di ottobre)
+
+`components/barre-ricerca/` (`index.html`, `style.css`, `script.js`; nessuna foto, icone Lucide da sprite SVG in pagina). Cinque sezioni:
+lente che si apre (solo CSS, `--u` come unità, `:has()`/`:focus-within`; il manico ruota e diventa il cursore rosso) · cerchio che si espande ·
+cerca e svuota (spinner simulato 600 ms) · suggerimenti e filtri (combobox ARIA, pillole, evidenziazione) · palette dei comandi (`<dialog>`,
+Ctrl/⌘ K, **senza animazione di apertura di proposito**, dichiarato nella nota). Dati di fantasia in un solo elenco `DATA` in `script.js`.
+- **Scelte**: lente a 1,2 rem di unità (anello ~58 px; a 1,75 rem era "gigante" per l'autore); testo del campo fisso a 1 rem e larghezza fissa
+  26 rem, NON legati a `--u` (la geometria del manico invece sì: cambiando `--u` si ricalcola da sola). Nel combobox alcuni risultati vengono da
+  parole chiave invisibili (es. "si" → "Manutenzione e supporto" per «assistenza»): l'autore l'ha trovato accettabile.
+- **Scartati dall'autore** fra le tre proposte: popover/menu a tendina con ancoraggio CSS (da riconsiderare) e accordion di testo (debole).
+- **Stato**: Lab chiuso a **30 Componenti + 15 Demo**. Si riapre solo dopo aver completato le altre sezioni del sito madre o per qualcosa di davvero interessante.

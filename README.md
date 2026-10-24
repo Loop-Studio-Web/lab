@@ -13,7 +13,7 @@
 
 **Front-end demos and UI components,<br>kept small, self-contained and a little bit playful.**
 
-[![Live](https://img.shields.io/badge/lab-live-fe3b30?style=flat-square&labelColor=0b0b0c)](https://loop-studio-web.github.io/lab/) [![Components](https://img.shields.io/badge/components-29-fe3b30?style=flat-square&labelColor=0b0b0c)](#components) [![Demos](https://img.shields.io/badge/demos-15-fe3b30?style=flat-square&labelColor=0b0b0c)](#demos) [![axe-core](https://img.shields.io/badge/axe--core-0%20violations-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built) [![PageSpeed](https://img.shields.io/badge/PageSpeed%20mobile-98%E2%80%93100-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built)
+[![Live](https://img.shields.io/badge/lab-live-fe3b30?style=flat-square&labelColor=0b0b0c)](https://loop-studio-web.github.io/lab/) [![Components](https://img.shields.io/badge/components-30-fe3b30?style=flat-square&labelColor=0b0b0c)](#components) [![Demos](https://img.shields.io/badge/demos-15-fe3b30?style=flat-square&labelColor=0b0b0c)](#demos) [![axe-core](https://img.shields.io/badge/axe--core-0%20violations-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built) [![PageSpeed](https://img.shields.io/badge/PageSpeed%20mobile-98%E2%80%93100-fe3b30?style=flat-square&labelColor=0b0b0c)](#how-every-piece-is-built)
 
 [**Open the Lab →**](https://loop-studio-web.github.io/lab/)
 
@@ -38,7 +38,7 @@ The Lab is plain static files served as-is by GitHub Pages, so there is **no bui
 
 ## Components
 
-Twenty-nine demo pages in [`components/`](components), one folder each. Most gather several variants of the same idea, so there are well over a hundred small pieces in all. Every page opens on its own, on a fixed dark stage, with real buttons, keyboard and touch support, and `prefers-reduced-motion` respected. Click any picture to open the live page.
+Thirty demo pages in [`components/`](components), one folder each. Most gather several variants of the same idea, so there are well over a hundred small pieces in all. Every page opens on its own, on a fixed dark stage, with real buttons, keyboard and touch support, and `prefers-reduced-motion` respected. Click any picture to open the live page.
 
 ### Layout
 
@@ -117,6 +117,10 @@ Twenty-nine demo pages in [`components/`](components), one folder each. Most gat
   <tr>
     <td width="34%" valign="top"><a href="https://loop-studio-web.github.io/lab/components/orario-arco/"><img src="docs/img/components/orario-arco.webp" alt="A gradient arc with a draggable handle showing the time"></a></td>
     <td valign="top"><b><a href="https://loop-studio-web.github.io/lab/components/orario-arco/">Arc time picker</a></b><br>Pick the time of an appointment or the length of a service by dragging along an arc. Two instances of the same code.<br><sub><b>Variants:</b> appointment time · service duration</sub><br><sub><a href="components/orario-arco">source</a></sub></td>
+  </tr>
+  <tr>
+    <td width="34%" valign="top"><a href="https://loop-studio-web.github.io/lab/components/barre-ricerca/"><img src="docs/img/components/barre-ricerca.webp" alt="A white magnifying glass ring and a red circular search button on a dark stage"></a></td>
+    <td valign="top"><b><a href="https://loop-studio-web.github.io/lab/components/barre-ricerca/">Search bars</a></b><br>Five ways to ask "what are you looking for?": two playful openings, then the ones that do the work, with suggestions, filters and a command palette. Made-up data, no backend.<br><sub><b>Variants:</b> lens that opens into a field (the handle becomes the cursor) · circle that expands · search and clear · suggestions and filters (ARIA combobox) · command palette (Ctrl/⌘ K)</sub><br><sub><a href="components/barre-ricerca">source</a></sub></td>
   </tr>
 </table>
 
