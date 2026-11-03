@@ -282,6 +282,19 @@ main {
 
 /* ---------- Feedback / footer ---------- */
 
+.pausa {
+  margin: 3rem auto 0;
+  max-width: 32rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.pausa[hidden],
+.weather-card[hidden],
+.forecast[hidden] {
+  display: none;
+}
+
 .error-message {
   margin: 1.5rem 0 0;
   text-align: center;

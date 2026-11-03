@@ -36,7 +36,7 @@ DOPO (o insieme) al Lab, perché le sue `previewUrl` puntano alle nuove cartelle
    - **Demo (7)**: `calendario`, `booking-widget`, `google-reviews-widget`, `skyTracker`, `3d-medusa`, `3d-infinito`, `3d-farfalla`. Widget e SkyTracker
      ripuliti (font dal pool via `base.css`, firma `studio.js`, niente CDN/FontAwesome). Sorgenti React in repo private
      `lab-booking-widget` / `lab-google-reviews-widget` (clonate in `Websites\`, build con `npm run build` e copia di `dist/*`).
-     Proxy meteo di SkyTracker: dal 24/10 è il Worker `lab-meteo` (`https://lab-meteo.domenicociardullo85.workers.dev`, repo `Websites\lab-meteo-worker`, chiave come secret `WEATHER_API_KEY`
+     **[Superato il 2026-11-03: SkyTracker è in pausa, nessun Worker; vedi sotto «Meteo».]** Proxy meteo di SkyTracker: dal 24/10 è il Worker `lab-meteo` (`https://lab-meteo.domenicociardullo85.workers.dev`, repo `Websites\lab-meteo-worker`, chiave come secret `WEATHER_API_KEY`
      messa dall'autore, cache 10 min, risposta ridotta, testi in italiano). Il VECCHIO `skytracker-weather-proxy` rispondeva 403 all'origine `loop-studio-web.github.io` (il SkyTracker online era
      già rotto): da ritirare DOPO il push e la verifica online. Stessa chiave del vecchio (l'autore non l'ha cambiata).
    - **3D**: l'ape (modello CC-BY, 28 MB) è sostituita da tre pagine procedurali, ciascuna con foto Unsplash di fondo (crediti in pagina e in
@@ -123,3 +123,9 @@ le pagine del Lab restano INDICIZZABILI (niente `noindex`): possono portare svil
 
 
 Provato e scartato il `noindex` (mai pushato). PSI SEO 91 sulle schede = manca la description: noto e accettato fino ad allora.
+
+## Meteo (SkyTracker) — in pausa dal 2026-11-03
+
+- La demo non chiama più nulla (`PAUSA = true` in `skyTracker/script.js`): il Worker `lab-meteo` va cancellato dalla Dashboard e la chiave WeatherAPI revocata, **dopo** il push di questa pagina.
+- In attesa di risposta da `info@open-meteo.com` (la demo di portfolio rientra nel gratuito non commerciale?). Se sì: adattatore Open-Meteo diretto (geocoding + previsioni, codici WMO da mappare sulle icone di `weather/`), attribuzione CC BY 4.0, nota «esempio dimostrativo». Se no: MET Norway (`api.met.no`, CC BY 4.0) + Nominatim (ricerca all'invio, 1 richiesta/s, attribuzione ODbL); mancano percepita e % pioggia, i giorni vanno aggregati dalla serie oraria, coordinate a 4 decimali.
+- Provati con curl e scartati: wttr.in (timeout), 7timer (senza CORS), Bright Sky e weather.gov (solo Germania / USA).

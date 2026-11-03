@@ -1,5 +1,7 @@
-const WEATHER_PROXY_URL =
-  "https://lab-meteo.domenicociardullo85.workers.dev/weather";
+// Demo in pausa (2026-11-03): il Worker lab-meteo è stato tolto e la nuova fonte dei dati meteo
+// non è ancora scelta. Finché PAUSA è true la pagina non fa nessuna chiamata di rete.
+const PAUSA = true;
+const WEATHER_PROXY_URL = ""; // da sostituire con la nuova fonte (adattatore in arrivo)
 const DEFAULT_CITY = "Milan,Italy";
 
 const inputSearch = document.querySelector(".input-search");
@@ -156,4 +158,13 @@ function getWeatherIconUrl(conditionCode, isDay) {
     });
 }
 
-searchWeather(DEFAULT_CITY);
+if (PAUSA) {
+  document.querySelector(".weather-card").hidden = true;
+  document.querySelector(".forecast").hidden = true;
+  document.querySelector(".pausa").hidden = false;
+  inputSearch.disabled = true;
+  btnSearch.disabled = true;
+  inputSearch.placeholder = "Ricerca in pausa";
+} else {
+  searchWeather(DEFAULT_CITY);
+}
