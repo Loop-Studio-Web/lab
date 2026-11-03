@@ -1,5 +1,5 @@
 // Convertitore di valute: cartoline con i prezzi nella valuta scelta + convertitore con andamento.
-// I tassi arrivano dal Worker (lab-cambio); se non risponde si usano tassi di esempio e la pagina lo dice.
+// I tassi arrivano direttamente da Frankfurter; se non risponde si usano tassi di esempio e la pagina lo dice.
 import { API, VALUTE, VALUTE_PREZZI, DESTINAZIONI, TASSI_ESEMPIO } from './data.js';
 
 const $ = (id) => document.getElementById(id);
@@ -257,13 +257,26 @@ function timbro(tipo) {
 	}
 }
 
+// Frankfurter risponde con righe { date, base, quote, rate }: qui le ricomponiamo nella forma che la pagina usa.
+// (In un progetto vero lo farebbe il Worker, che tiene anche in cache la risposta.)
+async function chiedi(query, ms) {
+	const r = await fetch(`${API}?${query}`, { signal: AbortSignal.timeout(ms), headers: { Accept: 'application/json' } });
+	if (!r.ok) throw new Error(String(r.status));
+	const righe = await r.json();
+	if (!Array.isArray(righe) || righe.length === 0) throw new Error('risposta vuota');
+	return righe;
+}
+
 async function caricaTassi() {
 	try {
-		const r = await fetch(`${API}/rates`, { signal: AbortSignal.timeout(5000) });
-		if (!r.ok) throw new Error(String(r.status));
-		const j = await r.json();
-		if (!j.rates || !j.rates.EUR) throw new Error('forma inattesa');
-		stato.tassi = { date: j.date, rates: j.rates };
+		const righe = await chiedi(`base=EUR&quotes=${VALUTE.filter((v) => v !== 'EUR').join(',')}`, 5000);
+		const rates = { EUR: 1 };
+		let date = '9999';
+		for (const r of righe) {
+			rates[r.quote] = r.rate;
+			if (r.date < date) date = r.date; // la data più vecchia: non dichiariamo tassi più freschi di quanto siano tutti
+		}
+		stato.tassi = { date, rates };
 		stato.esempio = false;
 	} catch {
 		stato.tassi = TASSI_ESEMPIO;
@@ -293,10 +306,11 @@ async function caricaSerie() {
 		tela.setAttribute('aria-busy', 'true');
 		$('g-vuoto').hidden = true;
 		try {
-			const r = await fetch(`${API}/series?base=${da}&quote=${a}&days=${giorni}`, { signal: AbortSignal.timeout(7000) });
-			if (!r.ok) throw new Error(String(r.status));
-			dati = await r.json();
-			if (!Array.isArray(dati.punti) || dati.punti.length < 2) throw new Error('serie vuota');
+			// Senza "to": Frankfurter arriva da solo all'ultimo giorno disponibile.
+			const dal = new Date(Date.now() - giorni * 86400000).toISOString().slice(0, 10);
+			const righe = await chiedi(`base=${da}&quotes=${a}&from=${dal}`, 7000);
+			dati = { base: da, quote: a, punti: righe.map((r) => [r.date, r.rate]) };
+			if (dati.punti.length < 2) throw new Error('serie vuota');
 			cacheSerie.set(k, dati);
 		} catch {
 			if (id === richiestaSerie) {

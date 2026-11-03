@@ -1,12 +1,10 @@
 // Dati della Demo "Convertitore di valute": agenzia di fantasia "Tre Timbri".
-// FINTI: agenzia e prezzi. VERI: i tassi, che arrivano dal nostro Worker (lab-cambio).
+// FINTI: agenzia e prezzi. VERI: i tassi, che il browser chiede direttamente a Frankfurter (senza chiave, CORS aperto).
+// Scelta della demo (2026-11-03): niente Worker pubblico, che consumerebbe la quota dell'account Cloudflare.
+// In un progetto vero le chiamate passerebbero da un Worker con cache (esempio in `lab-cambio-worker`, non pubblicato).
+export const API = 'https://api.frankfurter.dev/v2/rates';
 
-// Indirizzo del Worker. In locale (server di prova sulla 8765) si usa quello di `wrangler dev`.
-export const API = ['localhost', '127.0.0.1'].includes(location.hostname)
-	? 'http://127.0.0.1:8787'
-	: 'https://lab-cambio.domenicociardullo85.workers.dev';
-
-// Valute del convertitore e dei prezzi (le stesse che il Worker inoltra).
+// Valute del convertitore e dei prezzi.
 export const VALUTE = [
 	'EUR', 'USD', 'GBP', 'JPY', 'CHF', 'MAD', 'CAD', 'AUD', 'NZD', 'CNY', 'HKD', 'SGD', 'KRW', 'INR', 'THB',
 	'TRY', 'BRL', 'MXN', 'ZAR', 'SEK', 'NOK', 'DKK', 'PLN', 'CZK', 'HUF', 'RON', 'AED', 'EGP', 'ISK', 'ILS', 'IDR'
@@ -70,7 +68,7 @@ export const DESTINAZIONI = [
 	}
 ];
 
-// Tassi di esempio (copia di una risposta vera del Worker): si usano solo se il Worker non risponde,
+// Tassi di esempio (copia di una risposta vera, già ricomposta dalla pagina): si usano solo se Frankfurter non risponde,
 // e la pagina lo dice ("tassi di esempio"). Base EUR.
 export const TASSI_ESEMPIO = {
 	date: '2026-10-23',
