@@ -23,6 +23,7 @@
             class="input-search"
             aria-label="Città"
             placeholder="Cerca una città..."
+            autocomplete="off"
           />
           <button type="button" class="btn-search" aria-label="Cerca">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
@@ -72,7 +73,7 @@
           <div class="detail rain">
             <img src="img/rain-svgrepo-com.svg" alt="" />
             <div>
-              <p>Probabilità pioggia</p>
+              <p>Pioggia 24 h</p>
               <span></span>
             </div>
           </div>
@@ -101,16 +102,22 @@
         </article>
       </section>
 
-      <p class="pausa" hidden>
-        Demo in pausa. Stiamo scegliendo la fonte dei dati meteo: appena è pronta,
-        la ricerca per città torna attiva.
-      </p>
-
       <p class="error-message" hidden></p>
     </main>
 
     <aside class="site-footer" aria-label="Fonte dei dati">
-      <p>Dati meteo: fonte in via di definizione.</p>
+      <p>
+        Data from <a href="https://api.met.no/doc/License" target="_blank" rel="noopener">MET Norway</a>
+        (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> /
+        <a href="https://data.norge.no/nlod/en/2.0" target="_blank" rel="noopener">NLOD 2.0</a>) ·
+        Ricerca città: ©
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>
+      </p>
+      <p>Esempio dimostrativo: non usarlo per decisioni reali.</p>
+      <p>
+        Il tuo indirizzo IP e le coordinate del luogo cercato arrivano a MET Norway e, per la ricerca di una città,
+        a Nominatim (OpenStreetMap).
+      </p>
     </aside>
 
     <script src="../components/_shared/studio.js"></script>

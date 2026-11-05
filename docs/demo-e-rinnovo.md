@@ -124,8 +124,15 @@ le pagine del Lab restano INDICIZZABILI (niente `noindex`): possono portare svil
 
 Provato e scartato il `noindex` (mai pushato). PSI SEO 91 sulle schede = manca la description: noto e accettato fino ad allora.
 
-## Meteo (SkyTracker) — in pausa dal 2026-11-03
+## Meteo (SkyTracker) — di nuovo attivo dal 2026-11-05
 
-- La demo non chiama più nulla (`PAUSA = true` in `skyTracker/script.js`): il Worker `lab-meteo` va cancellato dalla Dashboard e la chiave WeatherAPI revocata, **dopo** il push di questa pagina.
-- In attesa di risposta da `info@open-meteo.com` (la demo di portfolio rientra nel gratuito non commerciale?). Se sì: adattatore Open-Meteo diretto (geocoding + previsioni, codici WMO da mappare sulle icone di `weather/`), attribuzione CC BY 4.0, nota «esempio dimostrativo». Se no: MET Norway (`api.met.no`, CC BY 4.0) + Nominatim (ricerca all'invio, 1 richiesta/s, attribuzione ODbL); mancano percepita e % pioggia, i giorni vanno aggregati dalla serie oraria, coordinate a 4 decimali.
-- Provati con curl e scartati: wttr.in (timeout), 7timer (senza CORS), Bright Sky e weather.gov (solo Germania / USA).
+- **Fonte scelta: MET Norway + Nominatim**, tutto dal browser, nessun Worker (`skyTracker/script.js`, niente più `PAUSA`). Open-Meteo ha risposto (05/11) che il portfolio di uno studio è uso commerciale: escluso. meteoblue scartato (condizioni contraddittorie, free di un solo anno). Scartati prima: wttr.in (timeout), 7timer (senza CORS), Bright Sky e weather.gov (solo Germania / USA).
+- **MET** `locationforecast/2.0/complete?lat&lon`: CORS `*`, nessun header personalizzato, identificazione via `Origin`. Coordinate a **max 4 decimali** (con 5+ dà 403). Cache in `sessionStorage` per 15 min: `Expires` (~17 min) c'è ma **non è esposto via CORS** (manca `Access-Control-Expose-Headers`), quindi `fetchForecast` usa il tempo fisso e legge `Expires` solo se un giorno comparisse.
+- **Dati**: percepita (`apparent_air_temperature`), umidità, vento (m/s × 3,6). **Niente % pioggia** (`probability_of_precipitation` assente): al suo posto «Pioggia 24 h» in mm (somma delle prossime 24 h). I giorni si ricavano dalla serie oraria (blocchi da 6 h dopo ~60 h): min/max dalle temperature + `air_temperature_min/max` a 6 h; icona del giorno = simbolo più vicino alle 12 locali.
+- **Fuso**: MET dà UTC e nessun fuso; l'ora locale si stima dalla longitudine (15° = 1 h): può sbagliare di 1 h (ora legale) nell'assegnare un'ora al giorno. Accettato per una demo.
+- **Icone**: i `symbol_code` MET sono mappati (tabella `SYMBOLS` + temporali) sulle icone già in `weather/64x64/` (numerazione WeatherAPI); testi in italiano; le icone MIT di MET non sono usate.
+- **Nominatim**: solo all'invio (autocomplete vietato), ≥1,1 s tra richieste, cache 24 h per ricerca; Milano di partenza è fissa (nessuna chiamata a Nominatim all'avvio).
+- **In pagina** (footer): «Data from MET Norway» con link alla licenza (CC BY 4.0 / NLOD 2.0), «© OpenStreetMap contributors», nota «esempio dimostrativo», avviso che IP e coordinate arrivano a MET e Nominatim. Niente «Yr» né il loro logo.
+- **Da fare dopo il push**: cancellare il Worker `lab-meteo` dalla Dashboard e revocare la chiave WeatherAPI (la demo non li usa più); controllare la pagina ONLINE (Origin `loop-studio-web.github.io` e iframe del sito madre). Aggiornare nel sito madre (`lab-demos.ts`) la descrizione di SkyTracker se cita il Worker.
+- **Monitorare**: le condizioni d'uso di MET sono «in revisione»: se il CORS cambia (`Access-Control-Allow-Origin` sparisce) la demo smette di funzionare, va segnalato all'autore. Verifica rapida: `curl -sI -H "Origin: https://loop-studio-web.github.io" "https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=45.4642&lon=9.19"`.
+- Collaudi (axe, PSI) da rifare dopo il deploy.
