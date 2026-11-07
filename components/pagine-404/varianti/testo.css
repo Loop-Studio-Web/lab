@@ -1,0 +1,89 @@
+/* Variante Testo: un 404 che passa da un effetto all'altro. L'aspetto degli effetti sta in
+   ../../_shared/effetti-testo.css; qui il palco, la sequenza e i due effetti a scorrimento
+   riportati al tempo (nel 404 non si scorre). */
+
+.fxbox {
+	container-type: size;
+	position: relative;
+	width: 100%;
+	height: clamp(11rem, 32svh, 18rem);
+}
+.fx {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	opacity: 1;
+	transition: opacity 300ms ease;
+}
+.fx[hidden] {
+	display: none;
+}
+.fx.is-out {
+	opacity: 0;
+}
+@starting-style {
+	.fx {
+		opacity: 0;
+	}
+}
+
+/* Fuori dalla vista la sequenza si ferma e le animazioni con lei. */
+.page404--testo:not(.is-live) .fx * ,
+.page404--testo:not(.is-live) .fx *::before,
+.page404--testo:not(.is-live) .fx *::after {
+	animation-play-state: paused !important;
+}
+
+/* I titoli grandi si dimensionano sul riquadro del palco. */
+.fx .neon {
+	--stage-bg: #000;
+}
+.fx .stack {
+	cursor: default;
+	font-size: clamp(4rem, 30cqw, 11rem);
+}
+
+/* Barre che entrano: al posto del logo, il 404. */
+.fx .bars {
+	min-height: 0;
+	height: 100%;
+}
+.bars__num {
+	font: 800 clamp(3rem, 14cqw, 6rem) / 1 var(--font-display);
+	letter-spacing: -0.02em;
+}
+
+/* Si ricompone: nel tempo, non allo scorrimento. */
+.fx .scramble {
+	animation: unscramble 2.6s 0.3s var(--ease-out) both;
+}
+.fx .scramble__words {
+	font-size: clamp(1.4rem, 5.4cqw, 2.2rem);
+}
+
+/* Giro: stessa cosa, la rotazione va da 0 a 1 in 3 secondi. */
+.fx .orbit {
+	--circle: min(46cqh, 46cqw);
+	animation: orbit-turn 3.2s 0.3s var(--ease-in-out) both;
+}
+
+/* Pallini: l'effetto in corso è rosso. */
+.dots {
+	display: flex;
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.dots li {
+	width: 0.45rem;
+	height: 0.45rem;
+	background: var(--line);
+	border-radius: 50%;
+	transition: background-color 200ms ease, scale 200ms var(--ease-out);
+}
+.dots li.is-on {
+	background: var(--accent);
+	scale: 1.35;
+}
