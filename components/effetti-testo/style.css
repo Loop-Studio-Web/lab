@@ -1,16 +1,16 @@
 @font-face {
 	font-family: 'Medula One';
-	src: url('fonts/medula-one-latin-400-normal.woff2') format('woff2');
+	src: url('../_shared/fonts/medula-one-latin-400-normal.woff2') format('woff2');
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Bungee Shade';
-	src: url('fonts/bungee-shade-latin-400-normal.woff2') format('woff2');
+	src: url('../_shared/fonts/bungee-shade-latin-400-normal.woff2') format('woff2');
 	font-display: swap;
 }
 @font-face {
 	font-family: 'Noto Sans Mono';
-	src: url('fonts/noto-sans-mono-latin-400-normal.woff2') format('woff2');
+	src: url('../_shared/fonts/noto-sans-mono-latin-400-normal.woff2') format('woff2');
 	font-display: swap;
 }
 
