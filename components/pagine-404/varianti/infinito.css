@@ -1,0 +1,44 @@
+/* Variante Infinito: «4∞4» con il marchio al posto dello 0, nube di puntini in un canvas sotto il testo. */
+
+.page404--infinito {
+	position: relative;
+	isolation: isolate;
+	touch-action: pan-y; /* il dito sposta i puntini, ma la pagina scorre ancora in verticale */
+}
+.inf404__canvas {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+.inf404__code {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.08em;
+	font: 800 clamp(4rem, 19cqw, 9rem) / 0.9 var(--font-display);
+	letter-spacing: -0.03em;
+	color: #fff;
+	user-select: none;
+}
+.inf404__mark {
+	width: 1.15em;
+	height: auto;
+	aspect-ratio: 1465 / 753;
+	animation: inf404-spin 3.2s var(--ease-in-out) infinite;
+}
+.page404--infinito:not(.is-live) .inf404__mark {
+	animation-play-state: paused;
+}
+@keyframes inf404-spin {
+	to {
+		rotate: 360deg;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.inf404__mark {
+		animation: none;
+	}
+}

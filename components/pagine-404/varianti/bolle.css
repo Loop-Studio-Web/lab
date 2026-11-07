@@ -1,0 +1,61 @@
+/* Variante Bolle: lo 0 di «404» è un anello di bolle luminose (CSS + blur). Le bolle si muovono in JS
+   (molla + cursore); qui l'aspetto: gradiente rosso con riflesso bianco, alone sfocato sotto. */
+
+.page404--bolle {
+	touch-action: pan-y;
+}
+.bolle404__code {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.04em;
+	font: 800 clamp(4rem, 19cqw, 9rem) / 0.9 var(--font-display);
+	letter-spacing: -0.03em;
+	color: #fff;
+	user-select: none;
+}
+.bolle404__ring {
+	position: relative;
+	display: block;
+	width: 0.95em;
+	aspect-ratio: 1;
+	margin-inline: 0.06em;
+}
+/* Alone: lo stesso anello, grande e sfocato, dietro le bolle. */
+.bolle404__ring::before {
+	content: '';
+	position: absolute;
+	inset: -8%;
+	border-radius: 50%;
+	background: radial-gradient(circle, transparent 38%, rgb(255 59 48 / 0.5) 52%, transparent 70%);
+	filter: blur(14px);
+	animation: bolle-pulse 4.5s ease-in-out infinite;
+}
+.bolle404__b {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: var(--s);
+	aspect-ratio: 1;
+	margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2);
+	border-radius: 50%;
+	background:
+		radial-gradient(circle at 32% 28%, #fff 0 8%, rgb(255 255 255 / 0.55) 14%, transparent 34%),
+		radial-gradient(circle at 50% 50%, rgb(255 90 80 / 0.9), #ff3b30 55%, #b3180f 100%);
+	box-shadow: 0 0 0.35em rgb(255 59 48 / 0.65), inset 0 -0.1em 0.2em rgb(0 0 0 / 0.25);
+	will-change: transform;
+}
+.page404--bolle:not(.is-live) .bolle404__ring::before {
+	animation-play-state: paused;
+}
+@keyframes bolle-pulse {
+	50% {
+		scale: 1.08;
+		opacity: 0.65;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.bolle404__ring::before {
+		animation: none;
+	}
+}

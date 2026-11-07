@@ -11,6 +11,8 @@
 		<link rel="stylesheet" href="../_shared/effetti-testo.css" />
 		<link rel="stylesheet" href="style.css" />
 		<link rel="stylesheet" href="varianti/testo.css" />
+		<link rel="stylesheet" href="varianti/infinito.css" />
+		<link rel="stylesheet" href="varianti/bolle.css" />
 		<script src="../_shared/effetti-testo.js" defer></script>
 		<script src="script.js" type="module"></script>
 	</head>
@@ -65,12 +67,23 @@
 					<ol class="dots"><li><button type="button" aria-label="Effetto 1 di 6: Neon rotto" aria-current="false"></button></li><li><button type="button" aria-label="Effetto 2 di 6: Segnale disturbato" aria-current="false"></button></li><li><button type="button" aria-label="Effetto 3 di 6: Si ricompone" aria-current="false"></button></li><li><button type="button" aria-label="Effetto 4 di 6: Barre che entrano" aria-current="false"></button></li><li><button type="button" aria-label="Effetto 5 di 6: Lettere impilate" aria-current="false"></button></li><li><button type="button" aria-label="Effetto 6 di 6: Giro dopo giro" aria-current="false"></button></li></ol>
 				</div>
 
-				<div role="tabpanel" id="p-infinito" aria-labelledby="t-infinito" lang="es" class="page404" data-variant="infinito" hidden><p class="soon">In costruzione</p></div>
+				<div role="tabpanel" id="p-infinito" aria-labelledby="t-infinito" lang="es" class="page404 page404--infinito" data-variant="infinito" hidden>
+						<canvas class="inf404__canvas" aria-hidden="true"></canvas>
+						<h2 class="sr-only">Error 404</h2>
+						<p class="inf404__code" aria-hidden="true">4<svg class="inf404__mark"><use href="#i-infinity" /></svg>4</p>
+						<p class="page404__line">Esta página salió a comprar tabaco. Y no volvió.</p>
+						<a class="page404__home" href="#" data-demo-link>Volver al inicio</a>
+					</div>
 				<div role="tabpanel" id="p-particelle" aria-labelledby="t-particelle" lang="en" class="page404" data-variant="particelle" hidden><p class="soon">In costruzione</p></div>
 				<div role="tabpanel" id="p-comparse" aria-labelledby="t-comparse" lang="it" class="page404" data-variant="comparse" hidden><p class="soon">In costruzione</p></div>
 				<div role="tabpanel" id="p-tris" aria-labelledby="t-tris" lang="en" class="page404" data-variant="tris" hidden><p class="soon">In costruzione</p></div>
 				<div role="tabpanel" id="p-pendolo" aria-labelledby="t-pendolo" lang="es" class="page404" data-variant="pendolo" hidden><p class="soon">In costruzione</p></div>
-				<div role="tabpanel" id="p-bolle" aria-labelledby="t-bolle" lang="it" class="page404" data-variant="bolle" hidden><p class="soon">In costruzione</p></div>
+				<div role="tabpanel" id="p-bolle" aria-labelledby="t-bolle" lang="it" class="page404 page404--bolle" data-variant="bolle" hidden>
+						<h2 class="sr-only">Errore 404</h2>
+						<p class="bolle404__code" aria-hidden="true">4<span class="bolle404__ring" data-ring></span>4</p>
+						<p class="page404__line">Qui c'era una pagina. Ora c'è una bolla.</p>
+						<a class="page404__home" href="#" data-demo-link>Torna alla home</a>
+					</div>
 			</div>
 
 			<p class="demo__note">
