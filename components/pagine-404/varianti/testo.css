@@ -41,7 +41,9 @@
 }
 .fx .stack {
 	cursor: default;
-	font-size: clamp(4rem, 30cqw, 11rem);
+	/* misurata sull'altezza del riquadro e spostata in basso: il ventaglio sale e deve restare dentro */
+	font-size: clamp(3rem, min(34cqw, 48cqh), 11rem);
+	margin-top: 18cqh;
 }
 
 /* Barre che entrano: al posto del logo, il 404. */
@@ -68,22 +70,44 @@
 	animation: orbit-turn 3.2s 0.3s var(--ease-in-out) both;
 }
 
-/* Pallini: l'effetto in corso è rosso. */
+/* Pallini: l'effetto in corso è rosso; un tocco salta a quell'effetto. */
 .dots {
 	display: flex;
-	gap: 0.5rem;
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
-.dots li {
+.dots button {
+	display: grid;
+	place-items: center;
+	width: 1.75rem;
+	height: 1.75rem;
+	padding: 0;
+	background: none;
+	border: 0;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+.dots button::before {
+	content: '';
 	width: 0.45rem;
 	height: 0.45rem;
 	background: var(--line);
 	border-radius: 50%;
 	transition: background-color 200ms ease, scale 200ms var(--ease-out);
 }
-.dots li.is-on {
+.dots button[aria-current='true']::before {
 	background: var(--accent);
 	scale: 1.35;
+}
+@media (hover: hover) and (pointer: fine) {
+	.dots button:hover::before {
+		background: var(--muted);
+	}
+	.dots button[aria-current='true']:hover::before {
+		background: var(--accent);
+	}
+}
+.dots button:active::before {
+	scale: 0.8;
 }

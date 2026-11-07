@@ -19,7 +19,8 @@ const clear = () => {
 export function init(el) {
 	panel = el;
 	items = [...el.querySelectorAll('.fx')];
-	dots = [...el.querySelectorAll('.dots li')];
+	dots = [...el.querySelectorAll('.dots button')];
+	dots.forEach((d, k) => d.addEventListener('click', () => goTo(k)));
 	el.querySelectorAll('[data-stack]').forEach(fx.buildStack);
 	el.querySelectorAll('[data-scramble]').forEach(fx.buildScramble);
 	el.querySelectorAll('[data-orbit]').forEach(fx.buildOrbit);
@@ -31,12 +32,23 @@ export function init(el) {
 	}
 }
 
+// Un pallino salta a quell'effetto: si ferma il giro in corso e si riparte da lì.
+function goTo(i) {
+	if (!running || i === index) return;
+	clear();
+	items.forEach((it) => {
+		it.hidden = true;
+		it.classList.remove('is-out');
+	});
+	show(i);
+}
+
 function show(i) {
 	index = i;
 	const item = items[i];
 	item.classList.remove('is-out');
 	item.hidden = false; // da nascosto a visibile: le animazioni CSS ripartono da capo
-	dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
+	dots.forEach((d, k) => d.setAttribute('aria-current', String(k === i)));
 
 	// La pila si apre a ventaglio poco dopo l'entrata (col mouse lo fa l'hover nella scheda degli effetti).
 	if (item.dataset.fx === 'stack') {
