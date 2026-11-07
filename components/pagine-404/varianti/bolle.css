@@ -59,3 +59,19 @@
 		animation: none;
 	}
 }
+
+/* Coreano: Black Han Sans ridotto ai soli caratteri della frase (5 KB, vedi studio-kit/fonts). */
+@font-face {
+	font-family: 'Black Han Sans KO';
+	src: url('../../_shared/fonts/black-han-sans-ko.woff2') format('woff2');
+	font-display: swap;
+}
+.page404--bolle .page404__line,
+.page404--bolle .page404__home {
+	font-family: 'Black Han Sans KO', var(--font-text);
+	font-weight: 400;
+	word-break: keep-all; /* il coreano va a capo tra parole, non dentro */
+}
+.page404--bolle .page404__line {
+	font-size: clamp(1.15rem, 3.8cqw, 1.5rem);
+}
