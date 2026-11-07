@@ -68,6 +68,7 @@ deploy, sulle pagine online. **Commit solo con l'ok dell'autore, push solo dopo 
 
 ## Asset di lavoro e strumenti (fuori repo)
 
+- **Font: prima di scegliere o aggiungerne uno, aprire il catalogo `C:\Users\utente\studio-kit\fonts\index.html` (dati `fonts.json`): solo font con licenza accertata, più l'elenco degli scartati. Mai usare un font «gratis» non presente lì: prima si controlla lo zip (procedura in `studio-kit/fonts/README.md`).**
 - `C:\Users\utente\Documents\Assets\Lab_Componenti\`: `fonts/` (+`licenses/`), `photos-candidate/`, `photos-new/` (+`photos-new-list.txt` con i fotografi),
   `svg/` (flask, backpack, leaves, marchi, prezzi-*, biscotto), `icons/` (Lucide), `cutouts/`, `out/img` e `out/video`, `video/` (≤0,9 MB, muti),
   `video-src/` (originali 4K, NON pubblicare), `CREDITS.md`, `_build/` (script).
