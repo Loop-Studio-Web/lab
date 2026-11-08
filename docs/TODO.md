@@ -3,7 +3,8 @@
 Una riga per voce: cosa · dove sta il dettaglio · prossimo passo. A ogni step chiuso: aggiornare qui, committare, dire «/clear»
 e riprendere con «leggi docs/TODO.md, riparti dalla prima voce». Cronache lunghe NON qui: restano in `docs/`.
 
-Stato al 2026-11-08: online = `origin/main`; **PUSHATO 8/11** (26 commit; online già verificati: effetti-testo, suite.js, i raggruppamenti, pagine-404 → 200). Sito madre aggiornato a 15 voci e pushato.
+Stato al 2026-11-08 sera: online = `origin/main`; **PUSHATO 8/11** (Lab + `Loop-Studio` con `/en/lab` e `/es/lab`, via dell'autore; revisione lingue EN/ES fatta dall'autore, la modale non ancora provata online);
+**`components/blocchi-di-fiducia/` COSTRUITA in locale 8/11 (4 tab: contatori, barre, certificazioni, testimonianze; dizionario IT/EN/ES, `i18n-check` ok), DA MOSTRARE all'autore** (`http://localhost:8765/components/blocchi-di-fiducia/`, tab via `#id`; mai `index.html`). Poi contatto-rapido, filtri-e-griglie. Prima di 26 commit: online già verificati: effetti-testo, suite.js, i raggruppamenti, pagine-404 → 200). Sito madre aggiornato a 15 voci e pushato.
 
 ## In corso / prossimi (in ordine)
 **Decisioni fisse traduzioni (8/11):** gli **articoli del sito madre restano SEMPRE in italiano** (eventuali articoli in altre lingue = testi nuovi, mai traduzioni). Il resto del sito si traduce a blocchi, dopo aver finito tutto in italiano; il sito non va sponsorizzato all'estero finché le traduzioni non sono pronte (per questo non ci sono statistiche per paese). Peso tecnico misurato: `dist` 7,4 MB/156 file, +~25 pagine HTML (~2-3 MB) con EN+ES, nessun limite Cloudflare Pages/GitHub a rischio. hreflang e switcher solo sulle pagine che esistono in tutte le lingue.

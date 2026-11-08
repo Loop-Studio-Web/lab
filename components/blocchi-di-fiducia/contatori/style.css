@@ -1,0 +1,29 @@
+/* Contatori: quattro numeri grandi in una griglia 2×2. */
+.ct__grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.ct__grid li {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 0.35rem;
+	min-height: 8.5rem;
+	padding: 1.25rem;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: 1rem;
+}
+.ct__n {
+	font-family: var(--font-display);
+	font-size: clamp(2.25rem, 8vw, 3.5rem);
+	font-weight: 700;
+	line-height: 1;
+	font-variant-numeric: tabular-nums;
+}
+.ct__grid li:first-child .ct__n { color: var(--accent); }
+.ct__l { color: var(--muted); font-size: 0.875rem; line-height: 1.3; }

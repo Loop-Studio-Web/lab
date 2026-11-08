@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="contatori.title">Contatori — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../fd.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fd-stage ct" data-ct>
+					<ul class="ct__grid">
+						<li><span class="ct__n" data-to="128">128</span><span class="ct__l" data-i18n="contatori.l1">Clienti seguiti</span></li>
+						<li><span class="ct__n" data-to="340" data-suffix="+">340+</span><span class="ct__l" data-i18n="contatori.l2">Progetti consegnati</span></li>
+						<li><span class="ct__n" data-to="12">12</span><span class="ct__l" data-i18n="contatori.l3">Anni di mestiere</span></li>
+						<li><span class="ct__n" data-to="4.9" data-dec="1">4,9</span><span class="ct__l" data-i18n="contatori.l4">Valutazione media su 5</span></li>
+					</ul>
+					<div class="fd-actions"><button type="button" class="fd-btn" data-replay data-i18n="fd.replay">Rivedi</button></div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="contatori.name">Contatori</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="contatori.lead">I numeri dello studio contano da zero fino al valore finale quando entrano in vista.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="fd.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="fd.mouse">Mouse</dt><dd data-i18n="contatori.mouse">Scorri fino al blocco: partono da soli. «Rivedi» li rifà.</dd></div>
+						<div><dt data-i18n="fd.touch">Tocco</dt><dd data-i18n="contatori.touch">Come col mouse: partono quando il blocco è visibile.</dd></div>
+						<div><dt data-i18n="fd.kbd">Tastiera</dt><dd data-i18n="contatori.kbd">Tab sul bottone «Rivedi», poi Invio.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="fd.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="contatori.tip">Usa pochi numeri, veri e verificabili (4 sono il massimo che si legge). Il valore finale sta già nell'HTML: senza JavaScript o con «riduci movimento» compare subito.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+/* Testimonianze: una citazione per volta, agganciata (scroll-snap). */
+.ts__track {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	overscroll-behavior-x: contain;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: 1rem;
+}
+.ts__track::-webkit-scrollbar { display: none; }
+.ts__slide {
+	flex: 0 0 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 1.25rem;
+	min-height: 15rem;
+	margin: 0;
+	padding: 1.75rem;
+	scroll-snap-align: start;
+}
+.ts__stars { color: var(--accent); letter-spacing: 0.2em; font-size: 1.1rem; }
+.ts__slide blockquote { margin: 0; font-family: var(--font-display); font-size: clamp(1.15rem, 3.4vw, 1.5rem); line-height: 1.3; font-weight: 500; text-wrap: balance; }
+.ts__slide figcaption { display: flex; align-items: center; gap: 0.75rem; }
+.ts__slide figcaption span:last-child { display: grid; line-height: 1.25; }
+.ts__slide small { color: var(--muted); font-size: 0.8125rem; }
+.ts__av { display: grid; place-items: center; flex: none; width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--accent-strong); font-size: 0.875rem; font-weight: 700; }
+.ts__av--b { background: #3a3a3a; }
+.ts__av--c { background: #fff; color: #000; }
+.ts__av--d { background: #6b1410; }
+
+.ts__nav { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1rem; }
+.ts__arrow { padding: 0.55rem; }
+.ts__arrow:disabled { opacity: 0.35; cursor: default; }
+.ts__arrow:disabled:active { transform: none; }
+.ts__dots { display: flex; gap: 0.25rem; }
+/* area di tocco 2,75rem attorno a un puntino di 0,6rem */
+.ts__dot { position: relative; width: 1.5rem; height: 1.5rem; padding: 0; border: 0; background: none; cursor: pointer; }
+.ts__dot::before { content: ''; position: absolute; inset: 50% auto auto 50%; width: 0.6rem; height: 0.6rem; translate: -50% -50%; border-radius: 50%; background: #5a5a5a; transition: background-color 0.2s, scale 0.2s var(--ease-out); }
+.ts__dot[aria-current='true']::before { background: var(--accent); scale: 1.4; }
+.ts__dot:active::before { scale: 0.9; }
