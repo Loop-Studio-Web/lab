@@ -1,0 +1,20 @@
+.ba { --lx: 50%; --ly: 50%; --r: clamp(4.5rem, 14cqw, 8rem); container-type: size; cursor: none; touch-action: none; }
+.ba__lens {
+	position: absolute;
+	inset: 0;
+	clip-path: circle(var(--r) at var(--lx) var(--ly));
+}
+.ba__ring {
+	position: absolute;
+	left: var(--lx);
+	top: var(--ly);
+	width: calc(var(--r) * 2);
+	height: calc(var(--r) * 2);
+	margin: calc(var(--r) * -1) 0 0 calc(var(--r) * -1);
+	border-radius: 50%;
+	border: 3px solid #fff;
+	box-shadow: 0 0 0 1px rgb(0 0 0 / 0.3), 0 10px 30px rgb(0 0 0 / 0.45);
+	pointer-events: none;
+}
+.ba:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (hover: none) { .ba { cursor: default; } }

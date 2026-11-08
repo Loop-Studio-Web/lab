@@ -1,0 +1,16 @@
+.ba__curtain {
+	position: absolute;
+	inset: 0;
+	/* bordo obliquo: stesso numero di vertici in chiuso e aperto, così il clip-path si anima */
+	clip-path: polygon(0 0, 0 0, -14% 100%, 0 100%);
+	transition: clip-path 0.9s var(--ease-in-out);
+}
+.ba[data-open] .ba__curtain { clip-path: polygon(0 0, 114% 0, 100% 100%, 0 100%); }
+.ba__curtain::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+.ba[data-open] .ba__tag--prima { opacity: 0; }
+.ba:not([data-open]) .ba__tag--dopo { opacity: 0; }
