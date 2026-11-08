@@ -7,7 +7,7 @@
 .cmp404__code {
 	font: 800 clamp(4rem, 19cqw, 9rem) / 0.9 var(--font-display);
 	letter-spacing: -0.03em;
-	color: #fff;
+	color: var(--accent);
 	user-select: none;
 }
 /* Il pulsante vero resta sotto le finestre: si raggiunge solo quando si sono tolte. */
