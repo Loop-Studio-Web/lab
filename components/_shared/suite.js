@@ -8,6 +8,47 @@
 	const panels = root.querySelector('.suite__panels');
 	const bar = list.querySelector('.suite__bar');
 
+	const top = root.querySelector('.suite__top');
+	const n = tabs.length;
+	const pad = (i) => String(i + 1).padStart(2, '0');
+	const next = (i) => tabs[(i + 1) % n];
+
+	// Numeri sui tab: dicono che è una sequenza.
+	tabs.forEach((t, i) => {
+		const num = document.createElement('span');
+		num.className = 'suite__n';
+		num.setAttribute('aria-hidden', 'true');
+		num.textContent = pad(i);
+		t.prepend(num);
+	});
+
+	// Riga-invito sopra i tab: puntini di avanzamento + «N elementi · scegli».
+	const hint = document.createElement('div');
+	hint.className = 'suite__hint';
+	const dots = document.createElement('span');
+	dots.className = 'suite__dots';
+	dots.setAttribute('aria-hidden', 'true');
+	const dotEls = tabs.map(() => dots.appendChild(document.createElement('i')));
+	const msg = document.createElement('span');
+	msg.textContent = `${n} elementi in questa scheda · scegli`;
+	hint.append(dots, msg);
+	top.prepend(hint);
+
+	// Barra in fondo: «Prossimo: …» (sull'ultimo tab, torna al primo).
+	const more = document.createElement('button');
+	more.type = 'button';
+	more.className = 'suite__next';
+	const moreLabel = document.createElement('span');
+	const moreArrow = document.createElement('span');
+	moreArrow.className = 'suite__arrow';
+	moreArrow.setAttribute('aria-hidden', 'true');
+	more.append(moreLabel, moreArrow);
+	root.append(more);
+	more.addEventListener('click', () => {
+		const i = tabs.indexOf(current());
+		select(next(i), { focus: true });
+	});
+
 	const frames = tabs.map((tab, i) => {
 		const f = document.createElement('iframe');
 		f.id = `p-${i}`;
@@ -35,6 +76,10 @@
 			if (on && !frames[i].src) frames[i].src = `${t.dataset.src}${t.dataset.src.includes('?') ? '&' : '?'}embed`;
 		});
 		indicate(tab);
+		const at = tabs.indexOf(tab);
+		dotEls.forEach((d, i) => d.classList.toggle('is-on', i === at));
+		moreLabel.textContent = `${at === n - 1 ? 'Ricomincia da' : 'Prossimo:'} ${next(at).dataset.title}`;
+		more.classList.toggle('is-loop', at === n - 1);
 		tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
 		if (focus) tab.focus();
 		if (push) history.replaceState(null, '', `#${tab.dataset.id}`);
@@ -57,4 +102,19 @@
 	select(fromHash || tabs[0], { push: false });
 	indicate(current());
 	requestAnimationFrame(() => root.classList.add('is-ready'));
+
+	// Invito animato, una volta sola: la barra rossa accenna al tab successivo e torna.
+	// Parte solo se l'utente non ha ancora toccato nulla e non chiede meno movimento.
+	if (!fromHash && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		let touched = false;
+		list.addEventListener('pointerdown', () => (touched = true), { once: true });
+		list.addEventListener('keydown', () => (touched = true), { once: true });
+		const first = current();
+		setTimeout(() => {
+			if (touched || current() !== first) return;
+			const t = next(0);
+			list.style.setProperty('--x', `${first.offsetLeft + (t.offsetLeft - first.offsetLeft) * 0.22}px`);
+			setTimeout(() => !touched && current() === first && indicate(first), 450);
+		}, 1400);
+	}
 })();
