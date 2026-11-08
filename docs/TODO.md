@@ -7,8 +7,8 @@ Stato al 2026-11-08 sera: online = `origin/main` (push fatto 8/11, con il via de
 
 ## In corso / prossimi (in ordine)
 
-1. **`components/blocchi-di-fiducia/`** (Lotto 1) · COSTRUITA in locale, commit adf1687, **da mostrare all'autore**: 4 tab (contatori, barre, certificazioni, testimonianze), dizionario IT/EN/ES, `i18n-check` ok. Correzioni dell'autore → poi la scheda dopo.
-2. **`contatto-rapido`** (flottante, barra CTA mobile, assistente a domande guidate senza AI), poi **`filtri-e-griglie`** (filtri, ricerca live, griglia/lista con FLIP, dettaglio con morph). Struttura e decisioni: `docs/nuove-schede.md` (fase 2 del Lotto 1). Lingua dei testi: IT ~70% con punte ES/EN solo nei contenuti di fantasia, mai nei comandi.
+1. ~~`blocchi-di-fiducia`~~ **APPROVATA 8/11** (4 tab; barre in 5 tinte, testimonianze con 4 tipi di firma: iniziali, foto Unsplash con credito, avatar SVG, logo). Commit 630619a e successivo, NON pushati.
+2. **`contatto-rapido`** (PROSSIMA, da costruire) (flottante, barra CTA mobile, assistente a domande guidate senza AI), poi **`filtri-e-griglie`** (filtri, ricerca live, griglia/lista con FLIP, dettaglio con morph). Struttura e decisioni: `docs/nuove-schede.md` (fase 2 del Lotto 1). Lingua dei testi: IT ~70% con punte ES/EN solo nei contenuti di fantasia, mai nei comandi.
 3. **Lotti 2-4** (palette ⌘K, form a passi, tabelle, mappe; shader, vetro, transizioni, gesti; scroll cinematografico, grafici, solo CSS 2026): elenco e budget di peso in `docs/nuove-schede.md`. Una scheda alla volta: bozza all'autore → correzioni → (solo dopo il deploy) axe + PSI.
 4. **Layout a due colonne** (foto/demo a sinistra, testi a destra, firma in fondo; vedi `prima-dopo/ba.css` e `blocchi-di-fiducia/fd.css`): valutare caso per caso per le suite già esistenti che hanno scroll o vuoto laterale (dopo il Lotto 1).
 
