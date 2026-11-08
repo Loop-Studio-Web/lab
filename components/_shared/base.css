@@ -169,3 +169,35 @@ p {
 	height: 1.75rem;
 	width: auto;
 }
+
+/* Dentro un raggruppamento (iframe ?embed, classe messa da studio.js): titolo e descrizione in un pannello
+   di vetro con alone rosso, in tinta con la colonna di prima-dopo. Solo il figlio diretto di .demo
+   (in prima-dopo la testata sta dentro .demo__side, che ha già il suo pannello). */
+.is-embed .demo > .demo__head,
+.is-embed .page__intro,
+.is-embed .feature__copy {
+	position: relative;
+	width: fit-content;
+	max-width: min(100%, 42rem);
+	margin: 0 auto 1.75rem;
+	padding: 1rem 1.6rem 1.1rem;
+	border-radius: 1rem;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-top-color: rgba(255, 90, 80, 0.55);
+	background: linear-gradient(160deg, rgba(255, 59, 48, 0.12), rgba(255, 59, 48, 0.04) 55%, rgba(255, 255, 255, 0.03));
+	-webkit-backdrop-filter: blur(16px) saturate(1.3);
+	backdrop-filter: blur(16px) saturate(1.3);
+	box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.is-embed .demo > .demo__head::before,
+.is-embed .page__intro::before,
+.is-embed .feature__copy::before {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	inset: -3rem -4rem -2rem -3rem;
+	background: radial-gradient(closest-side circle at 75% 35%, rgba(255, 59, 48, 0.3), transparent), radial-gradient(closest-side circle at 22% 75%, rgba(255, 59, 48, 0.12), transparent);
+	pointer-events: none;
+}
+.is-embed .demo > .demo__head h1, .is-embed .page__intro h1 { font-size: clamp(1.5rem, 4vw, 2rem); }
+.is-embed .demo > .demo__head .demo__lead, .is-embed .page__lead { margin-top: 0.4rem; color: var(--text); opacity: 0.8; }

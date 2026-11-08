@@ -29,7 +29,9 @@
 	// <nav> con etichetta: tiene il logo dentro un landmark (regola axe "region").
 	// Dentro una scheda raggruppata (iframe con ?embed) il logo in alto lo mette già il guscio:
 	// qui resta solo la firma in fondo.
-	if (!new URLSearchParams(location.search).has('embed')) {
+	const embed = new URLSearchParams(location.search).has('embed');
+	if (embed) document.documentElement.classList.add('is-embed');
+	if (!embed) {
 		const corner = document.createElement('nav');
 		corner.setAttribute('aria-label', 'Loop Studio');
 		corner.append(link('studio-corner'));
