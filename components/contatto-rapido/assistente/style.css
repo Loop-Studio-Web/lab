@@ -1,0 +1,24 @@
+/* Assistente: conversazione a bolle + risposte come bottoni. Altezza fissa: il log scorre, la pagina no. */
+.as { display: grid; gap: 0.9rem; }
+.as__log {
+	display: flex; flex-direction: column; gap: 0.5rem; height: min(17rem, 100svh - 18rem); min-height: 11rem; padding: 1rem; overflow-y: auto; overscroll-behavior: contain;
+	background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; scrollbar-width: thin;
+}
+.as__msg { max-width: 85%; margin: 0; padding: 0.6rem 0.85rem; font-size: 0.9375rem; line-height: 1.4; border-radius: 1rem; text-wrap: pretty; }
+.as__msg--bot { align-self: flex-start; background: #262626; border-bottom-left-radius: 0.3rem; }
+.as__msg--me { align-self: flex-end; color: #fff; background: var(--accent-strong, var(--accent)); border-bottom-right-radius: 0.3rem; }
+@media (prefers-reduced-motion: no-preference) {
+	.as__msg { transition: opacity 0.25s, transform 0.3s var(--ease-out); @starting-style { opacity: 0; transform: translateY(0.5rem) scale(0.97); } }
+}
+.as__opts { display: flex; flex-wrap: wrap; gap: 0.5rem; min-height: 2.75rem; }
+.as__opt, .as__cta {
+	display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.5rem 1.05rem; font: inherit; font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer;
+	color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; transition: transform 0.16s var(--ease-out), border-color 0.2s;
+}
+.as__opt--ghost { color: var(--muted); border-style: dashed; }
+.as__cta { color: #fff; background: var(--accent-strong, var(--accent)); border-color: transparent; }
+.as__opt:active, .as__cta:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .as__opt:hover { border-color: var(--muted); } }
+@media (prefers-reduced-motion: no-preference) {
+	.as__opt, .as__cta { transition: transform 0.16s var(--ease-out), border-color 0.2s, opacity 0.25s; @starting-style { opacity: 0; transform: translateY(0.4rem); } }
+}

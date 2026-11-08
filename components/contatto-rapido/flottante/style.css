@@ -1,0 +1,56 @@
+/* Flottante: finta pagina con il bottone ancorato in basso a destra. Il menu si apre con transform/opacity (solo compositing). */
+.fl { position: relative; height: min(24rem, 100svh - 9rem); min-height: 19rem; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; }
+.fl__page { padding: 0.9rem 1.1rem; }
+.fl__bar { display: flex; gap: 0.3rem; margin-bottom: 0.9rem; }
+.fl__bar i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #3a3a3a; }
+.fl__brand { margin: 0 0 0.8rem; font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; }
+.fl__hero { height: 6rem; border-radius: 0.6rem; background: linear-gradient(135deg, #2a2a2a, #1f1f1f); }
+.fl__l { height: 0.55rem; margin-top: 0.8rem; border-radius: 99px; background: #2c2c2c; }
+.fl__l--s { width: 60%; }
+.fl__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 1rem; }
+.fl__cards i { height: 4rem; border-radius: 0.5rem; background: #242424; }
+
+.fl__dock { position: absolute; right: 1rem; bottom: 1rem; display: flex; flex-direction: column; align-items: flex-end; gap: 0.7rem; }
+.fl__fab {
+	position: relative; display: grid; place-items: center; width: 3.5rem; height: 3.5rem; padding: 0; color: #fff; cursor: pointer;
+	background: var(--accent); border: 0; border-radius: 50%; box-shadow: 0 0.5rem 1.25rem rgba(255, 59, 48, 0.4);
+	transition: transform 0.16s var(--ease-out);
+}
+.fl__fab:active { transform: scale(0.94); }
+.fl__ic { position: absolute; display: grid; place-items: center; transition: opacity 0.2s, transform 0.3s var(--ease-out); }
+.fl__ic--b { opacity: 0; transform: rotate(-60deg) scale(0.6); }
+.fl__fab[aria-expanded='true'] .fl__ic--a { opacity: 0; transform: rotate(60deg) scale(0.6); }
+.fl__fab[aria-expanded='true'] .fl__ic--b { opacity: 1; transform: none; }
+/* respiro rosso solo a menu chiuso e pagina visibile */
+.fl__fab::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--accent); opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+	.fl.is-live .fl__fab[aria-expanded='false']::after { animation: fl-ring 2.6s var(--ease-out) infinite; }
+}
+@keyframes fl-ring { 0% { opacity: 0.7; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(1.6); } }
+
+.fl__menu {
+	display: grid; gap: 0.35rem; width: min(17.5rem, 100vw - 5rem); padding: 0.6rem; background: #141414; border: 1px solid var(--line); border-radius: 1rem;
+	box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.55); transform-origin: bottom right;
+	visibility: hidden; opacity: 0; transform: translateY(0.5rem) scale(0.94);
+	transition: opacity 0.18s, transform 0.22s var(--ease-out), visibility 0s 0.22s;
+}
+.fl.is-open .fl__menu { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+.fl__status { margin: 0; padding: 0.25rem 0.5rem 0.4rem; font-size: 0.8125rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
+.fl__status::before { content: ''; flex: none; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #5a5a5a; }
+.fl__status[data-open='true']::before { background: #4cc9a4; box-shadow: 0 0 0.5rem #4cc9a4; }
+.fl__item {
+	display: flex; align-items: center; gap: 0.7rem; width: 100%; padding: 0.7rem 0.75rem; font: inherit; font-size: 0.9375rem; font-weight: 600; text-align: left; text-decoration: none;
+	color: var(--text); background: #1f1f1f; border: 0; border-radius: 0.65rem; cursor: pointer; transition: transform 0.16s var(--ease-out), background-color 0.2s;
+}
+.fl__item svg { flex: none; color: var(--accent); }
+.fl__item:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .fl__item:hover { background: #2a2a2a; } }
+@media (prefers-reduced-motion: no-preference) {
+	.fl__item { opacity: 0; transform: translateY(0.4rem); transition: opacity 0.2s, transform 0.24s var(--ease-out), background-color 0.2s; }
+	.fl.is-open .fl__item { opacity: 1; transform: none; transition-delay: calc(var(--i) * 45ms + 40ms), calc(var(--i) * 45ms + 40ms), 0s; }
+	.fl.is-open .fl__item:active { transform: scale(0.97); transition-delay: 0s; }
+}
+.fl__hours { margin: 0; padding: 0.3rem 0.75rem 0.4rem; list-style: none; display: grid; gap: 0.3rem; font-size: 0.875rem; }
+.fl__hours li { display: flex; justify-content: space-between; gap: 1rem; }
+.fl__hours span { color: var(--muted); }
+.fl__hours b { font-weight: 600; font-variant-numeric: tabular-nums; }

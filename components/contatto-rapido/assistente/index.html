@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="assistente.title">Assistente — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../cr.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fd-stage as" data-as>
+					<div class="as__log" data-log role="log" aria-live="polite" lang="it"></div>
+					<div class="as__opts" data-opts lang="it"></div>
+					<div class="fd-actions"><button type="button" class="fd-btn" data-restart hidden data-i18n="assistente.restart">Ricomincia</button></div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="assistente.name">Assistente</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="assistente.lead">Poche domande a risposta secca portano il visitatore al contatto giusto. Nessuna intelligenza artificiale: un albero scritto a mano.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="cr.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="cr.mouse">Mouse</dt><dd data-i18n="assistente.mouse">Clicca una risposta; «Ricomincia» torna alla prima domanda.</dd></div>
+						<div><dt data-i18n="cr.touch">Tocco</dt><dd data-i18n="assistente.touch">Tocca le risposte: sono bottoni grandi, a portata di pollice.</dd></div>
+						<div><dt data-i18n="cr.kbd">Tastiera</dt><dd data-i18n="assistente.kbd">Tab tra le risposte, Invio per scegliere; il focus passa da solo alla domanda successiva.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="cr.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="assistente.tip">Massimo tre domande, e a ogni passo una via d’uscita («parla con una persona»). Un albero scritto a mano non sbaglia, non costa e non inventa. Domande e risposte qui sono di fantasia.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

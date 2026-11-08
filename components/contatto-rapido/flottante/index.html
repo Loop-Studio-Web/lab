@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="flottante.title">Flottante — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../cr.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fd-stage fl" data-fl>
+					<div class="fl__page" aria-hidden="true"><div class="fl__bar"><i></i><i></i><i></i></div><p class="fl__brand">Bianchi Idraulica</p><div class="fl__hero"></div><div class="fl__l"></div><div class="fl__l fl__l--s"></div><div class="fl__cards"><i></i><i></i><i></i></div></div>
+					<div class="fl__dock">
+						<div class="fl__menu" id="fl-menu" role="group" aria-label="Contatti" data-i18n-attr="aria-label=flottante.group">
+							<p class="fl__status" data-status aria-live="polite"></p>
+							<a class="fl__item" href="#" data-demo-link style="--i:0"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span data-i18n="flottante.chat">Scrivici su WhatsApp</span></a>
+							<a class="fl__item" href="#" data-demo-link style="--i:1"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span data-i18n="flottante.call">Chiama +39 000 000 0000</span></a>
+							<button type="button" class="fl__item" data-hours-btn aria-expanded="false" aria-controls="fl-hours" style="--i:2"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span data-i18n="flottante.hours">Orari</span></button>
+							<ul class="fl__hours" id="fl-hours" hidden>
+								<li><span data-i18n="flottante.wk">Lun–Ven</span><b>9:00–18:00</b></li>
+								<li><span data-i18n="flottante.sat">Sabato</span><b>9:00–13:00</b></li>
+								<li><span data-i18n="flottante.sun">Domenica</span><b data-i18n="flottante.closed">chiuso</b></li>
+							</ul>
+						</div>
+						<button type="button" class="fl__fab" data-fab aria-expanded="false" aria-controls="fl-menu" aria-label="Contattaci" data-i18n-attr="aria-label=flottante.fab"><span class="fl__ic fl__ic--a"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span><span class="fl__ic fl__ic--b"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span></button>
+					</div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="flottante.name">Flottante</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="flottante.lead">Un bottone sempre a portata di pollice che si apre in tre scorciatoie: chat, telefono e orari, con lo stato «aperto ora».</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="cr.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="cr.mouse">Mouse</dt><dd data-i18n="flottante.mouse">Clicca il bottone rosso in basso a destra; clic fuori o Esc per chiudere.</dd></div>
+						<div><dt data-i18n="cr.touch">Tocco</dt><dd data-i18n="flottante.touch">Tocca il bottone: le scorciatoie compaiono sopra il pollice.</dd></div>
+						<div><dt data-i18n="cr.kbd">Tastiera</dt><dd data-i18n="flottante.kbd">Tab sul bottone, Invio per aprire; Tab tra le voci; Esc chiude e riporta il focus.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="cr.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="flottante.tip">Tre voci bastano. Mostra gli orari e dì subito se rispondete adesso: chi trova «chiuso» sa cosa aspettarsi. Qui numero e orari sono di fantasia e i link non portano da nessuna parte.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>
