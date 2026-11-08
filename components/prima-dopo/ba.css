@@ -89,7 +89,7 @@
 .ba-how { margin: 0; display: grid; gap: 0.55rem; }
 .ba-how div { display: grid; grid-template-columns: 4.6rem 1fr; gap: 0.5rem; font-size: 0.875rem; }
 .ba-how dt { color: var(--accent); font-weight: 600; }
-.ba-how dd { margin: 0; color: var(--muted); }
+.ba-how dd { margin: 0; color: var(--text); }
 .ba-tip { color: var(--muted); font-size: 0.875rem; }
 .ba-controls { margin-top: 1rem; }
 
