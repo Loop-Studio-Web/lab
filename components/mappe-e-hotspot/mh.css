@@ -1,0 +1,25 @@
+/* Mappe e hotspot: parti comuni ai tre tab (riquadro, barra, interruttore, forme dei punti). L'impalcatura a due colonne è in _shared/scheda.css. */
+:root { --ok: #5ec27f; --warn: #f0b34a; }
+.mh { container-type: inline-size; width: min(46rem, 100vw - 3rem); margin-inline: auto; }
+.mh-box { background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; }
+.mh-bar { display: flex; align-items: center; justify-content: space-between; gap: 0.35rem 0.9rem; padding: 0.65rem 0.95rem; border-bottom: 1px solid var(--line); font-size: 0.8125rem; color: var(--muted); }
+.mh-bar h2 { margin: 0; font-family: var(--font-display); font-size: 1rem; color: var(--text); }
+.mh :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mh-switch { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.3rem 0; font: inherit; font-size: 0.8125rem; color: var(--text); background: none; border: 0; cursor: pointer; white-space: nowrap; }
+.mh-switch i { position: relative; width: 2.1rem; height: 1.2rem; border-radius: 999px; background: var(--line); transition: background-color 0.2s; }
+.mh-switch i::after { content: ''; position: absolute; left: 0.15rem; top: 0.15rem; width: 0.9rem; height: 0.9rem; border-radius: 50%; background: #fff; transition: translate 0.2s var(--ease-out); }
+.mh-switch[aria-pressed='true'] i { background: var(--accent-strong); }
+.mh-switch[aria-pressed='true'] i::after { translate: 0.9rem 0; }
+.mh-switch:active i::after { scale: 0.92; }
+/* Forma del punto: colore + forma + pieno/vuoto, così non conta solo il colore. */
+.mh-shape { position: relative; display: inline-block; width: 0.95rem; height: 0.95rem; flex: none; }
+.mh-shape::before, .mh-shape::after { content: ''; position: absolute; inset: 0; clip-path: var(--clip); }
+.mh-shape::before { background: var(--k); }
+.mh-shape::after { inset: 0.2rem; background: var(--surface); opacity: 0; transition: opacity 0.2s; }
+.mh-shape.is-closed::after { opacity: 1; }
+[data-c='cibo'] { --k: #f0b34a; --clip: circle(50%); }
+[data-c='caffe'] { --k: #ff7a59; --clip: inset(8% round 22%); }
+[data-c='negozi'] { --k: #6aa9ff; --clip: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+[data-c='cultura'] { --k: #b68cff; --clip: polygon(50% 4%, 100% 92%, 0 92%); }
+[data-c='servizi'] { --k: #5ec27f; --clip: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); }
+@media (prefers-reduced-motion: reduce) { .mh-switch i, .mh-switch i::after, .mh-shape::after { transition: none; } }

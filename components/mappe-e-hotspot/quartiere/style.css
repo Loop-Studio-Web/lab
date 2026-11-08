@@ -1,0 +1,61 @@
+/* Tab «Quartiere»: mappa con pan/zoom + elenco, filtri e «aperto ora». */
+.mh-filters { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.3rem 0.8rem; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--line); }
+.mh-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.mh-chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.65rem 0.25rem 0.5rem; font: inherit; font-size: 0.75rem; font-weight: 600; color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; transition: transform 0.16s var(--ease-out), border-color 0.2s, background-color 0.2s; }
+.mh-chip .mh-shape { width: 0.7rem; height: 0.7rem; }
+.mh-chip:active { transform: scale(0.97); }
+.mh-chip[aria-pressed='true'] { border-color: var(--k); background: rgba(255, 255, 255, 0.07); }
+@media (hover: hover) and (pointer: fine) { .mh-chip:hover { border-color: var(--muted); } }
+
+.mh-body { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); }
+.mh-map { position: relative; aspect-ratio: 800 / 524; overflow: hidden; background: #0e0e0e; cursor: grab; touch-action: pan-y pinch-zoom; user-select: none; -webkit-user-select: none; --z: 1; --tx: 0px; --ty: 0px; }
+.mh-map.is-zoomed { touch-action: none; }
+.mh-map.is-drag { cursor: grabbing; }
+.mh-layer { position: absolute; inset: 0; transform-origin: 0 0; transform: translate(var(--tx), var(--ty)) scale(var(--z)); transition: transform 0.35s var(--ease-out); }
+.mh-map.is-drag .mh-layer { transition: none; }
+.mh-layer > svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+.mh-geo { position: absolute; font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255, 255, 255, 0.32); white-space: nowrap; pointer-events: none; transform-origin: 0 0; transform: scale(calc(1 / var(--z))) translate(-50%, -50%) rotate(var(--r, 0deg)); }
+.mh-pin { position: absolute; display: grid; place-items: center; width: 1.6rem; height: 1.6rem; padding: 0; background: none; border: 0; border-radius: 50%; cursor: pointer; transform-origin: 0 0; transform: scale(calc(1 / var(--z))) translate(-50%, -50%); transition: opacity 0.25s, visibility 0.25s; }
+.mh-pin .mh-shape { --surface: #0e0e0e; transition: scale 0.2s var(--ease-out); filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.7)); }
+.mh-pin::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid #fff; opacity: 0; scale: 0.6; transition: opacity 0.2s, scale 0.25s var(--ease-out); }
+.mh-pin.is-sel::before { opacity: 1; scale: 1; }
+.mh-pin.is-sel .mh-shape, .mh-pin.is-hot .mh-shape { scale: 1.3; }
+.mh-pin.is-off { opacity: 0; visibility: hidden; }
+.mh-pin:active .mh-shape { scale: 0.9; }
+.mh-pin.is-sel { z-index: 3; }
+
+.mh-tip { position: absolute; z-index: 4; width: max-content; max-width: 11.5rem; padding: 0.5rem 0.65rem; font-size: 0.75rem; line-height: 1.35; color: var(--text); background: rgba(26, 26, 26, 0.96); border: 1px solid var(--line); border-radius: 0.6rem; box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.5); pointer-events: none; transform-origin: 0 0; transform: scale(calc(1 / var(--z))) translate(var(--ox, -50%), var(--oy, 0)); opacity: 1; transition: opacity 0.18s; }
+@starting-style { .mh-tip { opacity: 0; } }
+.mh-tip[hidden] { display: none; }
+.mh-tip b { display: block; font-family: var(--font-display); font-size: 0.8125rem; }
+.mh-tip span { display: block; color: var(--muted); }
+.mh-tip .is-open { color: var(--ok); }
+
+.mh-zoom { position: absolute; right: 0.5rem; top: 0.5rem; z-index: 5; display: grid; gap: 0.25rem; }
+.mh-zoom button { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; padding: 0; font: inherit; font-size: 1.05rem; line-height: 1; color: var(--text); background: rgba(26, 26, 26, 0.92); border: 1px solid var(--line); border-radius: 0.5rem; cursor: pointer; transition: transform 0.16s var(--ease-out), border-color 0.2s, opacity 0.2s; }
+.mh-zoom button:active { transform: scale(0.94); }
+.mh-zoom button:disabled { opacity: 0.35; cursor: default; }
+@media (hover: hover) and (pointer: fine) { .mh-zoom button:not(:disabled):hover { border-color: var(--muted); } }
+
+.mh-list { list-style: none; margin: 0; padding: 0.3rem; overflow-y: auto; border-left: 1px solid var(--line); overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--line) transparent; contain: size; }
+.mh-list li[hidden] { display: none; }
+.mh-row { display: grid; grid-template-columns: auto 1fr; gap: 0 0.55rem; align-items: center; width: 100%; padding: 0.45rem 0.5rem; font: inherit; text-align: left; color: var(--text); background: none; border: 1px solid transparent; border-radius: 0.55rem; cursor: pointer; transition: background-color 0.15s, border-color 0.15s, transform 0.16s var(--ease-out); }
+.mh-row:active { transform: scale(0.98); }
+.mh-row .mh-shape { grid-row: span 2; }
+.mh-row b { font-size: 0.8125rem; font-weight: 600; line-height: 1.25; }
+.mh-row small { font-size: 0.6875rem; color: var(--muted); line-height: 1.3; }
+.mh-row small.is-open { color: var(--ok); }
+.mh-row[aria-current='true'] { background: rgba(255, 255, 255, 0.07); border-color: var(--line); }
+@media (hover: hover) and (pointer: fine) { .mh-row:hover { background: rgba(255, 255, 255, 0.05); } }
+.mh-empty { padding: 1rem 0.6rem; font-size: 0.8125rem; color: var(--muted); }
+
+.mh-foot { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.75rem; padding: 0.6rem 0.95rem; border-top: 1px solid var(--line); font-size: 0.8125rem; color: var(--muted); }
+.mh-foot output { min-width: 2.8rem; text-align: right; color: var(--text); font-variant-numeric: tabular-nums; font-weight: 600; }
+.mh-foot input { width: 100%; min-width: 0; accent-color: var(--accent); height: 1.5rem; cursor: pointer; }
+
+/* Stretto: la mappa sopra a tutta larghezza, l'elenco sotto che scorre. */
+@container (max-width: 36rem) {
+	.mh-body { grid-template-columns: 1fr; }
+	.mh-list { contain: none; border-left: 0; border-top: 1px solid var(--line); max-height: 13rem; }
+}
+@media (prefers-reduced-motion: reduce) { .mh-layer, .mh-pin, .mh-pin::before, .mh-pin .mh-shape, .mh-tip, .mh-row { transition: none; } }

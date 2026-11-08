@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="qu.title">Quartiere — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../mh.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="mh">
+					<div class="mh-box">
+						<div class="mh-bar">
+							<h2>Borgo Lanterna</h2>
+							<span data-count role="status"></span>
+						</div>
+						<div class="mh-filters">
+							<div class="mh-chips" role="group" aria-label="Categorie" data-i18n-attr="aria-label=qu.cats" data-chips></div>
+							<button type="button" class="mh-switch" aria-pressed="false" data-open><i aria-hidden="true"></i><span data-i18n="qu.open">Aperto ora</span></button>
+						</div>
+						<div class="mh-body">
+							<div class="mh-map" data-map role="group" tabindex="0" aria-label="Mappa del quartiere: frecce per spostarsi, più e meno per lo zoom" data-i18n-attr="aria-label=qu.map">
+								<div class="mh-layer" data-layer></div>
+								<div class="mh-zoom">
+									<button type="button" data-z="in" aria-label="Ingrandisci" data-i18n-attr="aria-label=qu.zin">+</button>
+									<button type="button" data-z="out" aria-label="Riduci" data-i18n-attr="aria-label=qu.zout">−</button>
+									<button type="button" data-z="reset" aria-label="Tutta la mappa" data-i18n-attr="aria-label=qu.zreset">
+										<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+									</button>
+								</div>
+							</div>
+							<ul class="mh-list" data-list aria-label="Luoghi" data-i18n-attr="aria-label=qu.places"></ul>
+						</div>
+						<div class="mh-foot">
+							<label for="sim" data-i18n="qu.sim">Simula ora</label>
+							<input id="sim" type="range" min="0" max="47" step="1" value="22" data-sim />
+							<output for="sim" data-time>11:00</output>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="qu.name">Quartiere</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="qu.lead">Una mappa di quartiere con elenco: i filtri agiscono su tutti e due, e ogni luogo dice se è aperto all’ora che scegli.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="mh.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="mh.mouse">Mouse</dt><dd data-i18n="qu.mouse">Trascina la mappa, ingrandisci con + e −, clicca un punto o una riga: l’altra metà si accende.</dd></div>
+						<div><dt data-i18n="mh.touch">Tocco</dt><dd data-i18n="qu.touch">Trascina con un dito quando la mappa è ingrandita; su schermi stretti l’elenco va sotto la mappa.</dd></div>
+						<div><dt data-i18n="mh.kbd">Tastiera</dt><dd data-i18n="qu.kbd">L’elenco è il percorso da tastiera. Sulla mappa: frecce per spostarsi, + e − per lo zoom, 0 per tornare.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="mh.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="qu.tip">Ogni punto ha anche una forma, non solo un colore; pieno = aperto, vuoto = chiuso.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

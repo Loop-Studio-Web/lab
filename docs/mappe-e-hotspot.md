@@ -1,6 +1,6 @@
 # Scheda «mappe-e-hotspot» (Lotto 2, categoria Navigazione)
 
-Stato 9/11: fasi 1-3 chiuse (concept, struttura, asset approvati dall'autore). Prossimo: **bozza del tab 1 da sola**, mostrarla, poi tab 2 e 3.
+Stato 9/11: fasi 1-3 chiuse; **bozza del tab 1 «Quartiere» fatta (da mostrare all'autore)**. Prossimo: correzioni, poi tab 2 «Volo» e 3 «Giro» (il guscio `index.html` ha per ora solo il tab Quartiere: aggiungere i bottoni con i nuovi tab).
 
 ## Concept (3 tab, tre mondi diversi, prefisso `mh`)
 1. **Quartiere** · «Borgo Lanterna» (inventato): mappa SVG inline, ~20 luoghi in 5 categorie, elenco filtrabile + «aperto ora» (con cursore «Simula ora»), pan/zoom con tastiera e +/−, elenco↔mappa sincronizzati; a telefono l'elenco è un foglio sotto la mappa.
@@ -19,3 +19,11 @@ Differenza dalle altre schede: lo spazio è l'interfaccia (pan/zoom, punti su fo
 
 ## Regole da ricordare
 Budget peso HTML+CSS+JS ≲ 60 KB gzip, immagini ≲ 300 KB. Controlli: `viewports.mjs core` (1536×695, 1366×600, 360), `i18n-check`. Niente test formali; axe + PSI dopo il deploy a Lab concluso. Nessun push senza via.
+
+## Tab 1 «Quartiere»: com'è fatto (bozza 9/11)
+- File: `index.html` (guscio, 1 tab), `mh.css` (comune: riquadro, interruttore, forme dei punti), `i18n.js` (35 chiavi IT/EN/ES, ok), `quartiere/{index.html,style.css,script.js}`. `mappa-bozza.svg` eliminato: la mappa è generata da JS (isolati, parco con alberi a seme fisso, fiume con ponti calcolati sulla curva).
+- Punti = veri `<button>` in % sul riquadro, controscalati con `scale(1/var(--z))`; `tabindex=-1` (da tastiera si usa l'elenco). Forme + pieno/vuoto (aperto/chiuso) oltre al colore. Fumetto ancorato che si sposta ai bordi.
+- Pan (trascinare; clic sullo sfondo chiude il fumetto), zoom +/−/reset, Ctrl+rotella, frecce/+/−/0 con la mappa a fuoco. `touch-action: pan-y` finché non è ingrandita.
+- Elenco `contain: size` (non allunga il riquadro); sotto 36rem di contenitore va sotto la mappa (max 13rem).
+- Controllato con `viewports.mjs core` (nessun overflow; sotto 768 la pagina scorre, voluto) e un giro con `drive.mjs` (selezione, zoom, «aperto ora», simula ora).
+- **Non fatto/da decidere:** zoom con i bottoni centrato sul punto scelto; il guscio con un solo tab mostra «1 elementi in questa scheda» (si sistema con i 3 tab); non aggiunta ancora nel sito madre (si fa con la scheda completa); nessuna prova su telefono vero, Firefox/Safari, lettore di schermo; pinch su touch non gestito.
