@@ -14,21 +14,25 @@
 	</head>
 	<body>
 		<main class="demo">
-			<header class="demo__head">
-				<h1>Cursore</h1>
-			</header>
-			<div class="ba" data-ba>
-				<img src="../img/dopo.webp" width="900" height="600" alt="Manarola dopo il ritocco: colori pieni e immagine nitida" />
-				<div class="ba__top" data-top>
-					<img src="../img/prima.webp" width="900" height="600" alt="" />
+			<div class="demo__stage">
+				<div class="ba" data-ba>
+					<img src="../img/dopo.webp" width="900" height="600" alt="Manarola dopo il ritocco: colori pieni e immagine nitida" />
+					<div class="ba__top" data-top>
+						<img src="../img/prima.webp" width="900" height="600" alt="" />
+					</div>
+					<span class="ba__tag ba__tag--prima" aria-hidden="true">Prima</span>
+					<span class="ba__tag ba__tag--dopo" aria-hidden="true">Dopo</span>
+					<span class="ba__handle" aria-hidden="true"><i></i></span>
+					<input class="ba__range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Confronto prima e dopo: posizione del cursore" />
 				</div>
-				<span class="ba__tag ba__tag--prima" aria-hidden="true">Prima</span>
-				<span class="ba__tag ba__tag--dopo" aria-hidden="true">Dopo</span>
-				<span class="ba__handle" aria-hidden="true"><i></i></span>
-				<input class="ba__range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Confronto prima e dopo: posizione del cursore" />
 			</div>
-			<p class="ba-caption ba-caption--lead">Trascina la maniglia, tocca un punto qualsiasi o usa le frecce.</p>
-			<p class="ba-caption">Il filtro «dopo» corregge colore, contrasto e nitidezza.</p>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1>Cursore</h1>
+				</header>
+				<p class="ba-caption ba-caption--lead">Trascina la maniglia, tocca un punto qualsiasi o usa le frecce.</p>
+				<p class="ba-caption">Il filtro «dopo» corregge colore, contrasto e nitidezza.</p>
+			</div>
 		</main>
 		<script src="../../_shared/studio.js"></script>
 	</body>

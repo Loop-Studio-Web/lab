@@ -79,3 +79,33 @@
 .ba-caption { width: min(100%, calc(55svh * 1.5)); margin-top: 0.7rem; }
 .ba-caption--lead { color: var(--text); opacity: 0.8; margin-top: 0.9rem; }
 .ba-caption--lead + .ba-caption { margin-top: 0.15rem; font-size: 0.8rem; }
+
+/* Stretto (telefono, finestra alta): una colonna, titolo sopra la foto. */
+.demo { display: flex; flex-direction: column; }
+.demo__side { display: contents; }
+.demo__head { order: -1; }
+.demo__stage { order: 0; }
+.demo__side > :not(.demo__head) { order: 1; }
+
+/* Largo e basso (portatile, monitor, box «Prova dal vivo»): due colonne senza scroll.
+   Foto grande a sinistra; titolo, comandi, didascalie e firma a destra, al centro in verticale. */
+@media (min-width: 56rem) and (min-aspect-ratio: 3/2) {
+	body {
+		display: grid;
+		grid-template-columns: auto minmax(16rem, 21rem);
+		justify-content: center;
+		column-gap: 0.5rem;
+		min-height: 100svh;
+		padding: 0 1.5rem;
+	}
+	body > nav { grid-column: 1 / -1; }
+	.demo { display: contents; }
+	.demo__stage { grid-column: 1; grid-row: span 2; align-self: center; padding: 1rem 1.5rem; }
+	.demo__side { grid-column: 2; align-self: end; display: block; padding-bottom: 1rem; }
+	.demo__side > :not(.demo__head) { order: 0; }
+	body > .studio-mark { grid-column: 2; align-self: start; align-items: flex-start; padding: 0.5rem 0 1.5rem; }
+	.demo__head { text-align: left; margin-bottom: 1rem; }
+	.ba { width: calc((100svh - 2.5rem) * 1.5); max-width: 100%; }
+	.ba-caption { width: auto; margin-inline: 0; text-align: left; }
+	.ba-controls { justify-content: flex-start; }
+}

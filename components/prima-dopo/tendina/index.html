@@ -14,22 +14,26 @@
 	</head>
 	<body>
 		<main class="demo">
-			<header class="demo__head">
-				<h1>Tendina</h1>
-			</header>
-			<div class="ba" data-ba>
-				<img src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco: spenta e sfocata" />
-				<div class="ba__curtain" data-curtain>
-					<img src="../img/dopo.webp" width="900" height="600" alt="" />
+			<div class="demo__stage">
+				<div class="ba" data-ba>
+					<img src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco: spenta e sfocata" />
+					<div class="ba__curtain" data-curtain>
+						<img src="../img/dopo.webp" width="900" height="600" alt="" />
+					</div>
+					<span class="ba__tag ba__tag--prima" aria-hidden="true">Prima</span>
+					<span class="ba__tag ba__tag--dopo" aria-hidden="true">Dopo</span>
 				</div>
-				<span class="ba__tag ba__tag--prima" aria-hidden="true">Prima</span>
-				<span class="ba__tag ba__tag--dopo" aria-hidden="true">Dopo</span>
 			</div>
-			<div class="ba-controls">
-				<button type="button" class="ba-btn" data-toggle aria-pressed="false">Apri la tendina</button>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1>Tendina</h1>
+				</header>
+				<div class="ba-controls">
+					<button type="button" class="ba-btn" data-toggle aria-pressed="false">Apri la tendina</button>
+				</div>
+				<p class="ba-caption ba-caption--lead">Un solo gesto: la tendina scopre il risultato.</p>
+				<p class="ba-caption" lang="es">Un gesto, un resultado: la cortina revela el cambio.</p>
 			</div>
-			<p class="ba-caption ba-caption--lead">Un solo gesto: la tendina scopre il risultato.</p>
-			<p class="ba-caption" lang="es">Un gesto, un resultado: la cortina revela el cambio.</p>
 		</main>
 		<script src="../../_shared/studio.js"></script>
 	</body>

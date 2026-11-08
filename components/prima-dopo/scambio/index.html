@@ -14,20 +14,24 @@
 	</head>
 	<body>
 		<main class="demo">
-			<header class="demo__head">
-				<h1>Scambio</h1>
-			</header>
-			<div class="ba" data-ba >
-				<img class="ba__a" src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco: spenta e sfocata" />
-				<img class="ba__b" src="../img/dopo.webp" width="900" height="600" alt="Manarola dopo il ritocco: colori pieni e nitida" />
-				<span class="ba__tag ba__tag--prima" data-tag aria-hidden="true">Prima</span>
+			<div class="demo__stage">
+				<div class="ba" data-ba >
+					<img class="ba__a" src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco: spenta e sfocata" />
+					<img class="ba__b" src="../img/dopo.webp" width="900" height="600" alt="Manarola dopo il ritocco: colori pieni e nitida" />
+					<span class="ba__tag ba__tag--prima" data-tag aria-hidden="true">Prima</span>
+				</div>
 			</div>
-			<div class="ba-controls" role="group" aria-label="Versione della foto">
-				<button type="button" class="ba-btn" data-v="prima" aria-pressed="true">Prima</button>
-				<button type="button" class="ba-btn" data-v="dopo" aria-pressed="false">Dopo</button>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1>Scambio</h1>
+				</header>
+				<div class="ba-controls" role="group" aria-label="Versione della foto">
+					<button type="button" class="ba-btn" data-v="prima" aria-pressed="true">Prima</button>
+					<button type="button" class="ba-btn" data-v="dopo" aria-pressed="false">Dopo</button>
+				</div>
+				<p class="ba-caption ba-caption--lead">Due foto, un tasto: cambia con una dissolvenza.</p>
+				<p class="ba-caption" lang="en">Tip: press and hold the photo to peek at the original.</p>
 			</div>
-			<p class="ba-caption ba-caption--lead">Due foto, un tasto: cambia con una dissolvenza.</p>
-			<p class="ba-caption" lang="en">Tip: press and hold the photo to peek at the original.</p>
 		</main>
 		<script src="../../_shared/studio.js"></script>
 	</body>

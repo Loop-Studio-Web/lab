@@ -14,20 +14,24 @@
 	</head>
 	<body>
 		<main class="demo">
-			<header class="demo__head">
-				<h1>Lente</h1>
-			</header>
-			<div class="ba" data-ba tabindex="0" role="group" aria-label="Foto con lente: muovi il puntatore o usa le frecce">
-				<img src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco" />
-				<div class="ba__lens" data-lens aria-hidden="true">
-					<img src="../img/dopo.webp" width="900" height="600" alt="" />
+			<div class="demo__stage">
+				<div class="ba" data-ba tabindex="0" role="group" aria-label="Foto con lente: muovi il puntatore o usa le frecce">
+					<img src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco" />
+					<div class="ba__lens" data-lens aria-hidden="true">
+						<img src="../img/dopo.webp" width="900" height="600" alt="" />
+					</div>
+					<span class="ba__ring" data-ring aria-hidden="true"></span>
+					<span class="ba__tag ba__tag--prima" aria-hidden="true">Prima</span>
+					<span class="ba__tag ba__tag--dopo" aria-hidden="true">Dopo, nella lente</span>
 				</div>
-				<span class="ba__ring" data-ring aria-hidden="true"></span>
-				<span class="ba__tag ba__tag--prima" aria-hidden="true">Prima</span>
-				<span class="ba__tag ba__tag--dopo" aria-hidden="true">Dopo, nella lente</span>
 			</div>
-			<p class="ba-caption ba-caption--lead">Muovi il puntatore: la lente mostra il dopo dentro il prima.</p>
-			<p class="ba-caption" lang="en">Hover, drag or use the arrow keys — the lens reveals the retouched version.</p>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1>Lente</h1>
+				</header>
+				<p class="ba-caption ba-caption--lead">Muovi il puntatore: la lente mostra il dopo dentro il prima.</p>
+				<p class="ba-caption" lang="en">Hover, drag or use the arrow keys — the lens reveals the retouched version.</p>
+			</div>
 		</main>
 		<script src="../../_shared/studio.js"></script>
 	</body>
