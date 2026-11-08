@@ -1,0 +1,42 @@
+/* Tab «Matrice»: orario a doppia entrata; la cella attiva accende riga e colonna. */
+.mx-wrap { padding: 0.5rem 0.6rem 0.7rem; }
+.mx { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0.3rem; }
+.mx th { padding: 0.3rem 0.2rem; font-size: 0.75rem; font-weight: 600; color: var(--muted); text-align: center; transition: color 0.15s; }
+.mx tbody th { width: 3.4rem; text-align: right; font-variant-numeric: tabular-nums; }
+.mx th.is-hot { color: var(--text); }
+.mx thead th.is-hot { box-shadow: inset 0 -2px var(--accent); }
+.mx tbody th.is-hot { box-shadow: inset -2px 0 var(--accent); }
+.mx td { padding: 0; }
+.mx td button {
+	display: grid; place-items: center; width: 100%; min-height: 3.1rem; padding: 0.2rem; font: inherit; font-size: 0.75rem; font-weight: 600; line-height: 1.2; color: var(--text);
+	background: var(--tint, transparent); border: 1px solid var(--edge, var(--line)); border-radius: 0.6rem; cursor: pointer; transition: background-color 0.18s, opacity 0.2s, translate 0.18s var(--ease-out), border-color 0.18s;
+}
+.mx td button:active { scale: 0.97; }
+.mx td button[data-t='y'] { --tint: rgba(94, 194, 127, 0.15); --edge: rgba(94, 194, 127, 0.45); }
+.mx td button[data-t='f'] { --tint: rgba(255, 59, 48, 0.15); --edge: rgba(255, 90, 80, 0.5); }
+.mx td button[data-t='c'] { --tint: rgba(240, 179, 74, 0.15); --edge: rgba(240, 179, 74, 0.45); }
+.mx td button.is-empty { color: var(--muted); border-style: dashed; font-weight: 400; }
+.mx td button.is-line { border-color: rgba(255, 255, 255, 0.4); }
+.mx td button.is-sel { background: var(--edge, var(--line)); }
+.mx td button.is-line.is-empty { background: rgba(255, 255, 255, 0.04); }
+.mx-short { display: none; }
+.mx[data-f='y'] button:not([data-t='y']), .mx[data-f='f'] button:not([data-t='f']), .mx[data-f='c'] button:not([data-t='c']) { opacity: 0.22; }
+
+.mx-legend { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.mx-chip { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.25rem 0.7rem; font: inherit; font-size: 0.75rem; font-weight: 600; color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; transition: transform 0.16s var(--ease-out), border-color 0.2s, background-color 0.2s; }
+.mx-chip::before { content: ''; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--dot); }
+.mx-chip[data-t='y'] { --dot: var(--ok); }
+.mx-chip[data-t='f'] { --dot: var(--accent); }
+.mx-chip[data-t='c'] { --dot: var(--warn); }
+.mx-chip[aria-pressed='true'] { background: rgba(255, 255, 255, 0.1); border-color: var(--muted); }
+.mx-chip:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .mx-chip:hover { border-color: var(--muted); } .mx td button:hover { translate: 0 -1px; } }
+
+@container (max-width: 34rem) {
+	.mx { border-spacing: 0.2rem; }
+	.mx tbody th { width: 2.6rem; }
+	.mx-long { display: none; }
+	.mx-short { display: inline; }
+	.mx td button { min-height: 2.75rem; }
+}
+@media (prefers-reduced-motion: reduce) { .mx th, .mx td button, .mx-chip { transition: none; } }

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="cf.title">Confronto — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../tc.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="tc">
+					<div class="tc-box">
+						<div class="tc-bar">
+							<h2 data-i18n="cf.h">Club del vino · Cantina Aurora</h2>
+							<button type="button" class="tc-switch" aria-pressed="false" data-diff><i aria-hidden="true"></i><span data-i18n="cf.diff">Solo le differenze</span></button>
+						</div>
+						<div class="cf-scroll" tabindex="-1">
+							<table class="cf" data-table></table>
+						</div>
+						<p class="tc-foot" data-foot role="status"></p>
+					</div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="cf.name">Confronto</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="cf.lead">Tre piani affiancati, riga per riga. Il piano consigliato è evidenziato, l’interruttore toglie ciò che è uguale per tutti e la scelta resta in vista nel riepilogo.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="tc.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="tc.mouse">Mouse</dt><dd data-i18n="cf.mouse">Premi «Scegli» sotto un piano, poi prova «Solo le differenze» per vedere cosa cambia davvero.</dd></div>
+						<div><dt data-i18n="tc.touch">Tocco</dt><dd data-i18n="cf.touch">Su schermi stretti la tabella scorre di lato e la colonna delle voci resta ferma a sinistra.</dd></div>
+						<div><dt data-i18n="tc.kbd">Tastiera</dt><dd data-i18n="cf.kbd">Tab raggiunge l’interruttore e i pulsanti «Scegli»; la tabella ha le intestazioni di riga e di colonna per i lettori di schermo.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="tc.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="cf.tip">Metti una sola colonna in evidenza e fai sparire le righe uguali: il confronto serve a vedere le differenze.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

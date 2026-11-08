@@ -1,0 +1,36 @@
+/* Tab «Confronto»: piani affiancati; intestazione fissa, colonna delle voci fissa a sinistra, piano consigliato in evidenza. */
+.cf-scroll { position: relative; max-height: min(28rem, 100svh - 11.5rem); min-height: 12rem; overflow: auto; overscroll-behavior: contain; }
+.cf { width: 100%; min-width: 30rem; border-collapse: separate; border-spacing: 0; font-size: 0.875rem; }
+.cf th, .cf td { padding: 0.55rem 0.7rem; text-align: center; border-bottom: 1px solid var(--line); background: var(--surface); transition: background-color 0.2s; }
+.cf tbody th { position: sticky; left: 0; z-index: 1; width: 32%; text-align: left; font-weight: 500; color: var(--text); }
+.cf thead th, .cf thead td { position: sticky; top: 0; z-index: 2; padding-block: 0.75rem 0.65rem; background: var(--head); vertical-align: bottom; }
+.cf thead td { left: 0; z-index: 3; }
+.cf-name { display: block; font-family: var(--font-display); font-size: 1rem; color: var(--text); }
+.cf-price { display: block; margin-top: 0.1rem; font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cf-price small { font-size: 0.75rem; font-weight: 400; color: var(--muted); }
+.cf-badge { display: inline-block; margin-bottom: 0.3rem; padding: 0.1rem 0.5rem; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #fff; background: var(--accent-strong); border-radius: 999px; }
+.cf-pick { margin-top: 0.5rem; padding: 0.3rem 0.9rem; font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; transition: transform 0.16s var(--ease-out), border-color 0.2s, background-color 0.2s; }
+.cf-pick:active { transform: scale(0.97); }
+.cf-pick[aria-pressed='true'] { color: #fff; background: var(--accent-strong); border-color: var(--accent-strong); }
+@media (hover: hover) and (pointer: fine) { .cf-pick:hover { border-color: var(--muted); } .cf tbody tr:hover > * { background: #202020; } }
+
+/* piano consigliato e piano scelto */
+.cf .is-best { background: rgba(255, 59, 48, 0.08); }
+.cf thead .is-best { background: #2b1a19; border-top: 2px solid var(--accent); }
+.cf .is-sel { background: rgba(255, 59, 48, 0.16); }
+.cf thead .is-sel { background: #3a1f1d; }
+.cf tbody tr:last-child > * { border-bottom: 0; }
+
+.cf-yes, .cf-no { display: inline-grid; place-items: center; width: 1.3rem; height: 1.3rem; border-radius: 50%; }
+.cf-yes { color: var(--ok); background: rgba(94, 194, 127, 0.14); }
+.cf-no { color: var(--muted); }
+.cf-yes svg, .cf-no svg { width: 0.8rem; height: 0.8rem; }
+.cf tr.is-same[hidden] { display: none; }
+.cf tr.is-same { transition: opacity 0.25s var(--ease-out); }
+@starting-style { .cf tr.is-same { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .cf th, .cf td, .cf tr.is-same, .cf-pick { transition: none; } }
+@container (max-width: 34rem) {
+	.cf { min-width: 27rem; }
+	.cf tbody th { width: 7rem; font-size: 0.8125rem; }
+	.cf th, .cf td { padding-inline: 0.5rem; }
+}

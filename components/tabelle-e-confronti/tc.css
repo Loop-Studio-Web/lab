@@ -1,0 +1,17 @@
+/* Tabelle e confronti: parti comuni ai tre tab (riquadro, barra, chip di stato). L'impalcatura a due colonne è in _shared/scheda.css. */
+:root { --ok: #5ec27f; --warn: #f0b34a; --head: #222; }
+.tc { container-type: inline-size; width: min(46rem, 100vw - 3rem); margin-inline: auto; }
+.tc-box { background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; }
+.tc-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.35rem 0.9rem; padding: 0.7rem 0.95rem; border-bottom: 1px solid var(--line); font-size: 0.8125rem; color: var(--muted); }
+.tc-bar h2 { margin: 0; font-family: var(--font-display); font-size: 1rem; color: var(--text); }
+.tc-foot { margin: 0; padding: 0.6rem 0.95rem; font-size: 0.8125rem; color: var(--muted); border-top: 1px solid var(--line); min-height: 2.3rem; }
+.tc-foot b { color: var(--text); font-weight: 600; }
+.tc table { font-variant-numeric: tabular-nums; }
+.tc :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tc-switch { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.3rem 0; font: inherit; font-size: 0.8125rem; color: var(--text); background: none; border: 0; cursor: pointer; }
+.tc-switch i { position: relative; width: 2.1rem; height: 1.2rem; border-radius: 999px; background: var(--line); transition: background-color 0.2s; }
+.tc-switch i::after { content: ''; position: absolute; left: 0.15rem; top: 0.15rem; width: 0.9rem; height: 0.9rem; border-radius: 50%; background: #fff; transition: translate 0.2s var(--ease-out); }
+.tc-switch[aria-pressed='true'] i { background: var(--accent-strong); }
+.tc-switch[aria-pressed='true'] i::after { translate: 0.9rem 0; }
+.tc-switch:active i::after { scale: 0.92; }
+@media (prefers-reduced-motion: reduce) { .tc-switch i, .tc-switch i::after { transition: none; } }

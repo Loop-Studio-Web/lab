@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="mx.title">Matrice — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../tc.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="tc">
+					<div class="tc-box">
+						<div class="tc-bar">
+							<h2 data-i18n="mx.h">Orario · Palestra Vento</h2>
+							<div class="mx-legend" role="group" aria-label="Filtra per tipo" data-i18n-attr="aria-label=mx.legend" data-legend></div>
+						</div>
+						<div class="mx-wrap">
+							<table class="mx" data-table></table>
+						</div>
+						<p class="tc-foot mx-detail" data-detail role="status"></p>
+					</div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="mx.name">Matrice</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="mx.lead">Una tabella a doppia entrata: giorni in colonna, orari in riga. Passando su una cella si accendono la sua riga e la sua colonna, con le intestazioni.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="tc.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="tc.mouse">Mouse</dt><dd data-i18n="mx.mouse">Passa sulle celle e clicca per i dettagli; i pulsanti in alto isolano un tipo di corso.</dd></div>
+						<div><dt data-i18n="tc.touch">Tocco</dt><dd data-i18n="mx.touch">Tocca una cella: il dettaglio compare sotto. Su schermi stretti i nomi si accorciano a due lettere.</dd></div>
+						<div><dt data-i18n="tc.kbd">Tastiera</dt><dd data-i18n="mx.kbd">Tab entra nella tabella, le frecce si spostano tra le celle, Home e Fine vanno ai bordi della riga.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="tc.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="mx.tip">Una sola cella raggiungibile con Tab e le frecce per muoversi: la tastiera non deve attraversarne trenta.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

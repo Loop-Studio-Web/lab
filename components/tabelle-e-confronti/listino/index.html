@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="ls.title">Listino — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../tc.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="tc">
+					<div class="tc-box">
+						<div class="tc-bar">
+							<h2 data-i18n="ls.h">Noleggio Quota 2000</h2>
+							<span data-i18n="ls.hint">Clicca un’intestazione per ordinare</span>
+						</div>
+						<div class="ls-scroll" tabindex="-1">
+							<table class="ls" role="table">
+								<caption class="sr-only" data-i18n="ls.cap">Attrezzatura a noleggio: prezzo al giorno e disponibilità</caption>
+								<thead role="rowgroup">
+									<tr role="row">
+										<th scope="col" role="columnheader" data-key="n"><button type="button" class="ls-sort"><span data-i18n="ls.col.n">Articolo</span><i aria-hidden="true"></i></button></th>
+										<th scope="col" role="columnheader" data-key="c"><button type="button" class="ls-sort"><span data-i18n="ls.col.c">Categoria</span><i aria-hidden="true"></i></button></th>
+										<th scope="col" role="columnheader" class="num" data-key="p"><button type="button" class="ls-sort"><span data-i18n="ls.col.p">Al giorno</span><i aria-hidden="true"></i></button></th>
+										<th scope="col" role="columnheader" class="num" data-key="q"><button type="button" class="ls-sort"><span data-i18n="ls.col.q">Disponibili</span><i aria-hidden="true"></i></button></th>
+									</tr>
+								</thead>
+								<tbody role="rowgroup" data-body></tbody>
+							</table>
+						</div>
+						<p class="tc-foot" data-foot></p>
+					</div>
+					<p class="sr-only" role="status" data-live></p>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="ls.name">Listino</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="ls.lead">Una tabella lunga che resta leggibile: l’intestazione segue lo scorrimento, ogni colonna si ordina e le righe si aprono per i dettagli. Su schermi stretti le righe diventano carte.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="tc.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="tc.mouse">Mouse</dt><dd data-i18n="ls.mouse">Clicca un’intestazione: una volta cresce, due volte decresce, tre torna all’ordine di partenza. La freccia a sinistra apre i dettagli.</dd></div>
+						<div><dt data-i18n="tc.touch">Tocco</dt><dd data-i18n="ls.touch">Restringi la finestra: le righe diventano carte e le intestazioni diventano pulsanti di ordinamento.</dd></div>
+						<div><dt data-i18n="tc.kbd">Tastiera</dt><dd data-i18n="ls.kbd">Tab raggiunge intestazioni e frecce; Invio o Spazio ordinano e aprono. Un messaggio annuncia il nuovo ordine.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="tc.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="ls.tip">Numeri allineati a destra e con cifre tabulari; lo stato con parole, non solo con un colore.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>
