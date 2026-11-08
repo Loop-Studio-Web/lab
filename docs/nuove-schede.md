@@ -70,3 +70,7 @@ Percorsi nei tab: `../../_shared/base.css`, `../../_shared/studio.js` (un livell
 
 **Da decidere con l'autore prima di scrivere codice**: (a) coppia Prima/Dopo = ritocco dalla stessa foto (consigliato) o foto vera con crediti;
 (b) cartelle dei tab *dentro* la suite (consigliato) o sorelle come i raggruppamenti vecchi; (c) lingua dei testi: tutto IT.
+
+**Decisioni dell'autore 8/11:** (1) coppia Prima/Dopo = ritocco della stessa foto; (2) tab DENTRO la cartella della scheda; (3) lingua: IT in
+prevalenza (~70%) con punte ES/EN **nei contenuti di fantasia** (testimonianze, nomi, domande dell'assistente), mai nei comandi/aria-label
+(restano IT); frammenti con `lang="es|en"`; stringhe raccolte in un oggetto in testa a `script.js` (traduzione futura del sito).
