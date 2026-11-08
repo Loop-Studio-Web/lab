@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="passi.title">Passi — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../fp.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../fp.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+			<symbol id="i-infinity" viewBox="521 1413 1465 753">
+				<path fill="#ff3b30" d="M1255.524 1631.138c7.94 8.89 14.16 18.729 20.53 28.786 75.91 119.898 157.1 324.287 323.57 331.995 172.52 7.987 279.68-203.057 158.07-337.307a202.97 202.97 0 0 0-141.09-67.904c-79.85-3.783-140.81 40.206-191.25 98.107-11.68 13.404-21.97 28.34-33.99 41.37-2.55-.383-2.84-.053-4.24-2.516-16.94-29.768-33.16-59.35-50.86-88.77-5.3-8.795-10.17-16.355-16.51-25.717-6.19-9.132-22.84-27.216-21.76-39.212.43-4.836 13.44-16.22 16.92-20.02 31.35-31.006 67.1-62.206 105.34-84.21 45.83-26.38 96.6-45.56 149.4-51.396 14.65-1.62 29.57-.73 44.14-.925 32.25-.431 63.78 4.203 94.92 12.879a374.08 374.08 0 0 1 226.99 174.595 378.36 378.36 0 0 1 36.55 287.835c-56.86 201.184-260.01 317.992-461.97 264.215-96.44-25.679-192.11-110.354-251.51-188.536-16.71-21.984-100.26-151.977-103.46-172.55 3.03-5.887 11.96-18.331 16.04-25.076l56.86-92.81c4.18-6.833 23.25-39.02 27.31-42.833" />
+				<path fill="var(--ink, #fff)" d="M890.438 1412.87c-48.33 1.012-96.625 11.164-140.042 29.047-18.2 7.497-26.468 13.028-42.84 22.272-149.854 84.605-218.458 264.966-172.972 429.13 4.932 17.803 13.219 35.84 19.586 53.243 25.819 59.682 78.3 118.798 132.16 154.619 4.876 3.244 16.417 12.28 19.922 13.828 20.216 8.918 35.067 18.016 56.336 26.178 82.399 31.623 183.514 34.53 265.617.957 58-23.721 111.159-62.01 154.469-107.037 7.37-7.664 21.67-20.801 27.59-29.13-14.72-18.453-27.769-39.936-41.569-59.087-1.8-2.5-3.63-9.76-5.24-11.637-20.66-23.986-32.01-56.35-49.42-82.017-49.79 63.614-104.001 126.45-189.351 137.263-113.637 14.397-217.653-71.729-227.038-185.373-9.297-112.572 78.046-211.35 190.112-218.797 111.504-7.41 188.706 82.285 243.166 167.502 4.7 7.385 18.44 34.192 24.39 38.026 3.03-5.888 11.96-18.332 16.04-25.077l56.86-92.81c4.18-6.833 23.25-39.018 27.31-42.832-6.65-16.662-15.42-24.234-26.44-38.443a501 501 0 0 0-198.389-154.028c-43.56-18.678-91.928-26.808-140.258-25.797" />
+			</symbol>
+			<symbol id="i-biscotto" viewBox="0 0 64 64">
+				<defs><mask id="bite"><rect width="64" height="64" fill="#fff" /><circle cx="54" cy="12" r="10" fill="#000" /><circle cx="60" cy="30" r="5" fill="#000" /></mask></defs>
+				<g mask="url(#bite)"><circle cx="32" cy="33" r="28" fill="#d9954a" /><circle cx="32" cy="33" r="28" fill="none" stroke="#b97530" stroke-width="2" /></g>
+				<g fill="#5a3418"><circle cx="21" cy="22" r="4" /><circle cx="38" cy="30" r="4.5" /><circle cx="24" cy="42" r="3.5" /><circle cx="42" cy="46" r="3.8" /><circle cx="33" cy="16" r="2.8" /><circle cx="14" cy="34" r="2.6" /></g>
+			</symbol>
+		</svg>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="pa" data-stage>
+					<div class="pa-main">
+						<p class="pa-draft" data-draft hidden>
+							<span data-i18n="passi.draft">Hai una bozza salvata.</span>
+							<button type="button" class="fp-link" data-resume data-i18n="passi.resume">Riprendi</button>
+							<button type="button" class="fp-link" data-discard data-i18n="passi.discard">Cancella</button>
+						</p>
+						<div class="pa-rail" data-rail>
+							<div class="pa-track" aria-hidden="true"><i class="pa-fill"></i></div>
+							<div class="pa-lane" aria-hidden="true"><span class="pa-mark"><svg viewBox="0 0 1465 753"><use href="#i-infinity" /></svg></span></div>
+							<ol>
+								<li><button type="button" data-goto="0"><span class="pa-num" aria-hidden="true">1</span><span data-i18n="passi.l0">Il box</span></button></li>
+								<li><button type="button" data-goto="1"><span class="pa-num" aria-hidden="true">2</span><span data-i18n="passi.l1">Gusti</span></button></li>
+								<li><button type="button" data-goto="2"><span class="pa-num" aria-hidden="true">3</span><span data-i18n="passi.l2">Consegna</span></button></li>
+								<li><button type="button" data-goto="3"><span class="pa-num" aria-hidden="true">4</span><span data-i18n="passi.l3">Riepilogo</span></button></li>
+							</ol>
+						</div>
+						<form class="pa-form" data-form novalidate>
+							<fieldset class="pa-step" data-step>
+								<legend tabindex="-1" data-i18n="passi.s0">Che box vuoi?</legend>
+								<div class="fp-f">
+									<div class="pa-sizes">
+										<label class="pa-size"><input type="radio" name="size" value="6" required /><span><b data-i18n="passi.size6">Assaggio</b><em><span data-n>6</span> <span data-i18n="passi.pcs">biscotti</span></em><i data-price="6"></i></span></label>
+										<label class="pa-size"><input type="radio" name="size" value="12" required /><span><b data-i18n="passi.size12">Classico</b><em><span data-n>12</span> <span data-i18n="passi.pcs">biscotti</span></em><i data-price="12"></i></span></label>
+										<label class="pa-size"><input type="radio" name="size" value="24" required /><span><b data-i18n="passi.size24">Festa</b><em><span data-n>24</span> <span data-i18n="passi.pcs">biscotti</span></em><i data-price="24"></i></span></label>
+									</div>
+									<p class="fp-err" id="e-size" hidden></p>
+								</div>
+								<p class="pa-hint" data-i18n="passi.shiphint">Spedizione 4 €, gratis con il box Festa.</p>
+							</fieldset>
+							<fieldset class="pa-step" data-step hidden>
+								<legend tabindex="-1" data-i18n="passi.s1">Scegli fino a 3 gusti</legend>
+								<div class="fp-f">
+									<div class="fp-chips" role="presentation">
+										<label class="fp-chip"><input type="checkbox" name="flav" value="burro" /><span data-i18n="passi.f.burro">Burro e sale</span></label>
+										<label class="fp-chip"><input type="checkbox" name="flav" value="cioccolato" /><span data-i18n="passi.f.cioccolato">Cioccolato</span></label>
+										<label class="fp-chip"><input type="checkbox" name="flav" value="pistacchio" /><span><span data-i18n="passi.f.pistacchio">Pistacchio</span> <small>+2 €</small></span></label>
+										<label class="fp-chip"><input type="checkbox" name="flav" value="limone" /><span data-i18n="passi.f.limone">Limone</span></label>
+										<label class="fp-chip"><input type="checkbox" name="flav" value="zenzero" /><span data-i18n="passi.f.zenzero">Zenzero</span></label>
+										<label class="fp-chip"><input type="checkbox" name="flav" value="nocciola" /><span data-i18n="passi.f.nocciola">Nocciola</span></label>
+									</div>
+									<p class="fp-err" id="e-flav" hidden></p>
+								</div>
+								<p class="pa-hint" data-count aria-live="polite"></p>
+							</fieldset>
+							<fieldset class="pa-step" data-step hidden>
+								<legend tabindex="-1" data-i18n="passi.s2">Dove lo spediamo?</legend>
+								<div class="pa-grid">
+									<div class="fp-f"><label for="f-name" data-i18n="passi.name.l">Nome e cognome</label><input class="fp-in" id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name" /><p class="fp-err" id="e-name" hidden></p></div>
+									<div class="fp-f"><label for="f-email" data-i18n="passi.email.l">Email</label><input class="fp-in" id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email" /><p class="fp-err" id="e-email" hidden></p></div>
+									<div class="fp-f"><label for="f-cap" data-i18n="passi.cap.l">CAP</label><input class="fp-in" id="f-cap" name="cap" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required aria-describedby="e-cap" /><p class="fp-err" id="e-cap" hidden></p></div>
+									<div class="fp-f"><label for="f-date" data-i18n="passi.date.l">Consegna dal</label><input class="fp-in" id="f-date" name="date" type="date" required aria-describedby="e-date" /><p class="fp-err" id="e-date" hidden></p></div>
+								</div>
+							</fieldset>
+							<fieldset class="pa-step" data-step hidden>
+								<legend tabindex="-1" data-i18n="passi.s3">Controlla e conferma</legend>
+								<dl class="pa-sum" data-sum></dl>
+								<div class="fp-f">
+									<label class="pa-ok"><input type="checkbox" name="ok" required /><span data-i18n="passi.ok">I dati sono giusti, confermo l’ordine</span></label>
+									<p class="fp-err" id="e-ok" hidden></p>
+								</div>
+							</fieldset>
+						</form>
+						<div class="pa-nav" data-nav>
+							<button type="button" class="fp-btn" data-back hidden data-i18n="passi.back">Indietro</button>
+							<span class="pa-saved" data-saved aria-live="polite"></span>
+							<button type="button" class="fp-btn fp-btn--main" data-next data-i18n="passi.next">Avanti</button>
+						</div>
+						<section class="fp-done" data-done hidden>
+							<h2 tabindex="-1" data-done-h></h2>
+							<p data-done-p></p>
+							<button type="button" class="fp-btn" data-again data-i18n="passi.again">Nuovo ordine</button>
+						</section>
+					</div>
+					<aside class="pa-receipt" aria-labelledby="pa-rt">
+						<header>
+							<svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-biscotto" /></svg>
+							<div><h2 id="pa-rt" data-i18n="passi.rt">Scontrino</h2><p>Bottega Lume</p></div>
+						</header>
+						<p class="pa-empty" data-empty data-i18n="passi.empty">Il tuo ordine è ancora vuoto.</p>
+						<ul class="pa-lines" data-lines></ul>
+						<dl class="pa-total"><dt data-i18n="passi.total">Totale</dt><dd data-total role="status">0 €</dd></dl>
+						<p class="pa-fine" data-i18n="passi.fine">Prezzi e negozio di fantasia.</p>
+					</aside>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="passi.name">Passi</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="passi.lead">Un ordine in quattro passi: a ogni passo vedi sullo scontrino cosa stai comprando, e se torni indietro non perdi niente.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="fp.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="fp.mouse">Mouse</dt><dd data-i18n="passi.mouse">Scegli il box e premi Avanti. Clicca un passo già fatto, in alto, per tornarci.</dd></div>
+						<div><dt data-i18n="fp.touch">Tocco</dt><dd data-i18n="passi.touch">Stessi gesti: i bottoni sono grandi e la bozza si salva da sola.</dd></div>
+						<div><dt data-i18n="fp.kbd">Tastiera</dt><dd data-i18n="passi.kbd">Tab passa da un campo all’altro, Spazio sceglie, Invio va avanti. L’errore compare accanto al campo.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="fp.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="passi.tip">Di’ sempre quanti passi mancano e cosa è già deciso. Mostra l’errore quando si lascia il campo, non mentre si scrive.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

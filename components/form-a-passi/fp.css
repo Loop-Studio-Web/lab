@@ -1,0 +1,61 @@
+/* Elementi di modulo comuni ai 3 tab (l'impalcatura a due colonne sta in ../_shared/scheda.css). Il palco di ogni tab è nel suo style.css. */
+/* Un display esplicito batte l'attributo hidden: qui vale sempre hidden. */
+[hidden] { display: none !important; }
+.fp-f { display: grid; gap: 0.3rem; min-width: 0; }
+.fp-f > label, .fp-f > .fp-l { font-size: 0.8125rem; font-weight: 600; color: var(--muted); }
+.fp-in {
+	width: 100%; padding: 0.6rem 0.75rem; font: inherit; font-size: 1rem; color: var(--text);
+	background: var(--bg); border: 1px solid var(--line); border-radius: 0.6rem;
+	transition: border-color 0.2s, background-color 0.2s;
+}
+.fp-in::placeholder { color: #5c5c5c; }
+.fp-in:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.fp-in[aria-invalid='true'] { border-color: var(--accent); }
+@media (hover: hover) and (pointer: fine) { .fp-in:hover { border-color: var(--muted); } }
+.fp-err { margin: 0; font-size: 0.8125rem; color: #ff7a70; }
+.fp-err[hidden] { display: none; }
+.fp-err::before { content: '⚠ '; }
+
+/* Bottoni: pieno (azione principale) e vuoto */
+.fp-btn {
+	display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem 1.15rem; font: inherit; font-size: 0.9rem; font-weight: 600;
+	color: var(--text); background: transparent; border: 1px solid var(--line); border-radius: 999px; cursor: pointer;
+	transition: transform 0.16s var(--ease-out), border-color 0.2s, background-color 0.2s, opacity 0.2s;
+}
+.fp-btn:active { transform: scale(0.97); }
+.fp-btn[hidden] { display: none; }
+.fp-btn:disabled { opacity: 0.4; cursor: default; }
+.fp-btn--main { background: var(--accent-strong); border-color: var(--accent-strong); }
+@media (hover: hover) and (pointer: fine) {
+	.fp-btn:not(:disabled):hover { border-color: var(--muted); }
+	.fp-btn--main:not(:disabled):hover { background: #e03226; border-color: #e03226; }
+}
+.fp-link { padding: 0; font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--accent); background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 0.2em; }
+.fp-link:active { transform: scale(0.97); }
+
+/* Chip a scelta (checkbox/radio veri, nascosti alla vista ma raggiungibili) */
+.fp-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; border: 0; min-width: 0; }
+.fp-chip { position: relative; }
+.fp-chip input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.fp-chip > span {
+	display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.9rem; font-size: 0.9rem; font-weight: 600; color: var(--text);
+	background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+	transition: border-color 0.2s, background-color 0.2s, transform 0.16s var(--ease-out);
+}
+.fp-chip input:checked + span { background: rgba(255, 59, 48, 0.16); border-color: var(--accent); }
+.fp-chip input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.fp-chip input:disabled + span { opacity: 0.4; }
+.fp-chip:active > span { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .fp-chip input:not(:disabled):not(:checked):hover + span { border-color: var(--muted); } }
+
+/* Conferma finale, comune ai tab */
+.fp-done { display: grid; gap: 0.6rem; justify-items: start; align-content: center; }
+.fp-done h2 { margin: 0; font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.9rem); }
+.fp-done p { margin: 0; color: var(--muted); }
+.fp-done[hidden] { display: none; }
+.fp-done dl { margin: 0.4rem 0; display: grid; gap: 0.3rem; font-size: 0.9rem; }
+.fp-done dl div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.6rem; }
+.fp-done dt { color: var(--muted); }
+.fp-done dd { margin: 0; overflow-wrap: anywhere; }
+
+@media (prefers-reduced-motion: reduce) { .fp-chip span, .fp-btn, .fp-in { transition: none; } }

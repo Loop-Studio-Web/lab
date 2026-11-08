@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="fp.title">Form a passi — Loop Studio Lab</title>
+		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../_shared/suite.css" />
+		<script src="../_shared/suite.js" defer></script>
+	</head>
+	<body>
+		<h1 class="sr-only" data-i18n="fp.h1">Form a passi</h1>
+		<div data-suite>
+			<div class="suite__top">
+				<div class="suite__scroll">
+					<div class="suite__list" role="tablist" aria-label="Tre modi di costruire un modulo" data-i18n-attr="aria-label=fp.tabs">
+						<button type="button" role="tab" id="t-passi" data-id="passi" data-src="passi/" data-title="Passi" data-i18n="passi.name" data-i18n-attr="data-title=passi.name">Passi</button>
+						<button type="button" role="tab" id="t-domanda" data-id="domanda" data-src="domanda/" data-title="Una domanda alla volta" data-i18n="dom.name" data-i18n-attr="data-title=dom.name">Una domanda alla volta</button>
+						<button type="button" role="tab" id="t-su-misura" data-id="su-misura" data-src="su-misura/" data-title="Su misura" data-i18n="sm.name" data-i18n-attr="data-title=sm.name">Su misura</button>
+						<span class="suite__bar" aria-hidden="true"></span>
+					</div>
+				</div>
+			</div>
+			<div class="suite__panels"></div>
+		</div>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

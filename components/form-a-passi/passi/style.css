@@ -1,0 +1,111 @@
+/* Tab «Passi»: modulo a sinistra, scontrino di carta a destra. */
+.pa {
+	display: grid; grid-template-columns: minmax(0, 1fr) 13.5rem; gap: 1rem; align-items: stretch;
+	width: min(47rem, 100vw - 3rem); height: min(27rem, 100svh - 6rem); min-height: 23rem; margin-inline: auto;
+}
+.pa-main { position: relative; display: flex; flex-direction: column; min-height: 0; padding: 1rem 1.1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; }
+
+/* Bozza ritrovata */
+.pa-draft { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.8rem; margin: 0 0 0.7rem; padding: 0.45rem 0.75rem; font-size: 0.8125rem; background: rgba(255, 59, 48, 0.12); border: 1px solid rgba(255, 59, 48, 0.4); border-radius: 0.6rem; }
+.pa-draft[hidden] { display: none; }
+.pa-draft span { margin-right: auto; }
+
+/* Barra dei passi: linea, riempimento e ∞ che si sposta sul passo attuale */
+.pa-rail { position: relative; flex: none; margin-bottom: 0.9rem; --p: 0; }
+.pa-rail ol { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; list-style: none; }
+.pa-rail button { display: grid; justify-items: center; gap: 0.3rem; width: 100%; padding: 0; font: inherit; font-size: 0.75rem; font-weight: 600; color: var(--muted); background: none; border: 0; cursor: pointer; }
+.pa-rail button:disabled { cursor: default; }
+.pa-rail button[aria-current='step'] { color: var(--text); }
+.pa-rail button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 0.5rem; }
+.pa-num { display: grid; place-items: center; width: 1.7rem; height: 1.7rem; font-size: 0.75rem; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 50%; transition: background-color 0.25s, border-color 0.25s, color 0.25s; }
+.is-done .pa-num { color: #fff; background: var(--accent-strong); border-color: var(--accent-strong); }
+.pa-track, .pa-lane { position: absolute; left: 12.5%; right: 12.5%; top: 0.85rem; height: 2px; }
+.pa-track { background: var(--line); }
+.pa-lane { z-index: 2; pointer-events: none; container-type: inline-size; }
+.pa-fill { position: absolute; inset: 0; background: var(--accent); transform-origin: left; transform: scaleX(var(--p)); transition: transform 0.45s var(--ease-in-out); }
+.pa-mark { position: absolute; left: 0; top: 1px; z-index: 1; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; margin: -1.2rem 0 0 -1.2rem; background: var(--bg); border: 1px solid var(--accent); border-radius: 50%; translate: calc(var(--p) * 100cqw) 0; transition: translate 0.45s var(--ease-in-out); }
+.pa-mark svg { width: 1.45rem; height: auto; }
+.pa-rail ol { z-index: 0; }
+
+/* Passi */
+.pa-form { flex: 1 1 0; min-height: 0; overflow-y: auto; }
+.pa-step { margin: 0; padding: 0; border: 0; min-width: 0; }
+.pa-step[hidden] { display: none; }
+.pa-step legend { float: left; width: 100%; margin: 0 0 0.8rem; padding: 0; font: 700 1.2rem var(--font-display); }
+.pa-step legend + * { clear: both; }
+.pa-step legend:focus { outline: none; }
+.pa-hint { margin: 0.7rem 0 0; font-size: 0.8125rem; color: var(--muted); }
+.pa-sizes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+.pa-size { position: relative; display: block; }
+.pa-size input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.pa-size > span { display: grid; gap: 0.15rem; padding: 0.8rem 0.7rem; background: var(--bg); border: 1px solid var(--line); border-radius: 0.8rem; transition: border-color 0.2s, background-color 0.2s, transform 0.16s var(--ease-out); }
+.pa-size b { font: 700 1rem var(--font-display); }
+.pa-size em { font-style: normal; font-size: 0.8125rem; color: var(--muted); }
+.pa-size i { margin-top: 0.3rem; font: 700 1.15rem var(--font-display); font-style: normal; }
+.pa-size input:checked + span { background: rgba(255, 59, 48, 0.14); border-color: var(--accent); }
+.pa-size input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.pa-size:active span { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .pa-size input:not(:checked):hover + span { border-color: var(--muted); } }
+.fp-chip small { color: var(--muted); font-weight: 600; }
+.pa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem 0.8rem; }
+.pa-sum { display: grid; gap: 0.35rem; margin: 0 0 0.8rem; font-size: 0.875rem; }
+.pa-sum div { display: grid; grid-template-columns: 5.5rem 1fr; gap: 0.6rem; align-items: baseline; }
+.pa-sum dt { color: var(--muted); }
+.pa-sum dd { margin: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; overflow-wrap: anywhere; }
+.pa-ok { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; cursor: pointer; }
+.pa-ok input { width: 1.15rem; height: 1.15rem; accent-color: var(--accent-strong); }
+
+/* Navigazione */
+.pa-nav { flex: none; display: flex; align-items: center; gap: 0.8rem; margin-top: 0.8rem; }
+.pa-nav [data-next] { margin-left: auto; }
+.pa-nav[hidden] { display: none; }
+.pa-saved { font-size: 0.75rem; color: var(--muted); }
+.pa-main > .fp-done { flex: 1; }
+
+/* Scontrino: carta chiara con bordo a denti, unico oggetto «caldo» del palco */
+.pa-receipt {
+	--ink: #2a2118;
+	display: flex; flex-direction: column; min-height: 0; padding: 1rem 0.95rem 1.5rem; color: var(--ink); background: #f6f1e7;
+	font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; font-size: 0.8125rem;
+	mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / 0.9rem 100%;
+}
+.pa-receipt header { display: flex; align-items: center; gap: 0.6rem; padding-bottom: 0.7rem; border-bottom: 1px dashed rgba(42, 33, 24, 0.45); }
+.pa-receipt header svg { width: 2rem; height: 2rem; flex: none; }
+.pa-receipt h2 { margin: 0; font: 800 0.95rem var(--font-text); letter-spacing: 0.12em; text-transform: uppercase; }
+.pa-receipt header p { margin: 0; font-size: 0.75rem; opacity: 0.75; }
+.pa-empty { margin: 0.8rem 0 0; opacity: 0.7; }
+.pa-empty[hidden] { display: none; }
+.pa-lines { flex: 1 1 0; min-height: 0; margin: 0.7rem 0 0; padding: 0; overflow: hidden; list-style: none; display: grid; align-content: start; gap: 0.35rem; }
+.pa-lines li { display: flex; justify-content: space-between; gap: 0.6rem; transition: opacity 0.3s, translate 0.35s var(--ease-out); }
+@starting-style { .pa-lines li { opacity: 0; translate: 0 0.6rem; } }
+.pa-lines li small { display: block; opacity: 0.7; }
+.pa-lines li b { font-weight: 700; white-space: nowrap; }
+.pa-total { display: flex; justify-content: space-between; align-items: baseline; margin: 0.6rem 0 0; padding-top: 0.6rem; border-top: 1px dashed rgba(42, 33, 24, 0.45); font-weight: 800; }
+.pa-total dt { letter-spacing: 0.12em; text-transform: uppercase; }
+.pa-total dd { margin: 0; font-size: 1.25rem; }
+.pa-fine { margin: 0.5rem 0 0; font-size: 0.6875rem; opacity: 0.6; }
+
+/* Stretto: scontrino sotto il modulo, in una riga di totale */
+@media (max-width: 40rem) {
+	.pa { grid-template-columns: 1fr; height: auto; }
+	.pa-main { min-height: 24rem; }
+	.pa-receipt { padding-bottom: 1.6rem; }
+	.pa-sizes { grid-template-columns: 1fr; }
+	.pa-grid { grid-template-columns: 1fr; }
+	.pa-size > span { grid-template-columns: 1fr auto; align-items: baseline; }
+	.pa-size em, .pa-size i { margin: 0; }
+}
+@media (max-height: 36rem) and (min-width: 56rem) {
+	.pa-step legend { margin-bottom: 0.55rem; font-size: 1.05rem; }
+	.pa-rail { margin-bottom: 0.6rem; }
+	.pa-fine { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.pa-fill, .pa-mark, .pa-num, .pa-size span, .pa-lines li { transition: none; }
+}
+
+/* Telefono: la pagina scorre già, niente scroll interno che taglia i box */
+@media (max-width: 40rem) {
+	.pa-main { min-height: 0; }
+	.pa-form { flex: none; overflow: visible; }
+}

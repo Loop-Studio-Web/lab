@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="sm.title">Su misura — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../fp.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../fp.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="cd" data-stage>
+					<form class="cd-form" data-form novalidate>
+						<header class="cd-head">
+							<h2 data-i18n="sm.h">Il tuo box, a modo tuo</h2>
+							<p class="cd-meter" data-meter aria-live="polite"></p>
+						</header>
+						<div class="cd-scroll">
+							<div class="cd-row" role="group" aria-labelledby="l-who">
+								<span class="cd-q" id="l-who" data-i18n="sm.q.who">Per chi è?</span>
+								<div class="cd-seg">
+									<label><input type="radio" name="who" value="me" checked /><span data-i18n="sm.who.me">Per me</span></label>
+									<label><input type="radio" name="who" value="gift" data-opens="gift" /><span data-i18n="sm.who.gift">È un regalo</span></label>
+								</div>
+							</div>
+							<div class="cd-block" data-block="gift" inert>
+								<div class="cd-in"><div class="cd-pad cd-grid">
+									<div class="fp-f"><label for="s-to" data-i18n="sm.to">Chi lo riceve</label><input class="fp-in" id="s-to" name="to" type="text" autocomplete="off" required aria-describedby="e-s-to" /><p class="fp-err" id="e-s-to" hidden></p></div>
+									<div class="fp-f"><label for="s-when" data-i18n="sm.when">Consegna dal</label><input class="fp-in" id="s-when" name="when" type="date" required aria-describedby="e-s-when" /><p class="fp-err" id="e-s-when" hidden></p></div>
+									<label class="cd-check"><input type="checkbox" name="hide" /><span data-i18n="sm.hide">Non scrivere il prezzo nel pacco</span></label>
+								</div></div>
+							</div>
+
+							<div class="cd-row" role="group" aria-labelledby="l-card">
+								<span class="cd-q" id="l-card" data-i18n="sm.q.card">Biglietto personalizzato?</span>
+								<div class="cd-seg">
+									<label><input type="radio" name="card" value="no" checked /><span data-i18n="sm.no">No</span></label>
+									<label><input type="radio" name="card" value="yes" data-opens="card" /><span data-i18n="sm.yes">Sì</span></label>
+								</div>
+							</div>
+							<div class="cd-block" data-block="card" inert>
+								<div class="cd-in"><div class="cd-pad">
+									<div class="fp-f">
+										<label for="s-msg" data-i18n="sm.msg">Cosa scriviamo sul biglietto?</label>
+										<textarea class="fp-in cd-ta" id="s-msg" name="msg" rows="2" maxlength="120" required aria-describedby="s-cnt e-s-msg"></textarea>
+										<div class="cd-under"><p class="fp-err" id="e-s-msg" hidden></p><small class="cd-cnt" id="s-cnt" data-cnt>0/120</small></div>
+									</div>
+									<div class="fp-f cd-up">
+										<span class="fp-l" data-i18n="sm.img">Immagine (facoltativa)</span>
+										<label class="cd-drop" data-drop>
+											<input class="sr-only" type="file" name="img" accept="image/png,image/jpeg,image/webp" aria-describedby="s-up-h e-s-up" />
+											<span data-i18n="sm.drop">Trascina qui una foto o scegli un file</span>
+											<small id="s-up-h" data-i18n="sm.drop.h">PNG, JPG o WebP, fino a 1 MB</small>
+										</label>
+										<div class="cd-file" data-file hidden>
+											<img alt="" data-thumb width="40" height="40" />
+											<span data-fname></span>
+											<button type="button" class="fp-link" data-rm data-i18n="sm.rm">Rimuovi</button>
+										</div>
+										<p class="fp-err" id="e-s-up" hidden></p>
+									</div>
+								</div></div>
+							</div>
+
+							<div class="cd-row" role="group" aria-labelledby="l-al">
+								<span class="cd-q" id="l-al" data-i18n="sm.q.al">Allergie o intolleranze?</span>
+								<div class="cd-seg">
+									<label><input type="radio" name="all" value="no" checked /><span data-i18n="sm.no">No</span></label>
+									<label><input type="radio" name="all" value="yes" data-opens="allergy" /><span data-i18n="sm.yes">Sì</span></label>
+								</div>
+							</div>
+							<div class="cd-block" data-block="allergy" inert>
+								<div class="cd-in"><div class="cd-pad">
+									<div class="fp-f">
+										<div class="fp-chips" role="group" data-i18n-attr="aria-label=sm.q.al" aria-label="Allergie o intolleranze?">
+											<label class="fp-chip"><input type="checkbox" name="al" value="guscio" /><span data-i18n="sm.al.guscio">Frutta a guscio</span></label>
+											<label class="fp-chip"><input type="checkbox" name="al" value="latte" /><span data-i18n="sm.al.latte">Latte</span></label>
+											<label class="fp-chip"><input type="checkbox" name="al" value="uova" /><span data-i18n="sm.al.uova">Uova</span></label>
+											<label class="fp-chip"><input type="checkbox" name="al" value="soia" /><span data-i18n="sm.al.soia">Soia</span></label>
+											<label class="fp-chip"><input type="checkbox" name="al" value="other" data-opens="other" /><span data-i18n="sm.al.other">Altro</span></label>
+										</div>
+										<p class="fp-err" id="e-s-al" hidden></p>
+									</div>
+									<div class="cd-block" data-block="other" inert>
+										<div class="cd-in"><div class="cd-pad">
+											<div class="fp-f"><label for="s-other" data-i18n="sm.other">Quale?</label><input class="fp-in" id="s-other" name="other" type="text" autocomplete="off" required aria-describedby="e-s-other" /><p class="fp-err" id="e-s-other" hidden></p></div>
+										</div></div>
+									</div>
+								</div></div>
+							</div>
+
+							<div class="cd-row cd-row--col">
+								<div class="fp-f"><label for="s-email" data-i18n="sm.email">Email per la conferma</label><input class="fp-in" id="s-email" name="email" type="email" autocomplete="email" required aria-describedby="e-s-email" /><p class="fp-err" id="e-s-email" hidden></p></div>
+							</div>
+						</div>
+						<div class="cd-foot">
+							<button type="submit" class="fp-btn fp-btn--main" data-i18n="sm.send">Invia richiesta</button>
+						</div>
+					</form>
+					<section class="fp-done" data-done hidden>
+						<h2 tabindex="-1" data-done-h></h2>
+						<p data-done-p></p>
+						<dl data-sum></dl>
+						<button type="button" class="fp-btn" data-again data-i18n="sm.again">Ricomincia</button>
+					</section>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="sm.name">Su misura</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="sm.lead">Il modulo si accorcia o si allunga in base alle risposte: i campi che non servono non compaiono, e il contatore dice quanti ne restano.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="fp.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="fp.mouse">Mouse</dt><dd data-i18n="sm.mouse">Prova «È un regalo», il biglietto e le allergie: ogni risposta apre i suoi campi.</dd></div>
+						<div><dt data-i18n="fp.touch">Tocco</dt><dd data-i18n="sm.touch">Le scelte sono pulsanti larghi. La foto si sceglie dal rullino.</dd></div>
+						<div><dt data-i18n="fp.kbd">Tastiera</dt><dd data-i18n="sm.kbd">Tab e frecce scelgono, Spazio spunta. I campi nuovi entrano subito dopo la domanda che li apre.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="fp.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="sm.tip">Apri i campi subito sotto la domanda che li causa, non in fondo. Un campo nascosto va davvero disattivato, così non blocca l’invio.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

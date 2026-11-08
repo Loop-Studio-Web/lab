@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="dom.title">Una domanda alla volta — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../fp.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../fp.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="dq" data-stage>
+					<div class="dq-top">
+						<span class="dq-count" data-count aria-live="polite"></span>
+						<div class="dq-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-bar data-i18n-attr="aria-label=dom.progress" aria-label="Avanzamento"><i></i></div>
+					</div>
+					<form class="dq-form" data-form novalidate>
+						<section class="dq-q" data-q>
+							<label class="dq-label" for="q-name"><span class="dq-n" aria-hidden="true">1 →</span> <span data-i18n="dom.q1">Come ti chiami?</span></label>
+							<p class="dq-sub" id="q-name-s" data-i18n="dom.q1s">Solo il nome, basta questo.</p>
+							<div class="fp-f"><input class="dq-in" id="q-name" name="name" type="text" autocomplete="given-name" required aria-describedby="q-name-s e-q-name" /><p class="fp-err" id="e-q-name" hidden></p></div>
+						</section>
+						<section class="dq-q" data-q hidden>
+							<fieldset class="dq-set">
+								<legend class="dq-label"><span class="dq-n" aria-hidden="true">2 →</span> <span data-i18n="dom.q2">Per quale occasione?</span></legend>
+								<div class="fp-f">
+									<div class="dq-opts">
+										<label class="dq-opt"><input type="radio" name="occ" value="a" required /><kbd aria-hidden="true">A</kbd><span data-i18n="dom.o.a">Un compleanno</span></label>
+										<label class="dq-opt"><input type="radio" name="occ" value="b" required /><kbd aria-hidden="true">B</kbd><span data-i18n="dom.o.b">Un regalo</span></label>
+										<label class="dq-opt"><input type="radio" name="occ" value="c" required /><kbd aria-hidden="true">C</kbd><span data-i18n="dom.o.c">Una festa</span></label>
+										<label class="dq-opt"><input type="radio" name="occ" value="d" required /><kbd aria-hidden="true">D</kbd><span data-i18n="dom.o.d">Solo per me</span></label>
+									</div>
+									<p class="fp-err" id="e-q-occ" hidden></p>
+								</div>
+							</fieldset>
+						</section>
+						<section class="dq-q" data-q hidden>
+							<label class="dq-label" for="q-n"><span class="dq-n" aria-hidden="true">3 →</span> <span data-i18n="dom.q3">Quanti biscotti ti servono?</span></label>
+							<p class="dq-sub" id="q-n-s" data-i18n="dom.q3s">Da 1 a 60.</p>
+							<div class="fp-f">
+								<div class="dq-num">
+									<button type="button" data-dec data-i18n-attr="aria-label=dom.dec" aria-label="Uno in meno">−</button>
+									<input class="dq-in" id="q-n" name="qty" type="number" inputmode="numeric" min="1" max="60" value="12" required aria-describedby="q-n-s e-q-n" />
+									<button type="button" data-inc data-i18n-attr="aria-label=dom.inc" aria-label="Uno in più">+</button>
+								</div>
+								<p class="fp-err" id="e-q-n" hidden></p>
+							</div>
+						</section>
+						<section class="dq-q" data-q hidden>
+							<label class="dq-label" for="q-date"><span class="dq-n" aria-hidden="true">4 →</span> <span data-i18n="dom.q4">Per quando?</span></label>
+							<p class="dq-sub" id="q-date-s" data-i18n="dom.q4s">Serve almeno un giorno di preavviso.</p>
+							<div class="fp-f"><input class="dq-in" id="q-date" name="date" type="date" required aria-describedby="q-date-s e-q-date" /><p class="fp-err" id="e-q-date" hidden></p></div>
+						</section>
+						<section class="dq-q" data-q hidden>
+							<label class="dq-label" for="q-email"><span class="dq-n" aria-hidden="true">5 →</span> <span data-i18n="dom.q5">A che email ti rispondiamo?</span></label>
+							<p class="dq-sub" id="q-email-s" data-i18n="dom.q5s">Niente newsletter, solo la risposta.</p>
+							<div class="fp-f"><input class="dq-in" id="q-email" name="email" type="email" autocomplete="email" required aria-describedby="q-email-s e-q-email" /><p class="fp-err" id="e-q-email" hidden></p></div>
+						</section>
+						<section class="dq-q" data-q hidden>
+							<h2 class="dq-label" tabindex="-1"><span class="dq-n" aria-hidden="true">6 →</span> <span data-i18n="dom.q6">Ecco cosa ci hai detto</span></h2>
+							<dl class="dq-sum" data-sum></dl>
+						</section>
+					</form>
+					<div class="dq-foot" data-foot>
+						<button type="button" class="fp-btn" data-back hidden data-i18n="dom.back">Indietro</button>
+						<button type="button" class="fp-btn fp-btn--main" data-next><span data-next-t data-i18n="dom.ok">OK</span></button>
+						<small class="dq-keys" data-keys data-i18n="dom.enter">premi Invio ↵</small>
+					</div>
+					<section class="fp-done" data-done hidden>
+						<h2 tabindex="-1" data-done-h></h2>
+						<p data-done-p></p>
+						<button type="button" class="fp-btn" data-again data-i18n="dom.again">Ricomincia</button>
+					</section>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="dom.name">Una domanda alla volta</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="dom.lead">Niente moduli lunghi: una sola domanda per schermata, in grande. Si risponde, si preme Invio e la successiva sale.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="fp.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="fp.mouse">Mouse</dt><dd data-i18n="dom.mouse">Scrivi, poi clicca OK. Sulle scelte basta un clic: si va avanti da soli.</dd></div>
+						<div><dt data-i18n="fp.touch">Tocco</dt><dd data-i18n="dom.touch">Un campo alla volta lascia spazio alla tastiera del telefono.</dd></div>
+						<div><dt data-i18n="fp.kbd">Tastiera</dt><dd data-i18n="dom.kbd">Invio avanza. Sulle scelte premi A, B, C o D. Alt+↑ torna alla domanda prima.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="fp.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="dom.tip">Funziona se le domande sono poche e ognuna ha una risposta breve. Mostra sempre «2 / 6» e lascia tornare indietro senza perdere le risposte.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>
