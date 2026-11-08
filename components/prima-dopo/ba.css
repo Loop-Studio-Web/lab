@@ -140,4 +140,7 @@
 	.demo__head h1 { font-size: 2rem; }
 	.ba-lead p + p { margin-top: 0.25rem; }
 	.ba-controls { margin-top: 0.75rem; }
+	/* firma compatta: una riga, in basso a destra, invece del blocco centrato */
+	body > .studio-mark { flex-direction: row; justify-content: flex-end; align-items: center; gap: 0.6rem; padding: 0.25rem 0 0.75rem; }
+	.studio-mark img { height: 1.25rem; }
 }
