@@ -29,7 +29,7 @@
 .pen404__code {
 	font: 400 clamp(3.5rem, 13cqw, 6rem) / 0.95 'Dela Gothic One JA', var(--font-display);
 	letter-spacing: 0.02em;
-	color: #fff;
+	color: var(--accent);
 	user-select: none;
 }
 .pen404__rig {
