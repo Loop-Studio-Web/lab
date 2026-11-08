@@ -7,12 +7,12 @@ const coarse = matchMedia('(pointer: coarse)');
 
 // Le finestrine: titolo, messaggio, pulsante. «home» = il pulsante finto uguale a quello vero.
 const FINESTRE = [
-	{ t: 'Félicitations !', m: 'Vous êtes le 1 000 000e visiteur de cette page.', b: 'Réclamer', home: false },
+	{ t: 'Félicitations !', m: 'Vous êtes le 1 000 000e visiteur de cette page.', b: 'Faire une réclamation', home: false },
 	{ t: 'Information', m: 'Cette page n’existe pas. Nous non plus, parfois.', b: 'Retour à l’accueil', home: true },
-	{ t: 'Cookies', m: 'Nous n’en avons pas. Accepter quand même ?', b: 'Accepter', home: false },
+	{ t: 'Cookies', m: 'Nous n’en avons pas. Les accepter quand même ?', b: 'Accepter', home: false },
 	{ t: 'Attention', m: 'Voulez-vous vraiment partir sans rien acheter ?', b: 'Retour à l’accueil', home: true },
 	{ t: 'Mise à jour', m: 'La page 404 est prête à être installée.', b: 'Plus tard', home: false },
-	{ t: 'Alerte', m: 'Un bouton vous observe depuis le début.', b: 'Retour à l’accueil', home: true },
+	{ t: 'Alerte', m: 'Un bouton vous observe. Ne bougez pas.', b: 'Retour à l’accueil', home: true },
 	{ t: 'Newsletter', m: 'Un e-mail par siècle, promis.', b: 'Je m’abonne', home: false },
 ];
 
