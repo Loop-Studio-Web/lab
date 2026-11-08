@@ -127,3 +127,8 @@
 		transition: none;
 	}
 }
+
+/* La frase della battuta è in rosso (scelta dell'autore, 8/11). */
+.page404--tris .page404__line {
+	color: var(--accent);
+}
