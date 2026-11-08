@@ -77,3 +77,11 @@
 @media (hover: hover) and (pointer: fine) { .fd-btn:hover { border-color: var(--muted); } }
 .fd-actions { display: flex; justify-content: center; gap: 0.6rem; margin-top: 1rem; }
 .fd-btn[hidden] { display: none; }
+/* Box molto basso (modale «Prova dal vivo» su portatile): niente riga «Tocco» e testi più stretti, per non avere scroll. */
+@media (min-width: 56rem) and (min-aspect-ratio: 3/2) and (max-height: 32rem) {
+	.fd-how div:nth-child(2) { display: none; }
+	.demo__side { padding: 1rem 1.2rem 1.1rem; }
+	.demo__head h1 { font-size: 1.7rem; }
+	.fd-block { margin-top: 0.7rem; padding-top: 0.6rem; }
+	.fd-stage { --h: 19rem; }
+}

@@ -1,7 +1,7 @@
 /* Barra CTA: telefono simulato; la barra è ancorata in basso e scivola fuori con translateY (solo compositing). */
 .bc { display: grid; justify-items: center; }
 .bc__phone {
-	position: relative; width: min(19rem, 100%); height: min(26rem, 100svh - 9rem); min-height: 20rem; overflow: hidden;
+	position: relative; width: min(19rem, 100%); height: min(26rem, 100svh - 7rem); min-height: 19rem; overflow: hidden;
 	background: var(--surface); border: 0.45rem solid #2a2a2a; border-radius: 2rem;
 }
 .bc__scroll { height: 100%; padding: 1rem 1rem 6rem; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; font-size: 0.875rem; line-height: 1.5; }

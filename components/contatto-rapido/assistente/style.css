@@ -1,7 +1,7 @@
 /* Assistente: conversazione a bolle + risposte come bottoni. Altezza fissa: il log scorre, la pagina no. */
 .as { display: grid; gap: 0.9rem; }
 .as__log {
-	display: flex; flex-direction: column; gap: 0.5rem; height: min(17rem, 100svh - 18rem); min-height: 11rem; padding: 1rem; overflow-y: auto; overscroll-behavior: contain;
+	display: flex; flex-direction: column; gap: 0.5rem; height: min(17rem, 100svh - 17rem); min-height: 9rem; padding: 1rem; overflow-y: auto; overscroll-behavior: contain;
 	background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; scrollbar-width: thin;
 }
 .as__msg { max-width: 85%; margin: 0; padding: 0.6rem 0.85rem; font-size: 0.9375rem; line-height: 1.4; border-radius: 1rem; text-wrap: pretty; }

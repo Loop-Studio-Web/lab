@@ -1,5 +1,5 @@
 /* Flottante: finta pagina con il bottone ancorato in basso a destra. Il menu si apre con transform/opacity (solo compositing). */
-.fl { position: relative; height: min(24rem, 100svh - 9rem); min-height: 24rem; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; }
+.fl { position: relative; height: min(24rem, 100svh - 7rem); min-height: 20rem; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; }
 .fl__page { padding: 0.9rem 1.1rem; }
 .fl__bar { display: flex; gap: 0.3rem; margin-bottom: 0.9rem; }
 .fl__bar i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #3a3a3a; }
