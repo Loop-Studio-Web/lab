@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="varianti/testo.css" />
 		<link rel="stylesheet" href="varianti/infinito.css" />
 		<link rel="stylesheet" href="varianti/bolle.css" />
+		<link rel="stylesheet" href="varianti/particelle.css" />
 		<link rel="stylesheet" href="varianti/comparse.css" />
 		<script src="../_shared/effetti-testo.js" defer></script>
 		<script src="script.js" type="module"></script>
@@ -75,7 +76,13 @@
 						<p class="page404__line">Esta página salió a comprar tabaco. Y no volvió.</p>
 						<a class="page404__home" href="#" data-demo-link>Volver al inicio</a>
 					</div>
-				<div role="tabpanel" id="p-particelle" aria-labelledby="t-particelle" lang="en" class="page404" data-variant="particelle" hidden><p class="soon">In costruzione</p></div>
+				<div role="tabpanel" id="p-particelle" aria-labelledby="t-particelle" lang="en" class="page404 page404--particelle" data-variant="particelle" hidden>
+						<canvas class="par404__canvas" aria-hidden="true"></canvas>
+						<h2 class="sr-only">Error 404</h2>
+						<p class="par404__code" aria-hidden="true">404</p>
+						<p class="page404__line">Nothing here. We checked twice.</p>
+						<a class="page404__home" href="#" data-demo-link>Back to home</a>
+					</div>
 				<div role="tabpanel" id="p-comparse" aria-labelledby="t-comparse" lang="fr" class="page404 page404--comparse" data-variant="comparse" hidden>
 						<h2 class="sr-only">Erreur 404</h2>
 						<p class="cmp404__code" aria-hidden="true">404</p>

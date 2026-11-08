@@ -1,0 +1,21 @@
+/* Variante Particelle: il «404» è un segnaposto trasparente (dà lo spazio e la misura), i puntini li disegna il canvas. */
+
+.page404--particelle {
+	position: relative;
+	isolation: isolate;
+	touch-action: pan-y; /* il dito sposta i puntini, ma la pagina scorre ancora in verticale */
+}
+.par404__canvas {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+.par404__code {
+	font: 800 clamp(5rem, 30cqw, 14rem) / 0.9 var(--font-display);
+	letter-spacing: -0.03em;
+	color: transparent;
+	user-select: none;
+}
