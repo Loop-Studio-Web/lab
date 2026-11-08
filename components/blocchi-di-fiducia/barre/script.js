@@ -12,8 +12,12 @@
 	}, { threshold: 0.4 });
 	io.observe(root);
 	root.querySelector('[data-replay]').addEventListener('click', () => {
+		// Azzera SENZA transizione (.is-reset), poi lascia riempire: togliere e rimettere .is-live nello stesso frame
+		// farebbe solo «tornare indietro» la barra dal punto in cui si trova.
+		root.classList.add('is-reset');
 		root.classList.remove('is-live');
-		void root.offsetWidth; // riparte da zero
-		fill();
+		void root.offsetWidth;
+		root.classList.remove('is-reset');
+		requestAnimationFrame(fill);
 	});
 })();

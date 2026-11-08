@@ -41,3 +41,10 @@
 .ts__dot::before { content: ''; position: absolute; inset: 50% auto auto 50%; width: 0.6rem; height: 0.6rem; translate: -50% -50%; border-radius: 50%; background: #5a5a5a; transition: background-color 0.2s, scale 0.2s var(--ease-out); }
 .ts__dot[aria-current='true']::before { background: var(--accent); scale: 1.4; }
 .ts__dot:active::before { scale: 0.9; }
+
+/* Quattro tipi di firma: iniziali, foto, avatar disegnato, logo */
+.ts__av--img { object-fit: cover; background: #3a3a3a; }
+.ts__av--art { display: block; background: none; }
+.ts__av--logo { display: block; border-radius: 0.6rem; background: none; }
+.fd-credit { margin-top: 1rem; color: var(--muted); font-size: 0.75rem; }
+.fd-credit a { color: inherit; text-underline-offset: 0.15em; }
