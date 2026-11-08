@@ -9,7 +9,8 @@ const VARIANTI = {
 	bolle: () => import('./varianti/bolle.js'),
 	comparse: () => import('./varianti/comparse.js'),
 	tris: () => import('./varianti/tris.js'),
-	// le altre arrivano una alla volta: senza modulo il pannello resta con «In costruzione»
+	pendolo: () => import('./varianti/pendolo.js'),
+	// una variante nuova senza modulo resta con «In costruzione»
 };
 
 const picker = document.querySelector('[data-picker]');

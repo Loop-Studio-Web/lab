@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="varianti/particelle.css" />
 		<link rel="stylesheet" href="varianti/comparse.css" />
 		<link rel="stylesheet" href="varianti/tris.css" />
+			<link rel="stylesheet" href="varianti/pendolo.css" />
 		<script src="../_shared/effetti-testo.js" defer></script>
 		<script src="script.js" type="module"></script>
 	</head>
@@ -106,7 +107,14 @@
 						<button type="button" class="tris404__again" hidden>Jogar outra vez</button>
 						<a class="page404__home" href="#" data-demo-link>Voltar ao início</a>
 					</div>
-				<div role="tabpanel" id="p-pendolo" aria-labelledby="t-pendolo" lang="es" class="page404" data-variant="pendolo" hidden><p class="soon">In costruzione</p></div>
+				<div role="tabpanel" id="p-pendolo" aria-labelledby="t-pendolo" lang="ja" class="page404 page404--pendolo" data-variant="pendolo" hidden>
+						<canvas class="pen404__canvas" aria-hidden="true"></canvas>
+						<h2 class="sr-only">404 エラー</h2>
+						<p class="pen404__code" aria-hidden="true">404</p>
+						<div class="pen404__rig" aria-hidden="true"></div>
+						<p class="page404__line">ページは跳ね返って、どこかへ行ってしまった。</p>
+						<a class="page404__home" href="#" data-demo-link>ホームに戻る</a>
+					</div>
 				<div role="tabpanel" id="p-bolle" aria-labelledby="t-bolle" lang="ko" class="page404 page404--bolle" data-variant="bolle" hidden>
 						<h2 class="sr-only">404 오류</h2>
 						<p class="bolle404__code" aria-hidden="true">4<span class="bolle404__ring" data-ring></span>4</p>

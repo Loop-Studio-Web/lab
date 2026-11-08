@@ -1,0 +1,50 @@
+/* Variante Pendolo: la culla la disegna il canvas (sotto il testo, a tutto pannello); qui lo spazio che le
+   riserva `.pen404__rig`, il «404» e il giapponese (Dela Gothic One ridotto ai soli caratteri della frase). */
+
+@font-face {
+	font-family: 'Dela Gothic One JA';
+	src: url('../../_shared/fonts/dela-gothic-one-ja.woff2') format('woff2');
+	font-display: swap;
+}
+
+.page404--pendolo {
+	position: relative;
+	isolation: isolate;
+	touch-action: pan-y; /* il dito afferra la pallina, ma la pagina scorre ancora in verticale */
+}
+.page404--pendolo.is-grab {
+	cursor: grab;
+}
+.page404--pendolo.is-grabbing {
+	cursor: grabbing;
+}
+.pen404__canvas {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+.pen404__code {
+	font: 400 clamp(3.5rem, 13cqw, 6rem) / 0.95 'Dela Gothic One JA', var(--font-display);
+	letter-spacing: 0.02em;
+	color: #fff;
+	user-select: none;
+}
+.pen404__rig {
+	width: min(100%, 22rem);
+	height: clamp(8rem, 24cqw, 10rem);
+	flex: none;
+	pointer-events: none;
+}
+.page404--pendolo .page404__line,
+.page404--pendolo .page404__home {
+	font-family: 'Dela Gothic One JA', var(--font-text);
+	font-weight: 400;
+}
+.page404--pendolo .page404__line {
+	font-size: clamp(1.1rem, 3.6cqw, 1.4rem);
+	line-height: 1.5;
+	word-break: auto-phrase; /* il giapponese va a capo tra una locuzione e l'altra, non in mezzo a una parola */
+}
