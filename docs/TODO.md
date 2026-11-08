@@ -5,10 +5,12 @@ e riprendere con «leggi docs/TODO.md, riparti dalla prima voce». Cronache lung
 
 Stato al 2026-11-08 sera: online = `origin/main` (push fatto 8/11, con il via dell'autore). 15 schede (suite a tab) + 15 Demo + pagine-404; `prima-dopo` approvata. Server di prova: `http://localhost:8765/components/<id>/` (sempre l'URL a cartella, mai `index.html`: `serve` lo reindirizza e rompe i percorsi; tab via `#id`).
 
+**Push: SOLO a fine Lotto 1 (decisione 8/11), in blocco, di Lab e di Loop-Studio.** Nel sito madre (`src/data/lab-components.ts` + `src/i18n/lab.ts`, commit locale) sono già aggiunte `prima-dopo`, `blocchi-di-fiducia`, `contatto-rapido` (ogni scheda nuova: aggiungere subito anche lì, IT/EN/ES).
+
 ## In corso / prossimi (in ordine)
 
 1. ~~`blocchi-di-fiducia`~~ **APPROVATA 8/11** (4 tab; barre in 5 tinte, testimonianze con 4 tipi di firma: iniziali, foto Unsplash con credito, avatar SVG, logo). Commit 630619a e successivo, NON pushati.
-2. ~~`contatto-rapido`~~ **APPROVATA 8/11** (3 tab: flottante con «aperto ora», barra CTA che si nasconde, assistente ad albero; box «Prova dal vivo» senza scroll fino a ~357 px di altezza). NON pushata, NON ancora nel sito madre. Poi **`filtri-e-griglie`** (filtri, ricerca live, griglia/lista con FLIP, dettaglio con morph). Struttura e decisioni: `docs/nuove-schede.md` (fase 2 del Lotto 1). Lingua dei testi: IT ~70% con punte ES/EN solo nei contenuti di fantasia, mai nei comandi.
+2. ~~`contatto-rapido`~~ **APPROVATA 8/11** (3 tab: flottante con «aperto ora», barra CTA che si nasconde, assistente ad albero; box «Prova dal vivo» senza scroll fino a ~357 px di altezza). NON pushata. Poi **`filtri-e-griglie`** (filtri, ricerca live, griglia/lista con FLIP, dettaglio con morph). Struttura e decisioni: `docs/nuove-schede.md` (fase 2 del Lotto 1). Lingua dei testi: IT ~70% con punte ES/EN solo nei contenuti di fantasia, mai nei comandi.
 3. **Lotti 2-4** (palette ⌘K, form a passi, tabelle, mappe; shader, vetro, transizioni, gesti; scroll cinematografico, grafici, solo CSS 2026): elenco e budget di peso in `docs/nuove-schede.md`. Una scheda alla volta: bozza all'autore → correzioni → (solo dopo il deploy) axe + PSI.
 4. **Layout a due colonne** (foto/demo a sinistra, testi a destra, firma in fondo; vedi `prima-dopo/ba.css` e `blocchi-di-fiducia/fd.css`): valutare caso per caso per le suite già esistenti che hanno scroll o vuoto laterale (dopo il Lotto 1).
 
