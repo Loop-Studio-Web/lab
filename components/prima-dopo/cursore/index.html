@@ -3,7 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Cursore — Loop Studio Lab</title>
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="cursore.title">Cursore — Loop Studio Lab</title>
 		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../../_shared/base.css" />
@@ -16,36 +19,34 @@
 		<main class="demo">
 			<div class="demo__stage">
 				<div class="ba" data-ba>
-					<img src="../img/dopo.webp" width="900" height="600" alt="Manarola dopo il ritocco: colori pieni e immagine nitida" />
+					<img src="../img/dopo.webp" width="900" height="600" alt="Manarola dopo il ritocco: colori pieni e immagine nitida" data-i18n-attr="alt=pd.alt.after" />
 					<div class="ba__top" data-top>
 						<img src="../img/prima.webp" width="900" height="600" alt="" />
 					</div>
-					<span class="ba__tag ba__tag--prima" aria-hidden="true">Prima</span>
-					<span class="ba__tag ba__tag--dopo" aria-hidden="true">Dopo</span>
+					<span class="ba__tag ba__tag--prima" aria-hidden="true" data-i18n="pd.before">Prima</span>
+					<span class="ba__tag ba__tag--dopo" aria-hidden="true" data-i18n="pd.after">Dopo</span>
 					<span class="ba__handle" aria-hidden="true"><i></i></span>
-					<input class="ba__range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Confronto prima e dopo: posizione del cursore" />
+					<input class="ba__range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Confronto prima e dopo: posizione del cursore" data-i18n-attr="aria-label=cursore.range" />
 				</div>
 			</div>
 			<div class="demo__side">
 				<header class="demo__head">
-					<h1>Cursore</h1>
+					<h1 data-i18n="cursore.name">Cursore</h1>
 				</header>
 				<div class="ba-lead">
-					<p lang="it">Il confronto più classico: una linea divide le due versioni e la sposti tu.</p>
-					<p lang="en"><span class="ba-lead__l" aria-hidden="true">EN</span>The classic comparison: a line splits the two versions and you move it.</p>
-					<p lang="es"><span class="ba-lead__l" aria-hidden="true">ES</span>La comparación clásica: una línea divide las dos versiones y la mueves tú.</p>
+					<p data-i18n="cursore.lead">Il confronto più classico: una linea divide le due versioni e la sposti tu.</p>
 				</div>
 				<section class="ba-block">
-					<h2 class="demo__label">Come si usa</h2>
+					<h2 class="demo__label" data-i18n="pd.how">Come si usa</h2>
 					<dl class="ba-how">
-						<div><dt>Mouse</dt><dd>Trascina la maniglia o clicca un punto.</dd></div>
-						<div><dt>Tocco</dt><dd>Trascina con il dito.</dd></div>
-						<div><dt>Tastiera</dt><dd>Frecce ← →; con Maiusc vai più veloce.</dd></div>
+						<div><dt data-i18n="pd.mouse">Mouse</dt><dd data-i18n="cursore.mouse">Trascina la maniglia o clicca un punto.</dd></div>
+						<div><dt data-i18n="pd.touch">Tocco</dt><dd data-i18n="cursore.touch">Trascina con il dito.</dd></div>
+						<div><dt data-i18n="pd.kbd">Tastiera</dt><dd data-i18n="cursore.kbd">Frecce ← →; con Maiusc vai più veloce.</dd></div>
 					</dl>
 				</section>
 				<section class="ba-block">
-					<h2 class="demo__label">Consiglio</h2>
-					<p class="ba-tip">Ritocchi, ristrutturazioni, restauri: ovunque la differenza sia la prova. Metti il «prima» a sinistra: si legge come una storia.</p>
+					<h2 class="demo__label" data-i18n="pd.tip">Consiglio</h2>
+					<p class="ba-tip" data-i18n="cursore.tip">Ritocchi, ristrutturazioni, restauri: ovunque la differenza sia la prova. Metti il «prima» a sinistra: si legge come una storia.</p>
 				</section>
 			</div>
 		</main>

@@ -3,7 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Tendina — Loop Studio Lab</title>
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="tendina.title">Tendina — Loop Studio Lab</title>
 		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../../_shared/base.css" />
@@ -16,37 +19,35 @@
 		<main class="demo">
 			<div class="demo__stage">
 				<div class="ba" data-ba>
-					<img src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco: spenta e sfocata" />
+					<img src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco: spenta e sfocata" data-i18n-attr="alt=pd.alt.before" />
 					<div class="ba__curtain" data-curtain>
 						<img src="../img/dopo.webp" width="900" height="600" alt="" />
 					</div>
-					<span class="ba__tag ba__tag--prima" aria-hidden="true">Prima</span>
-					<span class="ba__tag ba__tag--dopo" aria-hidden="true">Dopo</span>
+					<span class="ba__tag ba__tag--prima" aria-hidden="true" data-i18n="pd.before">Prima</span>
+					<span class="ba__tag ba__tag--dopo" aria-hidden="true" data-i18n="pd.after">Dopo</span>
 				</div>
 			</div>
 			<div class="demo__side">
 				<header class="demo__head">
-					<h1>Tendina</h1>
+					<h1 data-i18n="tendina.name">Tendina</h1>
 				</header>
 				<div class="ba-lead">
-					<p lang="it">Un solo gesto rivela il risultato: il bordo obliquo scorre e scopre il dopo.</p>
-					<p lang="en"><span class="ba-lead__l" aria-hidden="true">EN</span>One gesture reveals the result: a slanted edge sweeps across and uncovers the after.</p>
-					<p lang="es"><span class="ba-lead__l" aria-hidden="true">ES</span>Un solo gesto revela el resultado: un borde oblicuo se desliza y descubre el después.</p>
+					<p data-i18n="tendina.lead">Un solo gesto rivela il risultato: il bordo obliquo scorre e scopre il dopo.</p>
 				</div>
 				<div class="ba-controls">
 					<button type="button" class="ba-btn" data-toggle aria-pressed="false">Apri la tendina</button>
 				</div>
 				<section class="ba-block">
-					<h2 class="demo__label">Come si usa</h2>
+					<h2 class="demo__label" data-i18n="pd.how">Come si usa</h2>
 					<dl class="ba-how">
-						<div><dt>Mouse</dt><dd>Clicca il bottone o la foto.</dd></div>
-						<div><dt>Tocco</dt><dd>Tocca la foto.</dd></div>
-						<div><dt>Tastiera</dt><dd>Invio o Spazio sul bottone.</dd></div>
+						<div><dt data-i18n="pd.mouse">Mouse</dt><dd data-i18n="tendina.mouse">Clicca il bottone o la foto.</dd></div>
+						<div><dt data-i18n="pd.touch">Tocco</dt><dd data-i18n="tendina.touch">Tocca la foto.</dd></div>
+						<div><dt data-i18n="pd.kbd">Tastiera</dt><dd data-i18n="tendina.kbd">Invio o Spazio sul bottone.</dd></div>
 					</dl>
 				</section>
 				<section class="ba-block">
-					<h2 class="demo__label">Consiglio</h2>
-					<p class="ba-tip">Ideale per landing e annunci: il risultato compare solo quando il visitatore lo chiede. Il bordo obliquo dà direzione, quello dritto sembrerebbe un sipario.</p>
+					<h2 class="demo__label" data-i18n="pd.tip">Consiglio</h2>
+					<p class="ba-tip" data-i18n="tendina.tip">Ideale per landing e annunci: il risultato compare solo quando il visitatore lo chiede. Il bordo obliquo dà direzione, quello dritto sembrerebbe un sipario.</p>
 				</section>
 			</div>
 		</main>

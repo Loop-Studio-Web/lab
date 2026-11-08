@@ -8,7 +8,7 @@
 	const render = () => {
 		const shown = peek ? (state === 'dopo' ? 'prima' : 'dopo') : state;
 		ba.dataset.shown = shown;
-		tag.textContent = shown === 'dopo' ? 'Dopo' : 'Prima';
+		tag.textContent = shown === 'dopo' ? LabI18n.t('pd.after', 'Dopo') : LabI18n.t('pd.before', 'Prima');
 		tag.className = `ba__tag ba__tag--${shown}`;
 		btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === state)));
 	};

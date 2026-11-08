@@ -3,7 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Scambio — Loop Studio Lab</title>
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="scambio.title">Scambio — Loop Studio Lab</title>
 		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../../_shared/base.css" />
@@ -16,35 +19,33 @@
 		<main class="demo">
 			<div class="demo__stage">
 				<div class="ba" data-ba >
-					<img class="ba__a" src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco: spenta e sfocata" />
-					<img class="ba__b" src="../img/dopo.webp" width="900" height="600" alt="Manarola dopo il ritocco: colori pieni e nitida" />
+					<img class="ba__a" src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco: spenta e sfocata" data-i18n-attr="alt=pd.alt.before" />
+					<img class="ba__b" src="../img/dopo.webp" width="900" height="600" alt="Manarola dopo il ritocco: colori pieni e nitida" data-i18n-attr="alt=pd.alt.after" />
 					<span class="ba__tag ba__tag--prima" data-tag aria-hidden="true">Prima</span>
 				</div>
 			</div>
 			<div class="demo__side">
 				<header class="demo__head">
-					<h1>Scambio</h1>
+					<h1 data-i18n="scambio.name">Scambio</h1>
 				</header>
 				<div class="ba-lead">
-					<p lang="it">Due versioni, un tasto: una dissolvenza le scambia nello stesso punto.</p>
-					<p lang="en"><span class="ba-lead__l" aria-hidden="true">EN</span>Two versions, one switch: a crossfade swaps them in the same spot.</p>
-					<p lang="es"><span class="ba-lead__l" aria-hidden="true">ES</span>Dos versiones, un interruptor: un fundido las intercambia en el mismo sitio.</p>
+					<p data-i18n="scambio.lead">Due versioni, un tasto: una dissolvenza le scambia nello stesso punto.</p>
 				</div>
-				<div class="ba-controls" role="group" aria-label="Versione della foto">
-					<button type="button" class="ba-btn" data-v="prima" aria-pressed="true">Prima</button>
-					<button type="button" class="ba-btn" data-v="dopo" aria-pressed="false">Dopo</button>
+				<div class="ba-controls" role="group" aria-label="Versione della foto" data-i18n-attr="aria-label=scambio.group">
+					<button type="button" class="ba-btn" data-v="prima" aria-pressed="true" data-i18n="pd.before">Prima</button>
+					<button type="button" class="ba-btn" data-v="dopo" aria-pressed="false" data-i18n="pd.after">Dopo</button>
 				</div>
 				<section class="ba-block">
-					<h2 class="demo__label">Come si usa</h2>
+					<h2 class="demo__label" data-i18n="pd.how">Come si usa</h2>
 					<dl class="ba-how">
-						<div><dt>Mouse</dt><dd>Clicca Prima o Dopo; tieni premuta la foto per sbirciare l'altra.</dd></div>
-						<div><dt>Tocco</dt><dd>Tieni il dito sulla foto.</dd></div>
-						<div><dt>Tastiera</dt><dd>Tab fino a un bottone, poi Invio.</dd></div>
+						<div><dt data-i18n="pd.mouse">Mouse</dt><dd data-i18n="scambio.mouse">Clicca Prima o Dopo; tieni premuta la foto per sbirciare l'altra.</dd></div>
+						<div><dt data-i18n="pd.touch">Tocco</dt><dd data-i18n="scambio.touch">Tieni il dito sulla foto.</dd></div>
+						<div><dt data-i18n="pd.kbd">Tastiera</dt><dd data-i18n="scambio.kbd">Tab fino a un bottone, poi Invio.</dd></div>
 					</dl>
 				</section>
 				<section class="ba-block">
-					<h2 class="demo__label">Consiglio</h2>
-					<p class="ba-tip">Funziona bene con foto quasi uguali: l'occhio resta nello stesso punto e nota ogni differenza.</p>
+					<h2 class="demo__label" data-i18n="pd.tip">Consiglio</h2>
+					<p class="ba-tip" data-i18n="scambio.tip">Funziona bene con foto quasi uguali: l'occhio resta nello stesso punto e nota ogni differenza.</p>
 				</section>
 			</div>
 		</main>

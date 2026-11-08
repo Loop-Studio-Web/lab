@@ -3,7 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Lente — Loop Studio Lab</title>
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="lente.title">Lente — Loop Studio Lab</title>
 		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../../_shared/base.css" />
@@ -15,36 +18,34 @@
 	<body>
 		<main class="demo">
 			<div class="demo__stage">
-				<div class="ba" data-ba tabindex="0" role="group" aria-label="Foto con lente: muovi il puntatore o usa le frecce">
-					<img src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco" />
+				<div class="ba" data-ba tabindex="0" role="group" aria-label="Foto con lente: muovi il puntatore o usa le frecce" data-i18n-attr="aria-label=lente.group">
+					<img src="../img/prima.webp" width="900" height="600" alt="Manarola prima del ritocco" data-i18n-attr="alt=lente.alt" />
 					<div class="ba__lens" data-lens aria-hidden="true">
 						<img src="../img/dopo.webp" width="900" height="600" alt="" />
 					</div>
 					<span class="ba__ring" data-ring aria-hidden="true"></span>
-					<span class="ba__tag ba__tag--prima" aria-hidden="true">Prima</span>
-					<span class="ba__tag ba__tag--dopo" aria-hidden="true">Dopo, nella lente</span>
+					<span class="ba__tag ba__tag--prima" aria-hidden="true" data-i18n="pd.before">Prima</span>
+					<span class="ba__tag ba__tag--dopo" aria-hidden="true" data-i18n="lente.tag">Dopo, nella lente</span>
 				</div>
 			</div>
 			<div class="demo__side">
 				<header class="demo__head">
-					<h1>Lente</h1>
+					<h1 data-i18n="lente.name">Lente</h1>
 				</header>
 				<div class="ba-lead">
-					<p lang="it">Una lente mostra il dopo solo dove guardi; il resto resta com'era.</p>
-					<p lang="en"><span class="ba-lead__l" aria-hidden="true">EN</span>A lens shows the after only where you look; the rest stays as it was.</p>
-					<p lang="es"><span class="ba-lead__l" aria-hidden="true">ES</span>Una lente muestra el después solo donde miras; el resto queda como estaba.</p>
+					<p data-i18n="lente.lead">Una lente mostra il dopo solo dove guardi; il resto resta com'era.</p>
 				</div>
 				<section class="ba-block">
-					<h2 class="demo__label">Come si usa</h2>
+					<h2 class="demo__label" data-i18n="pd.how">Come si usa</h2>
 					<dl class="ba-how">
-						<div><dt>Mouse</dt><dd>Muovi il puntatore sulla foto.</dd></div>
-						<div><dt>Tocco</dt><dd>Trascina il dito.</dd></div>
-						<div><dt>Tastiera</dt><dd>Frecce; con Maiusc vai più veloce.</dd></div>
+						<div><dt data-i18n="pd.mouse">Mouse</dt><dd data-i18n="lente.mouse">Muovi il puntatore sulla foto.</dd></div>
+						<div><dt data-i18n="pd.touch">Tocco</dt><dd data-i18n="lente.touch">Trascina il dito.</dd></div>
+						<div><dt data-i18n="pd.kbd">Tastiera</dt><dd data-i18n="lente.kbd">Frecce; con Maiusc vai più veloce.</dd></div>
 					</dl>
 				</section>
 				<section class="ba-block">
-					<h2 class="demo__label">Consiglio</h2>
-					<p class="ba-tip">Utile per i dettagli (grana, nitidezza, texture) che a foto intera non si vedono.</p>
+					<h2 class="demo__label" data-i18n="pd.tip">Consiglio</h2>
+					<p class="ba-tip" data-i18n="lente.tip">Utile per i dettagli (grana, nitidezza, texture) che a foto intera non si vedono.</p>
 				</section>
 			</div>
 		</main>

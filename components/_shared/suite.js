@@ -2,6 +2,10 @@
 // Markup: [data-suite] > [role=tablist] > button[role=tab][data-src], e .suite__panels vuoto.
 // I tab sono generati qui dagli iframe; la pagina interna riceve ?embed (vedi studio.js).
 (() => {
+	const I = window.LabI18n;
+	const t = (key, it, vars) => (I ? I.t(key, it, vars) : it.replace(/\{(\w+)\}/g, (m, k) => (vars && k in vars ? vars[k] : m)));
+	I?.apply(); // i tab vanno tradotti prima che questo script ne legga i titoli
+	const lang = I?.lang;
 	const root = document.querySelector('[data-suite]');
 	const list = root.querySelector('[role="tablist"]');
 	const tabs = [...list.querySelectorAll('[role="tab"]')];
@@ -30,7 +34,7 @@
 	dots.setAttribute('aria-hidden', 'true');
 	const dotEls = tabs.map(() => dots.appendChild(document.createElement('i')));
 	const msg = document.createElement('span');
-	msg.textContent = `${n} elementi in questa scheda · scegli`;
+	msg.textContent = t('suite.items', '{n} elementi in questa scheda · scegli', { n });
 	hint.append(dots, msg);
 	top.prepend(hint);
 
@@ -73,12 +77,12 @@
 			t.setAttribute('aria-selected', String(on));
 			t.tabIndex = on ? 0 : -1;
 			frames[i].hidden = !on;
-			if (on && !frames[i].src) frames[i].src = `${t.dataset.src}${t.dataset.src.includes('?') ? '&' : '?'}embed`;
+			if (on && !frames[i].src) frames[i].src = `${t.dataset.src}${t.dataset.src.includes('?') ? '&' : '?'}embed${lang ? `&lang=${lang}` : ''}`;
 		});
 		indicate(tab);
 		const at = tabs.indexOf(tab);
 		dotEls.forEach((d, i) => d.classList.toggle('is-on', i === at));
-		moreLabel.textContent = `${at === n - 1 ? 'Ricomincia da' : 'Prossimo:'} `;
+		moreLabel.textContent = `${at === n - 1 ? t('suite.again', 'Ricomincia da') : t('suite.next', 'Prossimo:')} `;
 		const to = document.createElement('b');
 		to.textContent = next(at).dataset.title;
 		moreLabel.append(to);

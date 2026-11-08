@@ -3,7 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Prima / Dopo — Loop Studio Lab</title>
+		<meta name="robots" content="noindex" />
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="pd.title">Prima / Dopo — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -12,15 +15,15 @@
 		<script src="../_shared/suite.js" defer></script>
 	</head>
 	<body>
-		<h1 class="sr-only">Prima / Dopo</h1>
+		<h1 class="sr-only" data-i18n="pd.h1">Prima / Dopo</h1>
 		<div data-suite>
 			<div class="suite__top">
 				<div class="suite__scroll">
-					<div class="suite__list" role="tablist" aria-label="Modi di confrontare due immagini">
-						<button type="button" role="tab" id="t-cursore" data-id="cursore" data-src="cursore/" data-title="Cursore">Cursore</button>
-						<button type="button" role="tab" id="t-tendina" data-id="tendina" data-src="tendina/" data-title="Tendina">Tendina</button>
-						<button type="button" role="tab" id="t-scambio" data-id="scambio" data-src="scambio/" data-title="Scambio">Scambio</button>
-						<button type="button" role="tab" id="t-lente" data-id="lente" data-src="lente/" data-title="Lente">Lente</button>
+					<div class="suite__list" role="tablist" aria-label="Modi di confrontare due immagini" data-i18n-attr="aria-label=pd.tabs">
+						<button type="button" role="tab" id="t-cursore" data-id="cursore" data-src="cursore/" data-title="Cursore" data-i18n="cursore.name" data-i18n-attr="data-title=cursore.name">Cursore</button>
+						<button type="button" role="tab" id="t-tendina" data-id="tendina" data-src="tendina/" data-title="Tendina" data-i18n="tendina.name" data-i18n-attr="data-title=tendina.name">Tendina</button>
+						<button type="button" role="tab" id="t-scambio" data-id="scambio" data-src="scambio/" data-title="Scambio" data-i18n="scambio.name" data-i18n-attr="data-title=scambio.name">Scambio</button>
+						<button type="button" role="tab" id="t-lente" data-id="lente" data-src="lente/" data-title="Lente" data-i18n="lente.name" data-i18n-attr="data-title=lente.name">Lente</button>
 						<span class="suite__bar" aria-hidden="true"></span>
 					</div>
 				</div>
