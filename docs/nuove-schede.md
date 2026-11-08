@@ -32,3 +32,41 @@ Configuratore di prodotto; lightbox con zoom/gesti; barra accessibilità (overla
 ## Peso (preoccupazione dell'autore)
 Budget proposto per scheda, pagina iniziale: HTML+CSS+JS ≲ 60 KB gzip; immagini WebP/AVIF ≲ 300 KB; tutto ciò che è pesante (frame, shader, video) si carica solo a tab/sezione visibile (`loading=lazy`, IntersectionObserver). Misurare su ogni bozza il trasferimento reale.
 Hosting: vedi decisione GitHub Pages vs Cloudflare in `docs/TODO.md`.
+
+---
+
+# Fase 2 — Lotto 1: struttura (PROPOSTA 8/11, in attesa del via)
+
+**Cartelle.** Ogni scheda = una cartella suite con le pagine dei tab *dentro*, non sorelle (niente 15×4 cartelle sparse in `components/`).
+`suite.js` accetta già `data-src="cursore/"` (percorso relativo): nessuna modifica al guscio. Ogni tab resta apribile da solo.
+
+```
+components/
+  prima-dopo/            index.html (guscio suite)  + img/ (coppie condivise dai tab)
+    cursore/ tendina/ scambio/ lente/        ognuno: index.html, style.css, script.js
+  blocchi-di-fiducia/    index.html
+    contatori/ barre/ certificazioni/ testimonianze/
+  contatto-rapido/       index.html
+    flottante/ barra-cta/ assistente/
+  filtri-e-griglie/      index.html
+    filtri/ ricerca/ griglia-lista/ dettaglio/
+```
+Percorsi nei tab: `../../_shared/base.css`, `../../_shared/studio.js` (un livello in più). Dati di fantasia: array JS in testa a `script.js`
+(nessun JSON da fetchare: funziona anche da `file://` e non aggiunge richieste). Generatori a seme fisso dove serve (mulberry32).
+
+**Asset per scheda** (budget: pagina ≲ 60 KB gzip, immagini ≲ 300 KB):
+- **Prima/Dopo**: serve UNA coppia, condivisa dai 4 tab. Proposta: ritocco *dimostrabile* dalla stessa foto del pool (es. `manarola`: grigia/spenta
+  → colore; oppure sfocata → nitida), prodotto con Pillow in `prima-dopo/img/` (2 WebP ~900 px, ~80 KB l'uno). Zero crediti da gestire e il "dopo" è onesto.
+  Una seconda coppia vera (restauro/ristrutturazione da Unsplash/Wikimedia con crediti) solo se la vuoi: costa ~150 KB e una riga di crediti.
+- **Blocchi di fiducia**: nessuna foto. Contatori/barre da JS; certificazioni = badge SVG generici disegnati a mano (mai loghi reali);
+  testimonianze con nomi e frasi di fantasia, avatar = iniziali su cerchio (nessuna foto di persone).
+- **Contatto rapido**: nessuna foto. Icone SVG inline (telefono, chat, orologio); numero e orari finti (`+39 000 000 0000`); assistente = albero
+  di domande/risposte in un oggetto JS, nessuna AI.
+- **Filtri e griglie**: 9 foto del pool come "prodotti/luoghi" (già in `_shared/img`, 0 KB nuovi); 12-16 voci di fantasia (nome, categoria, prezzo, data)
+  riusando le foto più volte con inquadrature diverse (`object-position`).
+
+**Ordine di costruzione**: Prima/Dopo → Blocchi di fiducia → Contatto rapido → Filtri e griglie (dal più semplice al più denso). Dopo ogni scheda: link
+`http://localhost:8765/components/<id>/` all'autore, correzioni, poi la successiva.
+
+**Da decidere con l'autore prima di scrivere codice**: (a) coppia Prima/Dopo = ritocco dalla stessa foto (consigliato) o foto vera con crediti;
+(b) cartelle dei tab *dentro* la suite (consigliato) o sorelle come i raggruppamenti vecchi; (c) lingua dei testi: tutto IT.
