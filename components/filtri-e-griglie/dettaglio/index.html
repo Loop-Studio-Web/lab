@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="dettaglio.title">Dettaglio — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../fg.css" />
+		<script src="../fg.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fg" data-fg>
+					<div class="fg__bar"><p class="fg__count" style="margin-left:0" data-i18n="fg.pick">Scegli una proposta per vederla in grande</p></div>
+					<div class="fg__scroll"><ul class="fg-grid" data-grid></ul></div>
+				</div>
+				<dialog class="fg-dlg" data-dlg aria-labelledby="fg-dlg-t">
+					<img class="fg-dlg__img" data-dimg alt="" width="900" height="600" />
+					<div class="fg-dlg__body" lang="it">
+						<h2 id="fg-dlg-t" data-dname></h2>
+						<div class="fg-dlg__meta" data-dmeta></div>
+						<p data-dtext></p>
+						<div class="fg-dlg__row"><a class="fg-dlg__cta" href="#" data-demo-link data-i18n="fg.book">Prenota</a></div>
+					</div>
+					<button type="button" class="fg-dlg__close" data-close aria-label="Chiudi" data-i18n-attr="aria-label=fg.close"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+				</dialog>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="dettaglio.name">Dettaglio</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="dettaglio.lead">Una scheda si apre in grande: la foto non compare, si trasforma dalla miniatura. Chiudendo, torna al suo posto.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="fg.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="fg.mouse">Mouse</dt><dd data-i18n="dettaglio.mouse">Clicca una scheda per aprirla; ×, Esc o un clic fuori la chiudono.</dd></div>
+						<div><dt data-i18n="fg.touch">Tocco</dt><dd data-i18n="dettaglio.touch">Tocca una scheda; la finestra si chiude con la × o toccando fuori.</dd></div>
+						<div><dt data-i18n="fg.kbd">Tastiera</dt><dd data-i18n="dettaglio.kbd">Tab su una scheda, Invio per aprire; il focus entra nella finestra e, chiudendo, torna alla scheda.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="fg.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="dettaglio.tip">Il morph dice da dove vieni e dove torni. È un <dialog> nativo: focus, Esc e sfondo inerte sono gratis. Senza View Transitions la finestra si apre comunque.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>
