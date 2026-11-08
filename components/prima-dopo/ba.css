@@ -85,7 +85,7 @@
 .ba-lead p + p { margin-top: 0.4rem; font-size: 0.8125rem; color: var(--muted); opacity: 1; }
 .ba-lead__l { display: inline-block; min-width: 1.6rem; margin-right: 0.35rem; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); }
 .ba-block { margin-top: 1.4rem; }
-.ba-block .demo__label { margin-bottom: 0.5rem; }
+.ba-block .demo__label { margin-bottom: 0.5rem; color: var(--text); }
 .ba-how { margin: 0; display: grid; gap: 0.55rem; }
 .ba-how div { display: grid; grid-template-columns: 4.6rem 1fr; gap: 0.5rem; font-size: 0.875rem; }
 .ba-how dt { color: var(--accent); font-weight: 600; }
