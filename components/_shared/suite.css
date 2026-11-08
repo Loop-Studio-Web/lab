@@ -148,6 +148,13 @@ body > .studio-mark {
 	-webkit-tap-highlight-color: transparent;
 	transition: color 160ms ease;
 }
+.suite__next b {
+	font-weight: 700;
+	color: var(--accent);
+}
+.suite__arrow {
+	color: var(--accent);
+}
 .suite__arrow::before {
 	content: '→';
 	display: inline-block;

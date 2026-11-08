@@ -78,7 +78,10 @@
 		indicate(tab);
 		const at = tabs.indexOf(tab);
 		dotEls.forEach((d, i) => d.classList.toggle('is-on', i === at));
-		moreLabel.textContent = `${at === n - 1 ? 'Ricomincia da' : 'Prossimo:'} ${next(at).dataset.title}`;
+		moreLabel.textContent = `${at === n - 1 ? 'Ricomincia da' : 'Prossimo:'} `;
+		const to = document.createElement('b');
+		to.textContent = next(at).dataset.title;
+		moreLabel.append(to);
 		more.classList.toggle('is-loop', at === n - 1);
 		tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
 		if (focus) tab.focus();
