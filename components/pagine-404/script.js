@@ -8,6 +8,7 @@ const VARIANTI = {
 	particelle: () => import('./varianti/particelle.js'),
 	bolle: () => import('./varianti/bolle.js'),
 	comparse: () => import('./varianti/comparse.js'),
+	tris: () => import('./varianti/tris.js'),
 	// le altre arrivano una alla volta: senza modulo il pannello resta con «In costruzione»
 };
 

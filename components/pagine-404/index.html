@@ -15,6 +15,7 @@
 		<link rel="stylesheet" href="varianti/bolle.css" />
 		<link rel="stylesheet" href="varianti/particelle.css" />
 		<link rel="stylesheet" href="varianti/comparse.css" />
+		<link rel="stylesheet" href="varianti/tris.css" />
 		<script src="../_shared/effetti-testo.js" defer></script>
 		<script src="script.js" type="module"></script>
 	</head>
@@ -89,7 +90,22 @@
 						<p class="page404__line">On la cherchait aussi. Si vous la trouvez, dites-nous où elle était.</p>
 						<a class="page404__home" href="#" data-demo-link>Retour à l’accueil</a>
 					</div>
-				<div role="tabpanel" id="p-tris" aria-labelledby="t-tris" lang="en" class="page404" data-variant="tris" hidden><p class="soon">In costruzione</p></div>
+				<div role="tabpanel" id="p-tris" aria-labelledby="t-tris" lang="pt" class="page404 page404--tris" data-variant="tris" hidden>
+						<h2 class="sr-only">Erro 404</h2>
+						<div class="tris404__row">
+							<span class="tris404__four" aria-hidden="true">4</span>
+							<div class="tris404__board" role="group" aria-label="Jogo do galo">
+								<button type="button" class="tris404__cell"></button><button type="button" class="tris404__cell"></button><button type="button" class="tris404__cell"></button>
+								<button type="button" class="tris404__cell"></button><button type="button" class="tris404__cell"></button><button type="button" class="tris404__cell"></button>
+								<button type="button" class="tris404__cell"></button><button type="button" class="tris404__cell"></button><button type="button" class="tris404__cell"></button>
+							</div>
+							<span class="tris404__four" aria-hidden="true">4</span>
+						</div>
+						<p class="page404__line">Perdeste a página. Este jogo não vais perder.</p>
+						<p class="tris404__status" role="status"></p>
+						<button type="button" class="tris404__again" hidden>Jogar outra vez</button>
+						<a class="page404__home" href="#" data-demo-link>Voltar ao início</a>
+					</div>
 				<div role="tabpanel" id="p-pendolo" aria-labelledby="t-pendolo" lang="es" class="page404" data-variant="pendolo" hidden><p class="soon">In costruzione</p></div>
 				<div role="tabpanel" id="p-bolle" aria-labelledby="t-bolle" lang="ko" class="page404 page404--bolle" data-variant="bolle" hidden>
 						<h2 class="sr-only">404 오류</h2>

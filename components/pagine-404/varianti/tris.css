@@ -1,0 +1,129 @@
+/* Variante Tris (PT): lo 0 del 404 è la griglia del gioco del galo. Logica in tris.js; qui l'aspetto. */
+
+.page404--tris {
+	--c: clamp(2.7rem, 12cqw, 3.7rem); /* lato di una cella */
+	gap: 0.9rem;
+}
+.tris404__row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: clamp(0.4rem, 3cqw, 1.2rem);
+}
+.tris404__four {
+	font: 800 calc(var(--c) * 3.5) / 0.8 var(--font-display);
+	letter-spacing: -0.03em;
+	color: var(--text);
+	user-select: none;
+}
+.tris404__board {
+	display: grid;
+	grid-template-columns: repeat(3, var(--c));
+	grid-auto-rows: var(--c);
+}
+.tris404__cell {
+	position: relative;
+	padding: 0;
+	cursor: pointer;
+	color: var(--text);
+	background: none;
+	border: 0;
+	border-right: 2px solid #3a3a3a;
+	border-bottom: 2px solid #3a3a3a;
+	-webkit-tap-highlight-color: transparent;
+	transition: background-color 160ms ease, scale 140ms var(--ease-out);
+}
+.tris404__cell:nth-child(3n) {
+	border-right: 0;
+}
+.tris404__cell:nth-child(n + 7) {
+	border-bottom: 0;
+}
+.tris404__cell:not(:disabled):active {
+	scale: 0.94;
+}
+.tris404__cell:disabled {
+	cursor: default;
+}
+.tris404__cell:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: -4px;
+	border-radius: 0.4rem;
+}
+@media (hover: hover) and (pointer: fine) {
+	.tris404__cell:not(:disabled):hover {
+		background: #161616;
+	}
+}
+
+/* Segni disegnati con il tratto che si allunga. */
+.tris404__cell svg {
+	position: absolute;
+	inset: 22%;
+	width: 56%;
+	height: 56%;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 5;
+	stroke-linecap: round;
+}
+.tris404__cell svg * {
+	stroke-dasharray: 1;
+	stroke-dashoffset: 0;
+	animation: tris-draw 260ms var(--ease-out) backwards;
+}
+.tris404__cell svg *:nth-child(2) {
+	animation-delay: 120ms;
+}
+@keyframes tris-draw {
+	from {
+		stroke-dashoffset: 1;
+	}
+}
+.tris404__cell[data-m='O'] {
+	color: #ff3b30;
+}
+.tris404__cell.is-win {
+	background: rgb(255 59 48 / 0.14);
+}
+
+.tris404__status {
+	min-height: 1.4em;
+	margin: 0;
+	font: 600 0.95rem var(--font-text);
+	color: var(--muted);
+}
+.tris404__again {
+	padding: 0.2rem 0.4rem;
+	margin-left: 0.4rem;
+	font: 600 0.95rem var(--font-text);
+	color: var(--text);
+	cursor: pointer;
+	background: none;
+	border: 0;
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+.tris404__again:focus-visible {
+	outline: 2px solid var(--accent);
+	border-radius: 0.3rem;
+}
+
+/* Il pulsante vero c'è già, ma spento: si accende solo vincendo o pareggiando. */
+.page404--tris .page404__home {
+	transition: opacity 320ms ease, translate 320ms var(--ease-out), background-color 180ms ease, scale 160ms var(--ease-out);
+}
+.page404--tris:not(.is-unlocked) .page404__home {
+	opacity: 0.25;
+	pointer-events: none;
+	translate: 0 0.3rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.tris404__cell svg * {
+		animation: none;
+	}
+	.page404--tris .page404__home {
+		transition: none;
+	}
+}
