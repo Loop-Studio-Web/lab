@@ -1,0 +1,115 @@
+/* Variante Comparse (FR): finestrine finte che scappano dal cursore. Il movimento è in JS; qui l'aspetto. */
+
+.page404--comparse {
+	position: relative;
+	touch-action: pan-y;
+}
+.cmp404__code {
+	font: 800 clamp(4rem, 19cqw, 9rem) / 0.9 var(--font-display);
+	letter-spacing: -0.03em;
+	color: #fff;
+	user-select: none;
+}
+/* Il pulsante vero resta sotto le finestre: si raggiunge solo quando si sono tolte. */
+.page404--comparse .page404__home {
+	position: relative;
+	z-index: 1;
+}
+
+/* Strato delle finestre: sopra il contenuto, ma non intercetta il puntatore. */
+.cmp404__layer {
+	position: absolute;
+	inset: 0;
+	z-index: 2;
+	overflow: hidden;
+	pointer-events: none;
+	transition: opacity 260ms ease;
+}
+.page404--comparse.is-found .cmp404__layer {
+	opacity: 0;
+}
+
+.cmp404__win {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: min(12.5rem, 62%);
+	will-change: transform;
+}
+.cmp404__win-in {
+	overflow: hidden;
+	text-align: left;
+	background: #1a1a1a;
+	border: 1px solid #333;
+	border-radius: 0.6rem;
+	box-shadow: 0 0.8rem 1.6rem rgb(0 0 0 / 0.55);
+	animation: cmp-in 240ms var(--ease-out);
+}
+.cmp404__win.is-pop .cmp404__win-in {
+	animation: cmp-pop 220ms var(--ease-out);
+}
+.cmp404__win.is-out .cmp404__win-in {
+	opacity: 0;
+	scale: 0.9;
+	transition: opacity 220ms ease, scale 220ms ease;
+}
+@keyframes cmp-in {
+	from {
+		opacity: 0;
+		scale: 0.85;
+	}
+}
+@keyframes cmp-pop {
+	from {
+		opacity: 0;
+		scale: 1.12;
+	}
+}
+.cmp404__bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+	padding: 0.35rem 0.6rem;
+	font: 600 0.72rem var(--font-text);
+	color: #bdbdbd;
+	background: #262626;
+	border-bottom: 1px solid #333;
+}
+.cmp404__bar i {
+	font-style: normal;
+	font-size: 1rem;
+	line-height: 1;
+	color: #777;
+}
+.cmp404__win p {
+	margin: 0;
+	padding: 0.65rem 0.7rem 0.5rem;
+	font: 500 0.8rem / 1.35 var(--font-text);
+	color: #e5e5e5;
+}
+.cmp404__btn {
+	display: block;
+	width: max-content;
+	margin: 0.1rem 0.7rem 0.7rem auto;
+	padding: 0.35rem 0.8rem;
+	font: 700 0.72rem var(--font-text);
+	color: #fff;
+	background: #3a3a3a;
+	border-radius: 999px;
+}
+/* I finti «Torna alla home» sono identici al vero: è la battuta. */
+.cmp404__btn--home {
+	background: var(--accent-strong);
+}
+
+/* Movimento ridotto: finestre ferme e leggere, nessuna entrata animata. */
+@media (prefers-reduced-motion: reduce) {
+	.cmp404__win-in,
+	.cmp404__win.is-pop .cmp404__win-in {
+		animation: none;
+	}
+	.cmp404__layer {
+		transition: none;
+	}
+}

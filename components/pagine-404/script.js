@@ -6,6 +6,7 @@ const VARIANTI = {
 	testo: () => import('./varianti/testo.js'),
 	infinito: () => import('./varianti/infinito.js'),
 	bolle: () => import('./varianti/bolle.js'),
+	comparse: () => import('./varianti/comparse.js'),
 	// le altre arrivano una alla volta: senza modulo il pannello resta con «In costruzione»
 };
 
