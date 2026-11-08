@@ -26,10 +26,14 @@
 	};
 
 	// <nav> con etichetta: tiene il logo dentro un landmark (regola axe "region").
-	const corner = document.createElement('nav');
-	corner.setAttribute('aria-label', 'Loop Studio');
-	corner.append(link('studio-corner'));
-	document.body.prepend(corner);
+	// Dentro una scheda raggruppata (iframe con ?embed) il logo in alto lo mette già il guscio:
+	// qui resta solo la firma in fondo.
+	if (!new URLSearchParams(location.search).has('embed')) {
+		const corner = document.createElement('nav');
+		corner.setAttribute('aria-label', 'Loop Studio');
+		corner.append(link('studio-corner'));
+		document.body.prepend(corner);
+	}
 
 	const footer = document.createElement('footer');
 	footer.className = 'studio-mark';

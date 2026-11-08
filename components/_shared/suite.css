@@ -1,0 +1,103 @@
+/* Scheda raggruppata ("suite"): un guscio con i tab in alto e, sotto, la scheda scelta
+   in un iframe che riempie il resto dell'altezza e scorre per conto suo. Serve a unire
+   più schede senza che i loro CSS si pestino i piedi (ognuna resta una pagina intera). */
+
+html,
+body {
+	height: 100%;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+body > .studio-mark {
+	display: none; /* la firma in fondo la mette ogni pagina interna */
+}
+[data-suite] {
+	flex: 1 1 0;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+}
+.suite__top {
+	flex: none;
+	padding: 0 1.5rem;
+}
+.suite__scroll {
+	overflow-x: auto;
+	scrollbar-width: none;
+	-webkit-overflow-scrolling: touch;
+}
+.suite__scroll::-webkit-scrollbar {
+	display: none;
+}
+.suite__list {
+	position: relative;
+	display: flex;
+	gap: 0.25rem;
+	width: max-content;
+	min-width: 100%;
+	border-bottom: 1px solid var(--line);
+}
+.suite__list [role='tab'] {
+	flex: 1 0 auto;
+	padding: 0.8rem 1.1rem;
+	font: 600 0.95rem var(--font-text);
+	color: var(--muted);
+	cursor: pointer;
+	background: none;
+	border: 0;
+	-webkit-tap-highlight-color: transparent;
+	transition: color 160ms ease, scale 160ms var(--ease-out);
+}
+.suite__list [role='tab']:active {
+	scale: 0.97;
+}
+.suite__list [aria-selected='true'] {
+	color: var(--text);
+}
+@media (hover: hover) and (pointer: fine) {
+	.suite__list [role='tab']:hover {
+		color: var(--text);
+	}
+}
+.suite__list [role='tab']:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: -4px;
+	border-radius: 0.4rem;
+}
+.suite__bar {
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: var(--w, 0);
+	height: 2px;
+	background: var(--accent);
+	border-radius: 2px;
+	transform: translateX(var(--x, 0));
+}
+.is-ready .suite__bar {
+	transition: transform 300ms var(--ease-out), width 300ms var(--ease-out);
+}
+.suite__panels {
+	position: relative;
+	flex: 1 1 0;
+	min-height: 0;
+}
+.suite__panels iframe {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	background: var(--bg);
+}
+.suite__panels iframe[hidden] {
+	display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	.suite__bar {
+		transition: none !important;
+	}
+}
