@@ -1,0 +1,142 @@
+/* Parte comune ai 2 tab di Palette comandi: impalcatura a due colonne (palco a sinistra, testi a destra) + la palette stessa. */
+.demo { padding: clamp(1.25rem, 3vw, 2rem) 1.5rem 2rem; }
+.demo__head { margin-bottom: 1rem; }
+.demo__head h1 { font-size: clamp(1.5rem, 4vw, 2rem); }
+.demo__head h1 { color: var(--accent); }
+.fd-lead p { color: var(--text); opacity: 0.92; }
+.fd-block { margin-top: 1.4rem; }
+.fd-block .demo__label { margin-bottom: 0.5rem; color: var(--text); }
+.fd-how { margin: 0; display: grid; gap: 0.55rem; }
+.fd-how div { display: grid; grid-template-columns: 4.6rem 1fr; gap: 0.5rem; font-size: 0.875rem; }
+.fd-how dt { color: var(--accent); font-weight: 600; }
+.fd-how dd { margin: 0; color: var(--text); }
+.fd-tip { color: var(--muted); font-size: 0.875rem; }
+.fd-controls { margin-top: 1rem; }
+
+/* Stretto (telefono, finestra alta): una colonna, titolo sopra la foto. */
+.demo { display: flex; flex-direction: column; }
+.demo__side { display: contents; }
+.demo__head { order: -1; }
+.demo__stage { order: 0; }
+.demo__side > :not(.demo__head) { order: 1; }
+.demo__side > .fd-lead, .demo__side > .fd-controls, .demo__side > .fd-block { margin-inline: auto; width: min(100%, 36rem); }
+.demo__side > .fd-lead { margin-top: 1rem; text-align: left; }
+.demo__side > .fd-block { text-align: left; }
+
+/* Largo e basso (portatile, monitor, box «Prova dal vivo»): due colonne senza scroll.
+   Foto grande a sinistra; a destra titolo, descrizioni, comandi e, in fondo, la firma centrata. */
+@media (min-width: 56rem) and (min-aspect-ratio: 3/2) {
+	body {
+		display: grid;
+		grid-template-columns: auto minmax(18rem, 25rem);
+		grid-template-rows: 1fr auto;
+		justify-content: center;
+		column-gap: 1rem;
+		min-height: 100svh;
+		padding: 0 1.5rem;
+	}
+	body:has(> nav) { grid-template-rows: auto 1fr auto; }
+	body > nav { grid-column: 1 / -1; grid-row: 1; }
+	.demo { display: contents; }
+	.demo__stage { grid-column: 1; grid-row: 1 / 3; align-self: center; padding: 1rem 0; }
+	.demo__side { grid-column: 2; grid-row: 1; align-self: center; display: block; padding: 1.4rem 1.4rem 1.5rem; position: relative; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.12); border-top-color: rgba(255,90,80,0.55); background: linear-gradient(160deg, rgba(255,59,48,0.12), rgba(255,59,48,0.04) 55%, rgba(255,255,255,0.03)); -webkit-backdrop-filter: blur(16px) saturate(1.3); backdrop-filter: blur(16px) saturate(1.3); box-shadow: 0 1.25rem 3rem rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08); }
+	/* alone rosso dietro al vetro: senza niente da sfocare, su nero puro il glass non si vede */
+	.demo__side::before { content: ''; position: absolute; z-index: -1; inset: -2.5rem -1rem -1rem -1rem; background: radial-gradient(closest-side circle at 78% 22%, rgba(255,59,48,0.42), transparent), radial-gradient(closest-side circle at 18% 88%, rgba(255,59,48,0.16), transparent); pointer-events: none; }
+	.fd-block { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.9rem; }
+	body:has(> nav) .demo__stage { grid-row: 2 / 4; }
+	body:has(> nav) .demo__side { grid-row: 2; }
+	body > .studio-mark { grid-column: 2; grid-row: 2; align-self: end; align-items: center; text-align: center; padding: 0.5rem 0 1.25rem; }
+	body:has(> nav) > .studio-mark { grid-row: 3; }
+	.demo__side > .fd-lead, .demo__side > .fd-controls, .demo__side > .fd-block { margin-inline: 0; width: auto; }
+	.demo__side > .fd-lead { margin-top: 0; }
+	.demo__side > :not(.demo__head) { order: 0; }
+	.demo__head { text-align: left; margin-bottom: 0.9rem; }
+	.demo__head h1 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); }
+	.fd-controls { justify-content: flex-start; }
+}
+/* Poca altezza (portatile dentro il guscio a tab): si toglie il consiglio e si stringe, per restare senza scroll. */
+@media (min-width: 56rem) and (min-aspect-ratio: 3/2) and (max-height: 44rem) {
+	.fd-block + .fd-block { display: none; }
+	.fd-block { margin-top: 1rem; }
+	.demo__head { margin-bottom: 0.5rem; }
+	.demo__head h1 { font-size: 2rem; }
+	.fd-lead p + p { margin-top: 0.25rem; }
+	.fd-controls { margin-top: 0.75rem; }
+	/* firma compatta: una riga, in basso a destra, invece del blocco centrato */
+	body > .studio-mark { flex-direction: row; justify-content: flex-end; align-items: center; gap: 0.6rem; padding: 0.25rem 0 0.75rem; }
+}
+
+/* Palco comune */
+.fd-stage { width: min(34rem, 100vw - 3rem); margin-inline: auto; }
+.fd-btn {
+	display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.55rem 1.05rem; font: inherit; font-size: 0.875rem; font-weight: 600;
+	color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; cursor: pointer;
+	transition: transform 0.16s var(--ease-out), border-color 0.2s;
+}
+.fd-btn:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .fd-btn:hover { border-color: var(--muted); } }
+.fd-actions { display: flex; justify-content: center; gap: 0.6rem; margin-top: 1rem; }
+.fd-btn[hidden] { display: none; }
+/* Box molto basso (modale «Prova dal vivo» su portatile): niente riga «Tocco» e testi più stretti, per non avere scroll. */
+@media (min-width: 56rem) and (min-aspect-ratio: 3/2) and (max-height: 32rem) {
+	.fd-how div:nth-child(2) { display: none; }
+	.demo__side { padding: 1rem 1.2rem 1.1rem; }
+	.demo__head h1 { font-size: 1.7rem; }
+	.fd-block { margin-top: 0.7rem; padding-top: 0.6rem; }
+	.fd-stage { --h: 19rem; }
+}
+
+/* ——— La palette ——— */
+.pc-stage { position: relative; container-type: size; height: min(26rem, 100svh - 7rem); min-height: 20rem; overflow: hidden; width: min(34rem, 100vw - 3rem); margin-inline: auto; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); }
+.pc-scrim { position: absolute; inset: 0; z-index: 1; background: rgba(0, 0, 0, 0.55); opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.pc-stage.is-open .pc-scrim { opacity: 1; pointer-events: auto; }
+
+.pc {
+	position: absolute; z-index: 2; inset: 1.6rem 0 auto 50%; translate: -50% 0; margin: 0; padding: 0;
+	width: min(29rem, 100cqw - 1.5rem); max-height: calc(100cqh - 3rem);
+	display: none; flex-direction: column; overflow: hidden; color: var(--text);
+	background: #141414; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 1rem; box-shadow: 0 1.5rem 3.5rem rgba(0, 0, 0, 0.6);
+	opacity: 0; transform: translateY(-0.5rem) scale(0.96); transform-origin: top center;
+	transition: opacity 0.18s, transform 0.22s var(--ease-out), display 0.22s allow-discrete, overlay 0.22s allow-discrete;
+}
+.pc[open] { display: flex; opacity: 1; transform: none; }
+@starting-style { .pc[open] { opacity: 0; transform: translateY(-0.5rem) scale(0.96); } }
+
+.pc__top { display: flex; align-items: center; gap: 0.5rem; padding: 0.7rem 0.8rem 0.7rem 1rem; border-bottom: 1px solid var(--line); }
+.pc__crumbs { display: flex; gap: 0.3rem; }
+.pc__crumbs span { padding: 0.15rem 0.55rem; font-size: 0.75rem; font-weight: 600; color: var(--accent); background: rgba(255, 59, 48, 0.14); border-radius: 999px; white-space: nowrap; }
+.pc__input { flex: 1; min-width: 0; padding: 0.2rem 0; font: inherit; font-size: 1rem; color: var(--text); background: none; border: 0; outline: 0; }
+.pc__input::placeholder { color: var(--muted); }
+.pc__x { flex: none; padding: 0.15rem 0.45rem; font: inherit; font-size: 0.6875rem; letter-spacing: 0.04em; color: var(--muted); background: #1f1f1f; border: 1px solid var(--line); border-radius: 0.4rem; cursor: pointer; }
+.pc__x:active { transform: scale(0.97); }
+.pc__input:focus-visible { outline: 0; }
+.pc__top:has(.pc__input:focus-visible) { box-shadow: inset 0 -2px 0 var(--accent); }
+
+.pc__scroll { position: relative; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 0.35rem; }
+.pc__list { position: relative; margin: 0; padding: 0; list-style: none; }
+.pc__hl { position: absolute; left: 0.35rem; right: 0.35rem; top: 0.35rem; height: 0; border-radius: 0.6rem; background: rgba(255, 59, 48, 0.15); box-shadow: inset 2px 0 0 var(--accent); pointer-events: none; transition: transform 0.18s var(--ease-out), height 0.18s var(--ease-out); }
+.pc__hl.is-jump { transition: none; }
+.pc__group { padding: 0.6rem 0.7rem 0.25rem; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.pc__group:first-child { padding-top: 0.3rem; }
+.pc__opt { position: relative; display: flex; align-items: center; gap: 0.7rem; padding: 0.55rem 0.7rem; font-size: 0.9375rem; border-radius: 0.6rem; cursor: pointer; }
+.pc__opt:active { transform: scale(0.99); }
+.pc__ic { display: grid; place-items: center; color: var(--muted); transition: color 0.15s; }
+.pc__opt[aria-selected='true'] .pc__ic { color: var(--accent); }
+.pc__label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc__label mark { color: var(--accent); background: none; font-weight: 700; }
+.pc__kbd { display: flex; gap: 0.25rem; }
+.pc__more { display: grid; color: var(--muted); }
+.pc kbd { min-width: 1.35rem; padding: 0.1rem 0.35rem; font: inherit; font-size: 0.6875rem; font-weight: 600; text-align: center; color: var(--muted); background: #1f1f1f; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 0.35rem; }
+.pc__empty { margin: 0; padding: 1.6rem 1rem; text-align: center; color: var(--muted); font-size: 0.875rem; }
+.pc__foot { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; padding: 0.5rem 0.9rem; font-size: 0.75rem; color: var(--muted); border-top: 1px solid var(--line); }
+.pc__foot span { display: inline-flex; align-items: center; gap: 0.25rem; }
+.pc__back { display: none !important; }
+.pc.is-sub .pc__back { display: inline-flex !important; }
+
+/* Pulsante che apre la palette (nella finta pagina) */
+.pc-open { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.4rem 0.5rem 0.4rem 0.8rem; font: inherit; font-size: 0.8125rem; color: var(--muted); background: #141414; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; transition: transform 0.16s var(--ease-out), border-color 0.2s; }
+.pc-open:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .pc-open:hover { border-color: var(--muted); color: var(--text); } }
+.pc-open kbd { padding: 0.05rem 0.4rem; font: inherit; font-size: 0.6875rem; font-weight: 600; background: #1f1f1f; border: 1px solid var(--line); border-radius: 0.35rem; }
+
+@media (prefers-reduced-motion: reduce) { .pc, .pc__hl, .pc-scrim { transition-duration: 0.01ms; } }

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="palette.title">Palette — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../pc.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../pc.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="pc-stage" data-stage>
+					<div class="site" data-site data-theme="dark" data-page="home">
+						<header class="site__bar">
+							<p class="site__brand">Aurora</p>
+							<button type="button" class="pc-open" data-open aria-expanded="false"><span data-i18n="palette.openlabel">Cerca o esegui…</span> <kbd data-mod>⌘K</kbd></button>
+						</header>
+						<section class="site__page" data-p="home">
+							<h2 data-i18n="palette.s.home.h">Luce per ogni stanza</h2>
+							<p data-i18n="palette.s.home.p">Lampade fatte a mano, una alla volta, in un laboratorio di Torino.</p>
+							<div class="site__cards"><i></i><i></i><i></i></div>
+						</section>
+						<section class="site__page" data-p="servizi" hidden>
+							<h2 data-i18n="palette.s.serv.h">Servizi</h2>
+							<p data-i18n="palette.s.serv.p">Progetto su misura, montaggio e assistenza per cinque anni.</p>
+							<ul><li data-i18n="palette.s.serv.1">Consulenza in casa</li><li data-i18n="palette.s.serv.2">Montaggio incluso</li><li data-i18n="palette.s.serv.3">Garanzia 5 anni</li></ul>
+						</section>
+						<section class="site__page" data-p="progetti" hidden>
+							<h2 data-i18n="palette.s.prog.h">Progetti</h2>
+							<p data-i18n="palette.s.prog.p">Tre lavori recenti: un ristorante, una libreria, un atelier.</p>
+							<div class="site__cards"><i></i><i></i><i></i></div>
+						</section>
+						<section class="site__page" data-p="contatti" hidden>
+							<h2 data-i18n="palette.s.cont.h">Contatti</h2>
+							<p data-i18n="palette.s.cont.p">Scrivici a ciao@aurora.example: rispondiamo entro un giorno.</p>
+						</section>
+						<p class="site__status" data-status aria-live="polite"></p>
+					</div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="palette.name">Palette</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="palette.lead">Un campo di ricerca che sa fare tutto: pagine, azioni, aspetto. Si apre con una scorciatoia e si guida con la tastiera.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="pc.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="pc.mouse">Mouse</dt><dd data-i18n="palette.mouse">Clicca «Cerca o esegui…», scrivi qualche lettera, clicca un comando.</dd></div>
+						<div><dt data-i18n="pc.touch">Tocco</dt><dd data-i18n="palette.touch">Tocca il pulsante in alto: la scorciatoia da tastiera non c'è, il pulsante sì.</dd></div>
+						<div><dt data-i18n="pc.kbd">Tastiera</dt><dd data-i18n="palette.kbd">Ctrl/⌘+K apre, ↑↓ si muove, Invio esegue, Esc chiude. A palette chiusa: G poi H, S, P o C per cambiare pagina.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="pc.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="palette.tip">Non basta il ⌘K: metti sempre anche un pulsante visibile, perché sul telefono la scorciatoia non esiste. Scrivi i comandi come verbi e mostra a destra la scorciatoia, così la si impara usandola.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

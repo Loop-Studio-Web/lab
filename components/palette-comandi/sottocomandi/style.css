@@ -1,0 +1,17 @@
+/* Scheda attività: la palette la modifica un campo alla volta. */
+.tk { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 0.8rem; padding-bottom: 1rem; background: var(--surface); }
+.tk__bar { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.8rem 1rem 0; }
+.tk__brand { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+.tk__card { margin: 0 1rem; padding: 1rem 1.1rem; background: #141414; border: 1px solid var(--line); border-radius: 0.9rem; transition: border-color 0.3s, opacity 0.3s; }
+.tk__card h2 { margin: 0 0 0.7rem; font-family: var(--font-display); font-size: 1.25rem; transition: opacity 0.3s; }
+.tk__card.is-done h2 { text-decoration: line-through; opacity: 0.55; }
+.tk__meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem 1rem; margin: 0; }
+.tk__meta dt { font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.tk__meta dd { display: flex; align-items: center; gap: 0.4rem; min-height: 1.5rem; margin: 0.1rem 0 0; font-size: 0.9375rem; }
+.tk__meta dd.is-new { animation: tk-pop 0.4s var(--ease-out); }
+.tk__dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--c, #666); }
+.tk__log { margin: 0 1rem; padding: 0; list-style: none; display: grid; gap: 0.25rem; font-size: 0.8125rem; color: var(--muted); overflow: hidden; }
+.tk__log li { animation: tk-pop 0.35s var(--ease-out); }
+.tk__log li:first-child { color: var(--text); }
+@keyframes tk-pop { from { opacity: 0; transform: translateY(0.35rem); } }
+@media (prefers-reduced-motion: reduce) { .tk__meta dd.is-new, .tk__log li { animation: none; } }

@@ -1,0 +1,16 @@
+/* Finto sito «Aurora»: sta dietro la palette e reagisce ai comandi. */
+.site { --s-bg: #0e0e0e; --s-text: #f1f1f1; --s-muted: #9a9a9a; --s-card: #1d1d1d; position: absolute; inset: 0; display: flex; flex-direction: column; color: var(--s-text); background: var(--s-bg); transition: background 0.3s, color 0.3s; }
+.site[data-theme='light'] { --s-bg: #f6f3ee; --s-text: #1a1a1a; --s-muted: #6b6760; --s-card: #e4dfd6; }
+.site__bar { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: 0.8rem 1rem; }
+.site__brand { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+.site__page { padding: 0.6rem 1.1rem; animation: site-in 0.35s var(--ease-out) both; }
+.site__page[hidden] { display: none; }
+.site__page h2 { margin: 0 0 0.4rem; font-family: var(--font-display); font-size: clamp(1.4rem, 7cqw, 2rem); }
+.site__page p, .site__page li { color: var(--s-muted); font-size: 0.9375rem; }
+.site__page ul { margin: 0.6rem 0 0; padding-left: 1.1rem; }
+.site__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 1rem; }
+.site__cards i { height: 4.5rem; border-radius: 0.6rem; background: var(--s-card); transition: background 0.3s; }
+.site__status { position: absolute; left: 1rem; bottom: 0.8rem; margin: 0; padding: 0.3rem 0.7rem; font-size: 0.8125rem; color: var(--s-text); background: var(--s-card); border-radius: 999px; opacity: 0; transform: translateY(0.4rem); transition: opacity 0.2s, transform 0.25s var(--ease-out); }
+.site__status.is-on { opacity: 1; transform: none; }
+@keyframes site-in { from { opacity: 0; transform: translateY(0.4rem); } }
+@media (prefers-reduced-motion: reduce) { .site__page { animation: none; } }

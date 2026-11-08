@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="sub.title">Sotto-comandi — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../pc.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../pc.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="pc-stage" data-stage>
+					<div class="tk" data-task>
+						<header class="tk__bar">
+							<p class="tk__brand" data-i18n="sub.board">Attività</p>
+							<button type="button" class="pc-open" data-open aria-expanded="false"><span data-i18n="sub.openlabel">Modifica con un comando…</span> <kbd data-mod>⌘K</kbd></button>
+						</header>
+						<article class="tk__card" data-card>
+							<h2 data-i18n="sub.task">Preventivo per Rossi</h2>
+							<dl class="tk__meta">
+								<div><dt data-i18n="sub.who">Assegnata a</dt><dd data-f="who">—</dd></div>
+								<div><dt data-i18n="sub.due">Scadenza</dt><dd data-f="due">—</dd></div>
+								<div><dt data-i18n="sub.label">Etichetta</dt><dd data-f="label">—</dd></div>
+								<div><dt data-i18n="sub.state">Stato</dt><dd data-f="state">Da fare</dd></div>
+							</dl>
+						</article>
+						<ol class="tk__log" data-log aria-live="polite" aria-label="Cronologia" data-i18n-attr="aria-label=sub.log"></ol>
+					</div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="sub.name">Sotto-comandi</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="sub.lead">Un comando può aprirne un altro: «Assegna a…» mostra le persone, «Scadenza…» le date. Le briciole dicono dove sei e Backspace torna indietro.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="pc.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="pc.mouse">Mouse</dt><dd data-i18n="sub.mouse">Apri la palette, clicca «Assegna a…», poi una persona.</dd></div>
+						<div><dt data-i18n="pc.touch">Tocco</dt><dd data-i18n="sub.touch">Tocca il pulsante; la riga con la freccia apre il secondo livello, esc lo chiude.</dd></div>
+						<div><dt data-i18n="pc.kbd">Tastiera</dt><dd data-i18n="sub.kbd">Scrivi «ass», Invio, scrivi «an», Invio. Backspace a campo vuoto torna al livello sopra.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="pc.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="sub.tip">Due livelli bastano: oltre, la gente si perde. Il nome del comando che hai scelto resta nel campo come briciola, così sai sempre cosa stai completando.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>
