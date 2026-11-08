@@ -1,4 +1,4 @@
-// Motore della palette comandi (usato da entrambi i tab).
+// Motore dei comandi rapidi (palette ⌘K) (usato da entrambi i tab).
 // PaletteComandi.create({ stage, trigger, items, onRun }) costruisce la <dialog> dentro il palco e la gestisce.
 // items: [{ label, group, icon, kbd:['G','H'], seq:['g','h'], keywords, children:[…], run() }]
 // Dialog NON modale (show), ancorata al palco: così si vede aperta nella miniatura e non ruba il focus al caricamento.
@@ -53,7 +53,7 @@
 		stage.insertAdjacentHTML(
 			'beforeend',
 			`<div class="pc-scrim" aria-hidden="true"></div>
-			<dialog class="pc" aria-label="${LabI18n.t('pc.dialog', 'Palette comandi')}">
+			<dialog class="pc" aria-label="${LabI18n.t('pc.dialog', 'Comandi rapidi')}">
 				<div class="pc__top">
 					<span class="pc__crumbs"></span>
 					<input class="pc__input" type="text" role="combobox" aria-expanded="true" aria-controls="pc-l-${uid}" aria-autocomplete="list" aria-label="${LabI18n.t('pc.search', 'Cerca un comando')}" autocomplete="off" spellcheck="false" enterkeyhint="go">

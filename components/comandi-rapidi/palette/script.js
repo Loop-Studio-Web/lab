@@ -1,4 +1,4 @@
-// Tab «Palette»: i comandi sono dati; la palette li mostra, il finto sito li esegue.
+// Tab «Comandi»: i comandi sono dati; il menu li mostra, il finto sito li esegue.
 (() => {
 	const stage = document.querySelector('[data-stage]');
 	const site = stage.querySelector('[data-site]');
