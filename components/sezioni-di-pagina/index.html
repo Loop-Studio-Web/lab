@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sezioni di pagina — Loop Studio Lab</title>
+		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../_shared/suite.css" />
+		<script src="../_shared/suite.js" defer></script>
+	</head>
+	<body>
+		<h1 class="sr-only">Sezioni di pagina</h1>
+		<div data-suite>
+			<div class="suite__top">
+				<div class="suite__scroll">
+					<div class="suite__list" role="tablist" aria-label="Sezioni di pagina">
+						<button type="button" role="tab" id="t-bento" data-id="bento" data-src="../bento-spotlight/" data-title="Bento">Bento</button>
+						<button type="button" role="tab" id="t-prezzi" data-id="prezzi" data-src="../prezzi-toggle/" data-title="Prezzi">Prezzi</button>
+						<button type="button" role="tab" id="t-stepper" data-id="stepper" data-src="../stepper-timeline/" data-title="Stepper e timeline">Stepper e timeline</button>
+						<span class="suite__bar" aria-hidden="true"></span>
+					</div>
+				</div>
+			</div>
+			<div class="suite__panels"></div>
+		</div>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>
