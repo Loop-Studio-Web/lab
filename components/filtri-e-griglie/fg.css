@@ -125,6 +125,19 @@ button.fg-card__in:active { transform: scale(0.97); }
 .fg-grid--list .fg-card__img { height: 100%; aspect-ratio: auto; min-height: 4.5rem; }
 .fg-grid--list .fg-card__name { font-size: 0.9375rem; }
 
+/* Poster: foto stampate sparse, un po' storte e sovrapposte. Rotazione e scarto vengono da JS (seme fisso) nelle variabili --rot/--dx/--dy. */
+.fg-grid--poster { grid-template-columns: repeat(auto-fill, minmax(8.4rem, 1fr)); gap: 0.5rem 0; padding: 0.9rem 0.6rem 1.2rem; }
+.fg-grid--poster .fg-card { transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--rot, 0deg)); }
+.fg-grid--poster .fg-card__in { padding: 0.4rem 0.4rem 0; color: #1a1a1a; background: #f2efe8; border: 0; border-radius: 0.2rem; box-shadow: 0 0.6rem 1.3rem rgba(0, 0, 0, 0.55); }
+.fg-grid--poster .fg-card__img { aspect-ratio: 1; border-radius: 0.1rem; }
+.fg-grid--poster .fg-card__body { padding: 0.45rem 0.15rem 0.55rem; }
+.fg-grid--poster .fg-card__name { font-size: 0.8125rem; }
+.fg-grid--poster .fg-card__meta { color: #5a564e; }
+.fg-grid--poster .fg-card__price { color: #1a1a1a; }
+.fg-grid--poster .fg-card__cat, .fg-grid--poster .fg-card__date { display: none; }
+.fg-grid--poster:not(.is-moving) .fg-card { transition: transform 0.28s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .fg-grid--poster:not(.is-moving) .fg-card:hover { z-index: 2; transform: translate(var(--dx, 0), var(--dy, 0)) rotate(0deg) scale(1.1); } }
+
 /* Dettaglio: <dialog> nativo. */
 .fg-dlg { width: min(30rem, calc(100vw - 2rem)); max-height: calc(100svh - 2rem); padding: 0; color: var(--text); background: var(--surface); border: 1px solid var(--line); border-radius: 1.1rem; overflow: auto; }
 .fg-dlg::backdrop { background: rgba(0, 0, 0, 0.7); }

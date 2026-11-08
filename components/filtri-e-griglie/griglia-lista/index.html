@@ -6,7 +6,7 @@
 		<meta name="robots" content="noindex" />
 		<script src="../../_shared/i18n.js"></script>
 		<script src="../i18n.js"></script>
-		<title data-i18n="griglia-lista.title">Griglia / lista — Loop Studio Lab</title>
+		<title data-i18n="griglia-lista.title">Viste — Loop Studio Lab</title>
 		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../../_shared/base.css" />
@@ -23,6 +23,7 @@
 						<div role="group" aria-label="Vista" data-i18n-attr="aria-label=fg.view" style="display:contents">
 							<button type="button" class="fg-chip" data-view="grid" aria-pressed="true" data-i18n="fg.grid">Griglia</button>
 							<button type="button" class="fg-chip" data-view="list" aria-pressed="false" data-i18n="fg.list">Lista</button>
+							<button type="button" class="fg-chip" data-view="poster" aria-pressed="false" data-i18n="fg.poster">Poster</button>
 						</div>
 						<p class="fg__count" data-count></p>
 					</div>
@@ -31,22 +32,22 @@
 			</div>
 			<div class="demo__side">
 				<header class="demo__head">
-					<h1 data-i18n="griglia-lista.name">Griglia / lista</h1>
+					<h1 data-i18n="griglia-lista.name">Viste</h1>
 				</header>
 				<div class="fd-lead">
-					<p data-i18n="griglia-lista.lead">Lo stesso elenco in due forme. Passando dall’una all’altra, ogni scheda si trasforma da sé nella nuova posizione e misura.</p>
+					<p data-i18n="griglia-lista.lead">Lo stesso elenco in tre forme: griglia, lista e poster, con le foto sparse come stampe su un tavolo. Passando dall’una all’altra, le schede scivolano al loro posto una dopo l’altra.</p>
 				</div>
 				<section class="fd-block">
 					<h2 class="demo__label" data-i18n="fg.how">Come si usa</h2>
 					<dl class="fd-how">
-						<div><dt data-i18n="fg.mouse">Mouse</dt><dd data-i18n="griglia-lista.mouse">Clicca «Griglia» o «Lista»: le schede si spostano e si ridimensionano.</dd></div>
-						<div><dt data-i18n="fg.touch">Tocco</dt><dd data-i18n="griglia-lista.touch">Tocca i due bottoni in alto; la scelta resta finché non la cambi.</dd></div>
-						<div><dt data-i18n="fg.kbd">Tastiera</dt><dd data-i18n="griglia-lista.kbd">Tab sui due bottoni, Spazio o Invio per scegliere; il focus non si muove.</dd></div>
+						<div><dt data-i18n="fg.mouse">Mouse</dt><dd data-i18n="griglia-lista.mouse">Clicca «Griglia», «Lista» o «Poster»: le schede scivolano nella nuova disposizione. Nel poster, passa sopra una foto per raddrizzarla e portarla avanti.</dd></div>
+						<div><dt data-i18n="fg.touch">Tocco</dt><dd data-i18n="griglia-lista.touch">Tocca i tre bottoni in alto; la scelta resta finché non la cambi.</dd></div>
+						<div><dt data-i18n="fg.kbd">Tastiera</dt><dd data-i18n="griglia-lista.kbd">Tab sui tre bottoni, Spazio o Invio per scegliere; il focus non si muove.</dd></div>
 					</dl>
 				</section>
 				<section class="fd-block">
 					<h2 class="demo__label" data-i18n="fg.tip">Consiglio</h2>
-					<p class="fd-tip" data-i18n="griglia-lista.tip">La griglia è per scegliere guardando, la lista per confrontare i dati. Ricorda la scelta dell’utente. Il morph usa le View Transitions: dove non ci sono, il cambio è immediato.</p>
+					<p class="fd-tip" data-i18n="griglia-lista.tip">La griglia è per scegliere guardando, la lista per confrontare i dati, il poster per sfogliare e lasciarsi sorprendere. Ricorda la scelta dell’utente. Lo spostamento usa solo transform e opacity, quindi funziona in tutti i browser.</p>
 				</section>
 			</div>
 		</main>
