@@ -19,8 +19,8 @@
 
 	const items = [
 		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.home', 'Vai alla Home'), kbd: ['G', 'H'], seq: ['g', 'h'], keywords: 'home inizio casa', run: go('home') },
-		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.serv', 'Vai ai Servizi'), kbd: ['G', 'S'], seq: ['g', 's'], keywords: 'servizi offerta', run: go('servizi') },
-		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.prog', 'Vai ai Progetti'), kbd: ['G', 'P'], seq: ['g', 'p'], keywords: 'progetti lavori portfolio', run: go('progetti') },
+		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.serv', 'Vai ai Servizi'), kbd: ['G', 'S'], seq: ['g', 's'], keywords: 'servizi offerta viaggi', run: go('servizi') },
+		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.prog', 'Vai alle Partenze'), kbd: ['G', 'P'], seq: ['g', 'p'], keywords: 'partenze viaggi mete date', run: go('progetti') },
 		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.cont', 'Vai ai Contatti'), kbd: ['G', 'C'], seq: ['g', 'c'], keywords: 'contatti scrivici', run: go('contatti') },
 		{ group: G.actions, icon: 'mail', label: LabI18n.t('palette.c.mail', 'Copia l’indirizzo email'), keywords: 'copia email scrivi' },
 		{ group: G.actions, icon: 'download', label: LabI18n.t('palette.c.price', 'Scarica il listino'), keywords: 'listino prezzi pdf download' },

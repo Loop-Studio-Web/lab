@@ -9,7 +9,9 @@
 .site__page p, .site__page li { color: var(--s-muted); font-size: 0.9375rem; }
 .site__page ul { margin: 0.6rem 0 0; padding-left: 1.1rem; }
 .site__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 1rem; }
-.site__cards i { height: 4.5rem; border-radius: 0.6rem; background: var(--s-card); transition: background 0.3s; }
+.site__cards figure { position: relative; margin: 0; height: 5.5rem; overflow: hidden; border-radius: 0.6rem; background: var(--s-card); }
+.site__cards img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.site__cards figcaption { position: absolute; inset: auto 0 0; padding: 1rem 0.5rem 0.3rem; font-size: 0.75rem; font-weight: 600; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,0.65)); }
 .site__status { position: absolute; left: 1rem; bottom: 0.8rem; margin: 0; padding: 0.3rem 0.7rem; font-size: 0.8125rem; color: var(--s-text); background: var(--s-card); border-radius: 999px; opacity: 0; transform: translateY(0.4rem); transition: opacity 0.2s, transform 0.25s var(--ease-out); }
 .site__status.is-on { opacity: 1; transform: none; }
 @keyframes site-in { from { opacity: 0; transform: translateY(0.4rem); } }
