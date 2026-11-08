@@ -6,6 +6,14 @@
 	const set = (v) => ba.style.setProperty('--pos', `${v}%`);
 	range.addEventListener('input', () => set(range.value));
 	set(range.value);
+	// Frecce: il passo del campo è 0,1 (trascinamento fluido), troppo piccolo per la tastiera: 2%, con Maiusc 10%.
+	range.addEventListener('keydown', (e) => {
+		const d = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1 }[e.key];
+		if (!d) return;
+		e.preventDefault();
+		range.value = Math.min(100, Math.max(0, +range.value + d * (e.shiftKey ? 10 : 2)));
+		set(range.value);
+	});
 
 	if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 	let touched = false;
