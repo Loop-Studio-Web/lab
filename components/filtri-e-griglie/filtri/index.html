@@ -20,6 +20,7 @@
 			<div class="demo__stage">
 				<div class="fg" data-fg>
 					<div class="fg__bar">
+						<input class="fg-search" type="search" data-q autocomplete="off" spellcheck="false" placeholder="Cerca: lago, mare, tramonto…" aria-label="Cerca nelle proposte" data-i18n-attr="placeholder=fg.search.ph,aria-label=fg.search.label" />
 						<div role="group" aria-label="Categorie" data-i18n-attr="aria-label=fg.cats" data-chips style="display:contents"></div>
 						<select class="fg-select" data-sort aria-label="Ordina per" data-i18n-attr="aria-label=fg.sort.label">
 							<option value="rec" data-i18n="fg.sort.rec">Consigliati</option><option value="asc" data-i18n="fg.sort.asc">Prezzo crescente</option><option value="desc" data-i18n="fg.sort.desc">Prezzo decrescente</option><option value="new" data-i18n="fg.sort.new">Più recenti</option><option value="az" data-i18n="fg.sort.az">Nome A–Z</option>
@@ -27,7 +28,10 @@
 						<button type="button" class="fg-chip" data-reset hidden data-i18n="fg.reset">Azzera</button>
 						<p class="fg__count" data-count aria-live="polite"></p>
 					</div>
-					<div class="fg__scroll"><ul class="fg-grid" data-grid></ul></div>
+					<div class="fg__scroll">
+						<ul class="fg-grid" data-grid></ul>
+						<div class="fg-empty" data-empty hidden><p data-i18n="fg.empty">Nessun risultato. Prova con:</p><p style="display:flex;gap:.5rem;justify-content:center;margin-top:.7rem" data-sugg lang="it"></p></div>
+					</div>
 				</div>
 			</div>
 			<div class="demo__side">
@@ -35,19 +39,19 @@
 					<h1 data-i18n="filtri.name">Filtri</h1>
 				</header>
 				<div class="fd-lead">
-					<p data-i18n="filtri.lead">Si scelgono una o più categorie e un ordine: le schede si riordinano scivolando al posto nuovo, senza ricaricare niente.</p>
+					<p data-i18n="filtri.lead">Categorie, ordine e ricerca lavorano insieme: a ogni scelta le schede si riordinano scivolando al posto nuovo e ciò che è stato trovato si evidenzia.</p>
 				</div>
 				<section class="fd-block">
 					<h2 class="demo__label" data-i18n="fg.how">Come si usa</h2>
 					<dl class="fd-how">
-						<div><dt data-i18n="fg.mouse">Mouse</dt><dd data-i18n="filtri.mouse">Clicca le categorie per accenderle o spegnerle; scegli l’ordine dal menu; «Azzera» toglie tutto.</dd></div>
+						<div><dt data-i18n="fg.mouse">Mouse</dt><dd data-i18n="filtri.mouse">Clicca le categorie per accenderle o spegnerle; scegli l’ordine dal menu; scrivi nel campo (prova «lago»); «Azzera» toglie tutto.</dd></div>
 						<div><dt data-i18n="fg.touch">Tocco</dt><dd data-i18n="filtri.touch">Tocca le categorie: sono bottoni di almeno 36 px. Il menu dell’ordine è quello del telefono.</dd></div>
-						<div><dt data-i18n="fg.kbd">Tastiera</dt><dd data-i18n="filtri.kbd">Tab tra le categorie, Spazio per accendere; il conteggio si aggiorna e viene letto dallo screen reader.</dd></div>
+						<div><dt data-i18n="fg.kbd">Tastiera</dt><dd data-i18n="filtri.kbd">Tab tra campo, categorie e menu, Spazio per accendere, Esc svuota il campo; il conteggio si aggiorna e viene letto dallo screen reader.</dd></div>
 					</dl>
 				</section>
 				<section class="fd-block">
 					<h2 class="demo__label" data-i18n="fg.tip">Consiglio</h2>
-					<p class="fd-tip" data-i18n="filtri.tip">Mostra sempre quanti risultati restano e un modo per azzerare. Il riordino animato aiuta a capire cosa è cambiato; tienilo sotto mezzo secondo. Voci e prezzi sono di fantasia.</p>
+					<p class="fd-tip" data-i18n="filtri.tip">Mostra sempre quanti risultati restano e un modo per azzerare; la ricerca ignora accenti e maiuscole e, se non trova nulla, propone una ricerca che funziona. Il riordino animato aiuta a capire cosa è cambiato; tienilo sotto mezzo secondo. Voci e prezzi sono di fantasia.</p>
 				</section>
 			</div>
 		</main>
