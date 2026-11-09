@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="vo.title">Volo — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../mh.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="mh">
+					<div class="mh-box">
+						<div class="mh-bar">
+							<h2 lang="it">Giornata in volo</h2>
+							<span data-count role="status"></span>
+						</div>
+						<div class="vo-photo" data-photo role="group" aria-label="Il cielo all’alba: ogni pallone è un volo" data-i18n-attr="aria-label=vo.sky">
+							<img src="img/mongolfiere.webp" width="1600" height="1067" alt="Quindici mongolfiere nel cielo all’alba sopra le rocce della Cappadocia" data-i18n-attr="alt=vo.alt" decoding="async" draggable="false" />
+							<div class="vo-card" data-card hidden role="group" aria-live="polite"></div>
+						</div>
+						<div class="vo-foot">
+							<button type="button" class="vo-step" data-step="-1" aria-label="Volo precedente" data-i18n-attr="aria-label=vo.prev"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+							<output data-pos class="vo-pos" data-i18n="vo.pick">Scegli un pallone</output>
+							<button type="button" class="vo-step" data-step="1" aria-label="Volo successivo" data-i18n-attr="aria-label=vo.next"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="vo.name">Volo</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="vo.lead">Punti cliccabili sopra una foto: ogni pallone è un volo, con il suo fumetto che resta dentro la foto, anche ai bordi.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="mh.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="mh.mouse">Mouse</dt><dd data-i18n="vo.mouse">Clicca un pallone: il fumetto dice nome, decollo e posti liberi. Un altro clic o Esc lo chiude.</dd></div>
+						<div><dt data-i18n="mh.touch">Tocco</dt><dd data-i18n="vo.touch">Tocca un pallone, oppure scorri i voli con le frecce sotto la foto (i palloni vicini sono piccoli).</dd></div>
+						<div><dt data-i18n="mh.kbd">Tastiera</dt><dd data-i18n="vo.kbd">Tab passa i voli in ordine di decollo; le frecce saltano al pallone più vicino in quella direzione.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="mh.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="vo.tip">I punti sono in percentuale sulla foto: restano sul pallone a qualunque larghezza. Anello tratteggiato = volo al completo.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

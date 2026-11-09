@@ -1,6 +1,6 @@
 # Scheda «mappe-e-hotspot» (Lotto 2, categoria Navigazione)
 
-Stato 9/11: fasi 1-3 chiuse; **tab 1 «Quartiere» approvato dall'autore**. Prossimo: tab 2 «Volo», poi 3 «Giro» (il guscio `index.html` ha per ora solo il tab Quartiere: aggiungere i bottoni con i nuovi tab).
+Stato 9/11: fasi 1-3 chiuse; **tab 1 «Quartiere» approvato**; **tab 2 «Volo» in bozza (9/11 sera), da mostrare all'autore**. Prossimo: correzioni su Volo, poi tab 3 «Giro» (aggiungere il bottone al guscio `index.html`).
 
 ## Concept (3 tab, tre mondi diversi, prefisso `mh`)
 1. **Quartiere** · «Borgo Lanterna» (inventato): mappa SVG inline, ~20 luoghi in 5 categorie, elenco filtrabile + «aperto ora» (con cursore «Simula ora»), pan/zoom con tastiera e +/−, elenco↔mappa sincronizzati; a telefono l'elenco è un foglio sotto la mappa.
@@ -27,3 +27,10 @@ Budget peso HTML+CSS+JS ≲ 60 KB gzip, immagini ≲ 300 KB. Controlli: `viewpor
 - Elenco `contain: size` (non allunga il riquadro); sotto 36rem di contenitore va sotto la mappa (max 13rem).
 - Controllato con `viewports.mjs core` (nessun overflow; sotto 768 la pagina scorre, voluto) e un giro con `drive.mjs` (selezione, zoom, «aperto ora», simula ora).
 - **Non fatto/da decidere:** zoom con i bottoni centrato sul punto scelto; il guscio con un solo tab mostra «1 elementi in questa scheda» (si sistema con i 3 tab); non aggiunta ancora nel sito madre (si fa con la scheda completa); nessuna prova su telefono vero, Firefox/Safari, lettore di schermo; pinch su touch non gestito.
+
+## Tab 2 «Volo»: com'è fatto (bozza 9/11)
+- File: `volo/{index.html,style.css,script.js}`, chiavi `vo.*` in `i18n.js` (EN/ES, `i18n-check` ok), bottone nel guscio. Nel `script.js` si usa `LabI18n.t(...)` scritto per esteso (il controllo non vede alias come `T`).
+- 15 `<button>` in % sulla foto (centri dei palloni stimati a occhio sui 1600×1067: se un punto non sta sul pallone, correggere la tabella `FLIGHTS`). Tab = ordine di decollo; frecce = pallone più vicino nella direzione (cono ±60°); frecce ‹ › sotto la foto per il tocco (a 360 i palloni vicini sono piccoli).
+- Fumetto in px, riposizionato dentro la foto (sopra o sotto, freccina che segue il punto); Esc/clic sul cielo lo chiude; anelli che pulsano solo con la foto visibile (`.is-live`); anello tratteggiato = volo al completo.
+- Largo e basso: la foto si restringe con `100svh` per stare senza scroll nel guscio (1366×600 ok).
+- Non fatto: telefono vero, Firefox/Safari, lettore di schermo; scheda non ancora nel sito madre (si fa con la scheda completa).
