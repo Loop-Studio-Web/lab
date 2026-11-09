@@ -9,11 +9,14 @@ Stato: online = `origin/main` (verificare con `git fetch`). Server di prova: `ht
 
 ## In corso / prossimi (in ordine)
 
-1. **`mappe-e-hotspot`** (Lotto 2, categoria Navigazione): tab 1 e 2 approvati (il 2 è commit locale 397c47d, da verificare se pushato). Ora tab 3 «Giro» (mappa antica, tracciato che si disegna, marcatore ∞); aggiungere il bottone al guscio `index.html` (ora ha 2 tab) e la scheda nel sito madre. Dettagli, dubbi aperti e trappole in `docs/mappe-e-hotspot.md`. Poi i Lotti 3-4 (`docs/nuove-schede.md`): una scheda alla volta, bozza → correzioni.
-2. **Controllo responsive, voci ancora aperte** (con il via dell'autore): (a) `vh` residui (`85vh` in `ComponentPreviewModal` e `ProjectCard` nel sito madre; molti nelle vetrine); (b) media query in `px` nelle vetrine, da convertire in `rem` quando si tocca il concept; (c) 24 `@media (hover: hover)` senza `pointer: fine` nelle vetrine (2 nel sito madre); (d) non controllati: bersagli di tocco < 24 px, 320 px, telefono/tablet orizzontale, `/portfolio/foto-video/*`, `/pacchetti/social`, `/foto-video`; (e) guardare a occhio 360 e 1366×600 delle pagine chiave.
-3. **Layout a due colonne** per le suite con scroll o vuoto laterale: valutare caso per caso (`prima-dopo/ba.css`, `blocchi-di-fiducia/fd.css`).
-4. **Migrare le schede approvate a `_shared/scheda.css`** (l'impalcatura è copiata identica in `pc.css`, `fd.css`…; per ora la usa solo `form-a-passi`). Una scheda alla volta, screenshot prima/dopo a 1536×695, 1440×900 e 390; solo dopo il via.
-5. **Non provati sulle schede 4-6 recenti** (`comandi-rapidi`, `form-a-passi`, `tabelle-e-confronti`): telefono vero, Firefox/Safari, lettore di schermo, 1366×600/1920×950 dove non indicato. Dubbi: palette di `comandi-rapidi` copre quasi tutto il palco, keywords solo in italiano; `form-a-passi` «Su misura» scorre al suo interno.
+Ordine concordato con l'autore (9/11): schede e layout prima, poi migrazione, prove, responsive trasversale, nuove schede sull'impalcatura stabile.
+
+1. **`mappe-e-hotspot` nel sito madre** (3 tab approvati, commit 238262e, 9/11): aggiungere la scheda in `Loop-Studio/src/data/lab-components.ts` (Navigazione) + `src/i18n/lab.ts` (IT/EN/ES), miniatura e controllo della modale. Il guscio ora ha 3 tab (verificare che il conteggio «N elementi» sia giusto). Dettagli e trappole in `docs/mappe-e-hotspot.md`. Non provato: telefono vero, Firefox/Safari, lettore di schermo.
+2. **Layout a due colonne** per le suite con scroll o vuoto laterale: valutare caso per caso (`prima-dopo/ba.css`, `blocchi-di-fiducia/fd.css`).
+3. **Migrare le schede approvate a `_shared/scheda.css`** (l'impalcatura è copiata identica in `pc.css`, `fd.css`…; per ora la usano `form-a-passi` e `mappe-e-hotspot`). Una scheda alla volta, screenshot prima/dopo a 1536×695, 1366×600 e 390; solo dopo il via.
+4. **Non provati sulle schede 4-6 recenti** (`comandi-rapidi`, `form-a-passi`, `tabelle-e-confronti`): telefono vero, Firefox/Safari, lettore di schermo, 1366×600/1920×950 dove non indicato. Dubbi: palette di `comandi-rapidi` copre quasi tutto il palco, keywords solo in italiano; `form-a-passi` «Su misura» scorre al suo interno.
+5. **Controllo responsive, voci ancora aperte** (con il via dell'autore): (a) `vh` residui (`85vh` in `ComponentPreviewModal` e `ProjectCard` nel sito madre; molti nelle vetrine); (b) media query in `px` nelle vetrine, da convertire in `rem` quando si tocca il concept; (c) 24 `@media (hover: hover)` senza `pointer: fine` nelle vetrine (2 nel sito madre); (d) non controllati: bersagli di tocco < 24 px, 320 px, telefono/tablet orizzontale, `/portfolio/foto-video/*`, `/pacchetti/social`, `/foto-video`; (e) guardare a occhio 360 e 1366×600 delle pagine chiave.
+6. **Lotti 3-4 di nuove schede** (`docs/nuove-schede.md`): una scheda alla volta, bozza → correzioni; regole fisse qui sotto. Poi axe + PSI sulle pagine online.
 
 ## Regole fisse per le schede nuove
 - **Le schede devono differire tra loro** (regola dell'autore, 9/11): ogni scheda nuova ha un impianto, un layout e un gesto propri; niente «finto sito + card centrata + 3 tab» ripetuto. Prima del concept guardare le schede esistenti e dire in cosa la nuova è diversa.
@@ -28,3 +31,4 @@ Stato: online = `origin/main` (verificare con `git fetch`). Server di prova: `ht
 - **pagine-404:** frasi JA/KO/PT scritte da Claude, da far controllare a un madrelingua (FR chiuso, attesa PT); il tocco del Pendolo su telefono vero non è provato.
 - `bordi-animati` mobile ~72 (TBT; rimedio = cambiare tecnica, decisione dell'autore); SkyTracker icone 64 px mostrate a 90; `menu-su-misura` CLS 0,05.
 - Worker `lab-cambio-worker`: cancellare dalla Dashboard Cloudflare.
+- GitHub: avviso «Needs reverification» su `theloopstudio.org` (org Loop-Studio-Web → Settings → Pages → Verified domains, scade ~16/11). Nessun repo usa quel dominio con Pages (sito madre su Cloudflare): l'autore lo elimina dall'elenco con `···` → Delete. Poi cancellare questa riga.
