@@ -28,6 +28,13 @@ Budget peso HTML+CSS+JS ≲ 60 KB gzip, immagini ≲ 300 KB. Controlli: `viewpor
 - Controllato con `viewports.mjs core` (nessun overflow; sotto 768 la pagina scorre, voluto) e un giro con `drive.mjs` (selezione, zoom, «aperto ora», simula ora).
 - **Non fatto/da decidere:** zoom con i bottoni centrato sul punto scelto; il guscio con un solo tab mostra «1 elementi in questa scheda» (si sistema con i 3 tab); non aggiunta ancora nel sito madre (si fa con la scheda completa); nessuna prova su telefono vero, Firefox/Safari, lettore di schermo; pinch su touch non gestito.
 
+## Tab 3 «Giro»: com'è fatto (bozza 9/11 sera, da approvare)
+- File: `giro/{index.html,style.css,script.js}`, chiavi `gi.*` in `i18n.js` (EN/ES, `i18n-check` ok), bottone nel guscio. Il `<symbol id="i-infinity">` è copiato nella pagina (nero sul chiaro via `--ink`).
+- Viaggio di Magellano/Elcano 1519-1522, 9 tappe. Percorso in 3 tratti (`RUNS` in pixel 1400×728) perché la mappa è a due emisferi: esce da un bordo e rientra dall'altro. Ogni tratto è un `<path>` a sé (il dash riparte a ogni sottopercorso); lunghezze con `getTotalLength`, marcatore con `getPointAtLength`. Tratto e marcatore in unità utente scalate con `--k` (restano leggibili a telefono).
+- Controlli: `<input type=range>` con tacche alle tappe, prev/next, «Riproduci» (20 s; con reduced-motion una tappa ogni 2 s), porti = `<button>` in %. Si apre alla tappa 4 (la miniatura mostra già il rosso).
+- Coordinate dei porti stimate a occhio: da verificare sulla mappa (Cebu/Tidore vicine, Sanlúcar sulla costa). Ultima tappa = prima (nessun bottone sulla mappa, si raggiunge col passo avanti).
+- Controllato con `viewports.mjs core` (nessun overflow; 1366×600 con la mappa ristretta da `100svh - 16rem`). Non fatto: telefono vero, Firefox/Safari, lettore di schermo; scheda non ancora nel sito madre.
+
 ## Tab 2 «Volo»: com'è fatto (bozza 9/11)
 - File: `volo/{index.html,style.css,script.js}`, chiavi `vo.*` in `i18n.js` (EN/ES, `i18n-check` ok), bottone nel guscio. Nel `script.js` si usa `LabI18n.t(...)` scritto per esteso (il controllo non vede alias come `T`).
 - Punti = **piccolo punto luce** (0,5 rem) al centro del pallone, con alone che respira piano (3,8 s, sfalsato, solo con la foto in vista); niente anelli (rovinavano la foto: scelta dell'autore 9/11). Ingresso a cascata lenta una volta sola; hover/focus = punto più grande + nome; selezionato = punto rosso con bordo bianco; al completo = punto vuoto senza luce. Invito «tocca un pallone» nella barra. Se la foto cambia (palloni più grandi) i raggi `r` in `FLIGHTS` non servono più.
