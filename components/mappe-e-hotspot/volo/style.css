@@ -4,15 +4,9 @@
 .vo-photo.has-sel > img { filter: brightness(0.78); }
 
 .vo-pin { position: absolute; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; margin: -1.375rem 0 0 -1.375rem; padding: 0; background: none; border: 0; border-radius: 50%; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.vo-pin i { position: relative; display: block; width: 1.35rem; height: 1.35rem; border-radius: 50%; border: 2px solid #fff; background: rgba(0, 0, 0, 0.18); box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.55); transition: transform 0.2s var(--ease-out), background-color 0.2s; }
-.vo-pin i::after { content: ''; position: absolute; inset: 0.28rem; border-radius: 50%; background: #fff; }
-@container (max-width: 30rem) {
-	.vo-pin { width: 1.75rem; height: 1.75rem; margin: -0.875rem 0 0 -0.875rem; }
-	.vo-pin i { width: 0.95rem; height: 0.95rem; }
-	.vo-pin i::after { inset: 0.2rem; }
-}
+.vo-pin i { position: absolute; left: 50%; top: 50%; translate: -50% -50%; display: block; width: max(1.1rem, var(--s, 2rem)); height: max(1.1rem, var(--s, 2rem)); border-radius: 50%; border: 2px solid #fff; background: transparent; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(0, 0, 0, 0.25); transition: transform 0.2s var(--ease-out), background-color 0.2s, border-color 0.2s; }
+/* anello vuoto: il pallone resta visibile; tratteggiato = volo al completo */
 .vo-pin.is-full i { border-style: dashed; }
-.vo-pin.is-full i::after { background: transparent; }
 /* anello che pulsa: solo con la sezione visibile (.is-live) */
 .vo-pin i::before { content: ''; position: absolute; inset: -2px; border-radius: 50%; border: 2px solid #fff; opacity: 0; animation: vo-ping 2.6s var(--ease-out) infinite; animation-play-state: paused; animation-delay: var(--d, 0s); }
 .is-live .vo-pin i::before { animation-play-state: running; }
@@ -20,10 +14,10 @@
 @keyframes vo-ping { 0% { opacity: 0.8; transform: scale(1); } 70%, 100% { opacity: 0; transform: scale(2.1); } }
 .vo-pin:active i { transform: scale(0.92); }
 .vo-pin.is-sel { z-index: 3; }
-.vo-pin.is-sel i { transform: scale(1.25); background: var(--accent); }
+.vo-pin.is-sel i { transform: scale(1.12); border-color: var(--accent); border-width: 3px; background: rgba(255, 59, 48, 0.16); }
 .vo-photo :focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .vo-pin:focus-visible { outline-offset: 0; }
-@media (hover: hover) and (pointer: fine) { .vo-pin:hover i { transform: scale(1.2); } }
+@media (hover: hover) and (pointer: fine) { .vo-pin:hover i { transform: scale(1.12); } }
 
 .vo-card { position: absolute; z-index: 4; width: 12.5rem; max-width: calc(100% - 1rem); padding: 0.7rem 0.8rem 0.75rem; font-size: 0.8125rem; line-height: 1.35; color: var(--text); background: rgba(20, 20, 20, 0.94); border: 1px solid var(--line); border-radius: 0.75rem; box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); opacity: 1; translate: 0 0; transition: opacity 0.2s, translate 0.25s var(--ease-out); }
 @starting-style { .vo-card { opacity: 0; translate: 0 0.4rem; } }
