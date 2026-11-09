@@ -40,15 +40,15 @@
 		b.style.left = (f.x / PW) * 100 + '%';
 		b.style.top = (f.y / PH) * 100 + '%';
 		b.style.setProperty('--s', ((f.r * 2 + 18) / 16).toFixed(2) + 'cqw'); // anello più largo del pallone: non lo copre
-		b.style.setProperty('--d', ((f.i * 0.37) % 2.6).toFixed(2) + 's');
+		b.style.setProperty('--d', (f.i * 0.07).toFixed(2) + 's');
 		b.setAttribute('aria-expanded', 'false');
 		b.setAttribute('aria-label', `${f.n}, ${LabI18n.t('vo.at', 'decollo {t}').replace('{t}', f.t)}, ${seatsText(f)}`);
-		b.innerHTML = '<i aria-hidden="true"></i>';
+		b.innerHTML = `<i aria-hidden="true" data-name="${f.n}"></i>`;
 		b.addEventListener('click', () => (sel === f.i ? close() : open(f.i)));
 		photo.insertBefore(b, card);
 		return b;
 	});
-	count.textContent = LabI18n.t('vo.count', '{n} voli').replace('{n}', FLIGHTS.length);
+	count.textContent = LabI18n.t('vo.count', '{n} voli').replace('{n}', FLIGHTS.length) + ' · ' + LabI18n.t('vo.hint', 'tocca un pallone');
 
 	function place() {
 		if (sel < 0) return;
@@ -137,6 +137,6 @@
 	});
 	new ResizeObserver(place).observe(photo);
 
-	// anelli che pulsano solo con la foto visibile
-	new IntersectionObserver(([en]) => photo.parentElement.classList.toggle('is-live', en.isIntersecting), { threshold: 0.2 }).observe(photo);
+	// gli anelli entrano a cascata una volta sola, quando la foto è in vista
+	new IntersectionObserver((es, ob) => { if (es[0].isIntersecting) { photo.classList.add('is-in'); ob.disconnect(); } }, { threshold: 0.25 }).observe(photo);
 })();
