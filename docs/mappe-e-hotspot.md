@@ -1,6 +1,6 @@
 # Scheda «mappe-e-hotspot» (Lotto 2, categoria Navigazione)
 
-Stato 9/11: fasi 1-3 chiuse; **tab 1 «Quartiere» approvato**; **tab 2 «Volo» in bozza (9/11 sera), da mostrare all'autore**. Prossimo: correzioni su Volo, poi tab 3 «Giro» (aggiungere il bottone al guscio `index.html`).
+Stato 9/11: fasi 1-3 chiuse; **tab 1 «Quartiere» approvato**; **tab 2 «Volo» approvato (9/11 sera)**. Prossimo: tab 3 «Giro» (aggiungere il bottone al guscio `index.html`).
 
 ## Concept (3 tab, tre mondi diversi, prefisso `mh`)
 1. **Quartiere** · «Borgo Lanterna» (inventato): mappa SVG inline, ~20 luoghi in 5 categorie, elenco filtrabile + «aperto ora» (con cursore «Simula ora»), pan/zoom con tastiera e +/−, elenco↔mappa sincronizzati; a telefono l'elenco è un foglio sotto la mappa.
