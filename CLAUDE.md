@@ -8,7 +8,7 @@ Regole generali, due PC, org GitHub, commit/push: nel CLAUDE.md di `Loop-Studio`
 Spiegare cosa si fa e perché (l'autore è alle prime armi con Astro), critiche oneste.
 
 **A inizio sessione leggere `docs/TODO.md`** (unico punto di ripartenza: stato, prossimi passi in ordine). A ogni step chiuso
-aggiornarlo, committare, dire «/clear» e dare il testo «leggi docs/TODO.md, riparti dalla prima voce». Lo stato dei lavori non
+aggiornarlo, committare, dire «/clear» e dare il testo «leggi docs/TODO.md, riparti dalla prima voce». **Una voce finita o non più utile si ELIMINA subito dal TODO (niente spunte, niente sezioni «chiusi»): ogni riga letta costa token** (regola dell'autore, 2026-11-09). Lo stato dei lavori non
 si scrive in memoria né qui: sta nel TODO. I progetti si gestiscono con la chat di Code aperta in questa cartella; le piccole
 modifiche si possono fare anche da fuori.
 

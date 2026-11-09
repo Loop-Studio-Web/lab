@@ -1,13 +1,15 @@
 # TODO Lab — da leggere a inizio sessione (unico punto di ripartenza)
 
+**Regola (2026-11-09): una voce finita o non più utile si ELIMINA subito, non si spunta e non si sposta in «chiusi».**
+Qui solo ciò che resta da fare: ogni riga letta costa token. La storia sta in git.
 Una riga per voce: cosa · dove sta il dettaglio · prossimo passo. A ogni step chiuso: aggiornare qui, committare, dire «/clear»
 e riprendere con «leggi docs/TODO.md, riparti dalla prima voce». Cronache lunghe NON qui: restano in `docs/`. Le cose del sito madre stanno nel suo TODO (`Loop-Studio/docs/TODO.md`).
 
-Stato al 2026-11-09 sera: online = `origin/main` dopo il push del 9/11 sera (Lab e Loop-Studio, con il via dell'autore). Schede approvate: 15 della suite + `comandi-rapidi`, `form-a-passi`, `tabelle-e-confronti`; 15 Demo + pagine-404. Server di prova: `http://localhost:8765/components/<id>/` (sempre l'URL a cartella, mai `index.html`; tab via `#id`). Ogni scheda nuova va aggiunta subito anche nel sito madre (`src/data/lab-components.ts` + `src/i18n/lab.ts`, IT/EN/ES). **Axe + PSI solo a Lab concluso, dopo il deploy.**
+Stato: online = `origin/main` (verificare con `git fetch`). Server di prova: `http://localhost:8765/components/<id>/` (sempre l'URL a cartella, mai `index.html`; tab via `#id`). Ogni scheda nuova va aggiunta subito anche nel sito madre (`src/data/lab-components.ts` + `src/i18n/lab.ts`, IT/EN/ES). **Axe + PSI solo a Lab concluso, dopo il deploy.**
 
 ## In corso / prossimi (in ordine)
 
-1. **`mappe-e-hotspot`** (Lotto 2, categoria Navigazione): **tab 1 «Quartiere» APPROVATO 9/11** (pushato); **tab 2 «Volo» APPROVATO 9/11** (punti luce, commit locale 397c47d, non pushato). Ora tab 3 «Giro» (mappa antica, tracciato che si disegna, marcatore ∞); aggiungere il bottone al guscio `index.html` (ora ha 2 tab) e la scheda nel sito madre. Dettagli, dubbi aperti e trappole in `docs/mappe-e-hotspot.md`. Poi i Lotti 3-4 (`docs/nuove-schede.md`): una scheda alla volta, bozza → correzioni.
+1. **`mappe-e-hotspot`** (Lotto 2, categoria Navigazione): tab 1 e 2 approvati (il 2 è commit locale 397c47d, da verificare se pushato). Ora tab 3 «Giro» (mappa antica, tracciato che si disegna, marcatore ∞); aggiungere il bottone al guscio `index.html` (ora ha 2 tab) e la scheda nel sito madre. Dettagli, dubbi aperti e trappole in `docs/mappe-e-hotspot.md`. Poi i Lotti 3-4 (`docs/nuove-schede.md`): una scheda alla volta, bozza → correzioni.
 2. **Controllo responsive, voci ancora aperte** (con il via dell'autore): (a) `vh` residui (`85vh` in `ComponentPreviewModal` e `ProjectCard` nel sito madre; molti nelle vetrine); (b) media query in `px` nelle vetrine, da convertire in `rem` quando si tocca il concept; (c) 24 `@media (hover: hover)` senza `pointer: fine` nelle vetrine (2 nel sito madre); (d) non controllati: bersagli di tocco < 24 px, 320 px, telefono/tablet orizzontale, `/portfolio/foto-video/*`, `/pacchetti/social`, `/foto-video`; (e) guardare a occhio 360 e 1366×600 delle pagine chiave.
 3. **Layout a due colonne** per le suite con scroll o vuoto laterale: valutare caso per caso (`prima-dopo/ba.css`, `blocchi-di-fiducia/fd.css`).
 4. **Migrare le schede approvate a `_shared/scheda.css`** (l'impalcatura è copiata identica in `pc.css`, `fd.css`…; per ora la usa solo `form-a-passi`). Una scheda alla volta, screenshot prima/dopo a 1536×695, 1440×900 e 390; solo dopo il via.
