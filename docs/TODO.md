@@ -11,12 +11,11 @@ Stato: online = `origin/main` (verificare con `git fetch`). Server di prova: `ht
 
 Ordine concordato con l'autore (9/11): schede e layout prima, poi migrazione, prove, responsive trasversale, nuove schede sull'impalcatura stabile.
 
-1. **Layout a due colonne** per le suite con scroll o vuoto laterale: valutare caso per caso (`prima-dopo/ba.css`, `blocchi-di-fiducia/fd.css`).
-2. **Migrare le schede approvate a `_shared/scheda.css`** (l'impalcatura è copiata identica in `pc.css`, `fd.css`…; per ora la usano `form-a-passi` e `mappe-e-hotspot`). Una scheda alla volta, screenshot prima/dopo a 1536×695, 1366×600 e 390; solo dopo il via.
-3. **Non provati sulle schede recenti** (`comandi-rapidi`, `form-a-passi`, `tabelle-e-confronti`, `mappe-e-hotspot`): telefono vero, Firefox/Safari, lettore di schermo, 1366×600/1920×950 dove non indicato. Dubbi: palette di `comandi-rapidi` copre quasi tutto il palco, keywords solo in italiano; `form-a-passi` «Su misura» scorre al suo interno.
-4. **Controllo responsive, voci ancora aperte** (con il via dell'autore): (a) `vh` residui (`85vh` in `ComponentPreviewModal` e `ProjectCard` nel sito madre; molti nelle vetrine); (b) media query in `px` nelle vetrine, da convertire in `rem` quando si tocca il concept; (c) 24 `@media (hover: hover)` senza `pointer: fine` nelle vetrine (2 nel sito madre); (d) non controllati: bersagli di tocco < 24 px, 320 px, telefono/tablet orizzontale, `/portfolio/foto-video/*`, `/pacchetti/social`, `/foto-video`; (e) guardare a occhio 360 e 1366×600 delle pagine chiave.
-5. **Lotti 3-4 di nuove schede** (`docs/nuove-schede.md`): una scheda alla volta, bozza → correzioni; regole fisse qui sotto. Poi axe + PSI sulle pagine online.
-6. **Ricordare all'autore di ricontrollare a occhio, online, tutte le schede a Lab concluso** (10/11): online possono comparire errori che in locale no. Caso già visto: `menu-su-misura` ha le card «Da mangiare» in colonna stretta e la nota a lato. Prima di axe + PSI.
+1. **Migrare le schede approvate a `_shared/scheda.css`** (l'impalcatura è copiata identica in `pc.css`, `fd.css`…; per ora la usano `form-a-passi` e `mappe-e-hotspot`). Una scheda alla volta, screenshot prima/dopo a 1536×695, 1366×600 e 390; solo dopo il via.
+2. **Non provati sulle schede recenti** (`comandi-rapidi`, `form-a-passi`, `tabelle-e-confronti`, `mappe-e-hotspot`): telefono vero, Firefox/Safari, lettore di schermo, 1366×600/1920×950 dove non indicato. Dubbi: palette di `comandi-rapidi` copre quasi tutto il palco, keywords solo in italiano; `form-a-passi` «Su misura» scorre al suo interno.
+3. **Controllo responsive, voci ancora aperte** (con il via dell'autore): (a) `vh` residui (`85vh` in `ComponentPreviewModal` e `ProjectCard` nel sito madre; molti nelle vetrine); (b) media query in `px` nelle vetrine, da convertire in `rem` quando si tocca il concept; (c) 24 `@media (hover: hover)` senza `pointer: fine` nelle vetrine (2 nel sito madre); (d) non controllati: bersagli di tocco < 24 px, 320 px, telefono/tablet orizzontale, `/portfolio/foto-video/*`, `/pacchetti/social`, `/foto-video`; (e) guardare a occhio 360 e 1366×600 delle pagine chiave.
+4. **Lotti 3-4 di nuove schede** (`docs/nuove-schede.md`): una scheda alla volta, bozza → correzioni; regole fisse qui sotto. Poi axe + PSI sulle pagine online.
+5. **Ricordare all'autore di ricontrollare a occhio, online, tutte le schede a Lab concluso** (10/11): online possono comparire errori che in locale no. Caso già visto: `menu-su-misura` ha le card «Da mangiare» in colonna stretta e la nota a lato. Prima di axe + PSI.
 
 ## Regole fisse per le schede nuove
 - **Le schede devono differire tra loro** (regola dell'autore, 9/11): ogni scheda nuova ha un impianto, un layout e un gesto propri; niente «finto sito + card centrata + 3 tab» ripetuto. Prima del concept guardare le schede esistenti e dire in cosa la nuova è diversa.
@@ -30,4 +29,5 @@ Ordine concordato con l'autore (9/11): schede e layout prima, poi migrazione, pr
 ## Aperti, noti (non urgenti)
 - **pagine-404:** frasi JA/KO/PT scritte da Claude, da far controllare a un madrelingua (FR chiuso, attesa PT); il tocco del Pendolo su telefono vero non è provato.
 - `bordi-animati` mobile ~72 (TBT; rimedio = cambiare tecnica, decisione dell'autore); SkyTracker icone 64 px mostrate a 90; `menu-su-misura` CLS 0,05.
+- `prima-dopo/{tendina,scambio,lente}` aperte da sole (fuori dal guscio) scorrono di 18 px a ogni formato; nel guscio no. Solo se si vuole le pagine usabili da sole.
 - Worker `lab-cambio-worker`: cancellare dalla Dashboard Cloudflare.
