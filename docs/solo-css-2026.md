@@ -1,7 +1,7 @@
 # Solo CSS 2026 (scheda 6 del piano, categoria Layout)
 
 Concept approvato dall'autore il 12/11/2026 («procedi»): **«manuale di bordo»**, una pagina lunga in colonna con indice a sinistra,
-5 funzioni CSS recenti, ognuna con effetto vivo + riga di CSS + badge di supporto + ripiego dichiarato. Layout con 3 schede (era 2).
+5 funzioni CSS recenti, ognuna con effetto vivo + badge di supporto + ripiego dichiarato. Layout con 3 schede (era 2).
 Diversa dalle altre: non è un palco centrato né un finto sito, si legge scorrendo e lo scroll è il gesto. **Bozza costruita il 12/11 (da mostrare all'autore):** `components/solo-css-2026/`, voce nel sito madre committata in locale, `viewports.mjs core` senza overflow, `i18n-check` ok.
 Trabocchetti: `::scroll-marker-group` NON compare se lo scroller è un figlio di un contenitore `display: grid` (il genitore `.sc-demo` è a blocco); il ripiego del popover è il popover nativo al centro dello schermo (non «sotto al bottone» come previsto).
 Da provare ancora: Firefox/Safari (ripieghi), iframe della modale, telefono vero.
@@ -15,7 +15,7 @@ components/solo-css-2026/
   i18n.js        LabI18n.add({ en, es })
 ```
 - **Nessuno `script.js`**: il JS della scheda è solo `_shared/i18n.js` (traduzioni) e `studio.js`. È il senso del titolo; dirlo nella nota in pagina.
-- Sezioni (ognuna `<section id>` con h2, demo, `<pre><code>` con le righe chiave, badge):
+- Sezioni (ognuna `<section id>` con h2, demo, badge):
   1. **Scroll-spy**: `scroll-target-group` + `:target-current` sull'indice. Ripiego: indice statico con ancore.
   2. **Carosello**: `::scroll-marker`, `::scroll-button()`, `scroll-snap`. Ripiego: fila con snap, senza puntini.
   3. **Anchor positioning**: `anchor-name`, `position-area`, `position-try`, con `popover` nativo. Ripiego: popover sotto al bottone.
@@ -58,3 +58,5 @@ Decisioni: sezioni 1, 2 e (se si usa `scroll-state`) 4 sono solo Chromium → ri
 1. Verifica caniuse e fissare i badge.
 2. HTML + stile base (i ripieghi), poi le 5 funzioni dentro `@supports`, una per volta.
 3. i18n, voce nel sito madre (`lab-components.ts`, `i18n/lab.ts`, categoria Layout), `viewports.mjs core`, poi mostrare all'autore.
+
+**Modifica 12/11 (richiesta dell'autore): niente blocchi di codice in pagina** (il Lab mostra demo, non codice); il carosello usa 5 foto del pool condiviso (`_shared/img`).

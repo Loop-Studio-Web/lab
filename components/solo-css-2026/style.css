@@ -134,19 +134,6 @@
 	padding-block: clamp(3rem, 8vw, 4.5rem);
 }
 
-.sc-code {
-	margin: 1rem 0 0;
-	padding: 1rem 1.1rem;
-	overflow-x: auto;
-	background: #0d0d0d;
-	border: 1px solid var(--line);
-	border-radius: 0.75rem;
-	color: #d8d8d8;
-	font-family: var(--sc-mono);
-	font-size: 0.8125rem;
-	line-height: 1.65;
-	tab-size: 2;
-}
 
 /* Badge di supporto: testo + pallino, il colore non è l'unica informazione. */
 .sc-support {
@@ -219,11 +206,30 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	gap: 0.25rem;
-	min-height: 13rem;
+	position: relative;
+	min-height: 15rem;
 	padding: 1.5rem;
-	background: linear-gradient(160deg, #2b2b2b, #151515);
+	overflow: hidden;
+	background: #151515;
 	border: 1px solid var(--line);
 	border-radius: 0.9rem;
+}
+.sc-card img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.sc-card::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to top, rgb(0 0 0 / 0.85), rgb(0 0 0 / 0.1) 60%);
+}
+.sc-card > :not(img) {
+	position: relative;
+	z-index: 1;
 }
 .sc-card__n {
 	margin-bottom: auto;
@@ -235,7 +241,7 @@
 	font-size: 1.6rem;
 }
 .sc-card p {
-	color: var(--muted);
+	color: #d6d6d6;
 }
 
 @supports (scroll-marker-group: after) and selector(::scroll-marker) {

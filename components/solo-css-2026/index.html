@@ -17,7 +17,7 @@
 		<main class="demo sc">
 			<header class="sc-head">
 				<h1 data-i18n="sc.name">Solo CSS 2026</h1>
-				<p class="sc-lead" data-i18n="sc.lead">Cinque funzioni di CSS arrivate da poco che prima volevano JavaScript. Questa scheda non ha uno script suo: fa tutto il foglio di stile. Ognuna ha la sua demo, le righe che contano e un ripiego dichiarato per i browser che non la conoscono.</p>
+				<p class="sc-lead" data-i18n="sc.lead">Cinque funzioni di CSS arrivate da poco che prima volevano JavaScript. Questa scheda non ha uno script suo: fa tutto il foglio di stile. Ognuna ha la sua demo, il supporto dei browser e un ripiego dichiarato per i browser che non la conoscono.</p>
 			</header>
 
 			<div class="sc-layout">
@@ -35,8 +35,6 @@
 					<section class="sc-sec" id="spy" aria-labelledby="h-spy">
 						<h2 id="h-spy" data-i18n="sc.t1">Indice che segue lo scroll</h2>
 						<p class="sc-desc" data-i18n="sc.s1.d">La demo è l'indice qui a fianco (in alto, su telefono): scorri la pagina e la voce della sezione che stai leggendo si accende da sola. Niente IntersectionObserver, niente script.</p>
-						<pre class="sc-code"><code>.toc ol { scroll-target-group: auto; }
-.toc a:target-current { color: white; }</code></pre>
 						<ul class="sc-support" data-i18n-attr="aria-label=sc.support">
 							<li data-s="yes"><span>Chrome / Edge</span><b>140+</b></li>
 							<li data-s="no"><span>Firefox</span><b>no</b></li>
@@ -50,18 +48,13 @@
 						<p class="sc-desc" data-i18n="sc.s2.d">Puntini, frecce e aggancio delle card arrivano dal CSS. Sono controlli veri: si raggiungono con Tab e si usano con Invio.</p>
 						<div class="sc-demo">
 							<ul class="sc-carousel" data-i18n-attr="aria-label=sc.s2.label,data-prev=sc.prev,data-next=sc.next" data-prev="Card precedente" data-next="Card successiva">
-								<li class="sc-card"><span class="sc-card__n">1</span><h3 data-i18n="sc.c1">Alba</h3><p data-i18n="sc.c1.d">Il molo è ancora vuoto.</p></li>
-								<li class="sc-card"><span class="sc-card__n">2</span><h3 data-i18n="sc.c2">Reti</h3><p data-i18n="sc.c2.d">Si stendono ad asciugare.</p></li>
-								<li class="sc-card"><span class="sc-card__n">3</span><h3 data-i18n="sc.c3">Faro</h3><p data-i18n="sc.c3.d">Si accende quando cala la luce.</p></li>
-								<li class="sc-card"><span class="sc-card__n">4</span><h3 data-i18n="sc.c4">Mercato</h3><p data-i18n="sc.c4.d">Il pesce arriva prima del caffè.</p></li>
-								<li class="sc-card"><span class="sc-card__n">5</span><h3 data-i18n="sc.c5">Notte</h3><p data-i18n="sc.c5.d">Resta accesa una sola finestra.</p></li>
+								<li class="sc-card"><img src="../_shared/img/manarola-m.webp" alt="" width="900" height="600" decoding="async" /><span class="sc-card__n">1</span><h3 data-i18n="sc.c1">Manarola</h3><p data-i18n="sc.c1.d">Le case si affacciano sul mare.</p></li>
+								<li class="sc-card"><img src="../_shared/img/beach-m.webp" alt="" width="900" height="600" decoding="async" loading="lazy" /><span class="sc-card__n">2</span><h3 data-i18n="sc.c2">Spiaggia</h3><p data-i18n="sc.c2.d">Alle sette non c'è ancora nessuno.</p></li>
+								<li class="sc-card"><img src="../_shared/img/fog-forest-m.webp" alt="" width="1200" height="800" decoding="async" loading="lazy" /><span class="sc-card__n">3</span><h3 data-i18n="sc.c3">Bosco nella nebbia</h3><p data-i18n="sc.c3.d">Si cammina piano, senza vedere lontano.</p></li>
+								<li class="sc-card"><img src="../_shared/img/aurora-m.webp" alt="" width="900" height="600" decoding="async" loading="lazy" /><span class="sc-card__n">4</span><h3 data-i18n="sc.c4">Aurora</h3><p data-i18n="sc.c4.d">Il cielo si accende per pochi minuti.</p></li>
+								<li class="sc-card"><img src="../_shared/img/waterfall-m.webp" alt="" width="900" height="600" decoding="async" loading="lazy" /><span class="sc-card__n">5</span><h3 data-i18n="sc.c5">Cascata</h3><p data-i18n="sc.c5.d">Si sente prima di vederla.</p></li>
 							</ul>
 						</div>
-						<pre class="sc-code"><code>.carousel { overflow-x: auto; scroll-snap-type: x mandatory;
-            scroll-marker-group: after; }
-.carousel li::scroll-marker { content: ""; }
-.carousel li::scroll-marker:target-current { background: red; }
-.carousel::scroll-button(inline-end) { content: "→" / "Next"; }</code></pre>
 						<ul class="sc-support" data-i18n-attr="aria-label=sc.support">
 							<li data-s="yes"><span>Chrome / Edge</span><b>135+</b></li>
 							<li data-s="no"><span>Firefox</span><b>no</b></li>
@@ -81,9 +74,6 @@
 							<div class="sc-tip" id="t-share" popover data-i18n="sc.p2">Copia il link</div>
 							<div class="sc-tip" id="t-more" popover data-i18n="sc.p3">Altre azioni</div>
 						</div>
-						<pre class="sc-code"><code>#b-save { anchor-name: --save; }
-#t-save { position-anchor: --save; position-area: top;
-          position-try-fallbacks: flip-block; }</code></pre>
 						<ul class="sc-support" data-i18n-attr="aria-label=sc.support">
 							<li data-s="yes"><span>Chrome / Edge</span><b>125+</b></li>
 							<li data-s="yes"><span>Firefox</span><b>147+</b></li>
@@ -108,10 +98,6 @@
 								</div>
 							</div>
 						</div>
-						<pre class="sc-code"><code>.bar { animation: hide linear both;
-       animation-timeline: scroll();
-       animation-range: 0 4rem; }
-@keyframes hide { to { translate: 0 -100%; } }</code></pre>
 						<ul class="sc-support" data-i18n-attr="aria-label=sc.support">
 							<li data-s="yes"><span>Chrome / Edge</span><b>115+</b></li>
 							<li data-s="yes"><span>Firefox</span><b>159+</b></li>
@@ -132,7 +118,6 @@
 								<li class="sc-tile sc-tile--notch"><code>notch</code></li>
 							</ul>
 						</div>
-						<pre class="sc-code"><code>.tile { border-radius: 2.5rem; corner-shape: squircle; }</code></pre>
 						<ul class="sc-support" data-i18n-attr="aria-label=sc.support">
 							<li data-s="yes"><span>Chrome / Edge</span><b>139+</b></li>
 							<li data-s="soon"><span>Firefox</span><b data-i18n="sc.preview">anteprima</b></li>
