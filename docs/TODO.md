@@ -29,4 +29,4 @@ Ordine concordato con l'autore (9/11): schede e layout prima, poi migrazione, pr
 - **pagine-404:** frasi JA/KO/PT scritte da Claude, da far controllare a un madrelingua (FR chiuso, attesa PT); il tocco del Pendolo su telefono vero non è provato.
 - `bordi-animati` mobile ~72 (TBT; rimedio = cambiare tecnica, decisione dell'autore); SkyTracker icone 64 px mostrate a 90; `menu-su-misura` CLS 0,05.
 - `prima-dopo/{tendina,scambio,lente}` aperte da sole (fuori dal guscio) scorrono di 18 px a ogni formato; nel guscio no. Solo se si vuole le pagine usabili da sole.
-- Worker `lab-cambio-worker`: cancellare dalla Dashboard Cloudflare.
+- Cartella locale `Websites\lab-cambio-worker` (esempio non pubblicato): da decidere con l'autore se tenerla o toglierla nella pulizia finale.
