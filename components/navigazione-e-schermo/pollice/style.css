@@ -1,0 +1,49 @@
+/* Zona del pollice. I raggi della mappa (62cqw e 105cqw, perno al 94% dell'altezza) sono gli stessi dello script: se cambiano qui, cambiano là. */
+.pz { --ok: rgba(52, 199, 89, 0.3); --mid: rgba(255, 159, 10, 0.26); --bad: rgba(255, 59, 48, 0.24); }
+.pz__screen { position: absolute; inset: 0; display: flex; flex-direction: column; background: #151515; }
+.pz[data-nav='alto'] .pz__nav { order: -1; border-top: 0; border-bottom: 1px solid var(--line); }
+.pz__top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; padding: 1rem 1rem 0.4rem; }
+.pz[data-nav='alto'] .pz__top { padding-top: 0.8rem; }
+.pz__top h2 { font-size: 1.25rem; }
+.pz__tag { font-size: 0.75rem; color: var(--muted); }
+.pz__body { flex: 1; min-height: 0; display: grid; align-content: start; gap: 0.6rem; padding: 0.5rem 1rem; overflow: hidden; }
+.pz__card { display: grid; grid-template-columns: 3.4rem 1fr; gap: 0.7rem; padding: 0.6rem; background: #202020; border-radius: 0.9rem; }
+.pz__thumb { min-height: 3.4rem; border-radius: 0.6rem; background: linear-gradient(135deg, #b8542f, #7a2c1c); }
+.pz__card--b .pz__thumb { background: linear-gradient(135deg, #c79a3b, #8a5d16); }
+.pz__card--c .pz__thumb { background: linear-gradient(135deg, #8d6a52, #4f3523); }
+.pz__text { min-width: 0; }
+.pz__text h3 { font-size: 0.9rem; }
+.pz__text p { font-size: 0.75rem; color: var(--muted); }
+.pz__acts { display: flex; align-items: center; gap: 0.55rem; margin-top: 0.4rem; }
+.pz__act, .pz__navb { position: relative; display: inline-grid; place-items: center; padding: 0; font: inherit; color: var(--text); cursor: pointer; background: #333; border: 0; border-radius: 50%; }
+.pz__act:active, .pz__navb:active { transform: scale(0.94); }
+.pz__act svg { width: 60%; height: 60%; }
+.pz__act--s { width: 1rem; height: 1rem; }
+.pz__act--m { width: 1.5rem; height: 1.5rem; }
+.pz__act--l { width: 2.75rem; height: 2.75rem; }
+.pz__nav { display: flex; padding: 0.25rem 0.4rem; background: #1c1c1c; border-top: 1px solid var(--line); }
+.pz__navb { flex: 1; min-height: 2.75rem; grid-auto-flow: row; gap: 0.1rem; align-content: center; background: none; border-radius: 0.7rem; font-size: 0.6875rem; color: var(--muted); }
+.pz__navb svg { width: 1.2rem; height: 1.2rem; }
+.pz__navb.is-on { color: var(--text); }
+.pz__navb:focus-visible, .pz__act:focus-visible { outline: 2px solid var(--text); outline-offset: 1px; }
+
+/* Mappa di raggiungibilità: tre fasce concentriche attorno al perno del pollice; la prima della lista sta sopra. */
+.pz__heat { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: var(--layers), var(--bad); }
+.pz[data-hand='dx'] .pz__heat { --layers: radial-gradient(circle at 100% 94%, var(--ok) 62cqw, transparent 62cqw), radial-gradient(circle at 100% 94%, var(--mid) 105cqw, transparent 105cqw); }
+.pz[data-hand='sx'] .pz__heat { --layers: radial-gradient(circle at 0% 94%, var(--ok) 62cqw, transparent 62cqw), radial-gradient(circle at 0% 94%, var(--mid) 105cqw, transparent 105cqw); }
+.pz[data-hand='due'] .pz__heat { --layers: radial-gradient(circle at 100% 94%, var(--ok) 62cqw, transparent 62cqw), radial-gradient(circle at 0% 94%, var(--ok) 62cqw, transparent 62cqw), radial-gradient(circle at 100% 94%, var(--mid) 105cqw, transparent 105cqw), radial-gradient(circle at 0% 94%, var(--mid) 105cqw, transparent 105cqw); }
+
+/* Soglie di tocco: anello e misura su ogni bersaglio, rosso sotto 24 px, ambra sotto 44 px. */
+.pz[data-sizes='on'] [data-t] { outline: 2px solid var(--c); outline-offset: 2px; }
+.pz[data-sizes='on'] [data-s='bad'] { --c: #ff453a; }
+.pz[data-sizes='on'] [data-s='mid'] { --c: #ff9f0a; }
+.pz[data-sizes='on'] [data-s='ok'] { --c: #34c759; }
+.pz[data-sizes='on'] .pz__act::after {
+	content: attr(data-px); position: absolute; left: 50%; top: 100%; margin-top: 0.3rem; transform: translateX(-50%);
+	font-size: 0.625rem; font-weight: 700; white-space: nowrap; color: var(--c);
+}
+.pz__legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1rem; margin: 0; padding: 0; list-style: none; font-size: 0.75rem; color: var(--muted); }
+.pz__k::before { content: ''; display: inline-block; width: 0.7rem; height: 0.7rem; margin-right: 0.35rem; vertical-align: -0.05rem; border-radius: 50%; background: var(--c); }
+.pz__k--ok { --c: #34c759; }
+.pz__k--mid { --c: #ff9f0a; }
+.pz__k--bad { --c: #ff453a; }

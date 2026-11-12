@@ -1,0 +1,27 @@
+/* Parti comuni dei tab «Zona del pollice» e «Schermo reale»: telefono disegnato in CSS, gruppi di scelta, interruttori. */
+.np { display: grid; justify-items: center; gap: 0.9rem; }
+.np-tel {
+	position: relative; width: min(17rem, 100%); height: min(30rem, 100svh - 12.5rem); min-height: 17rem; overflow: hidden; isolation: isolate;
+	container-type: size; background: #0d0d0d; border: 1px solid var(--line); border-radius: 1.8rem;
+}
+.np-ctl { display: grid; gap: 0.35rem; }
+.np-row { display: grid; grid-template-columns: 6.4rem 1fr; align-items: center; gap: 0.5rem; }
+.np-row > span { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; line-height: 1.25; text-transform: uppercase; color: var(--muted); }
+.np-row > code { grid-column: 1 / -1; }
+/* stretto (telefono, colonna unica): etichetta sopra i pulsanti */
+@media (max-width: 30rem) { .np-row { grid-template-columns: 1fr; gap: 0.3rem; } }
+.np-seg { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.np-opt {
+	min-height: 2rem; padding: 0 0.8rem; font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--text); cursor: pointer;
+	background: var(--surface); border: 1px solid var(--line); border-radius: 99px;
+	transition: transform 0.16s var(--ease-out), background-color 0.2s, border-color 0.2s;
+}
+.np-opt:active:not(:disabled) { transform: scale(0.97); }
+.np-opt[aria-pressed='true'] { background: var(--accent-strong); border-color: var(--accent-strong); }
+.np-opt:disabled { opacity: 0.4; cursor: not-allowed; }
+.np-opt:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) { .np-opt:hover:not(:disabled):not([aria-pressed='true']) { border-color: var(--muted); } }
+/* Poca altezza (portatile dentro il guscio): del «Come si usa» resta la riga del mouse. */
+@media (min-width: 56rem) and (min-aspect-ratio: 3/2) and (max-height: 44rem) { .fd-how div:nth-child(n + 2) { display: none; } .np-opt { min-height: 1.75rem; } }
+.np-out { min-height: 2.6rem; max-width: 19rem; text-align: center; font-size: 0.875rem; color: var(--muted); }
+.np-out b { color: var(--text); font-weight: 600; }

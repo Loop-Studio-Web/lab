@@ -1,0 +1,52 @@
+/* Schermo reale. L'area della pagina (.sc__page) parte sotto lo stato e, nel browser, sotto la sua barra; le cinque barre misurano le unità. */
+.sc { --status: 2.6rem; --bar: 2.75rem; --kbh: 36cqh; background: #151515; }
+.sc[data-cut='none'] { --status: 1.5rem; }
+.sc__page { position: absolute; z-index: 1; inset: var(--status) 0 0; overflow: hidden; }
+.sc[data-ctx='browser'][data-bar='open'] .sc__page { inset-block-start: calc(var(--status) + var(--bar)); }
+.sc[data-ctx='app'] .sc__page { inset-block-start: 0; }
+
+.sc__bars { position: absolute; inset: 0; display: flex; gap: 0.3rem; padding: 0 0.6rem; }
+.sc__bar { position: relative; flex: 1; min-width: 0; align-self: flex-start; background: linear-gradient(180deg, hsl(var(--h) 60% 38%), hsl(var(--h) 55% 22%)); border-radius: 0 0 0.5rem 0.5rem; text-align: center; font-size: 0.6875rem; line-height: 1.2; }
+.sc__bar[data-u='vh'] { --h: 12; }
+.sc__bar[data-u='svh'] { --h: 205; }
+.sc__bar[data-u='dvh'] { --h: 150; }
+.sc__bar[data-u='lvh'] { --h: 265; }
+.sc__bar[data-u='vv'] { --h: 45; }
+.sc__bar b { position: absolute; left: 0; right: 0; top: 3.4rem; display: block; font-weight: 700; overflow-wrap: anywhere; }
+.sc__bar i { position: absolute; left: 0; right: 0; top: 5rem; font-style: normal; color: rgba(255, 255, 255, 0.85); }
+.sc__bar em { position: absolute; left: 0; right: 0; top: calc(var(--vis, 0px) - 3.6rem - 2.6rem); font-style: normal; font-weight: 700; color: #fff; background: var(--accent-strong); }
+.sc__bar em:empty { display: none; }
+
+/* Intestazione dell'app: in modalità app sta sotto lo stato; senza env() va a finire sotto la sagoma. */
+.sc__head { position: absolute; z-index: 2; left: 0; right: 0; top: 0; padding: 0.6rem 1rem; background: rgba(21, 21, 21, 0.82); }
+.sc__head h2 { font-size: 1.1rem; }
+.sc[data-ctx='app'][data-env='on'] .sc__head { padding-top: var(--status); }
+.sc[data-ctx='app'][data-env='off'] .sc__head { padding-top: 0.3rem; box-shadow: inset 0 -2px 0 #ff453a; }
+.sc[data-ctx='app'][data-env='off'] .sc__head h2 { text-align: center; }
+
+.sc__composer { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; padding: 0.5rem 0.6rem 0.7rem; background: #1c1c1c; transition: transform 0.35s var(--ease-out); }
+.sc[data-kb='on'] .sc__composer { transform: translateY(calc(-1 * var(--kbh))); }
+.sc__input { width: 100%; min-height: 2.5rem; padding: 0 0.9rem; font: inherit; font-size: 1rem; color: var(--text); background: #2a2a2a; border: 1px solid transparent; border-radius: 99px; }
+.sc__input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.sc__input::placeholder { color: var(--muted); }
+
+/* Tastiera disegnata: sale dal basso, i tasti dipendono dal tipo di campo. */
+.sc__kb { position: absolute; z-index: 4; left: 0; right: 0; bottom: 0; height: var(--kbh); display: grid; gap: 0.3rem; padding: 0.4rem; align-content: start; background: #2b2b2e; transform: translateY(100%); transition: transform 0.35s var(--ease-out); }
+.sc[data-kb='on'] .sc__kb { transform: none; }
+.sc__row { display: flex; justify-content: center; gap: 0.25rem; }
+.sc__key { flex: 1 1 0; max-width: 1.9rem; display: grid; place-items: center; min-height: 1.7rem; font-size: 0.75rem; background: #4a4a4f; border-radius: 0.3rem; }
+.sc__kb--pad .sc__row { max-width: 12rem; margin-inline: auto; width: 100%; }
+.sc__kb--pad .sc__key { max-width: none; min-height: 1.9rem; }
+
+/* Barra del browser e stato (sopra a tutto): la sagoma sta nella riga di stato. */
+.sc__bar-browser { position: absolute; z-index: 5; left: 0; right: 0; top: var(--status); height: var(--bar); display: grid; place-items: center; padding: 0.5rem 1rem; background: #262628; border-bottom: 1px solid #000; transition: opacity 0.25s; }
+.sc__bar-browser span { display: grid; place-items: center; width: 100%; height: 100%; font-size: 0.75rem; color: var(--muted); background: #38383a; border-radius: 0.6rem; }
+.sc[data-ctx='app'] .sc__bar-browser, .sc[data-bar='closed'] .sc__bar-browser { opacity: 0; pointer-events: none; }
+.sc__status { position: absolute; z-index: 6; left: 0; right: 0; top: 0; height: var(--status); display: flex; align-items: center; padding: 0 1.4rem; pointer-events: none; }
+.sc[data-ctx='browser'] .sc__status { background: #262628; }
+.sc__time { font-size: 0.75rem; font-weight: 700; }
+.sc__cutout { position: absolute; left: 50%; top: 0; width: 38%; height: 1.5rem; transform: translateX(-50%); background: #000; border-radius: 0 0 0.9rem 0.9rem; }
+.sc[data-cut='island'] .sc__cutout { top: 0.5rem; width: 26%; height: 1.2rem; border-radius: 99px; }
+.sc[data-cut='none'] .sc__cutout { width: 0.7rem; height: 0.7rem; top: 0.4rem; border-radius: 50%; }
+
+.sc__attrs { display: block; max-width: 19rem; text-align: center; font-size: 0.75rem; line-height: 1.5; color: var(--muted); overflow-wrap: anywhere; }

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="sc.title">Schermo reale — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../np.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../np.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fd-stage np">
+					<div class="np-tel sc" data-sc data-ctx="browser" data-bar="open" data-kb="off" data-env="on" data-cut="notch">
+						<div class="sc__page" data-page>
+							<div class="sc__bars" data-bars>
+								<div class="sc__bar" data-u="vh"><b>100vh</b><i></i><em></em></div>
+								<div class="sc__bar" data-u="svh"><b>100svh</b><i></i><em></em></div>
+								<div class="sc__bar" data-u="dvh"><b>100dvh</b><i></i><em></em></div>
+								<div class="sc__bar" data-u="lvh"><b>100lvh</b><i></i><em></em></div>
+								<div class="sc__bar sc__bar--vv" data-u="vv"><b>visual<wbr />Viewport</b><i></i><em></em></div>
+							</div>
+							<header class="sc__head" data-head>
+								<h2 data-i18n="sc.app">Messaggi</h2>
+							</header>
+							<form class="sc__composer" data-composer>
+								<label class="sr-only" for="sc-field" data-i18n="sc.field.l">Scrivi un messaggio</label>
+								<input id="sc-field" class="sc__input" data-field type="text" />
+							</form>
+						</div>
+						<div class="sc__kb" data-kb-el aria-hidden="true"></div>
+						<div class="sc__bar-browser" aria-hidden="true"><span>theloopstudio.org</span></div>
+						<div class="sc__status" aria-hidden="true"><span class="sc__time">9:41</span><span class="sc__cutout"></span></div>
+					</div>
+					<code class="sc__attrs" data-attrs></code>
+					<p class="np-out" data-vv aria-live="off"></p>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="sc.name">Schermo reale</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="sc.lead">L’altezza della pagina non è una sola. Cambia browser, barra, notch e tastiera e leggi cosa vale ogni unità: ecco perché non si usa 100vh.</p>
+				</div>
+				<div class="fd-controls np-ctl">
+					<div class="np-row">
+						<span data-i18n="sc.ctx">Dove gira</span>
+						<div class="np-seg" role="group" aria-label="Dove gira la pagina" data-i18n-attr="aria-label=sc.ctx.l" data-ctl="ctx">
+							<button type="button" class="np-opt" data-v="browser" aria-pressed="true" data-i18n="sc.browser">Browser</button>
+							<button type="button" class="np-opt" data-v="app" aria-pressed="false" data-i18n="sc.app.full">App a schermo intero</button>
+						</div>
+					</div>
+					<div class="np-row">
+						<span data-i18n="sc.barlabel">Barra del browser</span>
+						<div class="np-seg" role="group" aria-label="Barra del browser" data-i18n-attr="aria-label=sc.barlabel" data-ctl="bar">
+							<button type="button" class="np-opt" data-v="open" aria-pressed="true" data-i18n="sc.open">Aperta</button>
+							<button type="button" class="np-opt" data-v="closed" aria-pressed="false" data-i18n="sc.closed">Chiusa</button>
+						</div>
+					</div>
+					<div class="np-row">
+						<span data-i18n="sc.cut">Sagoma dello schermo</span>
+						<div class="np-seg" role="group" aria-label="Sagoma dello schermo" data-i18n-attr="aria-label=sc.cut" data-ctl="cut">
+							<button type="button" class="np-opt" data-v="notch" aria-pressed="true" data-i18n="sc.notch">Notch</button>
+							<button type="button" class="np-opt" data-v="island" aria-pressed="false" data-i18n="sc.island">Isola</button>
+							<button type="button" class="np-opt" data-v="none" aria-pressed="false" data-i18n="sc.none">Nessuna</button>
+						</div>
+					</div>
+					<div class="np-row">
+						<span data-i18n="sc.opts">Opzioni</span>
+						<div class="np-seg">
+							<button type="button" class="np-opt" data-ctl="kb" aria-pressed="false" data-i18n="sc.kb">Tastiera su</button>
+							<button type="button" class="np-opt" data-ctl="env" aria-pressed="true" data-i18n="sc.env">Rispetta env()</button>
+						</div>
+					</div>
+					<div class="np-row">
+						<span data-i18n="sc.type">Tipo di campo</span>
+						<div class="np-seg" role="group" aria-label="Tipo di campo" data-i18n-attr="aria-label=sc.type" data-ctl="type">
+							<button type="button" class="np-opt" data-v="text" aria-pressed="true" data-i18n="sc.t.text">Testo</button>
+							<button type="button" class="np-opt" data-v="email" aria-pressed="false" data-i18n="sc.t.email">Email</button>
+							<button type="button" class="np-opt" data-v="tel" aria-pressed="false" data-i18n="sc.t.tel">Telefono</button>
+							<button type="button" class="np-opt" data-v="number" aria-pressed="false" data-i18n="sc.t.number">Numero</button>
+							<button type="button" class="np-opt" data-v="code" aria-pressed="false" data-i18n="sc.t.code">Codice</button>
+						</div>
+					</div>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="gf.mouse">Mouse</dt><dd data-i18n="sc.mouse">Cambia i comandi: le cinque barre mostrano quanto vale ogni unità. Il campo apre la tastiera disegnata.</dd></div>
+						<div><dt data-i18n="gf.touch">Tocco</dt><dd data-i18n="sc.touch">Su un telefono vero tocca il campo: compare la tastiera vera e in basso leggi le misure reali del browser.</dd></div>
+						<div><dt data-i18n="gf.kbd">Tastiera</dt><dd data-i18n="sc.kbd">Tab tra i comandi; Invio o Spazio per scegliere. Esc chiude la tastiera disegnata.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="sc.tip">Per tutto lo schermo usa 100svh (o dvh se deve seguire la barra) con 100vh di ripiego; la tastiera non cambia nessuna unità, si legge con visualViewport. Il testo dei campi resta a 16 px o più, altrimenti iPhone ingrandisce la pagina.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>
