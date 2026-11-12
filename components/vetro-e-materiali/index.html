@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="vm.title">Vetro e materiali — Loop Studio Lab</title>
+		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../_shared/scheda.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<svg class="vm-defs" aria-hidden="true" focusable="false">
+			<filter id="vm-lg" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+				<feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="7" result="noise" />
+				<feDisplacementMap id="vm-disp" in="SourceGraphic" in2="noise" scale="40" xChannelSelector="R" yChannelSelector="G" />
+			</filter>
+		</svg>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="vm-stage" data-stage>
+					<img class="vm-bg" src="../_shared/img/manarola-m.webp" alt="" width="900" height="600" decoding="async" />
+					<span class="vm-blob vm-blob--a" aria-hidden="true"></span>
+					<span class="vm-blob vm-blob--b" aria-hidden="true"></span>
+					<button type="button" class="slab slab--grain" data-slab="grain" data-x="64" data-y="10" aria-pressed="false"><span class="slab__name" data-i18n="vm.grain">Grana</span><span class="slab__state" data-state></span></button>
+					<button type="button" class="slab slab--paper" data-slab="paper" data-x="50" data-y="40" aria-pressed="false"><span class="slab__name" data-i18n="vm.paper">Carta</span><span class="slab__state" data-state></span></button>
+					<button type="button" class="slab slab--metal" data-slab="metal" data-x="30" data-y="8" aria-pressed="false"><span class="slab__name" data-i18n="vm.metal">Metallo</span><span class="slab__state" data-state></span></button>
+					<button type="button" class="slab slab--frost" data-slab="frost" data-x="14" data-y="44" aria-pressed="false"><span class="slab__name" data-i18n="vm.frost">Smerigliato</span><span class="slab__state" data-state></span></button>
+					<button type="button" class="slab slab--liquid" data-slab="liquid" data-x="3" data-y="8" aria-pressed="true"><span class="slab__name" data-i18n="vm.liquid">Vetro liquido</span><span class="slab__state" data-state></span></button>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="vm.name">Vetro e materiali</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="vm.lead">Cinque campioni da trascinare su uno stesso fondale: ognuno lo trasforma a modo suo. Il vetro liquido è il più spettacolare ma funziona solo su Chrome; ogni effetto ha un ripiego dichiarato.</p>
+				</div>
+				<div class="fd-controls vm-controls">
+					<p class="vm-picked"><span data-i18n="vm.picked">Lastra scelta</span>: <strong data-picked></strong></p>
+					<label class="vm-range"><span data-i18n="vm.k">Intensità</span><input type="range" min="0" max="100" value="60" data-k /></label>
+					<label class="vm-range"><span data-i18n="vm.t">Spessore</span><input type="range" min="0" max="100" value="50" data-t /></label>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="vm.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="vm.mouse">Mouse</dt><dd data-i18n="vm.mouse.d">Trascina una lastra sul fondale: la luce segue il puntatore. Gli slider cambiano intensità e spessore della lastra scelta.</dd></div>
+						<div><dt data-i18n="vm.touch">Tocco</dt><dd data-i18n="vm.touch.d">Trascina col dito: la lastra si alza e la luce ti segue.</dd></div>
+						<div><dt data-i18n="vm.kbd">Tastiera</dt><dd data-i18n="vm.kbd.d">Tab su una lastra, frecce per spostarla, Invio per sceglierla; poi gli slider.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="vm.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="vm.tip.d">Dove un browser non sa fare il vetro liquido si vede lo smerigliato, e il testo resta leggibile. Mai un effetto senza piano B.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

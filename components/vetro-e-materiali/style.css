@@ -1,0 +1,88 @@
+/* Vetro e materiali: un fondale, cinque lastre da trascinare. Unità relative al palco (container-type: size). */
+:root {
+	/* grana: puntini scuri e chiari generati dal rumore SVG (nessun file immagine) */
+	--noise-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.2 0 0 0 -1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+	--noise-both: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.2 0 0 0 -1'/%3E%3C/filter%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 -2.2 0 0 0 1.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E");
+}
+
+.vm-defs { position: absolute; width: 0; height: 0; }
+
+.vm-stage {
+	position: relative; isolation: isolate; overflow: hidden; container-type: size;
+	aspect-ratio: 4 / 3;
+	width: min(40rem, 100vw - 3rem, (100svh - 6rem) * 4 / 3);
+	margin-inline: auto; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface);
+}
+.vm-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vm-blob { position: absolute; width: 46cqw; aspect-ratio: 1; border-radius: 50%; pointer-events: none; will-change: transform; }
+.vm-blob--a { left: 50cqw; top: -10cqh; background: radial-gradient(closest-side, rgba(255, 59, 48, 0.85), rgba(255, 59, 48, 0)); animation: vm-drift-a 14s ease-in-out infinite alternate paused; }
+.vm-blob--b { left: -8cqw; top: 52cqh; background: radial-gradient(closest-side, rgba(70, 140, 255, 0.8), rgba(70, 140, 255, 0)); animation: vm-drift-b 18s ease-in-out infinite alternate paused; }
+.vm-stage.is-live .vm-blob { animation-play-state: running; }
+@keyframes vm-drift-a { to { transform: translate(-22cqw, 30cqh) scale(1.2); } }
+@keyframes vm-drift-b { to { transform: translate(36cqw, -26cqh) scale(0.85); } }
+
+.slab {
+	position: absolute; left: 0; top: 0; z-index: 1;
+	width: 30cqw; height: 40cqh; margin: 0; padding: 0.8rem 0.9rem;
+	display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 0.15rem; text-align: left;
+	border: 0; border-radius: 1.4rem; font: inherit; color: #fff; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+	translate: calc(var(--x) * 1cqw) calc(var(--y) * 1cqh);
+	touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab;
+	box-shadow: 0 calc(0.1rem + var(--t) * 0.018rem) calc(0.4rem + var(--t) * 0.05rem) rgba(0, 0, 0, calc(0.15 + var(--t) * 0.004));
+	transition: scale 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+.slab.is-lifted { scale: 1.035; cursor: grabbing; }
+/* riflesso della luce che segue il puntatore */
+.slab::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(circle at var(--mx, 30%) var(--my, 15%), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 60%); }
+.slab > * { position: relative; z-index: 1; }
+.slab__name { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; line-height: 1.1; }
+.slab__state { font-size: 0.75rem; opacity: 0.85; }
+.slab[aria-pressed='true'] .slab__name::before { content: ''; display: inline-block; width: 0.5rem; height: 0.5rem; margin-right: 0.4rem; border-radius: 50%; background: var(--accent); vertical-align: 0.1em; }
+
+/* Vetro liquido: rifrazione con un filtro SVG (solo Chromium); altrove cade sullo smerigliato. */
+.slab--liquid, .slab--frost {
+	background: rgba(255, 255, 255, 0.08);
+	-webkit-backdrop-filter: blur(calc(4px + var(--k) * 0.14px)) saturate(1.5);
+	backdrop-filter: blur(calc(4px + var(--k) * 0.14px)) saturate(1.5);
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.7), inset 0 -0.6rem 1rem -0.5rem rgba(255, 255, 255, 0.25),
+		0 calc(0.1rem + var(--t) * 0.018rem) calc(0.4rem + var(--t) * 0.05rem) rgba(0, 0, 0, calc(0.15 + var(--t) * 0.004));
+}
+:root[data-lg='on'] .slab--liquid {
+	background: rgba(255, 255, 255, 0.04);
+	-webkit-backdrop-filter: url(#vm-lg) blur(calc(var(--k) * 0.03px)) saturate(1.4) brightness(1.1);
+	backdrop-filter: url(#vm-lg) blur(calc(var(--k) * 0.03px)) saturate(1.4) brightness(1.1);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+	.slab--liquid, .slab--frost { background: rgba(40, 40, 44, 0.82); }
+}
+
+/* Metallo: conic-gradient che ruota con la luce, spazzolato a righe fini. */
+.slab--metal { color: #16161a; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4); overflow: hidden;
+	background: conic-gradient(from var(--ang, 0deg), #8d9099, #eceef2, #6b6e76, #d5d8de, #7d8088, #f6f7f9, #8d9099);
+}
+.slab--metal::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: calc(var(--k) / 100);
+	background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.22) 0 1px, rgba(0, 0, 0, 0.12) 1px 2px, transparent 2px 4px);
+}
+.slab--metal::after { background: radial-gradient(circle at var(--mx, 30%) var(--my, 15%), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 55%); }
+
+/* Carta: fibra, angolo piegato, ombra che cresce con lo spessore. */
+.slab--paper { color: #2a2620; text-shadow: none; border-radius: 0.5rem 0.5rem 0.5rem 0.5rem; overflow: hidden; background-color: #efe8d8; }
+.slab--paper::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: calc(var(--k) / 100); background-image: var(--noise-dark); background-size: 9rem; mix-blend-mode: multiply; }
+.slab--paper::after { inset: auto 0 0 auto; width: 2.2rem; height: 2.2rem; border-radius: 0; background: linear-gradient(135deg, #d8d0bd 50%, rgba(0, 0, 0, 0) 50%); box-shadow: -0.2rem -0.2rem 0.5rem rgba(0, 0, 0, 0.15); }
+
+/* Grana: un velo di puntini sopra il fondale, senza altro. */
+.slab--grain { box-shadow: none; border: 1px dashed rgba(255, 255, 255, 0.55); }
+.slab--grain::before { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: calc(0.02 + var(--k) / 420); background-image: var(--noise-both); background-size: 9rem; }
+.slab--grain::after { display: none; }
+
+.vm-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; }
+.vm-picked { grid-column: 1 / -1; }
+.vm-picked { font-size: 0.9rem; color: var(--muted); }
+.vm-picked strong { color: var(--text); font-weight: 600; }
+.vm-range { display: grid; gap: 0.25rem; font-size: 0.8125rem; color: var(--text); }
+.vm-range input { width: 100%; min-height: 1.5rem; accent-color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+	.vm-blob { animation: none; }
+	.slab { transition: none; }
+}
