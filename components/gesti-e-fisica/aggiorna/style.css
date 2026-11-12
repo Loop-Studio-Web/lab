@@ -1,0 +1,22 @@
+/* Aggiorna: barra fissa, elenco che scorre; il gesto sposta l'elenco con transform e l'indicatore con transform/opacity. */
+.pu { display: flex; flex-direction: column; }
+.pu__bar { flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0.4rem 0.6rem 0.4rem 1rem; background: #151515; border-bottom: 1px solid var(--line); position: relative; z-index: 2; }
+.pu__bar h2 { font-size: 1.1rem; }
+.pu__refresh { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0; color: #fff; cursor: pointer; background: none; border: 0; border-radius: 50%; transition: transform 0.16s var(--ease-out), background-color 0.2s; }
+.pu__refresh:active { transform: scale(0.94); }
+@media (hover: hover) and (pointer: fine) { .pu__refresh:hover { background: #262626; } }
+.pu__ind { position: absolute; z-index: 0; left: 50%; top: 4.2rem; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; margin-left: -1.2rem; color: #fff; background: #2a2a2a; border: 1px solid var(--line); border-radius: 50%; opacity: 0; will-change: transform; }
+.pu__ind svg { transition: transform 0.2s var(--ease-out); }
+.pu[data-armed='true'] .pu__ind svg { transform: rotate(180deg); }
+.pu[data-busy='true'] .pu__ind svg { transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+	.pu[data-busy='true'] .pu__ind svg { animation: pu-spin 0.8s linear infinite; }
+}
+@keyframes pu-spin { to { transform: rotate(360deg); } }
+.pu__scroll { position: relative; z-index: 1; flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: thin; overscroll-behavior-y: contain; touch-action: pan-y; background: #0d0d0d; will-change: transform; }
+.pu__list { margin: 0; padding: 0.6rem; list-style: none; display: grid; gap: 0.5rem; }
+.pu__item { display: grid; gap: 0.15rem; padding: 0.65rem 0.8rem; background: #1c1c1c; border-radius: 0.8rem; font-size: 0.9rem; }
+.pu__list { user-select: none; -webkit-user-select: none; }
+.pu__item b { font-weight: 600; }
+.pu__item small { color: var(--muted); }
+.pu__item--new { border-left: 3px solid var(--accent); }

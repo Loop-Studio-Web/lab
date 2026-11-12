@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="aggiorna.title">Aggiorna — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../gesti.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../../_shared/fisica.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fd-stage gf">
+					<div class="gf-tel pu" data-pu>
+						<header class="pu__bar">
+							<h2 data-i18n="aggiorna.heading">Novità</h2>
+							<button type="button" class="pu__refresh" data-refresh aria-label="Aggiorna" data-i18n-attr="aria-label=aggiorna.refresh"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 4v5h-5"/></svg></button>
+						</header>
+						<div class="pu__ind" data-ind aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+						<div class="pu__scroll" data-scroll tabindex="0" role="region" aria-label="Elenco delle novità" data-i18n-attr="aria-label=aggiorna.region">
+							<ul class="pu__list" data-list></ul>
+						</div>
+					</div>
+					<p class="sr-only" data-live aria-live="polite"></p>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="aggiorna.name">Aggiorna</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="aggiorna.lead">Il gesto più familiare del telefono: in cima all’elenco tiri verso il basso, la lista segue il dito con resistenza crescente e, oltre la soglia, si aggiorna.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="gf.mouse">Mouse</dt><dd data-i18n="aggiorna.mouse">Con l’elenco in cima, premi e trascina verso il basso; oppure usa il pulsante in alto a destra.</dd></div>
+						<div><dt data-i18n="gf.touch">Tocco</dt><dd data-i18n="aggiorna.touch">Tira l’elenco verso il basso partendo dall’inizio, oltre la soglia, e lascia.</dd></div>
+						<div><dt data-i18n="gf.kbd">Tastiera</dt><dd data-i18n="aggiorna.kbd">Tab sul pulsante «Aggiorna» e Invio.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="aggiorna.tip">La freccia gira finché non superi la soglia: così sai quando lasciare. Non serve un pulsante nascosto nel gesto, ma uno visibile accanto, per chi non può tirare.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

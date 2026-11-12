@@ -1,0 +1,23 @@
+/* Pannello: la sheet è alta quanto la cornice e si sposta solo con transform (translateY, impostato dallo script). */
+.pn__map { position: absolute; inset: 0; background:
+	linear-gradient(90deg, transparent 49%, rgba(255, 255, 255, 0.05) 50%, transparent 51%) 0 0 / 3.5rem 3.5rem,
+	linear-gradient(transparent 49%, rgba(255, 255, 255, 0.05) 50%, transparent 51%) 0 0 / 3.5rem 3.5rem,
+	linear-gradient(160deg, #162029, #0f1418); }
+.pn__map i { position: absolute; left: var(--x); top: var(--y); width: 0.9rem; height: 0.9rem; border-radius: 50% 50% 50% 0; background: var(--accent); transform: rotate(-45deg); box-shadow: 0 0 0 0.25rem rgba(255, 59, 48, 0.2); }
+.pn__sheet {
+	position: absolute; left: 0; right: 0; top: 0; height: 100%; display: flex; flex-direction: column; background: #1c1c1c; border-radius: 1.4rem 1.4rem 0 0;
+	border-top: 1px solid rgba(255, 255, 255, 0.14); box-shadow: 0 -0.8rem 2rem rgba(0, 0, 0, 0.5); will-change: transform; transform: translateY(100%);
+}
+.pn__grab { flex: none; padding: 0.3rem 1rem 0.6rem; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.pn__grab:active { cursor: grabbing; }
+.pn__handle { display: grid; place-items: center; width: 100%; min-height: 2rem; padding: 0; background: none; border: 0; cursor: inherit; }
+.pn__handle span { width: 2.4rem; height: 0.3rem; border-radius: 99px; background: #555; }
+.pn__title { font-size: 1.15rem; }
+.pn__list { margin: 0; padding: 0 1rem 1rem; list-style: none; display: grid; gap: 0.5rem; overflow: hidden; flex: 1; min-height: 0; overscroll-behavior: contain; }
+.pn[data-snap='2'] .pn__list { overflow-y: auto; scrollbar-width: thin; }
+.pn__item { display: grid; grid-template-columns: 2.2rem 1fr auto; align-items: center; gap: 0.7rem; padding: 0.55rem 0.6rem; background: #262626; border-radius: 0.8rem; font-size: 0.9rem; }
+.pn__item b { font-weight: 600; }
+.pn__item small { color: var(--muted); }
+.pn__ico { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; font-weight: 800; color: #fff; background: hsl(var(--h) 45% 32%); border-radius: 0.6rem; }
+.pn__state { min-height: 1.4rem; font-size: 0.875rem; color: var(--muted); }
+.pn__handle:focus-visible { outline: 2px solid var(--accent); border-radius: 0.5rem; }

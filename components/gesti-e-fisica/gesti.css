@@ -1,0 +1,12 @@
+/* Parti comuni dei tab «Pannello», «Lancia» e «Aggiorna»: cornice da telefono e pulsante a pillola. */
+.gf { display: grid; justify-items: center; gap: 1rem; }
+.gf-tel {
+	position: relative; width: min(17rem, 100%); height: min(23rem, 100svh - 13rem); min-height: 15rem; overflow: hidden; isolation: isolate;
+	background: #0d0d0d; border: 1px solid var(--line); border-radius: 1.6rem;
+}
+.gf-tel--wide { width: min(24rem, 100%); height: min(19rem, 100svh - 13rem); }
+.gf-pill {
+	min-height: 2.75rem; padding: 0 1.3rem; font: inherit; font-weight: 700; color: #fff; cursor: pointer;
+	background: var(--accent-strong); border: 0; border-radius: 99px; transition: transform 0.16s var(--ease-out);
+}
+.gf-pill:active { transform: scale(0.97); }

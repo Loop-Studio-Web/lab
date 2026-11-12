@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="pannello.title">Pannello — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../gesti.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../../_shared/fisica.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fd-stage gf">
+					<div class="gf-tel pn" data-pn>
+						<div class="pn__map" aria-hidden="true"><i style="--x:28%;--y:22%"></i><i style="--x:62%;--y:36%"></i><i style="--x:40%;--y:50%"></i></div>
+						<section class="pn__sheet" data-sheet aria-label="Luoghi vicini" data-i18n-attr="aria-label=pannello.sheet">
+							<div class="pn__grab" data-grab>
+								<button type="button" class="pn__handle" data-handle aria-label="Cambia altezza del pannello" data-i18n-attr="aria-label=pannello.handle"><span></span></button>
+								<h2 class="pn__title" data-i18n="pannello.heading">Vicino a te</h2>
+							</div>
+							<ul class="pn__list" data-list></ul>
+						</section>
+					</div>
+					<p class="pn__state" data-state aria-live="polite"></p>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="pannello.name">Pannello</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="pannello.lead">Un pannello che sale dal basso e si ferma in tre punti: chiuso, a metà, aperto. Lo trascini, e dove si ferma lo decide la velocità con cui lo lasci.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="gf.mouse">Mouse</dt><dd data-i18n="pannello.mouse">Trascina la maniglia in alto verso su o verso giù; un colpo deciso salta una sosta.</dd></div>
+						<div><dt data-i18n="gf.touch">Tocco</dt><dd data-i18n="pannello.touch">Tira la maniglia col pollice. Aperto del tutto, l’elenco scorre da solo.</dd></div>
+						<div><dt data-i18n="gf.kbd">Tastiera</dt><dd data-i18n="pannello.kbd">Tab sulla maniglia, poi freccia su e giù, oppure Invio per passare alla sosta successiva.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="pannello.tip">Tre soste bastano: una per «ho visto», una per «voglio scegliere», una per «leggo tutto». Il contenuto scorre solo a pannello aperto, così il gesto e lo scorrimento non si contendono il dito.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

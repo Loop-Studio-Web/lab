@@ -1,0 +1,10 @@
+/* Lancia: la pallina si posiziona con transform (translate3d); il ciclo di animazione gira solo finché si muove. */
+.ln { background: radial-gradient(circle at 50% 40%, #181818, #0b0b0b); }
+.ln__ball {
+	position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 4.2rem; height: 4.2rem; padding: 0; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+	background: radial-gradient(circle at 35% 30%, #333, #151515); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 50%;
+	box-shadow: 0 0.8rem 1.4rem rgba(0, 0, 0, 0.55), inset 0 0.1rem 0 rgba(255, 255, 255, 0.12); will-change: transform;
+}
+.ln__ball:active { cursor: grabbing; }
+.ln__ball svg { pointer-events: none; }
+.ln__speed { position: absolute; left: 0.9rem; bottom: 0.7rem; margin: 0; font-size: 0.75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
