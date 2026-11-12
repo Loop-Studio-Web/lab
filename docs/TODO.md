@@ -7,6 +7,8 @@ e riprendere con «leggi docs/TODO.md, riparti dalla prima voce». Cronache lung
 
 Stato: online = `origin/main` (verificare con `git fetch`). Server di prova: `http://localhost:8765/components/<id>/` (sempre l'URL a cartella, mai `index.html`; tab via `#id`). Ogni scheda nuova va aggiunta subito anche nel sito madre (`src/data/lab-components.ts` + `src/i18n/lab.ts`, IT/EN/ES). **Axe + PSI solo a Lab concluso, dopo il deploy.**
 
+Rimando al CLAUDE globale verificato il 12/11: in sessione nuova la regola «Altezze del viewport» viene citata correttamente da `studio-kit/docs/regole-costruzione.md`. Responsive (voce 2): sospeso per ora, da ripartire dal punto (c) solo con il via dell'autore.
+
 ## In corso / prossimi (in ordine)
 
 Ordine concordato con l'autore (9/11): schede e layout prima, poi migrazione, prove, responsive trasversale, nuove schede sull'impalcatura stabile.
