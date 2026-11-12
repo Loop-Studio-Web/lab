@@ -15,19 +15,27 @@ Prima di costruire una scheda: fase 2 (struttura cartelle, dati, asset), poi boz
 7. **Tabelle e confronti** — intestazione fissa, righe espandibili, ordinamento, a telefono diventano carte.
 4. **Mappe e hotspot** — mappa SVG senza tessere/cookie di terzi, elenco filtrabile «aperto ora», punti cliccabili su foto.
 
-## Lotto 3 (wow)
-9. **Immagini con shader** — WebGL puro (niente Three.js), fallback CSS, attivo solo se visibile.
-10. **Vetro e materiali** — vetro liquido (filtri SVG), smerigliato, metallo, carta, grana. Fallback dichiarati (il forte è solo Chrome).
-12. **Transizioni tra pagine** — mini sito di 3 pagine, view transitions cross-document, fallback pulito.
-13. **Gesti e fisica** — carte da scartare, pannello dal basso, trascina-e-lancia, tira per aggiornare (`apple-design`, `mobile-native`).
+## Lotti 3-4 RIVISTI (12/11/2026, concordato con l'autore): 7 schede nuove, totale 30
+Oggi nel sito madre ci sono 23 schede (le suite contano una); con 7 nuove si arriva a 30. Le Demo restano 15 (il calendario è già la Demo `calendario`: niente calendario custom nei Componenti). Il numero non è tassativo, ma ci si ferma a 30 prima di aumentare; le altre idee stanno in `docs/idee-future.md`.
 
-## Lotto 4 (più pesanti)
-11. **Scroll cinematografico** — sequenza di frame su canvas, scena fissata, scorrimento orizzontale. Servono frame da un video: PESO da tenere sotto controllo.
-14. **Grafici** — linee, ciambella, barre, mappa di calore, mini-grafici, tooltip accessibili (skill `dataviz`).
-15. **Solo CSS 2026** — `::scroll-marker`, anchor positioning, barra che si nasconde, `corner-shape`, scroll-spy. Ogni elemento con fallback e nota sui browser (verificare caniuse prima).
+Nuova categoria **Mobile** (4 schede, di due registri: utile e spettacolare, perché finora il «wow» era solo desktop).
+Spostamenti, senza schede nuove: `contatto-rapido` Interazione → Mobile. `tabelle-e-confronti` resta in Card.
 
-## Riserve
-Configuratore di prodotto; lightbox con zoom/gesti; barra accessibilità (overlay discussi: mai presentarla come conformità); conto alla rovescia resta fuori (repo `vetrine`).
+| # | Scheda | Categoria | Note |
+|---|---|---|---|
+| 1 | **Gesti e fisica** | Mobile | Tab: carte da scartare, pannello dal basso (3 soste), trascina-e-lancia, tira per aggiornare. Modulo condiviso `_shared/fisica.js` (molla, velocità, rubber-band). Pointer Events, `touch-action` per asse, pulsanti equivalenti, `prefers-reduced-motion`. Skill `apple-design`, `mobile-native`. |
+| 2 | **Storie e feed** | Mobile | Viewer a storie (tocco sui lati, pausa a pressione lunga, giù per chiudere), feed verticale a schermo intero con aggancio, peek con pressione lunga. Tab sperimentale «Inclinazione» (giroscopio, ripiego sul puntatore) SOLO se si riesce a provarla su telefono vero: su iOS serve un permesso e la modale del sito madre dovrebbe avere `allow="accelerometer; gyroscope"`. `navigator.vibrate` non esiste su iPhone: mai centrale. |
+| 3 | **Navigazione e schermo** | Mobile | Due tab: barra in basso e zona del pollice; notch, `svh/dvh/lvh`, tastiera virtuale, `inputmode`/`autocomplete`, input senza zoom. Le regole di studio-kit in forma dimostrabile. |
+| 4 | **Vetro e materiali** | Card | Vetro liquido (filtri SVG), smerigliato, metallo, carta, grana. Fallback dichiarati (il forte è solo Chrome). |
+| 5 | **Transizioni tra pagine** | Navigazione | Mini sito di 3 pagine, view transitions cross-document, fallback pulito. Provare dentro l'iframe e su Pages. |
+| 6 | **Solo CSS 2026** | Layout | `::scroll-marker`, anchor positioning, barra che si nasconde, `corner-shape`, scroll-spy. Ogni elemento con fallback e nota sui browser (verificare caniuse prima). |
+| 7 | **Grafici** | Card | Linee, ciambella, barre, mappa di calore, mini-grafici, tooltip accessibili (skill `dataviz`). Niente categoria «Dati» per ora. |
+
+Conteggi attesi a fine piano: Mobile 4, Navigazione 4, Interazione 4, Card 4, Layout 3, Effetti 3, Feedback 3, Galleria 3, Form 2 (30).
+Sito madre: categoria **Mobile** in `src/pages/lab.astro` e `src/i18n/lab.ts` (IT/EN/ES), spostamento di `contatto-rapido`, una voce per scheda in `src/data/lab-components.ts`.
+Ordine: 1 → 2 → 3 (Mobile, con prova su telefono sulla stessa rete Wi-Fi) → 4 → 5 → 6 → 7. Prima di ognuna: fase 2 (cartelle, dati, asset).
+
+Fuori piano, passate in `docs/idee-future.md`: Scroll cinematografico, Indicatori e dashboard, Selettori, Immagini con shader, categoria Dati, riserve vecchie.
 
 ## Peso (preoccupazione dell'autore)
 Budget proposto per scheda, pagina iniziale: HTML+CSS+JS ≲ 60 KB gzip; immagini WebP/AVIF ≲ 300 KB; tutto ciò che è pesante (frame, shader, video) si carica solo a tab/sezione visibile (`loading=lazy`, IntersectionObserver). Misurare su ogni bozza il trasferimento reale.
