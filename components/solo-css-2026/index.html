@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="sc.title">Solo CSS 2026 — Loop Studio Lab</title>
+		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<main class="demo sc">
+			<header class="sc-head">
+				<h1 data-i18n="sc.name">Solo CSS 2026</h1>
+				<p class="sc-lead" data-i18n="sc.lead">Cinque funzioni di CSS arrivate da poco che prima volevano JavaScript. Questa scheda non ha uno script suo: fa tutto il foglio di stile. Ognuna ha la sua demo, le righe che contano e un ripiego dichiarato per i browser che non la conoscono.</p>
+			</header>
+
+			<div class="sc-layout">
+				<nav class="sc-toc" data-i18n-attr="aria-label=sc.toc">
+					<ol>
+						<li><a href="#spy" data-i18n="sc.t1">Indice che segue lo scroll</a></li>
+						<li><a href="#carousel" data-i18n="sc.t2">Carosello senza script</a></li>
+						<li><a href="#anchor" data-i18n="sc.t3">Suggerimenti ancorati</a></li>
+						<li><a href="#bar" data-i18n="sc.t4">Barra che si nasconde</a></li>
+						<li><a href="#corner" data-i18n="sc.t5">Angoli oltre il raggio</a></li>
+					</ol>
+				</nav>
+
+				<div class="sc-body">
+					<section class="sc-sec" id="spy" aria-labelledby="h-spy">
+						<h2 id="h-spy" data-i18n="sc.t1">Indice che segue lo scroll</h2>
+						<p class="sc-desc" data-i18n="sc.s1.d">La demo è l'indice qui a fianco (in alto, su telefono): scorri la pagina e la voce della sezione che stai leggendo si accende da sola. Niente IntersectionObserver, niente script.</p>
+						<pre class="sc-code"><code>.toc ol { scroll-target-group: auto; }
+.toc a:target-current { color: white; }</code></pre>
+						<ul class="sc-support" data-i18n-attr="aria-label=sc.support">
+							<li data-s="yes"><span>Chrome / Edge</span><b>140+</b></li>
+							<li data-s="no"><span>Firefox</span><b>no</b></li>
+							<li data-s="no"><span>Safari</span><b>no</b></li>
+						</ul>
+						<p class="sc-fb"><span class="sc-fb__k" data-i18n="sc.fb">Dove non c'è:</span> <span data-i18n="sc.s1.fb">l'indice resta un elenco di ancore: funziona, ma non si accende.</span></p>
+					</section>
+
+					<section class="sc-sec" id="carousel" aria-labelledby="h-carousel">
+						<h2 id="h-carousel" data-i18n="sc.t2">Carosello senza script</h2>
+						<p class="sc-desc" data-i18n="sc.s2.d">Puntini, frecce e aggancio delle card arrivano dal CSS. Sono controlli veri: si raggiungono con Tab e si usano con Invio.</p>
+						<div class="sc-demo">
+							<ul class="sc-carousel" data-i18n-attr="aria-label=sc.s2.label,data-prev=sc.prev,data-next=sc.next" data-prev="Card precedente" data-next="Card successiva">
+								<li class="sc-card"><span class="sc-card__n">1</span><h3 data-i18n="sc.c1">Alba</h3><p data-i18n="sc.c1.d">Il molo è ancora vuoto.</p></li>
+								<li class="sc-card"><span class="sc-card__n">2</span><h3 data-i18n="sc.c2">Reti</h3><p data-i18n="sc.c2.d">Si stendono ad asciugare.</p></li>
+								<li class="sc-card"><span class="sc-card__n">3</span><h3 data-i18n="sc.c3">Faro</h3><p data-i18n="sc.c3.d">Si accende quando cala la luce.</p></li>
+								<li class="sc-card"><span class="sc-card__n">4</span><h3 data-i18n="sc.c4">Mercato</h3><p data-i18n="sc.c4.d">Il pesce arriva prima del caffè.</p></li>
+								<li class="sc-card"><span class="sc-card__n">5</span><h3 data-i18n="sc.c5">Notte</h3><p data-i18n="sc.c5.d">Resta accesa una sola finestra.</p></li>
+							</ul>
+						</div>
+						<pre class="sc-code"><code>.carousel { overflow-x: auto; scroll-snap-type: x mandatory;
+            scroll-marker-group: after; }
+.carousel li::scroll-marker { content: ""; }
+.carousel li::scroll-marker:target-current { background: red; }
+.carousel::scroll-button(inline-end) { content: "→" / "Next"; }</code></pre>
+						<ul class="sc-support" data-i18n-attr="aria-label=sc.support">
+							<li data-s="yes"><span>Chrome / Edge</span><b>135+</b></li>
+							<li data-s="no"><span>Firefox</span><b>no</b></li>
+							<li data-s="no"><span>Safari</span><b>no</b></li>
+						</ul>
+						<p class="sc-fb"><span class="sc-fb__k" data-i18n="sc.fb">Dove non c'è:</span> <span data-i18n="sc.s2.fb">una fila di card che si aggancia, da scorrere col dito o con la rotella, senza puntini né frecce.</span></p>
+					</section>
+
+					<section class="sc-sec" id="anchor" aria-labelledby="h-anchor">
+						<h2 id="h-anchor" data-i18n="sc.t3">Suggerimenti ancorati</h2>
+						<p class="sc-desc" data-i18n="sc.s3.d">Il suggerimento si attacca al suo bottone senza calcoli in JavaScript e, se sopra non c'è spazio, si gira sotto. Prova a scorrere finché il bottone arriva in cima allo schermo.</p>
+						<div class="sc-demo sc-demo--row">
+							<button type="button" class="sc-btn" id="b-save" popovertarget="t-save" data-i18n="sc.b1">Salva</button>
+							<button type="button" class="sc-btn" id="b-share" popovertarget="t-share" data-i18n="sc.b2">Condividi</button>
+							<button type="button" class="sc-btn" id="b-more" popovertarget="t-more" data-i18n="sc.b3">Altro</button>
+							<div class="sc-tip" id="t-save" popover data-i18n="sc.p1">Salvato per dopo</div>
+							<div class="sc-tip" id="t-share" popover data-i18n="sc.p2">Copia il link</div>
+							<div class="sc-tip" id="t-more" popover data-i18n="sc.p3">Altre azioni</div>
+						</div>
+						<pre class="sc-code"><code>#b-save { anchor-name: --save; }
+#t-save { position-anchor: --save; position-area: top;
+          position-try-fallbacks: flip-block; }</code></pre>
+						<ul class="sc-support" data-i18n-attr="aria-label=sc.support">
+							<li data-s="yes"><span>Chrome / Edge</span><b>125+</b></li>
+							<li data-s="yes"><span>Firefox</span><b>147+</b></li>
+							<li data-s="yes"><span>Safari</span><b>26+</b></li>
+						</ul>
+						<p class="sc-fb"><span class="sc-fb__k" data-i18n="sc.fb">Dove non c'è:</span> <span data-i18n="sc.s3.fb">il popover nativo si apre al centro dello schermo, senza ancora.</span></p>
+					</section>
+
+					<section class="sc-sec" id="bar" aria-labelledby="h-bar">
+						<h2 id="h-bar" data-i18n="sc.t4">Barra che si nasconde</h2>
+						<p class="sc-desc" data-i18n="sc.s4.d">Scorri il riquadro: la barra sale e sparisce nei primi centimetri, mentre la linea rossa mostra quanto hai letto. È un'animazione normale, guidata dallo scroll invece che dal tempo.</p>
+						<div class="sc-demo">
+							<div class="sc-reader" tabindex="0" role="region" data-i18n-attr="aria-label=sc.s4.label">
+								<div class="sc-reader__progress" aria-hidden="true"></div>
+								<div class="sc-reader__bar" data-i18n="sc.s4.bar">Il faro di notte</div>
+								<div class="sc-reader__text">
+									<p data-i18n="sc.r1">Quando il sole scende dietro gli scogli il guardiano sale le scale a chiocciola, una a una, come ogni sera da trent'anni.</p>
+									<p data-i18n="sc.r2">In cima c'è una lampada grande quanto una botte. La accende con un fiammifero, poi aspetta che il vetro si scaldi.</p>
+									<p data-i18n="sc.r3">Dal mare la luce sembra lontanissima, e invece è lì per chi sta tornando: la barca la vede prima del molo.</p>
+									<p data-i18n="sc.r4">A mezzanotte scrive due righe sul registro: vento, nuvole, nessuna barca in difficoltà. Poi spegne e va a dormire.</p>
+									<p data-i18n="sc.r5">È il lavoro più silenzioso del paese, e il solo in cui una buona notte è una notte in cui non succede niente.</p>
+								</div>
+							</div>
+						</div>
+						<pre class="sc-code"><code>.bar { animation: hide linear both;
+       animation-timeline: scroll();
+       animation-range: 0 4rem; }
+@keyframes hide { to { translate: 0 -100%; } }</code></pre>
+						<ul class="sc-support" data-i18n-attr="aria-label=sc.support">
+							<li data-s="yes"><span>Chrome / Edge</span><b>115+</b></li>
+							<li data-s="yes"><span>Firefox</span><b>159+</b></li>
+							<li data-s="yes"><span>Safari</span><b>26+</b></li>
+						</ul>
+						<p class="sc-fb"><span class="sc-fb__k" data-i18n="sc.fb">Dove non c'è:</span> <span data-i18n="sc.s4.fb">la barra resta sempre visibile e la linea di avanzamento non c'è.</span></p>
+					</section>
+
+					<section class="sc-sec" id="corner" aria-labelledby="h-corner">
+						<h2 id="h-corner" data-i18n="sc.t5">Angoli oltre il raggio</h2>
+						<p class="sc-desc" data-i18n="sc.s5.d">Il raggio sa solo arrotondare. La forma dell'angolo cambia il disegno stesso: l'angolo morbido delle icone dei telefoni, lo smusso, il concavo, la tacca.</p>
+						<div class="sc-demo">
+							<ul class="sc-tiles">
+								<li class="sc-tile sc-tile--round"><code>round</code></li>
+								<li class="sc-tile sc-tile--squircle"><code>squircle</code></li>
+								<li class="sc-tile sc-tile--bevel"><code>bevel</code></li>
+								<li class="sc-tile sc-tile--scoop"><code>scoop</code></li>
+								<li class="sc-tile sc-tile--notch"><code>notch</code></li>
+							</ul>
+						</div>
+						<pre class="sc-code"><code>.tile { border-radius: 2.5rem; corner-shape: squircle; }</code></pre>
+						<ul class="sc-support" data-i18n-attr="aria-label=sc.support">
+							<li data-s="yes"><span>Chrome / Edge</span><b>139+</b></li>
+							<li data-s="soon"><span>Firefox</span><b data-i18n="sc.preview">anteprima</b></li>
+							<li data-s="yes"><span>Safari</span><b>27.3+</b></li>
+						</ul>
+						<p class="sc-fb"><span class="sc-fb__k" data-i18n="sc.fb">Dove non c'è:</span> <span data-i18n="sc.s5.fb">tutti gli angoli restano semplicemente arrotondati.</span></p>
+					</section>
+
+					<p class="demo__note" data-i18n="sc.note">Supporto verificato il 12/11/2026 su MDN browser-compat-data. I numeri cambiano in fretta: ricontrolla prima di usare una funzione in un progetto. Aprendo questa pagina in un altro browser si vedono i ripieghi.</p>
+				</div>
+			</div>
+		</main>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

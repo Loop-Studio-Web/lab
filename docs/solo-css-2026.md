@@ -2,7 +2,9 @@
 
 Concept approvato dall'autore il 12/11/2026 («procedi»): **«manuale di bordo»**, una pagina lunga in colonna con indice a sinistra,
 5 funzioni CSS recenti, ognuna con effetto vivo + riga di CSS + badge di supporto + ripiego dichiarato. Layout con 3 schede (era 2).
-Diversa dalle altre: non è un palco centrato né un finto sito, si legge scorrendo e lo scroll è il gesto. **Nessun codice ancora.**
+Diversa dalle altre: non è un palco centrato né un finto sito, si legge scorrendo e lo scroll è il gesto. **Bozza costruita il 12/11 (da mostrare all'autore):** `components/solo-css-2026/`, voce nel sito madre committata in locale, `viewports.mjs core` senza overflow, `i18n-check` ok.
+Trabocchetti: `::scroll-marker-group` NON compare se lo scroller è un figlio di un contenitore `display: grid` (il genitore `.sc-demo` è a blocco); il ripiego del popover è il popover nativo al centro dello schermo (non «sotto al bottone» come previsto).
+Da provare ancora: Firefox/Safari (ripieghi), iframe della modale, telefono vero.
 
 ## Fase 2: struttura
 
@@ -21,6 +23,20 @@ components/solo-css-2026/
   5. **`corner-shape`**: squircle, smussi, tagli. Ripiego: `border-radius`.
 - Badge supporto: 3 pallini (Chrome/Edge, Firefox, Safari), stato scritto a mano in HTML dopo la verifica su caniuse (non si rileva da JS); data della verifica in pagina.
 - Il ripiego si mostra anche a richiesta? Idea scartata per ora: complicherebbe il CSS. Il badge basta.
+
+## Badge verificati (12/11/2026, MDN browser-compat-data 8.1.9, non caniuse)
+| Funzione | Chrome/Edge | Firefox | Safari |
+|---|---|---|---|
+| `scroll-target-group`, `:target-current` | 140 / 135 | no | no |
+| `::scroll-marker`, `::scroll-button()` | 135 | no | no |
+| anchor positioning (`anchor-name`, `position-area`, `position-try`) | 125-129 | 147 | 26 |
+| `popover` | 114 | 125 | 17 (iOS 18.3) |
+| `animation-timeline` (`scroll()`) | 115 | 159 | 26 |
+| `scroll-state()` (container query) | 133 | no | no |
+| `corner-shape` | 139 | solo preview | 27.3 |
+
+Decisioni: sezioni 1, 2 e (se si usa `scroll-state`) 4 sono solo Chromium → ripiego ben visibile. Per la 4 usare `animation-timeline: scroll()`
+(ormai in tutti e tre) e non `scroll-state()`. La 3 è ormai Baseline-ish. `corner-shape`: Chromium + Safari 27.3.
 
 ## Dati e asset
 - **Nessun asset**: niente immagini, niente font nuovi. Codice in `ui-monospace, ...` (stack di sistema, nessun file, peso zero).

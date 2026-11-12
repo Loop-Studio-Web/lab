@@ -1,0 +1,527 @@
+/* Solo CSS 2026: «manuale di bordo». Lo stile base è il ripiego; ogni funzione nuova sta dentro il suo @supports. */
+
+:root {
+	--sc-yes: #3ddc84;
+	--sc-soon: #ffb340;
+	--sc-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.sc {
+	max-width: 70rem;
+}
+.sc-head {
+	max-width: 44rem;
+	margin-bottom: 2.5rem;
+}
+.sc-head h1 {
+	font-size: clamp(2rem, 5vw, 3rem);
+}
+.sc-lead {
+	margin-top: 0.9rem;
+	color: var(--muted);
+	text-wrap: pretty;
+}
+
+/* Colonna: indice a sinistra, sezioni a destra. Sotto 48rem l'indice diventa una barra in alto. */
+.sc-layout {
+	display: grid;
+	grid-template-columns: 13.5rem minmax(0, 1fr);
+	gap: clamp(1.5rem, 4vw, 3.5rem);
+	align-items: start;
+}
+.sc-toc {
+	position: sticky;
+	top: 1.5rem;
+}
+.sc-toc ol {
+	display: grid;
+	gap: 0.1rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border-left: 1px solid var(--line);
+}
+.sc-toc a {
+	position: relative;
+	display: block;
+	padding: 0.55rem 0.9rem;
+	color: var(--muted);
+	font-size: 0.9375rem;
+	line-height: 1.3;
+	text-decoration: none;
+}
+.sc-toc a::before {
+	content: '';
+	position: absolute;
+	inset: 0.3rem auto 0.3rem -1px;
+	width: 0.2rem;
+	border-radius: 1px;
+	background: var(--accent);
+	opacity: 0;
+	scale: 1 0.4;
+	transition:
+		opacity 0.2s var(--ease-out),
+		scale 0.25s var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+	.sc-toc a:hover {
+		color: var(--text);
+	}
+}
+.sc-toc a:focus-visible {
+	color: var(--text);
+}
+
+@supports (scroll-target-group: auto) {
+	.sc-toc ol {
+		scroll-target-group: auto;
+	}
+}
+@supports selector(:target-current) {
+	.sc-toc a:target-current {
+		color: var(--text);
+	}
+	.sc-toc a:target-current::before {
+		opacity: 1;
+		scale: 1;
+	}
+}
+
+/* Sezioni */
+.sc-sec {
+	scroll-margin-top: 1.5rem;
+	padding-bottom: 3rem;
+}
+.sc-sec + .sc-sec {
+	padding-top: 3rem;
+	border-top: 1px solid var(--line);
+}
+.sc-sec h2 {
+	font-size: clamp(1.4rem, 3vw, 1.9rem);
+	counter-increment: sc-n;
+}
+.sc-sec h2::before {
+	content: counter(sc-n, decimal-leading-zero);
+	display: block;
+	margin-bottom: 0.4rem;
+	color: var(--accent);
+	font-family: var(--sc-mono);
+	font-size: 0.8125rem;
+	font-weight: 500;
+	letter-spacing: 0.08em;
+}
+.sc-body {
+	counter-reset: sc-n;
+}
+.sc-desc {
+	max-width: 40rem;
+	margin-top: 0.8rem;
+	color: var(--muted);
+	text-wrap: pretty;
+}
+.sc-demo {
+	margin-top: 1.5rem;
+	padding: clamp(1.25rem, 4vw, 2.5rem) 1rem;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: 1rem;
+}
+.sc-demo--row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.75rem;
+	padding-block: clamp(3rem, 8vw, 4.5rem);
+}
+
+.sc-code {
+	margin: 1rem 0 0;
+	padding: 1rem 1.1rem;
+	overflow-x: auto;
+	background: #0d0d0d;
+	border: 1px solid var(--line);
+	border-radius: 0.75rem;
+	color: #d8d8d8;
+	font-family: var(--sc-mono);
+	font-size: 0.8125rem;
+	line-height: 1.65;
+	tab-size: 2;
+}
+
+/* Badge di supporto: testo + pallino, il colore non è l'unica informazione. */
+.sc-support {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: 1rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+.sc-support li {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.3rem 0.75rem 0.3rem 0.6rem;
+	border: 1px solid var(--line);
+	border-radius: 2rem;
+	font-size: 0.8125rem;
+}
+.sc-support li::before {
+	content: '';
+	width: 0.55rem;
+	height: 0.55rem;
+	border-radius: 50%;
+	border: 2px solid var(--muted);
+}
+.sc-support li[data-s='yes']::before {
+	background: var(--sc-yes);
+	border-color: var(--sc-yes);
+}
+.sc-support li[data-s='soon']::before {
+	background: linear-gradient(90deg, var(--sc-soon) 50%, transparent 50%);
+	border-color: var(--sc-soon);
+}
+.sc-support span {
+	color: var(--muted);
+}
+.sc-support b {
+	font-weight: 600;
+}
+.sc-fb {
+	margin-top: 0.9rem;
+	max-width: 40rem;
+	color: var(--muted);
+	font-size: 0.875rem;
+	text-wrap: pretty;
+}
+.sc-fb__k {
+	color: var(--text);
+	font-weight: 600;
+}
+
+/* 2. Carosello. Base: fila con aggancio. */
+.sc-carousel {
+	display: flex;
+	width: min(100%, 24rem);
+	margin: 0 auto;
+	padding: 0;
+	overflow-x: auto;
+	list-style: none;
+	scroll-snap-type: x mandatory;
+	overscroll-behavior-x: contain;
+	scrollbar-width: thin;
+	border-radius: 0.9rem;
+}
+.sc-card {
+	flex: 0 0 100%;
+	scroll-snap-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 0.25rem;
+	min-height: 13rem;
+	padding: 1.5rem;
+	background: linear-gradient(160deg, #2b2b2b, #151515);
+	border: 1px solid var(--line);
+	border-radius: 0.9rem;
+}
+.sc-card__n {
+	margin-bottom: auto;
+	color: var(--accent);
+	font-family: var(--sc-mono);
+	font-size: 0.8125rem;
+}
+.sc-card h3 {
+	font-size: 1.6rem;
+}
+.sc-card p {
+	color: var(--muted);
+}
+
+@supports (scroll-marker-group: after) and selector(::scroll-marker) {
+	.sc-carousel {
+		anchor-name: --sc-carousel;
+		scroll-marker-group: after;
+		scrollbar-width: none;
+	}
+	.sc-carousel::scroll-marker-group {
+		display: flex;
+		justify-content: center;
+		gap: 0.6rem;
+		padding-top: 1rem;
+	}
+	.sc-card::scroll-marker {
+		content: '';
+		display: block;
+		width: 0.7rem;
+		height: 0.7rem;
+		border-radius: 50%;
+		background: #444;
+	}
+	.sc-card::scroll-marker:target-current {
+		background: var(--accent);
+	}
+	.sc-card::scroll-marker:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+	}
+	.sc-carousel::scroll-button(*) {
+		position: fixed;
+		position-anchor: --sc-carousel;
+		top: anchor(center);
+		translate: 0 -50%;
+		display: grid;
+		place-items: center;
+		width: 2.75rem;
+		height: 2.75rem;
+		padding: 0;
+		border: 1px solid var(--line);
+		border-radius: 50%;
+		background: rgb(0 0 0 / 0.65);
+		color: var(--text);
+		font-size: 1.25rem;
+		cursor: pointer;
+	}
+	.sc-carousel::scroll-button(inline-start) {
+		content: '←' / attr(data-prev);
+		left: calc(anchor(left) + 0.5rem);
+	}
+	.sc-carousel::scroll-button(inline-end) {
+		content: '→' / attr(data-next);
+		right: calc(anchor(right) + 0.5rem);
+	}
+	.sc-carousel::scroll-button(*):disabled {
+		opacity: 0.25;
+		cursor: default;
+	}
+	.sc-carousel::scroll-button(*):focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+	.sc-carousel::scroll-button(*):not(:disabled):active {
+		scale: 0.95;
+	}
+}
+
+/* 3. Suggerimenti ancorati. Base: popover nativo (si apre al centro dello schermo). */
+.sc-btn {
+	min-height: 2.75rem;
+	padding: 0.5rem 1.25rem;
+	background: #262626;
+	border: 1px solid #3a3a3a;
+	border-radius: 0.65rem;
+	color: var(--text);
+	font: inherit;
+	font-weight: 500;
+	cursor: pointer;
+	transition: scale 0.15s var(--ease-out);
+}
+.sc-btn:active {
+	scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+	.sc-btn:hover {
+		background: #303030;
+	}
+}
+.sc-tip {
+	padding: 0.6rem 0.9rem;
+	background: var(--surface);
+	border: 1px solid #3a3a3a;
+	border-radius: 0.6rem;
+	color: var(--text);
+	font-size: 0.875rem;
+}
+
+@supports (anchor-name: --a) and (position-area: top) {
+	#b-save {
+		anchor-name: --sc-save;
+	}
+	#b-share {
+		anchor-name: --sc-share;
+	}
+	#b-more {
+		anchor-name: --sc-more;
+	}
+	#t-save {
+		position-anchor: --sc-save;
+	}
+	#t-share {
+		position-anchor: --sc-share;
+	}
+	#t-more {
+		position-anchor: --sc-more;
+	}
+	.sc-tip {
+		inset: auto;
+		margin: 0.5rem;
+		position-area: top;
+		position-try-fallbacks: flip-block;
+		opacity: 0;
+		translate: 0 0.25rem;
+		transition:
+			opacity 0.18s var(--ease-out),
+			translate 0.18s var(--ease-out),
+			display 0.18s allow-discrete,
+			overlay 0.18s allow-discrete;
+	}
+	.sc-tip:popover-open {
+		opacity: 1;
+		translate: 0 0;
+	}
+	@starting-style {
+		.sc-tip:popover-open {
+			opacity: 0;
+			translate: 0 0.25rem;
+		}
+	}
+}
+
+/* 4. Barra che si nasconde. Base: barra sempre visibile, senza linea. */
+.sc-reader {
+	width: min(100%, 26rem);
+	height: 16rem;
+	margin-inline: auto;
+	overflow-y: auto;
+	background: #0d0d0d;
+	border: 1px solid var(--line);
+	border-radius: 0.9rem;
+}
+.sc-reader__progress {
+	display: none;
+}
+.sc-reader__bar {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	padding: 0.85rem 1.1rem;
+	background: #222;
+	border-bottom: 1px solid var(--line);
+	font-family: var(--font-display);
+	font-weight: 600;
+}
+.sc-reader__text {
+	display: grid;
+	gap: 1rem;
+	padding: 1.1rem;
+	color: #c9c9c9;
+	font-size: 0.9375rem;
+}
+
+@supports (animation-timeline: scroll()) {
+	.sc-reader__progress {
+		position: sticky;
+		top: 0;
+		z-index: 2;
+		display: block;
+		height: 0.2rem;
+		margin-bottom: -0.2rem;
+		background: var(--accent);
+		transform-origin: 0 50%;
+		animation: sc-progress linear both;
+		animation-timeline: scroll(nearest block);
+	}
+	.sc-reader__bar {
+		animation: sc-hide linear both;
+		animation-timeline: scroll(nearest block);
+		animation-range: 0 4rem;
+	}
+}
+@keyframes sc-progress {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+@keyframes sc-hide {
+	to {
+		transform: translateY(-100%);
+	}
+}
+
+/* 5. corner-shape. Base: border-radius. */
+.sc-tiles {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+	gap: 1rem;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.sc-tile {
+	display: grid;
+	place-items: center;
+	aspect-ratio: 1;
+	background: var(--accent-strong);
+	border-radius: 2.5rem;
+	color: var(--text);
+}
+.sc-tile code {
+	font-family: var(--sc-mono);
+	font-size: 0.875rem;
+}
+@supports (corner-shape: squircle) {
+	.sc-tile--squircle {
+		corner-shape: squircle;
+	}
+	.sc-tile--bevel {
+		corner-shape: bevel;
+	}
+	.sc-tile--scoop {
+		corner-shape: scoop;
+	}
+	.sc-tile--notch {
+		corner-shape: notch;
+	}
+}
+
+/* Telefono: l'indice diventa una barra in alto. */
+@media (width < 48rem) {
+	.sc-layout {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1.25rem;
+	}
+	.sc-toc {
+		top: 0;
+		z-index: 5;
+		margin-inline: -1.5rem;
+		padding-inline: 1.5rem;
+		background: var(--bg);
+		border-bottom: 1px solid var(--line);
+	}
+	.sc-toc ol {
+		display: flex;
+		gap: 0.25rem;
+		overflow-x: auto;
+		border-left: 0;
+		scrollbar-width: none;
+	}
+	.sc-toc a {
+		padding: 0.8rem 0.7rem;
+		white-space: nowrap;
+	}
+	.sc-toc a::before {
+		inset: auto 0.7rem 0.3rem;
+		width: auto;
+		height: 0.2rem;
+		scale: 0.4 1;
+	}
+	@supports selector(:target-current) {
+		.sc-toc a:target-current::before {
+			scale: 1;
+		}
+	}
+	.sc-sec {
+		scroll-margin-top: 3.5rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.sc-reader__bar,
+	.sc-reader__progress {
+		animation: none;
+	}
+}
