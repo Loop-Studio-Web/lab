@@ -11,14 +11,14 @@
 
 	// Contenuti di fantasia (idee per il fine settimana). Le foto sono quelle già in _shared/img (WebP, 900 px).
 	const CARTE = [
-		{ t: 'Lago d’Orta', tag: 'Acqua', r: '2 ore da Milano · sentieri facili', f: 'alpine-lake' },
-		{ t: 'Cinque Terre', tag: 'Mare', r: 'Treno locale · niente auto', f: 'manarola' },
-		{ t: 'Val Gardena', tag: 'Montagna', r: 'Baite e panorami · da 1.200 m', f: 'snow-lake' },
-		{ t: 'Matera', tag: 'Città', r: 'Notti nei Sassi · 2 giorni', f: 'desert' },
-		{ t: 'Delta del Po', tag: 'Natura', r: 'In bici tra le valli', f: 'fog-forest' },
-		{ t: 'Ortigia', tag: 'Mare', r: 'Mercato e scogli · volo diretto', f: 'beach' },
-		{ t: 'Cascate del Serio', tag: 'Montagna', r: 'Sentiero con rifugio', f: 'waterfall' },
-		{ t: 'Cielo d’Islanda', tag: 'Natura', r: 'Aurora boreale · 4 giorni', f: 'aurora' },
+		{ t: LabI18n.t('carte.c1.t', 'Lago d’Orta'), tag: LabI18n.t('carte.tag.acqua', 'Acqua'), r: LabI18n.t('carte.c1.r', '2 ore da Milano · sentieri facili'), f: 'alpine-lake' },
+		{ t: LabI18n.t('carte.c2.t', 'Cinque Terre'), tag: LabI18n.t('carte.tag.mare', 'Mare'), r: LabI18n.t('carte.c2.r', 'Treno locale · niente auto'), f: 'manarola' },
+		{ t: LabI18n.t('carte.c3.t', 'Val Gardena'), tag: LabI18n.t('carte.tag.montagna', 'Montagna'), r: LabI18n.t('carte.c3.r', 'Baite e panorami · da 1.200 m'), f: 'snow-lake' },
+		{ t: LabI18n.t('carte.c4.t', 'Matera'), tag: LabI18n.t('carte.tag.citta', 'Città'), r: LabI18n.t('carte.c4.r', 'Notti nei Sassi · 2 giorni'), f: 'desert' },
+		{ t: LabI18n.t('carte.c5.t', 'Delta del Po'), tag: LabI18n.t('carte.tag.natura', 'Natura'), r: LabI18n.t('carte.c5.r', 'In bici tra le valli'), f: 'fog-forest' },
+		{ t: LabI18n.t('carte.c6.t', 'Ortigia'), tag: LabI18n.t('carte.tag.mare', 'Mare'), r: LabI18n.t('carte.c6.r', 'Mercato e scogli · volo diretto'), f: 'beach' },
+		{ t: LabI18n.t('carte.c7.t', 'Cascate del Serio'), tag: LabI18n.t('carte.tag.montagna', 'Montagna'), r: LabI18n.t('carte.c7.r', 'Sentiero con rifugio'), f: 'waterfall' },
+		{ t: LabI18n.t('carte.c8.t', 'Cielo d’Islanda'), tag: LabI18n.t('carte.tag.natura', 'Natura'), r: LabI18n.t('carte.c8.r', 'Aurora boreale · 4 giorni'), f: 'aurora' },
 	];
 
 	let indice = 0;

@@ -11,14 +11,14 @@
 	// Contenuti di fantasia.
 	// Nome, distanza, categoria, tinta, posizione sulla mappa (x, y in %; tutte nella metà alta, che resta libera a pannello a metà).
 	const LUOGHI = [
-		['Bar Aurora', '120 m', 'Caffè', 200, 18, 13],
-		['Farmacia Rossi', '240 m', 'Salute', 150, 50, 10],
-		['Forno del Borgo', '300 m', 'Pane', 35, 80, 14],
-		['Libreria Tre Archi', '410 m', 'Libri', 270, 30, 27],
-		['Giardino delle Mura', '520 m', 'Parco', 120, 66, 26],
-		['Pizzeria Da Nino', '640 m', 'Cena', 15, 14, 40],
-		['Bici Officina', '700 m', 'Bici', 190, 48, 41],
-		['Gelateria Nuvola', '850 m', 'Gelato', 320, 84, 40],
+		[LabI18n.t('pannello.l1.n', 'Bar Aurora'), '120 m', LabI18n.t('pannello.l1.c', 'Caffè'), 200, 18, 13],
+		[LabI18n.t('pannello.l2.n', 'Farmacia Rossi'), '240 m', LabI18n.t('pannello.l2.c', 'Salute'), 150, 50, 10],
+		[LabI18n.t('pannello.l3.n', 'Forno del Borgo'), '300 m', LabI18n.t('pannello.l3.c', 'Pane'), 35, 80, 14],
+		[LabI18n.t('pannello.l4.n', 'Libreria Tre Archi'), '410 m', LabI18n.t('pannello.l4.c', 'Libri'), 270, 30, 27],
+		[LabI18n.t('pannello.l5.n', 'Giardino delle Mura'), '520 m', LabI18n.t('pannello.l5.c', 'Parco'), 120, 66, 26],
+		[LabI18n.t('pannello.l6.n', 'Pizzeria Da Nino'), '640 m', LabI18n.t('pannello.l6.c', 'Cena'), 15, 14, 40],
+		[LabI18n.t('pannello.l7.n', 'Bici Officina'), '700 m', LabI18n.t('pannello.l7.c', 'Bici'), 190, 48, 41],
+		[LabI18n.t('pannello.l8.n', 'Gelateria Nuvola'), '850 m', LabI18n.t('pannello.l8.c', 'Gelato'), 320, 84, 40],
 	];
 	const pins = [];
 	const righe = [];

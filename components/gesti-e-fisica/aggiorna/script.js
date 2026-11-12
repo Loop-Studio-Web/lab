@@ -11,22 +11,22 @@
 	const SOGLIA = 48; // px di spostamento (già con la resistenza) oltre i quali si aggiorna
 	const TENUTA = 56; // dove si ferma l'elenco mentre carica
 	const GIA = [
-		['La biblioteca resta aperta fino a mezzanotte', '2 ore fa'],
-		['Nuovo orario per il bus 14', '3 ore fa'],
-		['Mercato del sabato: spostato in piazza Verdi', 'ieri'],
-		['Chiude per lavori il ponte vecchio', 'ieri'],
-		['Concerto in giardino, ingresso libero', '2 giorni fa'],
-		['Aperte le iscrizioni ai corsi serali', '3 giorni fa'],
+		[LabI18n.t('aggiorna.g1', 'La biblioteca resta aperta fino a mezzanotte'), LabI18n.t('aggiorna.t2h', '2 ore fa')],
+		[LabI18n.t('aggiorna.g2', 'Nuovo orario per il bus 14'), LabI18n.t('aggiorna.t3h', '3 ore fa')],
+		[LabI18n.t('aggiorna.g3', 'Mercato del sabato: spostato in piazza Verdi'), LabI18n.t('aggiorna.tieri', 'ieri')],
+		[LabI18n.t('aggiorna.g4', 'Chiude per lavori il ponte vecchio'), LabI18n.t('aggiorna.tieri', 'ieri')],
+		[LabI18n.t('aggiorna.g5', 'Concerto in giardino, ingresso libero'), LabI18n.t('aggiorna.t2g', '2 giorni fa')],
+		[LabI18n.t('aggiorna.g6', 'Aperte le iscrizioni ai corsi serali'), LabI18n.t('aggiorna.t3g', '3 giorni fa')],
 	];
 	const NUOVE = [
-		'Pista ciclabile: inaugurato il primo tratto',
-		'Domenica si vota nel quartiere per il parco',
-		'Acqua sospesa in via dei Mille dalle 14',
-		'Mostra fotografica alla stazione vecchia',
-		'Il forno di via Roma torna a fare il pane di segale',
-		'Controlli sui rifiuti: cosa cambia',
-		'Torna la corsa di primavera, percorso nuovo',
-		'Una nuova fermata davanti all’ospedale',
+		LabI18n.t('aggiorna.n1', 'Pista ciclabile: inaugurato il primo tratto'),
+		LabI18n.t('aggiorna.n2', 'Domenica si vota nel quartiere per il parco'),
+		LabI18n.t('aggiorna.n3', 'Acqua sospesa in via dei Mille dalle 14'),
+		LabI18n.t('aggiorna.n4', 'Mostra fotografica alla stazione vecchia'),
+		LabI18n.t('aggiorna.n5', 'Il forno di via Roma torna a fare il pane di segale'),
+		LabI18n.t('aggiorna.n6', 'Controlli sui rifiuti: cosa cambia'),
+		LabI18n.t('aggiorna.n7', 'Torna la corsa di primavera, percorso nuovo'),
+		LabI18n.t('aggiorna.n8', 'Una nuova fermata davanti all’ospedale'),
 	];
 	let prossima = 0;
 
