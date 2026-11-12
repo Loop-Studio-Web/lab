@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="carte.title">Carte — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../../_shared/fisica.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fd-stage cd" data-cd>
+					<div class="cd__deck" data-deck></div>
+					<div class="cd__empty" data-empty hidden>
+						<p data-i18n="carte.empty">Mazzo finito.</p>
+						<button type="button" class="cd__again" data-again data-i18n="carte.again">Ricomincia</button>
+					</div>
+					<div class="cd__btns" data-btns>
+						<button type="button" class="cd__btn cd__btn--no" data-no aria-label="Salta" data-i18n-attr="aria-label=carte.no"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+						<button type="button" class="cd__btn cd__btn--yes" data-yes aria-label="Mi piace" data-i18n-attr="aria-label=carte.yes"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></button>
+					</div>
+					<p class="sr-only" data-live aria-live="polite"></p>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="carte.name">Carte</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="carte.lead">Un mazzo da scartare col dito: la carta segue il pollice, e se la lasci con abbastanza slancio vola via, altrimenti torna al suo posto con una molla.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="gf.mouse">Mouse</dt><dd data-i18n="carte.mouse">Trascina la carta di lato e rilasciala; un colpo secco basta anche se hai fatto poca strada.</dd></div>
+						<div><dt data-i18n="gf.touch">Tocco</dt><dd data-i18n="carte.touch">Spingi la carta col pollice: conta anche la velocità con cui la lasci.</dd></div>
+						<div><dt data-i18n="gf.kbd">Tastiera</dt><dd data-i18n="carte.kbd">Tab sulla carta, poi le frecce sinistra e destra; oppure i due pulsanti sotto.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="carte.tip">Decide la velocità, non solo la distanza: chi lancia piano ma lontano e chi lancia veloce ma corto vogliono la stessa cosa. E ogni gesto ha il suo pulsante, per chi non può trascinare.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>
