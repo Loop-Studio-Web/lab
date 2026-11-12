@@ -49,4 +49,6 @@
 .sc[data-cut='island'] .sc__cutout { top: 0.5rem; width: 26%; height: 1.2rem; border-radius: 99px; }
 .sc[data-cut='none'] .sc__cutout { width: 0.7rem; height: 0.7rem; top: 0.4rem; border-radius: 50%; }
 
+.sc__attrbox { display: grid; justify-items: center; gap: 0.15rem; }
+.sc__attrlabel { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
 .sc__attrs { display: block; max-width: 19rem; text-align: center; font-size: 0.75rem; line-height: 1.5; color: var(--muted); overflow-wrap: anywhere; }
