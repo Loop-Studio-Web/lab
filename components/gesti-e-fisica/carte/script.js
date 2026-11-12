@@ -6,18 +6,19 @@
 	const empty = root.querySelector('[data-empty]');
 	const btns = root.querySelector('[data-btns]');
 	const live = root.querySelector('[data-live]');
+	const flash = root.querySelector('[data-flash]');
 	const [btnNo, btnYes] = [root.querySelector('[data-no]'), root.querySelector('[data-yes]')];
 
-	// Contenuti di fantasia (idee per il fine settimana).
+	// Contenuti di fantasia (idee per il fine settimana). Le foto sono quelle già in _shared/img (WebP, 900 px).
 	const CARTE = [
-		{ t: 'Lago d’Orta', tag: 'Acqua', r: '2 ore da Milano · sentieri facili', h: 200 },
-		{ t: 'Cinque Terre', tag: 'Mare', r: 'Treno locale · niente auto', h: 215 },
-		{ t: 'Val Gardena', tag: 'Montagna', r: 'Baite e panorami · da 1.200 m', h: 150 },
-		{ t: 'Matera', tag: 'Città', r: 'Notti nei Sassi · 2 giorni', h: 25 },
-		{ t: 'Delta del Po', tag: 'Natura', r: 'In bici tra le valli', h: 120 },
-		{ t: 'Ortigia', tag: 'Mare', r: 'Mercato e scogli · volo diretto', h: 190 },
-		{ t: 'Dolomiti di Brenta', tag: 'Montagna', r: 'Rifugio con cena inclusa', h: 170 },
-		{ t: 'Lecce', tag: 'Città', r: 'Barocco e pasticciotti', h: 40 },
+		{ t: 'Lago d’Orta', tag: 'Acqua', r: '2 ore da Milano · sentieri facili', f: 'alpine-lake' },
+		{ t: 'Cinque Terre', tag: 'Mare', r: 'Treno locale · niente auto', f: 'manarola' },
+		{ t: 'Val Gardena', tag: 'Montagna', r: 'Baite e panorami · da 1.200 m', f: 'snow-lake' },
+		{ t: 'Matera', tag: 'Città', r: 'Notti nei Sassi · 2 giorni', f: 'desert' },
+		{ t: 'Delta del Po', tag: 'Natura', r: 'In bici tra le valli', f: 'fog-forest' },
+		{ t: 'Ortigia', tag: 'Mare', r: 'Mercato e scogli · volo diretto', f: 'beach' },
+		{ t: 'Cascate del Serio', tag: 'Montagna', r: 'Sentiero con rifugio', f: 'waterfall' },
+		{ t: 'Cielo d’Islanda', tag: 'Natura', r: 'Aurora boreale · 4 giorni', f: 'aurora' },
 	];
 
 	let indice = 0;
@@ -28,8 +29,8 @@
 	const crea = (c) => {
 		const el = document.createElement('article');
 		el.className = 'cd__card';
-		el.style.setProperty('--h', c.h);
-		el.innerHTML = `<span class="cd__stamp cd__stamp--yes"></span><span class="cd__stamp cd__stamp--no"></span><span class="cd__tag"></span><h2 class="cd__title"></h2><p class="cd__line"></p>`;
+		el.innerHTML = `<img class="cd__photo" alt="" width="900" height="600" decoding="async" draggable="false"><span class="cd__shade"></span><span class="cd__stamp cd__stamp--yes"></span><span class="cd__stamp cd__stamp--no"></span><span class="cd__tag"></span><h2 class="cd__title"></h2><p class="cd__line"></p>`;
+		el.querySelector('.cd__photo').src = `../../_shared/img/${c.f}-m.webp`;
 		el.querySelector('.cd__tag').textContent = c.tag;
 		el.querySelector('.cd__title').textContent = c.t;
 		el.querySelector('.cd__line').textContent = c.r;
@@ -89,6 +90,10 @@
 		const nome = el.querySelector('.cd__title').textContent;
 		occupata = true;
 		el.style.pointerEvents = 'none';
+		flash.dataset.verso = verso > 0 ? 'yes' : 'no';
+		flash.classList.remove('is-on');
+		void flash.offsetWidth;
+		flash.classList.add('is-on');
 		// Le carte sotto avanzano subito: --p arriva a 1 mentre la carta esce.
 		const conclusione = () => {
 			el.remove();

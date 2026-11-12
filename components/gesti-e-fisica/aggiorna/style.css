@@ -20,3 +20,11 @@
 .pu__item b { font-weight: 600; }
 .pu__item small { color: var(--muted); }
 .pu__item--new { border-left: 3px solid var(--accent); }
+
+/* Schermi larghi e bassi (portatile, monitor): sotto il telefono non c'è altro, quindi il riquadro cresce in larghezza e altezza. */
+@media (min-width: 56rem) and (min-aspect-ratio: 3/2) {
+	.pu.gf-tel { width: min(26rem, 100%); height: min(36rem, 100svh - 6rem); }
+	.pu__bar h2 { font-size: 1.25rem; }
+	.pu__item { padding: 0.85rem 1rem; font-size: 1rem; }
+	.pu__ind { top: 4.4rem; }
+}

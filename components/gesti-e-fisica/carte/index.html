@@ -20,7 +20,13 @@
 		<main class="demo">
 			<div class="demo__stage">
 				<div class="fd-stage cd" data-cd>
-					<div class="cd__deck" data-deck></div>
+					<div class="cd__table">
+						<div class="cd__deck" data-deck></div>
+						<div class="cd__flash" data-flash aria-hidden="true">
+							<svg class="cd__flash-yes" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+							<svg class="cd__flash-no" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+						</div>
+					</div>
 					<div class="cd__empty" data-empty hidden>
 						<p data-i18n="carte.empty">Mazzo finito.</p>
 						<button type="button" class="cd__again" data-again data-i18n="carte.again">Ricomincia</button>
