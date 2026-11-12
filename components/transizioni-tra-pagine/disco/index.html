@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<script src="../stile.js"></script>
+		<title>Disco — Cera &amp; Solco — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../style.css" />
+		<link rel="stylesheet" href="../transizioni.css" />
+		<script src="../dati.js"></script>
+		<script src="../copertine.js"></script>
+	</head>
+	<body>
+		<script src="../barra.js"></script>
+		<main class="ttp-main" data-disco-page>
+			<a class="ttp-back" href="../" data-back data-i18n="ttp.back">← Catalogo</a>
+			<div class="ttp-disc">
+				<div class="disc-art">
+					<div class="vinyl" aria-hidden="true"><div class="vinyl__spin"><span class="vinyl__label"></span></div></div>
+					<div class="sleeve" data-cover></div>
+				</div>
+				<div class="disc-info">
+					<p class="disc-meta"><span data-artist></span> · <span data-year></span></p>
+					<h1 data-title></h1>
+					<h2 class="demo__label" data-i18n="ttp.tracks">Tracce</h2>
+					<ol class="tracks" data-tracks></ol>
+				</div>
+			</div>
+		</main>
+		<script src="../script.js"></script>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

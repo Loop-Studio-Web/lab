@@ -1,7 +1,11 @@
 # Transizioni tra pagine (scheda 5 del piano, categoria Navigazione)
 
 Concept approvato dall'autore il 12/11/2026: **negozio di dischi** inventato (dati di fantasia), mini sito di 3 pagine vere,
-selettore di stile (Dissolvenza / Scorrimento / Volo / Nessuna). Fase 1 e 2 chiuse; codice non ancora iniziato.
+selettore di stile (Dissolvenza / Scorrimento / Volo / Nessuna). **Bozza costruita il 12/11** (viewports `core` senza overflow, i18n-check ok,
+voce nel sito madre in locale). Differenze dalla struttura sotto: `stile.js` (in `<head>`) contiene anche `pageswap`/`pagereveal`
+(devono essere registrati prima del primo disegno); `barra.js` (primo elemento del body) scrive UNA volta la striscia con il selettore
++ la barra del negozio, e dà `Ttp.link()` (porta `?lang`/`?embed`); `script.js` compone catalogo e scheda disco da `dati.js`.
+**Non provato ancora**: la transizione vera nei browser (solo screenshot statici), iframe del sito madre, tasto Indietro, bfcache.
 
 ## Fase 2: struttura
 

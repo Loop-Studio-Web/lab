@@ -1,0 +1,89 @@
+/* Il cuore della scheda: transizioni tra pagine VERE (documenti diversi), solo CSS.
+   html[data-stile] lo mette stile.js (sessionStorage); html[data-dir] lo mette pagereveal (avanti/indietro).
+   «Nessuna» non ha regole: stile.js salta la transizione. Chrome/Edge 126+, Safari 18.2+; altrove la navigazione è normale. */
+
+@view-transition {
+	navigation: auto;
+}
+
+/* La barra e il logo non si muovono mai: sono blocchi con nome proprio, identici nelle 3 pagine.
+   Si mostra solo la versione nuova, senza animazione (altrimenti le due copie si sommerebbero). */
+.ttp-top {
+	view-transition-name: barra;
+}
+.studio-corner {
+	view-transition-name: logo;
+}
+::view-transition-old(barra),
+::view-transition-old(logo) {
+	display: none;
+}
+::view-transition-new(barra),
+::view-transition-new(logo) {
+	animation: none;
+}
+
+/* Dissolvenza (predefinita): la pagina che esce sfuma, quella che entra compare. */
+::view-transition-group(root) {
+	animation-duration: 0.3s;
+	animation-timing-function: var(--ease-out);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	/* Scorrimento: la nuova pagina arriva dal lato verso cui si va (Catalogo → Disco → Contatto). */
+	html[data-stile='scorrimento']::view-transition-group(root) {
+		animation-duration: 0.4s;
+		animation-timing-function: var(--ease-in-out);
+	}
+	html[data-stile='scorrimento']::view-transition-old(root) {
+		animation-name: ttp-esce-sx;
+	}
+	html[data-stile='scorrimento']::view-transition-new(root) {
+		animation-name: ttp-entra-dx;
+	}
+	html[data-stile='scorrimento'][data-dir='back']::view-transition-old(root) {
+		animation-name: ttp-esce-dx;
+	}
+	html[data-stile='scorrimento'][data-dir='back']::view-transition-new(root) {
+		animation-name: ttp-entra-sx;
+	}
+
+	/* Volo: la copertina cliccata è lo stesso elemento nelle due pagine e vola dall'una all'altra. */
+	html[data-stile='volo'] .sleeve {
+		view-transition-name: cover;
+	}
+	html[data-stile='volo']::view-transition-group(cover) {
+		animation-duration: 0.55s;
+		animation-timing-function: var(--ease-in-out);
+	}
+	html[data-stile='volo']::view-transition-old(cover),
+	html[data-stile='volo']::view-transition-new(cover) {
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+@keyframes ttp-esce-sx {
+	to {
+		transform: translateX(-12%);
+		opacity: 0;
+	}
+}
+@keyframes ttp-entra-dx {
+	from {
+		transform: translateX(12%);
+		opacity: 0;
+	}
+}
+@keyframes ttp-esce-dx {
+	to {
+		transform: translateX(12%);
+		opacity: 0;
+	}
+}
+@keyframes ttp-entra-sx {
+	from {
+		transform: translateX(-12%);
+		opacity: 0;
+	}
+}

@@ -1,0 +1,331 @@
+/* Transizioni tra pagine: il negozio «Cera & Solco» (3 pagine). Layout delle pagine; il movimento sta in transizioni.css. */
+
+.ttp-top {
+	position: sticky;
+	top: 0;
+	z-index: 5;
+	background: var(--bg);
+	border-bottom: 1px solid var(--line);
+}
+
+/* Striscia della demo: selettore dello stile */
+.ttp-demo {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem 0.9rem;
+	padding: 0.55rem 1.25rem;
+	background: var(--surface);
+	border-bottom: 1px solid var(--line);
+}
+.ttp-demo__label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.ttp-seg {
+	display: flex;
+	gap: 0.25rem;
+	padding: 0.2rem;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: var(--bg);
+}
+.ttp-seg button {
+	min-height: 2rem;
+	padding: 0 0.6rem;
+	border: 0;
+	border-radius: 999px;
+	background: transparent;
+	color: var(--muted);
+	font: 600 0.75rem/1 var(--font-text);
+	cursor: pointer;
+	transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), scale 0.15s var(--ease-out);
+}
+.ttp-seg button[aria-pressed='true'] {
+	background: var(--accent-strong);
+	color: #fff;
+}
+.ttp-seg button:active {
+	scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+	.ttp-seg button:hover:not([aria-pressed='true']) {
+		color: var(--text);
+	}
+}
+.ttp-support {
+	flex-basis: 100%;
+	font-size: 0.8125rem;
+	color: var(--muted);
+}
+
+/* Barra del negozio */
+.ttp-shop {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem 1.5rem;
+	padding: 0.5rem 1.25rem;
+}
+.ttp-brand {
+	font: 800 1.35rem/1 var(--font-display);
+	letter-spacing: -0.01em;
+	color: var(--text);
+	text-decoration: none;
+}
+.ttp-brand span:not(.sr-only) {
+	color: var(--accent);
+}
+.ttp-shop nav {
+	display: flex;
+	gap: 0.25rem;
+}
+.ttp-shop nav a,
+.ttp-back {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.75rem;
+	padding: 0 0.6rem;
+	border-radius: 0.5rem;
+	color: var(--muted);
+	font-weight: 600;
+	text-decoration: none;
+	transition: color 0.2s var(--ease-out), scale 0.15s var(--ease-out);
+}
+.ttp-shop nav a[aria-current='page'] {
+	color: var(--text);
+	box-shadow: inset 0 -2px 0 var(--accent);
+	border-radius: 0;
+}
+.ttp-shop nav a:active,
+.ttp-back:active {
+	scale: 0.97;
+}
+@media (hover: hover) and (pointer: fine) {
+	.ttp-shop nav a:hover,
+	.ttp-back:hover {
+		color: var(--text);
+	}
+}
+
+.ttp-main {
+	width: min(100%, 72rem);
+	margin: 0 auto;
+	padding: clamp(1rem, 3vw, 2rem) 1.25rem 2rem;
+}
+.ttp-intro h1 {
+	font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+	letter-spacing: -0.02em;
+}
+.ttp-intro p {
+	max-width: 40rem;
+	margin-top: 0.6rem;
+	color: var(--muted);
+}
+
+/* Catalogo */
+.ttp-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.25rem 1rem;
+	margin: clamp(1rem, 2.5vw, 1.75rem) 0 0;
+	padding: 0;
+	list-style: none;
+}
+@media (min-width: 48rem) {
+	.ttp-grid {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1.5rem 1.25rem;
+	}
+}
+.cover {
+	display: grid;
+	gap: 0.15rem;
+	color: var(--text);
+	text-decoration: none;
+}
+.cover__art {
+	display: block;
+	aspect-ratio: 1;
+	margin-bottom: 0.5rem;
+	border-radius: 0.375rem;
+	overflow: hidden;
+	box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.5);
+	transition: translate 0.3s var(--ease-out), scale 0.15s var(--ease-out);
+}
+.cover__art svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.cover__title {
+	font: 700 1rem/1.2 var(--font-display);
+}
+.cover__meta {
+	font-size: 0.8125rem;
+	color: var(--muted);
+}
+.cover:active .cover__art {
+	scale: 0.97;
+}
+.cover:focus-visible .cover__art {
+	translate: 0 -0.25rem;
+}
+@media (hover: hover) and (pointer: fine) {
+	.cover:hover .cover__art {
+		translate: 0 -0.25rem;
+	}
+}
+
+/* Scheda disco */
+.ttp-back {
+	margin-left: -0.6rem;
+}
+.ttp-disc {
+	display: grid;
+	gap: 1.5rem 3rem;
+	align-items: center;
+}
+@media (min-width: 48rem) {
+	.ttp-disc {
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+	}
+}
+.disc-art {
+	position: relative;
+	width: min(100%, 32rem);
+	aspect-ratio: 1.36;
+}
+.sleeve {
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 73.5%;
+	border-radius: 0.375rem;
+	overflow: hidden;
+	box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.6);
+}
+.sleeve svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.vinyl {
+	position: absolute;
+	top: 1%;
+	left: 1%;
+	width: 71.5%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	/* esce da dietro la copertina quando la pagina è pronta */
+	animation: ttp-esce 0.9s 0.35s var(--ease-out) both;
+}
+.vinyl::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	background: conic-gradient(from 20deg, transparent, rgba(255, 255, 255, 0.14) 8%, transparent 18%, transparent 50%, rgba(255, 255, 255, 0.1) 58%, transparent 68%);
+}
+.vinyl__spin {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	border-radius: 50%;
+	background: repeating-radial-gradient(circle, #0d0d0d 0 0.1rem, #1c1c1c 0.1rem 0.2rem);
+	animation: ttp-gira 4s linear infinite paused;
+}
+.vinyl__label {
+	width: 32%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	box-shadow: inset 0 0 0 0.35rem rgba(0, 0, 0, 0.18), inset 0 0 0 0.05rem #000;
+}
+.vinyl__label::after {
+	content: '';
+	display: block;
+	width: 10%;
+	aspect-ratio: 1;
+	margin: 45% auto 0;
+	border-radius: 50%;
+	background: #000;
+}
+.disc-art.is-live .vinyl__spin {
+	animation-play-state: running;
+}
+@keyframes ttp-esce {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(38.5%);
+	}
+}
+@keyframes ttp-gira {
+	to {
+		transform: rotate(1turn);
+	}
+}
+
+.disc-meta {
+	color: var(--accent);
+	font-weight: 600;
+}
+.disc-info h1 {
+	margin: 0.25rem 0 1.5rem;
+	font-size: clamp(2rem, 5vw, 3.2rem);
+	letter-spacing: -0.02em;
+	overflow-wrap: anywhere;
+}
+.tracks {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: t;
+}
+.tracks li {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 0.65rem 0;
+	border-top: 1px solid var(--line);
+	counter-increment: t;
+}
+.tracks li span:first-child::before {
+	content: counter(t, decimal-leading-zero);
+	margin-right: 0.9rem;
+	color: var(--muted);
+	font-variant-numeric: tabular-nums;
+}
+.tracks__time {
+	color: var(--muted);
+	font-variant-numeric: tabular-nums;
+}
+
+/* Contatto */
+.ttp-info {
+	display: grid;
+	gap: 1.25rem;
+	margin: clamp(1.25rem, 3vw, 2rem) 0 0;
+	max-width: 40rem;
+}
+.ttp-info div {
+	padding-top: 0.9rem;
+	border-top: 1px solid var(--line);
+}
+.ttp-info dt {
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--accent);
+}
+.ttp-info dd {
+	margin: 0.25rem 0 0;
+	font-size: 1.125rem;
+	overflow-wrap: anywhere;
+}
