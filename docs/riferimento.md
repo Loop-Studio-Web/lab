@@ -16,6 +16,8 @@ Spostato da `CLAUDE.md` il 2026-11-08 per alleggerirlo: si legge solo quando il 
 - Spazio sul robot degli interruttori: `preventDefault` sempre, altrimenti scrolla.
 - Toast/popup mai in avvio automatico; la galleria 3D vuole il retro visibile e la prospettiva che ingrandisce il fronte.
 - Filtri SVG animati e `feTurbulence` sono pesanti: pochi elementi, poche ottave, solo quando visibili.
+- **Sensori di movimento (Storie e feed › Inclinazione):** servono HTTPS (quindi prova solo su GitHub Pages, o su Android col flag Chrome «Insecure origins treated as secure») e `allow="accelerometer; gyroscope"` su ogni iframe (già in `suite.js` e nella modale del sito madre); su iPhone `requestPermission()` da un clic. Non usare `gamma`/`beta` da soli (instabili col telefono in piedi): matrice di rotazione relativa, come in `inclina/script.js`.
+- **Prova da telefono sul server locale:** il firewall di Windows blocca `python.exe` sul profilo di rete Pubblico (due regole di blocco): o si imposta la Wi-Fi su Privata e si consente Python alla finestra del firewall, o si prova online dopo il push.
 
 ## Asset di lavoro e strumenti (fuori repo)
 
