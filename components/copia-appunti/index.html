@@ -115,10 +115,8 @@
 			<p class="sr-only" role="status" data-copy-status></p>
 
 			<p class="demo__note">
-				Si prova prima <code>navigator.clipboard.writeText()</code>; se il browser lo nega (succede dentro un
-				iframe di un altro sito, come qui nel box “Prova dal vivo”) si ripiega su <code>execCommand('copy')</code>. Se
-				anche quello fallisce il testo viene selezionato e il pulsante dice “Copia a mano”. L’esito è annunciato
-				ai lettori di schermo da una regione <code>role="status"</code>.
+				Si prova prima la copia normale; se il browser la nega (succede dentro un iframe di un altro sito, come qui nel box “Prova dal vivo”) si ripiega su un metodo più vecchio. Se anche quello fallisce il testo viene selezionato e il pulsante dice “Copia a mano”. L’esito è annunciato
+				ai lettori di schermo.
 			</p>
 		</main>
 		<script src="../_shared/studio.js"></script>
