@@ -60,6 +60,7 @@
 		f.setAttribute('role', 'tabpanel');
 		f.setAttribute('aria-labelledby', tab.id);
 		f.hidden = true;
+		f.allow = 'accelerometer; gyroscope'; // serve al tab «Inclinazione» di Storie e feed; negli altri non cambia nulla
 		panels.append(f);
 		tab.setAttribute('aria-controls', f.id);
 		return f;

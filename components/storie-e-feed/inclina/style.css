@@ -1,0 +1,23 @@
+/* Inclinazione: card a strati. Si animano solo transform (e un'opacità): gli strati li muove lo script con translate3d. */
+.in { display: grid; justify-items: center; gap: 0.9rem; }
+.in-scene { --h: min(24rem, 100svh - 16rem); position: relative; width: min(calc(var(--h) * 3 / 4), 100%); height: var(--h); min-height: 14rem; perspective: 60rem; }
+@media (min-width: 56rem) and (min-aspect-ratio: 3/2) and (max-height: 32rem) { .in-scene { --h: min(24rem, 100svh - 8rem); } }
+.in-card {
+	position: absolute; inset: 0; overflow: hidden; isolation: isolate; border-radius: 1.4rem; background: #111; border: 1px solid rgba(255, 255, 255, 0.16);
+	transform-style: preserve-3d; will-change: transform; outline-offset: 4px; touch-action: pan-y;
+}
+.in-photo { position: absolute; inset: -8%; width: 116%; height: 116%; max-width: none; object-fit: cover; pointer-events: none; -webkit-user-drag: none; will-change: transform; }
+.in-glare {
+	position: absolute; inset: -50%; pointer-events: none; opacity: 0.55; mix-blend-mode: soft-light; will-change: transform;
+	background: radial-gradient(closest-side, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 70%);
+}
+.in-card::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent 50%); }
+.in-chip, .in-mark, .in-text { position: absolute; z-index: 2; will-change: transform; }
+.in-chip { top: 1rem; left: 1rem; padding: 0.25rem 0.75rem; font-size: 0.8rem; font-weight: 700; background: rgba(0, 0, 0, 0.45); border-radius: 99px; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.in-mark { top: 1rem; right: 1rem; width: 3rem; aspect-ratio: 1465 / 753; filter: drop-shadow(0 0.3rem 0.6rem rgba(0, 0, 0, 0.5)); }
+.in-text { left: 1.1rem; right: 1.1rem; bottom: 1.1rem; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6); }
+.in-text h2 { font-size: 1.6rem; }
+.in-text p { margin-top: 0.3rem; font-size: 0.9rem; opacity: 0.9; }
+.in-shadow { position: absolute; left: 8%; right: 8%; bottom: -1.2rem; height: 1.6rem; pointer-events: none; background: radial-gradient(closest-side, rgba(255, 59, 48, 0.35), transparent); will-change: transform; }
+.in-ctrl { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
+.in-status { min-height: 1.2rem; margin: 0; font-size: 0.8rem; color: var(--muted); text-align: center; }
