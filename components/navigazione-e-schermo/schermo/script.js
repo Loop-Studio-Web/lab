@@ -20,9 +20,9 @@
 		code: { type: 'text', inputmode: 'numeric', autocomplete: 'one-time-code', keys: 'pad' },
 	};
 	const ROWS = {
-		qwerty: ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'],
-		email: ['qwertyuiop', 'asdfghjkl', 'zxcvbnm@.'],
-		pad: ['123', '456', '789', '0'],
+		qwerty: ['qwertyuiop', 'asdfghjkl', 'zxcvbnm⌫'],
+		email: ['qwertyuiop', 'asdfghjkl', 'zxcvbnm@.⌫'],
+		pad: ['123', '456', '789', '0⌫'],
 	};
 	const placeholders = () => ({
 		text: LabI18n.t('sc.ph.text', 'Scrivi un messaggio…'),
@@ -48,6 +48,15 @@
 			}),
 		);
 	};
+
+	// I tasti disegnati scrivono davvero nel campo; il pointerdown non gli toglie il fuoco.
+	kbEl.addEventListener('pointerdown', (e) => {
+		const k = e.target.closest('.sc__key');
+		if (!k) return;
+		e.preventDefault();
+		field.value = k.textContent === '⌫' ? field.value.slice(0, -1) : field.value + k.textContent;
+		field.dispatchEvent(new Event('input', { bubbles: true }));
+	});
 
 	const px = (n) => Math.round(n) + ' px';
 	const setBar = (u, value, visible, label) => {
