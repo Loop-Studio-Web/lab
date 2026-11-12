@@ -24,13 +24,13 @@
 	card.setAttribute('role', 'group');
 	card.setAttribute('aria-label', post.t);
 
-	const RANGE = 22; // gradi di inclinazione che portano al massimo
+	const MAX = Math.sin((22 * Math.PI) / 180); // 22° di inclinazione portano al massimo
 	const ridotto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const AMP = ridotto ? 0.35 : 1;
 	const clamp = (v) => Math.max(-1, Math.min(1, v));
 
 	let sensore = false; // un evento vero è arrivato
-	let ultimo = { b: 0, g: 0 };
+	let ultimo = null;
 	let base = null;
 	let punt = { x: 0, y: 0, su: false };
 	let tasti = { x: 0, y: 0 };
@@ -40,7 +40,21 @@
 	let visibile = true;
 
 	const bersaglio = () => {
-		if (sensore && base) return { x: clamp((ultimo.g - base.g) / RANGE), y: clamp((ultimo.b - base.b) / RANGE) };
+		if (sensore && base) {
+			// rel = base^T · ultimo; per rotazioni piccole rel[0][2] ≈ rollio attorno all'asse lungo, rel[2][1] ≈ beccheggio.
+			let r02 = 0;
+			let r21 = 0;
+			for (let k = 0; k < 3; k++) {
+				r02 += base[k][0] * ultimo[k][2];
+				r21 += base[k][2] * ultimo[k][1];
+			}
+			let x = r02;
+			let y = r21;
+			const ang = (screen.orientation && screen.orientation.angle) || 0;
+			if (ang === 90) [x, y] = [y, -x];
+			else if (ang === 270) [x, y] = [-y, x];
+			return { x: clamp(x / MAX), y: clamp(y / MAX) };
+		}
 		if (punt.su) return punt;
 		return tasti;
 	};
@@ -93,17 +107,26 @@
 	});
 
 	// Sensore. L'angolo dello schermo scambia gli assi se il telefono è girato in orizzontale.
+	// Rotazione del telefono come matrice (convenzione W3C: Rz(alfa)·Rx(beta)·Ry(gamma)). Gli angoli di Eulero da soli
+	// diventano instabili col telefono quasi in piedi (gamma impazzisce); la rotazione relativa dalla posizione di partenza no.
+	const matrice = (e) => {
+		const r = Math.PI / 180;
+		const [ca, sa] = [Math.cos((e.alpha || 0) * r), Math.sin((e.alpha || 0) * r)];
+		const [cb, sb] = [Math.cos(e.beta * r), Math.sin(e.beta * r)];
+		const [cg, sg] = [Math.cos(e.gamma * r), Math.sin(e.gamma * r)];
+		const rxy = [[cg, 0, sg], [sb * sg, cb, -sb * cg], [-cb * sg, sb, cb * cg]]; // Rx·Ry
+		return [
+			[ca * rxy[0][0] - sa * rxy[1][0], ca * rxy[0][1] - sa * rxy[1][1], ca * rxy[0][2] - sa * rxy[1][2]],
+			[sa * rxy[0][0] + ca * rxy[1][0], sa * rxy[0][1] + ca * rxy[1][1], sa * rxy[0][2] + ca * rxy[1][2]],
+			rxy[2],
+		];
+	};
 	const onOri = (e) => {
 		if (e.beta == null || e.gamma == null) return;
-		const ang = (screen.orientation && screen.orientation.angle) || 0;
-		let g = e.gamma;
-		let b = e.beta;
-		if (ang === 90) [g, b] = [e.beta, -e.gamma];
-		else if (ang === 270) [g, b] = [-e.beta, e.gamma];
-		ultimo = { b, g };
+		ultimo = matrice(e);
 		if (!sensore) {
 			sensore = true;
-			base = { b, g };
+			base = ultimo;
 			status.textContent = LabI18n.t('in.on', 'Inclinazione attiva: muovi il telefono.');
 		}
 		sveglia();
@@ -132,7 +155,7 @@
 	});
 	btnReset.addEventListener('click', () => {
 		tasti = { x: 0, y: 0 };
-		if (sensore) base = { ...ultimo };
+		if (sensore) base = ultimo;
 		sveglia();
 	});
 
