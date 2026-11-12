@@ -1,0 +1,17 @@
+/* Parti comuni ai tre tab di «Storie e feed»: la cornice da telefono verticale 9:16 e le icone dei pulsanti. */
+.sf { display: grid; justify-items: center; }
+.sf-tel {
+	--h: min(28rem, 100svh - 12rem);
+	position: relative; height: var(--h); min-height: 16rem; width: min(calc(var(--h) * 9 / 16), 100%); overflow: hidden; isolation: isolate;
+	background: #0d0d0d; border: 1px solid var(--line); border-radius: 1.6rem;
+}
+@media (min-width: 56rem) and (min-aspect-ratio: 3/2) and (max-height: 32rem) { .sf-tel { --h: min(28rem, 100svh - 5rem); } }
+.sf-ico { display: block; width: 1.4rem; height: 1.4rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+.sf-round {
+	display: grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0; color: #fff; cursor: pointer;
+	background: rgba(0, 0, 0, 0.42); border: 0; border-radius: 50%; transition: transform 0.16s var(--ease-out), background-color 0.2s;
+}
+.sf-round[hidden] { display: none; }
+.sf-round:active { transform: scale(0.94); }
+@media (hover: hover) and (pointer: fine) { .sf-round:hover { background: rgba(0, 0, 0, 0.65); } }
+.sf-round:focus-visible, .sf-round[aria-pressed='true'] { outline-offset: 2px; }

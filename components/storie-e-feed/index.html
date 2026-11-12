@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="sef.title">Storie e feed — Loop Studio Lab</title>
+		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../_shared/suite.css" />
+		<script src="../_shared/suite.js" defer></script>
+	</head>
+	<body>
+		<h1 class="sr-only" data-i18n="sef.h1">Storie e feed</h1>
+		<div data-suite>
+			<div class="suite__top">
+				<div class="suite__scroll">
+					<div class="suite__list" role="tablist" aria-label="Storie, feed verticale e anteprima" data-i18n-attr="aria-label=sef.tabs">
+						<button type="button" role="tab" id="t-storie" data-id="storie" data-src="storie/" data-title="Storie" data-i18n="st.name" data-i18n-attr="data-title=st.name">Storie</button>
+						<button type="button" role="tab" id="t-feed" data-id="feed" data-src="feed/" data-title="Feed" data-i18n="fe.name" data-i18n-attr="data-title=fe.name">Feed</button>
+						<button type="button" role="tab" id="t-peek" data-id="peek" data-src="peek/" data-title="Anteprima" data-i18n="pk.name" data-i18n-attr="data-title=pk.name">Anteprima</button>
+						<span class="suite__bar" aria-hidden="true"></span>
+					</div>
+				</div>
+			</div>
+			<div class="suite__panels"></div>
+		</div>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

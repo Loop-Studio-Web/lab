@@ -1,0 +1,33 @@
+/* Feed: colonna con aggancio verticale, una foto per schermata. Lo zoom lento (solo transform) gira solo sul post visibile. */
+.fe-scroll { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; scroll-snap-type: y mandatory; scrollbar-width: none; touch-action: pan-y; outline-offset: -3px; }
+.fe-scroll::-webkit-scrollbar { display: none; }
+.fe-post { position: relative; height: 100%; overflow: hidden; scroll-snap-align: start; scroll-snap-stop: always; color: #fff; -webkit-user-select: none; user-select: none; }
+.fe-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; transform-origin: 50% 60%; }
+.fe-post.is-live .fe-img { animation: fe-zoom 9s linear both; }
+@keyframes fe-zoom { from { transform: scale(1); } to { transform: scale(1.14); } }
+.fe-shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(0, 0, 0, 0.78), transparent 45%, rgba(0, 0, 0, 0.3)); }
+.fe-top { position: absolute; top: 0.9rem; left: 0; right: 0; z-index: 3; margin: 0; text-align: center; font-weight: 700; font-size: 0.85rem; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); pointer-events: none; }
+.fe-meta { position: absolute; left: 1rem; right: 4.2rem; bottom: 1.1rem; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); pointer-events: none; }
+.fe-who { font-weight: 700; font-size: 0.85rem; }
+.fe-meta h2 { margin-top: 0.15rem; font-size: 1.2rem; }
+.fe-meta p { margin-top: 0.2rem; font-size: 0.8rem; opacity: 0.9; }
+.fe-side { position: absolute; right: 0.6rem; bottom: 1rem; display: grid; justify-items: center; gap: 0.7rem; }
+.fe-act { display: grid; justify-items: center; gap: 0.1rem; font-size: 0.7rem; font-weight: 600; }
+.fe-act .sf-round[aria-pressed='true'] { color: var(--accent); }
+.fe-act .sf-round[aria-pressed='true'] .sf-ico { fill: currentColor; }
+.fe-heart {
+	position: absolute; left: 50%; top: 50%; z-index: 4; width: 5.5rem; height: 5.5rem; margin: -2.75rem 0 0 -2.75rem; fill: var(--accent); stroke: none;
+	opacity: 0; pointer-events: none; filter: drop-shadow(0 0.3rem 0.8rem rgba(0, 0, 0, 0.5));
+}
+.fe-heart.is-on { animation: fe-pop 0.8s var(--ease-out) both; }
+@keyframes fe-pop {
+	0% { opacity: 0; transform: scale(0.4); }
+	30% { opacity: 1; transform: scale(1.15); }
+	60% { opacity: 1; transform: scale(1); }
+	100% { opacity: 0; transform: scale(1.2) translateY(-1rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+	.fe-post.is-live .fe-img { animation: none; }
+	.fe-heart.is-on { animation: fe-fade 0.8s linear both; }
+	@keyframes fe-fade { 0%, 70% { opacity: 1; } 100% { opacity: 0; } }
+}

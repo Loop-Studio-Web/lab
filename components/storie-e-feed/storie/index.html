@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="st.title">Storie — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../sef.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../../_shared/fisica.js" defer></script>
+		<script src="../sef-dati.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fd-stage sf" data-sf>
+					<div class="sf-tel" data-tel>
+						<div class="st-home">
+							<p class="st-title" data-i18n="st.home">Storie</p>
+							<ul class="st-ring" data-ring></ul>
+							<div class="st-skel" aria-hidden="true"><span></span><span></span></div>
+						</div>
+						<div class="st-view" data-view role="dialog" aria-label="Storia" data-i18n-attr="aria-label=st.dialog" tabindex="-1" inert>
+							<img class="st-img" data-img alt="" width="900" height="600" decoding="async" draggable="false" />
+							<div class="st-shade" aria-hidden="true"></div>
+							<div class="st-hit" data-hit></div>
+							<div class="st-bars" data-bars aria-hidden="true"></div>
+							<header class="st-top">
+								<img class="st-av" data-av alt="" width="40" height="40" draggable="false" />
+								<span class="st-name" data-name></span>
+								<button type="button" class="sf-round" data-pause aria-pressed="false" aria-label="Pausa" data-i18n-attr="aria-label=st.pause">
+									<svg class="sf-ico" viewBox="0 0 24 24" aria-hidden="true"><path class="st-i-pause" d="M9 6v12M15 6v12" /><path class="st-i-play" d="m8 5.5 11 6.5-11 6.5z" /></svg>
+								</button>
+								<button type="button" class="sf-round" data-close aria-label="Chiudi" data-i18n-attr="aria-label=st.close">
+									<svg class="sf-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+								</button>
+							</header>
+							<button type="button" class="sf-round st-nav st-nav--prev" data-prev aria-label="Precedente" data-i18n-attr="aria-label=st.prev">
+								<svg class="sf-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg>
+							</button>
+							<button type="button" class="sf-round st-nav st-nav--next" data-next aria-label="Successiva" data-i18n-attr="aria-label=st.next">
+								<svg class="sf-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
+							</button>
+							<div class="st-cap">
+								<h2 data-cap-t></h2>
+								<p data-cap-c></p>
+							</div>
+						</div>
+					</div>
+					<p class="sr-only" data-live aria-live="polite"></p>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="st.name">Storie</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="st.lead">Un viewer a storie: una fila di cerchietti e, dentro, barre che si riempiono da sole. Tocca i lati per andare avanti e indietro, tieni premuto per fermare il tempo, trascina in giù per chiudere.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="sef.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="sef.mouse">Mouse</dt><dd data-i18n="st.mouse">Clic su un cerchio; clic a destra o a sinistra dell’immagine per cambiare storia, tieni premuto per la pausa, trascina in giù per chiudere.</dd></div>
+						<div><dt data-i18n="sef.touch">Tocco</dt><dd data-i18n="st.touch">Tocca i lati, tieni il dito fermo per fermare il tempo, scivola in giù per chiudere: la storia segue il dito e, se ti fermi prima, torna su.</dd></div>
+						<div><dt data-i18n="sef.kbd">Tastiera</dt><dd data-i18n="st.kbd">Invio su un cerchio; frecce per cambiare, Spazio per la pausa, Esc per chiudere.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="sef.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="st.tip">Il tempo si ferma finché il dito è sull’immagine: è così che si legge. Con «riduci movimento» le storie non avanzano da sole, e ogni gesto ha il suo pulsante.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

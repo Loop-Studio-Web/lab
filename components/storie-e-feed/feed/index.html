@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="fe.title">Feed — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../sef.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../sef-dati.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fd-stage sf" data-sf>
+					<div class="sf-tel" data-tel>
+						<p class="fe-top" aria-hidden="true" data-i18n="fe.top">Per te</p>
+						<div class="fe-scroll" data-scroll tabindex="0" role="region" aria-label="Feed verticale" data-i18n-attr="aria-label=fe.region"></div>
+						<svg class="fe-heart" data-burst viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.4C.9 8.2 3 4.5 6.6 4.5c2 0 3.5 1 5.4 3 1.9-2 3.4-3 5.4-3 3.600 0 5.700 3.700 4.200 7.100C19.500 16.400 12 21 12 21z" /></svg>
+					</div>
+					<p class="sr-only" data-live aria-live="polite"></p>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="fe.name">Feed</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="fe.lead">Un feed verticale a schermo intero: ogni foto occupa tutto lo schermo e lo scorrimento si aggancia, una alla volta. Doppio tocco sulla foto per il cuore.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="sef.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="sef.mouse">Mouse</dt><dd data-i18n="fe.mouse">Rotella o barra per scorrere; doppio clic sulla foto per il cuore.</dd></div>
+						<div><dt data-i18n="sef.touch">Tocco</dt><dd data-i18n="fe.touch">Scorri col pollice: la foto successiva si aggancia da sola. Doppio tocco per il cuore.</dd></div>
+						<div><dt data-i18n="sef.kbd">Tastiera</dt><dd data-i18n="fe.kbd">Tab sul feed, poi frecce su e giù; Invio sul cuore, o sulla freccia per passare alla foto dopo.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="sef.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="fe.tip">L’aggancio sceglie per te dove fermarti, così ogni schermata è una composizione intera. Lo zoom lento parte solo sulla foto che guardi e si ferma appena esce.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

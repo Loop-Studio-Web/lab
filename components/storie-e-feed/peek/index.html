@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="pk.title">Anteprima — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../sef.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="../sef-dati.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="fd-stage sf" data-sf>
+					<div class="sf-tel" data-tel>
+						<div class="pk-home" data-home>
+							<p class="pk-title" data-i18n="pk.home">Esplora</p>
+							<div class="pk-grid" data-grid></div>
+						</div>
+						<div class="pk-back" data-back aria-hidden="true"></div>
+						<div class="pk-pop" data-pop role="dialog" aria-label="Anteprima" data-i18n-attr="aria-label=pk.dialog" tabindex="-1" inert>
+							<img class="pk-img" data-img alt="" width="900" height="600" decoding="async" draggable="false" />
+							<div class="pk-shade" aria-hidden="true"></div>
+							<div class="pk-cap">
+								<h2 data-cap-t></h2>
+								<p data-cap-c></p>
+							</div>
+							<button type="button" class="sf-round pk-x" data-close aria-label="Chiudi" data-i18n-attr="aria-label=pk.close">
+								<svg class="sf-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+							</button>
+						</div>
+						<div class="pk-menu" data-menu inert>
+							<button type="button" class="pk-act" data-open>
+								<svg class="sf-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8 8M10 6H5v13h13v-5" /></svg>
+								<span data-i18n="pk.open">Apri</span>
+							</button>
+							<button type="button" class="pk-act" data-save aria-pressed="false">
+								<svg class="sf-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v17l-6-4.5L6 21z" /></svg>
+								<span data-i18n="pk.save">Salva</span>
+							</button>
+						</div>
+					</div>
+					<p class="sr-only" data-live aria-live="polite"></p>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="pk.name">Anteprima</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="pk.lead">Anteprima con pressione lunga: tieni premuta una card e si solleva sopra lo sfondo sfocato. Senza staccare il dito, trascina in alto e si apre a tutto schermo.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="sef.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="sef.mouse">Mouse</dt><dd data-i18n="pk.mouse">Clic su una card, o tienila premuta, per l’anteprima; trascina in alto per aprirla del tutto; clic fuori o Esc per chiuderla.</dd></div>
+						<div><dt data-i18n="sef.touch">Tocco</dt><dd data-i18n="pk.touch">Tieni premuto sulla card, poi sposta il dito in alto per aprirla, o su un pulsante per usarlo.</dd></div>
+						<div><dt data-i18n="sef.kbd">Tastiera</dt><dd data-i18n="pk.kbd">Invio su una card per l’anteprima, Tab sui pulsanti, Esc per chiudere.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="sef.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="pk.tip">L’anteprima è un’occhiata, non una pagina: due azioni, una via per aprire e una per tornare indietro senza perdere il punto in cui eri.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>
