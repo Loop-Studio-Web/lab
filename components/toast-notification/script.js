@@ -40,7 +40,7 @@ function showToast({ type = 'info', title, text = '', duration = 5000, action, i
 		</div>
 		<div class="toast__actions">
 			${action ? '<button type="button" class="toast__btn toast__undo"></button>' : ''}
-			<button type="button" class="toast__btn toast__close" aria-label="Chiudi notifica">${svg(CLOSE, '')}</button>
+			<button type="button" class="toast__btn toast__close" aria-label="${LabI18n.t('tn.js.close', 'Chiudi notifica')}">${svg(CLOSE, '')}</button>
 		</div>
 		${duration ? '<span class="toast__bar"></span>' : ''}`;
 	toast.querySelector('.toast__title').textContent = title;
@@ -87,20 +87,21 @@ function showToast({ type = 'info', title, text = '', duration = 5000, action, i
 	into.append(toast);
 }
 
+const tr = (k, it) => LabI18n.t(k, it);
 const PRESETS = {
-	success: () => showToast({ type: 'success', title: 'Salvato', text: 'Le modifiche sono state pubblicate.' }),
-	error: () => showToast({ type: 'error', title: 'Non è andata', text: 'Il server non risponde. Riprova tra poco.' }),
-	info: () => showToast({ type: 'info', title: 'Nuova versione', text: 'Ricarica la pagina per aggiornare.' }),
-	warning: () => showToast({ type: 'warning', title: 'Spazio quasi finito', text: 'Resta il 10% dell’archivio.' }),
+	success: () => showToast({ type: 'success', title: tr('tn.js.saved', 'Salvato'), text: tr('tn.js.saved.t', 'Le modifiche sono state pubblicate.') }),
+	error: () => showToast({ type: 'error', title: tr('tn.js.failed', 'Non è andata'), text: tr('tn.js.failed.t', 'Il server non risponde. Riprova tra poco.') }),
+	info: () => showToast({ type: 'info', title: tr('tn.js.new', 'Nuova versione'), text: tr('tn.js.new.t', 'Ricarica la pagina per aggiornare.') }),
+	warning: () => showToast({ type: 'warning', title: tr('tn.js.space', 'Spazio quasi finito'), text: tr('tn.js.space.t', 'Resta il 10% dell’archivio.') }),
 	action: () =>
 		showToast({
 			type: 'neutral',
-			title: 'Messaggio archiviato',
+			title: tr('tn.js.archived', 'Messaggio archiviato'),
 			duration: 8000,
-			action: { label: 'Annulla', onClick: () => showToast({ type: 'success', title: 'Ripristinato' }) },
+			action: { label: tr('tn.js.undo', 'Annulla'), onClick: () => showToast({ type: 'success', title: tr('tn.js.restored', 'Ripristinato') }) },
 		}),
 	sticky: () =>
-		showToast({ type: 'info', title: 'Sincronizzazione in corso', text: 'Questo non scompare da solo.', duration: 0 }),
+		showToast({ type: 'info', title: tr('tn.js.sync', 'Sincronizzazione in corso'), text: tr('tn.js.sync.t', 'Questo non scompare da solo.'), duration: 0 }),
 };
 
 document.querySelectorAll('[data-toast]').forEach((btn) => {
@@ -111,7 +112,7 @@ document.querySelectorAll('[data-toast]').forEach((btn) => {
 // mostrano l'aspetto dei toast anche nella miniatura del sito, dove nessuno clicca.
 const samples = document.querySelector('[data-samples]');
 [
-	{ type: 'success', title: 'Salvato', text: 'Le modifiche sono state pubblicate.' },
-	{ type: 'error', title: 'Non è andata', text: 'Il server non risponde. Riprova tra poco.' },
-	{ type: 'warning', title: 'Spazio quasi finito', text: 'Resta il 10% dell’archivio.' },
+	{ type: 'success', title: tr('tn.js.saved', 'Salvato'), text: tr('tn.js.saved.t', 'Le modifiche sono state pubblicate.') },
+	{ type: 'error', title: tr('tn.js.failed', 'Non è andata'), text: tr('tn.js.failed.t', 'Il server non risponde. Riprova tra poco.') },
+	{ type: 'warning', title: tr('tn.js.space', 'Spazio quasi finito'), text: tr('tn.js.space.t', 'Resta il 10% dell’archivio.') },
 ].forEach((s) => showToast({ ...s, duration: 0, into: samples }));

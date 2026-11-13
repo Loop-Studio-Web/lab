@@ -1,0 +1,33 @@
+// Traduzioni di «interruttori». L'italiano sta nell'HTML e nei ripieghi dei t().
+LabI18n.add({
+	en: {
+		'iw.1': 'Switches — Loop Studio Lab',
+		'iw.2': 'Light / dark switch',
+		'iw.3': 'The same function at different levels of care, from the pilot bear to the essential switch. Each one changes its own stage, not the page.',
+		'iw.4': 'The pilot bear',
+		'iw.5': 'Sun, moon and stars',
+		'iw.6': 'The robot that won’t switch off',
+		'iw.7': 'With icons',
+		'iw.8': 'The essential',
+		'iw.9': 'They are all real controls: the bear is a button, the others are real switches and work with Space. The robot uses GSAP (self-hosted, only in this card); the rest is CSS.',
+		'iw.10': 'Dark theme',
+		'iw.11': 'Dark theme',
+		'iw.12': 'Dark theme',
+		'iw.13': 'Dark theme',
+	},
+	es: {
+		'iw.1': 'Interruptores — Loop Studio Lab',
+		'iw.2': 'Interruptor claro / oscuro',
+		'iw.3': 'La misma función con distintos niveles de cuidado, del oso piloto al interruptor esencial. Cada uno cambia su propio escenario, no la página.',
+		'iw.4': 'El oso piloto',
+		'iw.5': 'Sol, luna y estrellas',
+		'iw.6': 'El robot que no se apaga',
+		'iw.7': 'Con iconos',
+		'iw.8': 'Lo esencial',
+		'iw.9': 'Todos son controles de verdad: el oso es un botón, los demás son interruptores de verdad y se usan con Espacio. El robot usa GSAP (en local, solo en esta ficha); el resto es CSS.',
+		'iw.10': 'Tema oscuro',
+		'iw.11': 'Tema oscuro',
+		'iw.12': 'Tema oscuro',
+		'iw.13': 'Tema oscuro',
+	},
+});

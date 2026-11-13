@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Toast — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="tn.1">Toast — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -14,43 +16,43 @@
 	<body>
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Notifiche toast</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="tn.2">Notifiche toast</h1>
+				<p class="demo__lead" data-i18n="tn.3">
 					Messaggi brevi che compaiono senza interrompere. La barra mostra quanto resta; passa sopra o
 					metti il focus e il tempo si ferma.
 				</p>
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Quattro stati</h2>
+				<h2 class="demo__label" data-i18n="tn.4">Quattro stati</h2>
 				<div class="stage">
 					<div class="toast-samples" data-samples></div>
 					<div class="toast-buttons">
-						<button type="button" class="toast-trigger" data-toast="success">Successo</button>
-						<button type="button" class="toast-trigger" data-toast="error">Errore</button>
-						<button type="button" class="toast-trigger" data-toast="info">Info</button>
-						<button type="button" class="toast-trigger" data-toast="warning">Avviso</button>
+						<button type="button" class="toast-trigger" data-toast="success" data-i18n="tn.5">Successo</button>
+						<button type="button" class="toast-trigger" data-toast="error" data-i18n="tn.6">Errore</button>
+						<button type="button" class="toast-trigger" data-toast="info" data-i18n="tn.7">Info</button>
+						<button type="button" class="toast-trigger" data-toast="warning" data-i18n="tn.8">Avviso</button>
 					</div>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Con azione e persistente</h2>
+				<h2 class="demo__label" data-i18n="tn.9">Con azione e persistente</h2>
 				<div class="stage">
 					<div class="toast-buttons">
-						<button type="button" class="toast-trigger toast-trigger--ghost" data-toast="action">Con “Annulla”</button>
-						<button type="button" class="toast-trigger toast-trigger--ghost" data-toast="sticky">Resta finché lo chiudi</button>
+						<button type="button" class="toast-trigger toast-trigger--ghost" data-toast="action" data-i18n="tn.10">Con “Annulla”</button>
+						<button type="button" class="toast-trigger toast-trigger--ghost" data-toast="sticky" data-i18n="tn.11">Resta finché lo chiudi</button>
 					</div>
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="tn.12">
 				Una regione dedicata annuncia i messaggi agli screen reader senza rubare il
 				focus. Ne restano al massimo tre alla volta; ingresso e uscita sono transizioni CSS, quindi si possono interrompere a metà.
 			</p>
 		</main>
 
-		<div class="toast-region" id="toast-region" role="region" aria-label="Notifiche" aria-live="polite"></div>
+		<div class="toast-region" id="toast-region" role="region" aria-label="Notifiche" aria-live="polite" data-i18n-attr="aria-label=tn.13"></div>
 		<script src="../_shared/studio.js"></script>
 	</body>
 </html>

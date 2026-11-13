@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Barre di ricerca — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="br.1">Barre di ricerca — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -34,35 +36,35 @@
 		</svg>
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Barre di ricerca</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="br.2">Barre di ricerca</h1>
+				<p class="demo__lead" data-i18n="br.3">
 					Cinque modi di chiedere “cosa stai cercando?”: prima due aperture di carattere, poi
 					quelle che servono davvero, con i suggerimenti, i filtri e la palette dei comandi.
 				</p>
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">La lente che si apre</h2>
+				<h2 class="demo__label" data-i18n="br.4">La lente che si apre</h2>
 				<div class="stage stage--lens">
-					<div role="search" aria-label="Ricerca con la lente">
+					<div role="search" aria-label="Ricerca con la lente" data-i18n-attr="aria-label=br.34">
 						<label class="lens">
-							<span class="sr-only">Cerca nel sito</span>
-							<input type="search" class="lens__input" placeholder="Cerca nel sito…" autocomplete="off" />
+							<span class="sr-only" data-i18n="br.5">Cerca nel sito</span>
+							<input type="search" class="lens__input" placeholder="Cerca nel sito…" autocomplete="off"  data-i18n-attr="placeholder=br.35"/>
 							<span class="lens__handle" aria-hidden="true"></span>
 						</label>
 					</div>
-					<p class="stage__hint">Tocca la lente: il manico diventa il cursore</p>
+					<p class="stage__hint" data-i18n="br.6">Tocca la lente: il manico diventa il cursore</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Il cerchio che si espande</h2>
+				<h2 class="demo__label" data-i18n="br.7">Il cerchio che si espande</h2>
 				<div class="stage stage--orb">
-					<div role="search" class="orb" aria-label="Ricerca con il cerchio">
+					<div role="search" class="orb" aria-label="Ricerca con il cerchio" data-i18n-attr="aria-label=br.36">
 						<div class="orb__wrap">
 							<label>
-								<span class="sr-only">Cerca nel sito</span>
-								<input type="search" class="orb__input" placeholder="Cerca nel sito…" autocomplete="off" />
+								<span class="sr-only" data-i18n="br.8">Cerca nel sito</span>
+								<input type="search" class="orb__input" placeholder="Cerca nel sito…" autocomplete="off"  data-i18n-attr="placeholder=br.37"/>
 							</label>
 							<svg class="ic orb__icon" aria-hidden="true"><use href="#i-search" /></svg>
 						</div>
@@ -71,34 +73,34 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Cerca e svuota</h2>
+				<h2 class="demo__label" data-i18n="br.9">Cerca e svuota</h2>
 				<div class="stage stage--sf">
-					<form class="sf" role="search" aria-label="Cerca e svuota" data-sf data-state="idle" novalidate>
+					<form class="sf" role="search" aria-label="Cerca e svuota" data-sf data-state="idle" novalidate data-i18n-attr="aria-label=br.38">
 						<div class="sf__field">
 							<svg class="ic sf__lens" aria-hidden="true"><use href="#i-search" /></svg>
 							<label>
-								<span class="sr-only">Cerca nel sito</span>
-								<input type="search" class="sf__input" placeholder="Prova con “sito” o “foto”" autocomplete="off" />
+								<span class="sr-only" data-i18n="br.10">Cerca nel sito</span>
+								<input type="search" class="sf__input" placeholder="Prova con “sito” o “foto”" autocomplete="off"  data-i18n-attr="placeholder=br.39"/>
 							</label>
 							<span class="sf__state">
 								<span class="sf__spin" data-motion-ok><svg class="ic" aria-hidden="true"><use href="#i-loader-circle" /></svg></span>
-								<button type="button" class="sf__clear" aria-label="Svuota la ricerca"><svg class="ic" aria-hidden="true"><use href="#i-x" /></svg></button>
+								<button type="button" class="sf__clear" aria-label="Svuota la ricerca" data-i18n-attr="aria-label=br.40"><svg class="ic" aria-hidden="true"><use href="#i-x" /></svg></button>
 							</span>
 						</div>
-						<p class="sf__status" role="status" data-status>Scrivi per cercare</p>
+						<p class="sf__status" role="status" data-status data-i18n="br.11">Scrivi per cercare</p>
 					</form>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Suggerimenti e filtri</h2>
+				<h2 class="demo__label" data-i18n="br.12">Suggerimenti e filtri</h2>
 				<div class="stage stage--combo">
 					<div class="combo" data-combo>
-						<div class="combo__pills" role="group" aria-label="Filtra per categoria">
-							<button type="button" class="chip" aria-pressed="true" data-cat="">Tutti</button>
-							<button type="button" class="chip" aria-pressed="false" data-cat="Servizi">Servizi</button>
-							<button type="button" class="chip" aria-pressed="false" data-cat="Progetti">Progetti</button>
-							<button type="button" class="chip" aria-pressed="false" data-cat="Guide">Guide</button>
+						<div class="combo__pills" role="group" aria-label="Filtra per categoria" data-i18n-attr="aria-label=br.41">
+							<button type="button" class="chip" aria-pressed="true" data-cat="" data-i18n="br.13">Tutti</button>
+							<button type="button" class="chip" aria-pressed="false" data-cat="Servizi" data-i18n="br.14">Servizi</button>
+							<button type="button" class="chip" aria-pressed="false" data-cat="Progetti" data-i18n="br.15">Progetti</button>
+							<button type="button" class="chip" aria-pressed="false" data-cat="Guide" data-i18n="br.16">Guide</button>
 						</div>
 						<div class="combo__field">
 							<svg class="ic combo__lens" aria-hidden="true"><use href="#i-search" /></svg>
@@ -113,30 +115,30 @@
 								placeholder="Cerca servizi, progetti, guide…"
 								autocomplete="off"
 								spellcheck="false"
-							/>
+							 data-i18n-attr="aria-label=br.42,placeholder=br.43"/>
 							<div class="combo__pop" data-pop>
-								<ul id="combo-list" class="opts" role="listbox" aria-label="Suggerimenti"></ul>
-								<p class="combo__none" data-none hidden>Nessun risultato</p>
+								<ul id="combo-list" class="opts" role="listbox" aria-label="Suggerimenti" data-i18n-attr="aria-label=br.44"></ul>
+								<p class="combo__none" data-none hidden data-i18n="br.17">Nessun risultato</p>
 							</div>
 						</div>
-						<p class="combo__msg" role="status" data-msg>Scegli un suggerimento con le frecce e Invio, o col dito</p>
+						<p class="combo__msg" role="status" data-msg data-i18n="br.18">Scegli un suggerimento con le frecce e Invio, o col dito</p>
 					</div>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Palette dei comandi</h2>
+				<h2 class="demo__label" data-i18n="br.19">Palette dei comandi</h2>
 				<div class="stage stage--pal">
 					<button type="button" class="pal-open" data-pal-open>
 						<svg class="ic" aria-hidden="true"><use href="#i-search" /></svg>
-						<span>Cerca o vai a…</span>
-						<span class="keys" aria-hidden="true"><kbd data-mod>Ctrl</kbd><kbd>K</kbd></span>
+						<span data-i18n="br.20">Cerca o vai a…</span>
+						<span class="keys" aria-hidden="true"><kbd data-mod data-i18n="br.21">Ctrl</kbd><kbd>K</kbd></span>
 					</button>
-					<p class="pal-msg" role="status" data-pal-msg>Nessuna scelta ancora</p>
+					<p class="pal-msg" role="status" data-pal-msg data-i18n="br.22">Nessuna scelta ancora</p>
 				</div>
 			</section>
 
-			<dialog class="pal" data-pal aria-label="Cerca nel sito">
+			<dialog class="pal" data-pal aria-label="Cerca nel sito" data-i18n-attr="aria-label=br.45">
 				<div class="pal__bar">
 					<svg class="ic" aria-hidden="true"><use href="#i-search" /></svg>
 					<input
@@ -150,23 +152,23 @@
 						placeholder="Cerca o vai a…"
 						autocomplete="off"
 						spellcheck="false"
-					/>
-					<kbd aria-hidden="true">Esc</kbd>
+					 data-i18n-attr="aria-label=br.46,placeholder=br.47"/>
+					<kbd aria-hidden="true" data-i18n="br.23">Esc</kbd>
 				</div>
-				<ul id="pal-list" class="opts opts--pal" role="listbox" aria-label="Risultati"></ul>
-				<p class="pal__none" data-pal-none hidden>Nessun risultato</p>
+				<ul id="pal-list" class="opts opts--pal" role="listbox" aria-label="Risultati" data-i18n-attr="aria-label=br.48"></ul>
+				<p class="pal__none" data-pal-none hidden data-i18n="br.24">Nessun risultato</p>
 				<div class="pal__foot" aria-hidden="true">
-					<span><kbd><svg class="ic"><use href="#i-arrow-up" /></svg></kbd><kbd><svg class="ic"><use href="#i-arrow-down" /></svg></kbd> naviga</span>
-					<span><kbd><svg class="ic"><use href="#i-corner-down-left" /></svg></kbd> apri</span>
-					<span><kbd>Esc</kbd> chiudi</span>
+					<span><kbd><svg class="ic"><use href="#i-arrow-up" /></svg></kbd><kbd><svg class="ic"><use href="#i-arrow-down" /></svg></kbd> <span data-i18n="br.25">naviga</span></span>
+					<span><kbd><svg class="ic"><use href="#i-corner-down-left" /></svg></kbd> <span data-i18n="br.26">apri</span></span>
+					<span><kbd data-i18n="br.27">Esc</kbd> <span data-i18n="br.28">chiudi</span></span>
 				</div>
 			</dialog>
 
 			<p class="demo__note">
-				I dati sono di fantasia e vivono in un solo elenco nello script, usato dalle ultime tre barre.
-				La palette si apre e si chiude <strong>senza animazione</strong> di proposito: è un gesto da tastiera che si
+				<span data-i18n="br.29">I dati sono di fantasia e vivono in un solo elenco nello script, usato dalle ultime tre barre.
+				La palette si apre e si chiude</span> <strong data-i18n="br.30">senza animazione</strong> <span data-i18n="br.31">di proposito: è un gesto da tastiera che si
 				ripete centinaia di volte al giorno, e ogni millisecondo di attesa si sente. Nel riquadro “Prova dal vivo”
-				la scorciatoia <kbd>Ctrl K</kbd> funziona solo dopo aver cliccato dentro la pagina; il pulsante vale sempre.
+				la scorciatoia</span> <kbd data-i18n="br.32">Ctrl K</kbd> <span data-i18n="br.33">funziona solo dopo aver cliccato dentro la pagina; il pulsante vale sempre.</span>
 			</p>
 		</main>
 		<script src="../_shared/studio.js"></script>

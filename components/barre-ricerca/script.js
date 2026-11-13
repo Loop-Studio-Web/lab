@@ -2,26 +2,31 @@
    il combobox con i filtri (4) e la palette dei comandi (5). Un solo elenco di dati
    di fantasia e un solo modo di disegnare le opzioni, condivisi dalle ultime tre. */
 (() => {
+	const LI = { it: 0, en: 1, es: 2 }[LabI18n.lang] ?? 0;
+	const tr = (k, it, v) => LabI18n.t(k, it, v);
+	// Categorie: l'id resta italiano (filtra i chip), il nome mostrato segue la lingua.
+	const CATN = { Servizi: tr('br.js.c1', 'Servizi'), Progetti: tr('br.js.c2', 'Progetti'), Guide: tr('br.js.c3', 'Guide'), Azioni: tr('br.js.c4', 'Azioni') };
+	// cat, icona, nome [it, en, es], parole affini [it, en, es]: contenuti di fantasia, adattati a ogni lingua.
 	const DATA = [
-		{ cat: 'Servizi', label: 'Sito vetrina', icon: 'layout-template', kw: 'web pagine homepage' },
-		{ cat: 'Servizi', label: 'Negozio online', icon: 'shopping-cart', kw: 'ecommerce vendere prodotti' },
-		{ cat: 'Servizi', label: 'Servizio fotografico', icon: 'camera', kw: 'foto video scatti' },
-		{ cat: 'Servizi', label: 'Reel e social', icon: 'megaphone', kw: 'instagram tiktok contenuti' },
-		{ cat: 'Servizi', label: 'Logo e identità', icon: 'palette', kw: 'marchio brand colori' },
-		{ cat: 'Servizi', label: 'Manutenzione e supporto', icon: 'settings', kw: 'assistenza aggiornamenti' },
-		{ cat: 'Progetti', label: 'Trattoria Il Faro', icon: 'sparkles', kw: 'sito menù ristorante prenotazioni' },
-		{ cat: 'Progetti', label: 'Studio Aurora', icon: 'sparkles', kw: 'sito fisioterapia appuntamenti' },
-		{ cat: 'Progetti', label: 'Officina Ferri', icon: 'sparkles', kw: 'sito preventivi auto' },
-		{ cat: 'Progetti', label: 'Lumen Yoga', icon: 'sparkles', kw: 'sito corsi foto calendario' },
-		{ cat: 'Guide', label: 'Quanto costa un sito?', icon: 'file-text', kw: 'prezzi budget preventivo' },
-		{ cat: 'Guide', label: 'Come scegliere le foto', icon: 'file-text', kw: 'immagini fotografo scatti' },
-		{ cat: 'Guide', label: 'Dominio e hosting spiegati', icon: 'file-text', kw: 'indirizzo web server' },
-		{ cat: 'Guide', label: 'Social: quanto pubblicare', icon: 'file-text', kw: 'reel frequenza post' },
-		{ cat: 'Azioni', label: 'Torna alla home', icon: 'house', kw: 'inizio principale' },
-		{ cat: 'Azioni', label: 'Scrivici un messaggio', icon: 'mail', kw: 'contatti email' },
-		{ cat: 'Azioni', label: 'Prenota una chiamata', icon: 'calendar', kw: 'appuntamento call' },
-		{ cat: 'Azioni', label: 'Domande frequenti', icon: 'message-circle', kw: 'faq aiuto' },
-	];
+		['Servizi', 'layout-template', ['Sito vetrina', 'Showcase website', 'Web escaparate'], ['web pagine homepage', 'web pages homepage', 'web páginas inicio']],
+		['Servizi', 'shopping-cart', ['Negozio online', 'Online shop', 'Tienda online'], ['ecommerce vendere prodotti', 'ecommerce sell products', 'ecommerce vender productos']],
+		['Servizi', 'camera', ['Servizio fotografico', 'Photo shoot', 'Sesión de fotos'], ['foto video scatti', 'photo video shots', 'foto vídeo fotografías']],
+		['Servizi', 'megaphone', ['Reel e social', 'Reels and social', 'Reels y redes'], ['instagram tiktok contenuti', 'instagram tiktok content', 'instagram tiktok contenidos']],
+		['Servizi', 'palette', ['Logo e identità', 'Logo and identity', 'Logo e identidad'], ['marchio brand colori', 'brand mark colours', 'marca colores']],
+		['Servizi', 'settings', ['Manutenzione e supporto', 'Maintenance and support', 'Mantenimiento y soporte'], ['assistenza aggiornamenti', 'help updates', 'asistencia actualizaciones']],
+		['Progetti', 'sparkles', ['Trattoria Il Faro', 'The Lighthouse Inn', 'Mesón El Faro'], ['sito menù ristorante prenotazioni', 'site menu restaurant bookings', 'web carta restaurante reservas']],
+		['Progetti', 'sparkles', ['Studio Aurora', 'Aurora Studio', 'Estudio Aurora'], ['sito fisioterapia appuntamenti', 'site physiotherapy appointments', 'web fisioterapia citas']],
+		['Progetti', 'sparkles', ['Officina Ferri', 'Ferris Garage', 'Taller Ferrer'], ['sito preventivi auto', 'site quotes cars', 'web presupuestos coches']],
+		['Progetti', 'sparkles', ['Lumen Yoga', 'Lumen Yoga', 'Lumen Yoga'], ['sito corsi foto calendario', 'site classes photos calendar', 'web clases fotos calendario']],
+		['Guide', 'file-text', ['Quanto costa un sito?', 'How much does a website cost?', '¿Cuánto cuesta una web?'], ['prezzi budget preventivo', 'prices budget quote', 'precios presupuesto']],
+		['Guide', 'file-text', ['Come scegliere le foto', 'How to choose photos', 'Cómo elegir las fotos'], ['immagini fotografo scatti', 'images photographer shots', 'imágenes fotógrafo fotografías']],
+		['Guide', 'file-text', ['Dominio e hosting spiegati', 'Domain and hosting explained', 'Dominio y alojamiento explicados'], ['indirizzo web server', 'address web server', 'dirección web servidor']],
+		['Guide', 'file-text', ['Social: quanto pubblicare', 'Social: how often to post', 'Redes: cuánto publicar'], ['reel frequenza post', 'reels frequency posts', 'reels frecuencia publicaciones']],
+		['Azioni', 'house', ['Torna alla home', 'Back to home', 'Volver al inicio'], ['inizio principale', 'start main', 'inicio principal']],
+		['Azioni', 'mail', ['Scrivici un messaggio', 'Send us a message', 'Escríbenos un mensaje'], ['contatti email', 'contact email', 'contacto correo']],
+		['Azioni', 'calendar', ['Prenota una chiamata', 'Book a call', 'Reserva una llamada'], ['appuntamento call', 'appointment call', 'cita llamada']],
+		['Azioni', 'message-circle', ['Domande frequenti', 'Frequently asked questions', 'Preguntas frecuentes'], ['faq aiuto', 'faq help', 'faq ayuda']],
+	].map(([cat, icon, label, kw]) => ({ cat, icon, label: label[LI], kw: kw[LI] }));
 	const SITE = DATA.filter((d) => d.cat !== 'Azioni'); // le Azioni vivono solo nella palette
 
 	/* ----- comuni ----- */
@@ -91,7 +96,7 @@
 				const g = document.createElement('li');
 				g.className = 'opts__group';
 				g.setAttribute('role', 'presentation');
-				g.textContent = d.cat;
+				g.textContent = CATN[d.cat];
 				ul.append(g);
 			}
 			const li = document.createElement('li');
@@ -107,7 +112,7 @@
 			if (showCat) {
 				const c = document.createElement('span');
 				c.className = 'opt__cat';
-				c.textContent = d.cat;
+				c.textContent = CATN[d.cat];
 				li.append(c);
 			}
 			ul.append(li);
@@ -174,8 +179,8 @@
 				setState('done');
 				status.replaceChildren();
 				const strong = document.createElement('strong');
-				strong.textContent = n === 0 ? 'Nessun risultato' : n === 1 ? '1 risultato' : `${n} risultati`;
-				status.append(strong, ` per “${q}”`);
+				strong.textContent = n === 0 ? tr('br.js.none', 'Nessun risultato') : n === 1 ? tr('br.js.one', '1 risultato') : tr('br.js.many', '{n} risultati', { n });
+				status.append(strong, tr('br.js.for', ' per “{q}”', { q }));
 			}, 600);
 		});
 		input.addEventListener('keydown', (e) => {
@@ -209,7 +214,7 @@
 			if (st.active >= st.items.length) st.active = st.items.length - 1;
 			paint(ul, st.items, input.value, st.active, 'cb', { showCat: !st.cat });
 			none.hidden = st.items.length > 0;
-			none.textContent = `Nessun risultato per “${input.value.trim()}”`;
+			none.textContent = tr('br.js.nonefor', 'Nessun risultato per “{q}”', { q: input.value.trim() });
 			keepVisible(ul, input, 'cb', st.active);
 		};
 		const open = () => {
@@ -231,7 +236,7 @@
 			msg.replaceChildren();
 			const strong = document.createElement('strong');
 			strong.textContent = d.label;
-			msg.append('Hai scelto ', strong, ` (${d.cat})`);
+			msg.append(tr('br.js.chose', 'Hai scelto '), strong, ` (${CATN[d.cat]})`);
 		};
 
 		input.addEventListener('focus', () => {
@@ -321,7 +326,7 @@
 			out.replaceChildren();
 			const strong = document.createElement('strong');
 			strong.textContent = d.label;
-			out.append('Hai aperto ', strong);
+			out.append(tr('br.js.opened', 'Hai aperto '), strong);
 		};
 
 		trigger.addEventListener('click', openPal);

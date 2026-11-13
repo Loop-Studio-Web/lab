@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Interruttori — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="iw.1">Interruttori — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -15,17 +17,17 @@
 	<body>
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Interruttore chiaro / scuro</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="iw.2">Interruttore chiaro / scuro</h1>
+				<p class="demo__lead" data-i18n="iw.3">
 					La stessa funzione a livelli di cura diversi, dall’orso pilota fino all’interruttore
 					essenziale. Ognuno cambia il proprio palco, non la pagina.
 				</p>
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">L’orso pilota</h2>
+				<h2 class="demo__label" data-i18n="iw.4">L’orso pilota</h2>
 				<div class="stage bear-stage" data-dark-mode="false">
-					<button class="toggle" aria-pressed="false" aria-label="Tema scuro">
+					<button class="toggle" aria-pressed="false" aria-label="Tema scuro" data-i18n-attr="aria-label=iw.10">
   <span class="toggle__content">
     <svg aria-hidden=true class="toggle__backdrop" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 290 228">
       <g class="clouds">
@@ -226,10 +228,10 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Sole, luna e stelle</h2>
+				<h2 class="demo__label" data-i18n="iw.5">Sole, luna e stelle</h2>
 				<div class="stage sm-stage">
 					<label class="sm-switch">
-						<input class="sm-input" type="checkbox" role="switch" aria-label="Tema scuro" />
+						<input class="sm-input" type="checkbox" role="switch" aria-label="Tema scuro"  data-i18n-attr="aria-label=iw.11"/>
 						<div class="sm-slider sm-round">
 							<div class="sm-sun-moon">
         <svg id="moon-dot-1" class="sm-moon-dot" viewBox="0 0 100 100">
@@ -291,7 +293,7 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Il robot che non si spegne</h2>
+				<h2 class="demo__label" data-i18n="iw.6">Il robot che non si spegne</h2>
 				<div class="stage robot-stage">
 					<svg id="mainSVG" class="robot-svg" role="group" aria-label="Interruttore del robot" xmlns="http://www.w3.org/2000/svg" viewBox="205 120 390 323">
 <defs>
@@ -367,10 +369,10 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Con le icone</h2>
+				<h2 class="demo__label" data-i18n="iw.7">Con le icone</h2>
 				<div class="stage icon-stage">
 					<label class="isw">
-						<input type="checkbox" role="switch" class="isw__input" aria-label="Tema scuro" />
+						<input type="checkbox" role="switch" class="isw__input" aria-label="Tema scuro"  data-i18n-attr="aria-label=iw.12"/>
 						<span class="isw__track" aria-hidden="true">
 							<svg class="isw__icon isw__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" /></svg>
 							<svg class="isw__icon isw__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
@@ -381,17 +383,17 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">L’essenziale</h2>
+				<h2 class="demo__label" data-i18n="iw.8">L’essenziale</h2>
 				<div class="stage plain-stage">
 					<label class="psw">
-						<input type="checkbox" role="switch" class="psw__input" aria-label="Tema scuro" />
+						<input type="checkbox" role="switch" class="psw__input" aria-label="Tema scuro"  data-i18n-attr="aria-label=iw.13"/>
 						<span class="psw__track" aria-hidden="true"><span class="psw__knob"></span></span>
 						<span class="psw__text" data-off="Tema chiaro" data-on="Tema scuro"></span>
 					</label>
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="iw.9">
 				Tutti sono controlli veri: l’orso è un pulsante, gli altri sono interruttori veri e si usano con Spazio. Il robot usa GSAP (in locale, solo
 				in questa scheda); il resto è CSS.
 			</p>
