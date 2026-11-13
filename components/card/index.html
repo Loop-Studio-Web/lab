@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Card — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="cd.1">Card — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -25,8 +27,8 @@
 
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Card</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="cd.2">Card</h1>
+				<p class="demo__lead" data-i18n="cd.3">
 					Cinque modi di far sembrare una scheda un oggetto: ritagli che escono dalla cornice, finiture
 					che cambiano colore, inclinazioni in 3D e un biglietto che esce da una fessura. Muovi il mouse
 					(o il dito) sopra le card.
@@ -34,7 +36,7 @@
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Ritaglio che esce dalla cornice</h2>
+				<h2 class="demo__label" data-i18n="cd.4">Ritaglio che esce dalla cornice</h2>
 				<div class="stage stage--pop">
 					<div class="pop">
 						<article class="pop__card is-open-l is-open-r" data-tilt="18" style="--photo: url(img/macaw-bg.webp); --cut: url(img/macaw-cut.webp)">
@@ -42,8 +44,8 @@
 							<div class="pop__layer pop__bg"></div>
 							<div class="pop__layer pop__cut"></div>
 							<div class="pop__content">
-								<h3>Ara in volo</h3>
-								<p>Il pappagallo supera la cornice: sfondo e soggetto stanno su due piani.</p>
+								<h3 data-i18n="cd.5">Ara in volo</h3>
+								<p data-i18n="cd.6">Il pappagallo supera la cornice: sfondo e soggetto stanno su due piani.</p>
 							</div>
 						</article>
 						<article class="pop__card is-open-t is-open-r" data-tilt="18" style="--photo: url(img/butterfly-bg.webp); --cut: url(img/butterfly-cut.webp)">
@@ -51,8 +53,8 @@
 							<div class="pop__layer pop__bg"></div>
 							<div class="pop__layer pop__cut"></div>
 							<div class="pop__content">
-								<h3>Monarca</h3>
-								<p>Le ali coprono il bordo rosso, il fiore resta dietro.</p>
+								<h3 data-i18n="cd.7">Monarca</h3>
+								<p data-i18n="cd.8">Le ali coprono il bordo rosso, il fiore resta dietro.</p>
 							</div>
 						</article>
 						<article class="pop__card is-open-l" data-tilt="18" style="--photo: url(img/flamingo-bg.webp); --cut: url(img/flamingo-cut.webp)">
@@ -60,8 +62,8 @@
 							<div class="pop__layer pop__bg"></div>
 							<div class="pop__layer pop__cut"></div>
 							<div class="pop__content">
-								<h3>Fenicottero</h3>
-								<p>Collo e becco escono dall’angolo, l’acqua resta nella cornice.</p>
+								<h3 data-i18n="cd.9">Fenicottero</h3>
+								<p data-i18n="cd.10">Collo e becco escono dall’angolo, l’acqua resta nella cornice.</p>
 							</div>
 						</article>
 					</div>
@@ -69,7 +71,7 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Scheda prodotto con finiture</h2>
+				<h2 class="demo__label" data-i18n="cd.11">Scheda prodotto con finiture</h2>
 				<div class="stage stage--shop">
 					<article class="shop" aria-labelledby="shop-title">
 						<div class="shop__visual"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 420" aria-hidden="true">
@@ -97,43 +99,43 @@
   <use href="#i-infinity" x="58" y="216" width="84" height="43" />
 </svg></div>
 						<div class="shop__info">
-							<p class="shop__kicker">Borraccia termica</p>
-							<h3 id="shop-title">Flask 750</h3>
-							<p class="shop__price">€34 <s><span class="sr-only">invece di </span>€45</s></p>
+							<p class="shop__kicker" data-i18n="cd.12">Borraccia termica</p>
+							<h3 id="shop-title" data-i18n="cd.13">Flask 750</h3>
+							<p class="shop__price">€34 <s><span class="sr-only" data-i18n="cd.14">invece di </span>€45</s></p>
 
 							<fieldset class="shop__tabs">
-								<legend class="sr-only">Informazioni</legend>
+								<legend class="sr-only" data-i18n="cd.15">Informazioni</legend>
 								<input type="radio" name="tab" id="tab-desc" checked />
-								<label for="tab-desc">Descrizione</label>
+								<label for="tab-desc" data-i18n="cd.16">Descrizione</label>
 								<input type="radio" name="tab" id="tab-misure" />
-								<label for="tab-misure">Misure</label>
+								<label for="tab-misure" data-i18n="cd.17">Misure</label>
 								<div class="shop__panels">
-									<p class="shop__panel shop__panel--desc">
+									<p class="shop__panel shop__panel--desc" data-i18n="cd.18">
 										Acciaio inox a doppia parete: tiene il freddo 24 ore e il caldo 12. Tappo con
 										maniglia, nessuna plastica a contatto con la bevanda.
 									</p>
 									<dl class="shop__panel shop__panel--misure">
-										<div><dt>Altezza</dt><dd><b>27</b> cm</dd></div>
-										<div><dt>Diametro</dt><dd><b>7</b> cm</dd></div>
-										<div><dt>Peso</dt><dd><b>340</b> g</dd></div>
-										<div><dt>Capacità</dt><dd><b>750</b> ml</dd></div>
+										<div><dt data-i18n="cd.19">Altezza</dt><dd><b>27</b> cm</dd></div>
+										<div><dt data-i18n="cd.20">Diametro</dt><dd><b>7</b> cm</dd></div>
+										<div><dt data-i18n="cd.21">Peso</dt><dd><b>340</b> g</dd></div>
+										<div><dt data-i18n="cd.22">Capacità</dt><dd><b>750</b> ml</dd></div>
 									</dl>
 								</div>
 							</fieldset>
 
 							<fieldset class="shop__finishes">
-								<legend>Finitura: <span data-finish-name>Rosso Loop</span></legend>
-								<label class="swatch" style="--sw: #ff3b30"><input type="radio" name="finish" data-name="Rosso Loop" checked /><span class="sr-only">Rosso Loop</span></label>
-								<label class="swatch" style="--sw: #1f1f1f"><input type="radio" name="finish" data-name="Notte" /><span class="sr-only">Notte</span></label>
-								<label class="swatch" style="--sw: #3b6ea8"><input type="radio" name="finish" data-name="Oceano" /><span class="sr-only">Oceano</span></label>
-								<label class="swatch" style="--sw: #7e9a7a"><input type="radio" name="finish" data-name="Salvia" /><span class="sr-only">Salvia</span></label>
-								<label class="swatch" style="--sw: #d9c9ae"><input type="radio" name="finish" data-name="Sabbia" /><span class="sr-only">Sabbia</span></label>
-								<label class="swatch" style="--sw: #6b6f72"><input type="radio" name="finish" data-name="Grafite" /><span class="sr-only">Grafite</span></label>
+								<legend><span data-i18n="cd.23">Finitura:</span> <span data-finish-name data-i18n="cd.24">Rosso Loop</span></legend>
+								<label class="swatch" style="--sw: #ff3b30"><input type="radio" name="finish" data-name="Rosso Loop" data-i18n-attr="data-name=cd.25" checked /><span class="sr-only" data-i18n="cd.25">Rosso Loop</span></label>
+								<label class="swatch" style="--sw: #1f1f1f"><input type="radio" name="finish" data-name="Notte" data-i18n-attr="data-name=cd.26" /><span class="sr-only" data-i18n="cd.26">Notte</span></label>
+								<label class="swatch" style="--sw: #3b6ea8"><input type="radio" name="finish" data-name="Oceano" data-i18n-attr="data-name=cd.27" /><span class="sr-only" data-i18n="cd.27">Oceano</span></label>
+								<label class="swatch" style="--sw: #7e9a7a"><input type="radio" name="finish" data-name="Salvia" data-i18n-attr="data-name=cd.28" /><span class="sr-only" data-i18n="cd.28">Salvia</span></label>
+								<label class="swatch" style="--sw: #d9c9ae"><input type="radio" name="finish" data-name="Sabbia" data-i18n-attr="data-name=cd.29" /><span class="sr-only" data-i18n="cd.29">Sabbia</span></label>
+								<label class="swatch" style="--sw: #6b6f72"><input type="radio" name="finish" data-name="Grafite" data-i18n-attr="data-name=cd.30" /><span class="sr-only" data-i18n="cd.30">Grafite</span></label>
 							</fieldset>
 
 							<button type="button" class="shop__buy" data-buy>
 								<svg aria-hidden="true"><use href="#i-cart" /></svg>
-								<span>Aggiungi al carrello</span>
+								<span data-i18n="cd.31">Aggiungi al carrello</span>
 							</button>
 							<p class="sr-only" aria-live="polite" data-buy-live></p>
 						</div>
@@ -142,11 +144,11 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Inclinazione con prodotto in rilievo</h2>
+				<h2 class="demo__label" data-i18n="cd.32">Inclinazione con prodotto in rilievo</h2>
 				<div class="stage stage--tilt">
 					<div class="tilts">
 						<article class="tilt" data-tilt="14" style="--c: #ff3b30; --body: #ff3b30; --accent: #1a1a1a">
-							<h3 class="tilt__name">Orbita Rosso</h3>
+							<h3 class="tilt__name" data-i18n="cd.33">Orbita Rosso</h3>
 							<div class="tilt__disc"></div>
 							<div class="tilt__bag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" aria-hidden="true">
   <defs>
@@ -169,10 +171,10 @@
   <path d="M246 232C260 232 264 246 264 258L264 292C264 304 256 308 246 308Z" fill="var(--accent,#1a1a1a)"/>
   <path d="M60 130C60 60 100 40 150 40 200 40 240 60 240 130L246 300C246 318 234 326 218 326L82 326C66 326 54 318 54 300Z" fill="url(#bp-sh)"/>
 </svg></div>
-							<button type="button" class="tilt__buy" aria-pressed="false" data-pick>Lo voglio</button>
+							<button type="button" class="tilt__buy" aria-pressed="false" data-pick data-i18n="cd.34">Lo voglio</button>
 						</article>
 						<article class="tilt" data-tilt="14" style="--c: #e4dccd; --body: #e4dccd; --accent: #2b2b2b">
-							<h3 class="tilt__name">Orbita Sabbia</h3>
+							<h3 class="tilt__name" data-i18n="cd.35">Orbita Sabbia</h3>
 							<div class="tilt__disc"></div>
 							<div class="tilt__bag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" aria-hidden="true">
   <defs>
@@ -195,10 +197,10 @@
   <path d="M246 232C260 232 264 246 264 258L264 292C264 304 256 308 246 308Z" fill="var(--accent,#1a1a1a)"/>
   <path d="M60 130C60 60 100 40 150 40 200 40 240 60 240 130L246 300C246 318 234 326 218 326L82 326C66 326 54 318 54 300Z" fill="url(#bp-sh)"/>
 </svg></div>
-							<button type="button" class="tilt__buy" aria-pressed="false" data-pick>Lo voglio</button>
+							<button type="button" class="tilt__buy" aria-pressed="false" data-pick data-i18n="cd.36">Lo voglio</button>
 						</article>
 						<article class="tilt" data-tilt="14" style="--c: #3c6bf0; --body: #3c6bf0; --accent: #0d1b3d">
-							<h3 class="tilt__name">Orbita Blu</h3>
+							<h3 class="tilt__name" data-i18n="cd.37">Orbita Blu</h3>
 							<div class="tilt__disc"></div>
 							<div class="tilt__bag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 340" aria-hidden="true">
   <defs>
@@ -221,66 +223,66 @@
   <path d="M246 232C260 232 264 246 264 258L264 292C264 304 256 308 246 308Z" fill="var(--accent,#1a1a1a)"/>
   <path d="M60 130C60 60 100 40 150 40 200 40 240 60 240 130L246 300C246 318 234 326 218 326L82 326C66 326 54 318 54 300Z" fill="url(#bp-sh)"/>
 </svg></div>
-							<button type="button" class="tilt__buy" aria-pressed="false" data-pick>Lo voglio</button>
+							<button type="button" class="tilt__buy" aria-pressed="false" data-pick data-i18n="cd.38">Lo voglio</button>
 						</article>
 					</div>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Inclinazione con riflesso</h2>
+				<h2 class="demo__label" data-i18n="cd.39">Inclinazione con riflesso</h2>
 				<div class="stage stage--pass">
-					<article class="pass" data-tilt="16" aria-label="Tessera cliente Loop Studio">
+					<article class="pass" data-tilt="16" aria-label="Tessera cliente Loop Studio" data-i18n-attr="aria-label=cd.63">
 						<svg class="pass__logo" viewBox="0 0 1465 753" aria-hidden="true"><use href="#i-infinity" /></svg>
-						<p class="pass__tag">Tessera cliente</p>
+						<p class="pass__tag" data-i18n="cd.40">Tessera cliente</p>
 						<span class="pass__chip" aria-hidden="true"></span>
 						<p class="pass__num">0042 &nbsp;7718 &nbsp;2026</p>
-						<p class="pass__name">Marta Bellini</p>
-						<p class="pass__since">Cliente dal 2026</p>
+						<p class="pass__name" data-i18n="cd.41">Marta Bellini</p>
+						<p class="pass__since" data-i18n="cd.42">Cliente dal 2026</p>
 					</article>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Biglietto che esce dalla fessura</h2>
+				<h2 class="demo__label" data-i18n="cd.43">Biglietto che esce dalla fessura</h2>
 				<div class="stage stage--ticket">
 					<div class="tk" data-ticket>
 						<div class="tk__slot"><div class="tk__hole"></div></div>
 						<div class="tk__out">
 							<div class="tk__paper">
-								<h3 class="tk__title">Viaggio in Giappone — Estate 2027</h3>
-								<p class="tk__amount">Totale <span>€30.000</span></p>
-								<p class="tk__amount">A persona <span>€6.000</span></p>
+								<h3 class="tk__title" data-i18n="cd.44">Viaggio in Giappone — Estate 2027</h3>
+								<p class="tk__amount"><span data-i18n="cd.45">Totale</span> <span data-i18n="cd.amt1">€30.000</span></p>
+								<p class="tk__amount"><span data-i18n="cd.46">A persona</span> <span data-i18n="cd.amt2">€6.000</span></p>
 								<hr />
 								<ul class="tk__list">
 									<li data-payer data-paid="true">
-										<span class="tk__avatar" aria-hidden="true">TU</span>
-										<span class="tk__who">Tu</span>
+										<span class="tk__avatar" aria-hidden="true" data-i18n="cd.47">TU</span>
+										<span class="tk__who" data-i18n="cd.48">Tu</span>
 										<button type="button" class="tk__tag" data-toggle></button>
 									</li>
 									<li data-payer data-paid="true">
-										<span class="tk__avatar" aria-hidden="true">MR</span>
-										<span class="tk__who">Marco</span>
+										<span class="tk__avatar" aria-hidden="true" data-i18n="cd.49">MR</span>
+										<span class="tk__who" data-i18n="cd.50">Marco</span>
 										<button type="button" class="tk__tag" data-toggle></button>
 									</li>
 									<li data-payer data-paid="true">
-										<span class="tk__avatar" aria-hidden="true">GF</span>
-										<span class="tk__who">Giulia</span>
+										<span class="tk__avatar" aria-hidden="true" data-i18n="cd.51">GF</span>
+										<span class="tk__who" data-i18n="cd.52">Giulia</span>
 										<button type="button" class="tk__tag" data-toggle></button>
 									</li>
 									<li data-payer data-paid="false">
-										<span class="tk__avatar" aria-hidden="true">LC</span>
-										<span class="tk__who">Luca</span>
+										<span class="tk__avatar" aria-hidden="true" data-i18n="cd.53">LC</span>
+										<span class="tk__who" data-i18n="cd.54">Luca</span>
 										<button type="button" class="tk__tag" data-toggle></button>
 									</li>
 									<li data-payer data-paid="false">
-										<span class="tk__avatar" aria-hidden="true">SB</span>
-										<span class="tk__who">Sofia</span>
+										<span class="tk__avatar" aria-hidden="true" data-i18n="cd.55">SB</span>
+										<span class="tk__who" data-i18n="cd.56">Sofia</span>
 										<button type="button" class="tk__tag" data-toggle></button>
 									</li>
 								</ul>
 								<div class="tk__status">
-									<p class="tk__status-head">Stato dei pagamenti <b data-status>Da saldare</b></p>
+									<p class="tk__status-head"><span data-i18n="cd.57">Stato dei pagamenti</span> <b data-status data-i18n="cd.58">Da saldare</b></p>
 									<div class="tk__track" role="img" aria-hidden="true">
 										<div class="tk__fill"></div>
 										<div class="tk__cp" data-cp style="--i: 0"><svg><use href="#i-check" /></svg><i></i></div>
@@ -291,13 +293,13 @@
 									</div>
 								</div>
 								<div class="tk__actions">
-									<button type="button" class="tk__btn tk__btn--dark" data-remind>Invia promemoria</button>
-									<button type="button" class="tk__btn" data-reprint>Ristampa</button>
+									<button type="button" class="tk__btn tk__btn--dark" data-remind data-i18n="cd.59">Invia promemoria</button>
+									<button type="button" class="tk__btn" data-reprint data-i18n="cd.60">Ristampa</button>
 								</div>
 								<p class="tk__msg" aria-live="polite" data-msg></p>
 								<div class="tk__brand">
 									<svg viewBox="0 0 1465 753" aria-hidden="true"><use href="#i-infinity" /></svg>
-									<p>Grazie di aver viaggiato con noi</p>
+									<p data-i18n="cd.61">Grazie di aver viaggiato con noi</p>
 								</div>
 							</div>
 						</div>
@@ -305,7 +307,7 @@
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="cd.62">
 				L’inclinazione segue la posizione del puntatore sulla card. Con il movimento ridotto le card restano ferme. Foto: Unsplash.
 			</p>
 		</main>

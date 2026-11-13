@@ -46,13 +46,14 @@ shop.addEventListener('change', (e) => {
 		);
 	}
 });
+const tr = (k, it, v) => LabI18n.t(k, it, v);
 const buy = shop.querySelector('[data-buy]');
 const buyLive = shop.querySelector('[data-buy-live]');
 buy.addEventListener('click', () => {
 	const on = buy.getAttribute('aria-pressed') !== 'true';
 	buy.setAttribute('aria-pressed', on);
-	buy.querySelector('span').textContent = on ? 'Nel carrello' : 'Aggiungi al carrello';
-	buyLive.textContent = on ? `Aggiunta al carrello: ${finishName.textContent}` : 'Tolta dal carrello';
+	buy.querySelector('span').textContent = on ? tr('cd.js.incart', 'Nel carrello') : tr('cd.js.add', 'Aggiungi al carrello');
+	buyLive.textContent = on ? tr('cd.js.added', 'Aggiunta al carrello: {n}', { n: finishName.textContent }) : tr('cd.js.removed', 'Tolta dal carrello');
 });
 
 // ——— Zaini: "Lo voglio" ———
@@ -60,7 +61,7 @@ document.querySelectorAll('[data-pick]').forEach((btn) =>
 	btn.addEventListener('click', () => {
 		const on = btn.getAttribute('aria-pressed') !== 'true';
 		btn.setAttribute('aria-pressed', on);
-		btn.textContent = on ? 'Nel carrello' : 'Lo voglio';
+		btn.textContent = on ? tr('cd.js.incart', 'Nel carrello') : tr('cd.js.want', 'Lo voglio');
 	}),
 );
 
@@ -77,14 +78,14 @@ const paint = () => {
 		const on = p.dataset.paid === 'true';
 		const name = p.querySelector('.tk__who').textContent;
 		p.querySelector('[data-toggle]').innerHTML =
-			`${on ? 'Pagato' : 'Da pagare'}<span class="sr-only"> — ${name}, tocca per cambiare</span>`;
+			`${on ? tr('cd.js.paid', 'Pagato') : tr('cd.js.topay', 'Da pagare')}<span class="sr-only"> — ${tr('cd.js.tap', '{n}, tocca per cambiare', { n: name })}</span>`;
 	});
 	cps.forEach((cp, i) => {
 		const last = i === cps.length - 1;
 		cp.dataset.state = last ? (paid === payers.length ? 'done' : 'todo') : i < paid ? 'done' : i === paid ? 'current' : 'todo';
 	});
 	tk.style.setProperty('--fill', `${(Math.min(paid, 4) / 4) * 100}%`);
-	status.textContent = paid === payers.length ? 'Saldato' : 'Da saldare';
+	status.textContent = paid === payers.length ? tr('cd.js.settled', 'Saldato') : tr('cd.js.due', 'Da saldare');
 	return paid;
 };
 
@@ -94,12 +95,12 @@ tk.addEventListener('click', (e) => {
 	const row = t.closest('[data-payer]');
 	row.dataset.paid = row.dataset.paid === 'true' ? 'false' : 'true';
 	const paid = paint();
-	msg.textContent = `${paid} su ${payers.length} hanno pagato.`;
+	msg.textContent = tr('cd.js.count', '{p} su {n} hanno pagato.', { p: paid, n: payers.length });
 });
 
 tk.querySelector('[data-remind]').addEventListener('click', () => {
 	const late = payers.filter((p) => p.dataset.paid !== 'true').map((p) => p.querySelector('.tk__who').textContent);
-	msg.textContent = late.length ? `Promemoria inviato a ${late.join(' e ')}.` : 'Sono tutti in regola, niente da sollecitare.';
+	msg.textContent = late.length ? tr('cd.js.remind', 'Promemoria inviato a {n}.', { n: late.join(tr('cd.js.and', ' e ')) }) : tr('cd.js.allok', 'Sono tutti in regola, niente da sollecitare.');
 });
 
 const print = () => {
@@ -110,6 +111,8 @@ const print = () => {
 tk.querySelector('[data-reprint]').addEventListener('click', print);
 
 paint();
+// Le traduzioni si applicano a DOMContentLoaded: ridisegna con i nomi già tradotti.
+document.addEventListener('DOMContentLoaded', paint);
 // Il biglietto esce quando la sezione entra in vista, non al caricamento della pagina.
 tk.classList.add('is-armed', 'is-reset');
 new IntersectionObserver((entries, obs) => {
