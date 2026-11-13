@@ -1,6 +1,8 @@
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star" /></svg>';
-const comma = (n) => String(n).replace('.', ',');
+const tr = (k, it, v) => LabI18n.t(k, it, v);
+// Virgola decimale in italiano e spagnolo, punto in inglese.
+const comma = (n) => (LabI18n.lang === 'en' ? String(n) : String(n).replace('.', ','));
 
 // Le cinque stelle di ogni riga non sono scritte a mano.
 document.querySelectorAll('[data-stars]').forEach((row) => (row.innerHTML = STAR.repeat(5)));
@@ -13,7 +15,7 @@ const live = new IntersectionObserver(
 document.querySelectorAll('[data-live]').forEach((el) => live.observe(el));
 
 // ——— Voto a cinque stelle: veri radio, --shown dice quante stelle accendere ———
-const MESSAGES = ['Molto male', 'Si può migliorare', 'Nella media', 'Bene', 'Eccezionale!'];
+const MESSAGES = [tr('sv.js.m1', 'Molto male'), tr('sv.js.m2', 'Si può migliorare'), tr('sv.js.m3', 'Nella media'), tr('sv.js.m4', 'Bene'), tr('sv.js.m5', 'Eccezionale!')];
 
 document.querySelectorAll('[data-pick]').forEach((pick) => {
 	const row = pick.querySelector('[data-pick-row]');
@@ -28,13 +30,13 @@ document.querySelectorAll('[data-pick]').forEach((pick) => {
 		label.innerHTML =
 			`<input type="radio" class="sr-only" name="${name}" value="${i}" />` +
 			`<span class="pick__face">${STAR}${STAR}</span>` +
-			`<span class="sr-only">${i} ${i === 1 ? 'stella' : 'stelle'}: ${MESSAGES[i - 1]}</span>`;
+			`<span class="sr-only">${i} ${i === 1 ? tr('sv.js.star1', 'stella') : tr('sv.js.starN', 'stelle')}: ${MESSAGES[i - 1]}</span>`;
 		row.append(label);
 	}
 
 	const show = (n) => {
 		pick.style.setProperty('--shown', n);
-		msg.textContent = n ? MESSAGES[n - 1] : 'Tocca una stella';
+		msg.textContent = n ? MESSAGES[n - 1] : tr('sv.js.tap', 'Tocca una stella');
 	};
 
 	// Anteprima al passaggio (solo puntatore preciso): le stelle si accendono fino a quella sotto il mouse.
@@ -86,8 +88,8 @@ document.querySelectorAll('[data-half]').forEach((root) => {
 	const commit = () => {
 		const v = input.valueAsNumber;
 		paint(v);
-		out.textContent = v ? `${comma(v)} su 5` : 'Nessun voto';
-		input.setAttribute('aria-valuetext', v ? `${comma(v)} stelle su 5` : 'Nessun voto');
+		out.textContent = v ? tr('sv.js.outof', '{v} su 5', { v: comma(v) }) : tr('sv.js.none', 'Nessun voto');
+		input.setAttribute('aria-valuetext', v ? tr('sv.js.starsof', '{v} stelle su 5', { v: comma(v) }) : tr('sv.js.none', 'Nessun voto'));
 	};
 	// Posizione del puntatore → mezza stella più vicina verso l'alto (mai zero col mouse).
 	const fromPointer = (e) => {

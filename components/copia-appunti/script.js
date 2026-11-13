@@ -39,19 +39,21 @@ const sourceOf = (btn) => {
 document.querySelectorAll('[data-copy], [data-copy-target]').forEach((btn) => {
 	const label = btn.querySelector('.copy__label');
 	const tip = btn.querySelector('.copy__tip');
-	const original = {
-		label: label?.textContent,
-		aria: btn.getAttribute('aria-label'),
-	};
+	// Il testo originale (già tradotto) si legge alla prima copia: a DOMContentLoaded le traduzioni non sono ancora applicate.
+	const original = {};
 	btn.insertAdjacentHTML('afterbegin', ICONS);
 	let timer;
 
 	const setState = (state, message) => {
 		clearTimeout(timer);
+		if (state !== 'idle' && !('label' in original)) {
+			original.label = label?.textContent;
+			original.aria = btn.getAttribute('aria-label');
+		}
 		if (state === 'idle') delete btn.dataset.state;
 		else btn.dataset.state = state;
-		if (label) label.textContent = state === 'copied' ? btn.dataset.done : state === 'failed' ? 'Copia a mano' : original.label;
-		if (tip) tip.textContent = state === 'failed' ? 'Copia a mano' : btn.dataset.done;
+		if (label) label.textContent = state === 'copied' ? btn.dataset.done : state === 'failed' ? LabI18n.t('cp.js.manual', 'Copia a mano') : original.label;
+		if (tip) tip.textContent = state === 'failed' ? LabI18n.t('cp.js.manual', 'Copia a mano') : btn.dataset.done;
 		if (state === 'idle') {
 			if (original.aria) btn.setAttribute('aria-label', original.aria);
 			return;
@@ -63,12 +65,12 @@ document.querySelectorAll('[data-copy], [data-copy-target]').forEach((btn) => {
 	btn.addEventListener('click', async () => {
 		const { target, text } = sourceOf(btn);
 		if (await copyText(text)) {
-			setState('copied', `${btn.dataset.done}: ${text} negli appunti`);
+			setState('copied', LabI18n.t('cp.js.ok', '{done}: {text} negli appunti', { done: btn.dataset.done, text }));
 		} else {
 			// Ultima risorsa: seleziona il testo, ci pensa l'utente con Ctrl+C.
 			if (target && 'select' in target) target.select();
 			else if (target) getSelection().selectAllChildren(target);
-			setState('failed', 'Non è stato possibile copiare: il testo è selezionato, premi Ctrl+C');
+			setState('failed', LabI18n.t('cp.js.fail', 'Non è stato possibile copiare: il testo è selezionato, premi Ctrl+C'));
 		}
 	});
 });

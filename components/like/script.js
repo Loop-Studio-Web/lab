@@ -11,7 +11,7 @@ function setLiked(btn, on) {
 	const count = btn.querySelector('[data-count]');
 	if (count) count.textContent = String(Number(count.dataset.count) + (on ? 1 : 0));
 	const live = btn.querySelector('[data-live]');
-	if (live) live.textContent = on ? 'Mi piace aggiunto' : 'Mi piace tolto';
+	if (live) live.textContent = on ? LabI18n.t('li.js.on', 'Mi piace aggiunto') : LabI18n.t('li.js.off', 'Mi piace tolto');
 
 	if (on) {
 		btn.classList.remove('is-burst');

@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Stelle di voto — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="sv.1">Stelle di voto — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -20,8 +22,8 @@
 
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Stelle di voto</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="sv.2">Stelle di voto</h1>
+				<p class="demo__lead" data-i18n="sv.3">
 					Mostrare una valutazione e raccoglierla: la media con la ripartizione dei voti, il voto a cinque
 					stelle e quello con le mezze stelle. Le stelle sono tutte la stessa forma, riempita più o meno da
 					una sola variabile CSS.
@@ -29,55 +31,55 @@
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Valutazione media</h2>
+				<h2 class="demo__label" data-i18n="sv.4">Valutazione media</h2>
 				<div class="stage stage--summary" data-live>
 					<div class="avg">
 						<p class="avg__number">4,6</p>
-						<div class="stars stars--lg" style="--value: 4.59" role="img" aria-label="Valutazione media: 4,6 stelle su 5">
+						<div class="stars stars--lg" style="--value: 4.59" role="img" aria-label="Valutazione media: 4,6 stelle su 5" data-i18n-attr="aria-label=sv.20">
 							<div class="stars__row" data-stars></div>
 							<div class="stars__row stars__row--fill" data-stars></div>
 						</div>
-						<p class="avg__count">128 recensioni</p>
+						<p class="avg__count" data-i18n="sv.5">128 recensioni</p>
 					</div>
-					<ul class="bars" role="list" aria-label="Ripartizione dei voti">
-						<li class="bar" style="--i: 0; --w: 72%"><span class="bar__label">5 stelle</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__pct">72%</span></li>
-						<li class="bar" style="--i: 1; --w: 19%"><span class="bar__label">4 stelle</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__pct">19%</span></li>
-						<li class="bar" style="--i: 2; --w: 6%"><span class="bar__label">3 stelle</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__pct">6%</span></li>
-						<li class="bar" style="--i: 3; --w: 2%"><span class="bar__label">2 stelle</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__pct">2%</span></li>
-						<li class="bar" style="--i: 4; --w: 1%"><span class="bar__label">1 stella</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__pct">1%</span></li>
+					<ul class="bars" role="list" aria-label="Ripartizione dei voti" data-i18n-attr="aria-label=sv.21">
+						<li class="bar" style="--i: 0; --w: 72%"><span class="bar__label" data-i18n="sv.6">5 stelle</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__pct">72%</span></li>
+						<li class="bar" style="--i: 1; --w: 19%"><span class="bar__label" data-i18n="sv.7">4 stelle</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__pct">19%</span></li>
+						<li class="bar" style="--i: 2; --w: 6%"><span class="bar__label" data-i18n="sv.8">3 stelle</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__pct">6%</span></li>
+						<li class="bar" style="--i: 3; --w: 2%"><span class="bar__label" data-i18n="sv.9">2 stelle</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__pct">2%</span></li>
+						<li class="bar" style="--i: 4; --w: 1%"><span class="bar__label" data-i18n="sv.10">1 stella</span><span class="bar__track"><span class="bar__fill"></span></span><span class="bar__pct">1%</span></li>
 					</ul>
-					<p class="stage__hint">Dati di fantasia</p>
+					<p class="stage__hint" data-i18n="sv.11">Dati di fantasia</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Voto a cinque stelle</h2>
+				<h2 class="demo__label" data-i18n="sv.12">Voto a cinque stelle</h2>
 				<div class="stage">
 					<fieldset class="pick" data-pick>
-						<legend class="pick__legend">Com’è andata la consegna?</legend>
+						<legend class="pick__legend" data-i18n="sv.13">Com’è andata la consegna?</legend>
 						<div class="pick__row" data-pick-row></div>
-						<p class="pick__msg" role="status" data-pick-msg>Tocca una stella</p>
+						<p class="pick__msg" role="status" data-pick-msg data-i18n="sv.14">Tocca una stella</p>
 					</fieldset>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Mezze stelle</h2>
+				<h2 class="demo__label" data-i18n="sv.15">Mezze stelle</h2>
 				<div class="stage">
 					<div class="half" data-half>
-						<label class="sr-only" for="half-input">Voto, da 0 a 5 con mezze stelle</label>
+						<label class="sr-only" for="half-input" data-i18n="sv.16">Voto, da 0 a 5 con mezze stelle</label>
 						<input id="half-input" class="half__input" type="range" min="0" max="5" step="0.5" value="3.5" />
 						<div class="stars stars--xl half__stars" style="--value: 3.5" data-half-stars>
 							<div class="stars__row" data-stars></div>
 							<div class="stars__row stars__row--fill" data-stars></div>
 						</div>
-						<p class="half__out" data-half-out>3,5 su 5</p>
-						<button type="button" class="chip" data-half-clear>Azzera</button>
+						<p class="half__out" data-half-out data-i18n="sv.17">3,5 su 5</p>
+						<button type="button" class="chip" data-half-clear data-i18n="sv.18">Azzera</button>
 					</div>
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="sv.19">
 				Tutte e tre le varianti leggono un solo valore: la riga delle stelle piene è ritagliata in proporzione, quindi 4,6 stelle sono davvero 4 piene e il 60% della
 				quinta. Il voto a cinque stelle usa veri pulsanti di scelta (frecce della tastiera
 				comprese); le mezze stelle un cursore nascosto sotto.
