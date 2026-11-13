@@ -5,7 +5,7 @@ const pad = (n) => String(n).padStart(2, '0');
 const formats = {
 	time: (v) => {
 		const hour = Math.floor(v / 60);
-		const part = hour < 5 ? 'Notte' : hour < 12 ? 'Mattina' : hour < 18 ? 'Pomeriggio' : hour < 22 ? 'Sera' : 'Notte';
+		const part = hour < 5 ? LabI18n.t('oa.js.night', 'Notte') : hour < 12 ? LabI18n.t('oa.js.morning', 'Mattina') : hour < 18 ? LabI18n.t('oa.js.afternoon', 'Pomeriggio') : hour < 22 ? LabI18n.t('oa.js.evening', 'Sera') : LabI18n.t('oa.js.night', 'Notte');
 		return { text: `${pad(hour)}:${pad(v % 60)}`, caption: part };
 	},
 	duration: (v) => {

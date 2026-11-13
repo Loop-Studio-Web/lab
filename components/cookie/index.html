@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Avviso cookie — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="ck.1">Avviso cookie — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -14,8 +16,8 @@
 	<body>
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Avviso sui cookie</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="ck.2">Avviso sui cookie</h1>
+				<p class="demo__lead" data-i18n="ck.3">
 					Tre impostazioni dello stesso avviso. In tutte, “Accetta” e “Rifiuta” hanno lo stesso peso:
 					scegliere di no non deve costare più fatica che dire di sì.
 				</p>
@@ -30,63 +32,63 @@
 			</svg>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Scheda in basso a sinistra</h2>
+				<h2 class="demo__label" data-i18n="ck.4">Scheda in basso a sinistra</h2>
 				<div class="stage site" data-site>
 					<div class="site__page" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-					<aside class="ck ck--card" data-ck data-open aria-label="Avviso cookie a scheda">
+					<aside class="ck ck--card" data-ck data-open aria-label="Avviso cookie a scheda" data-i18n-attr="aria-label=ck.31">
 						<svg class="ck__icon" aria-hidden="true"><use href="#cookie" /></svg>
-						<h3>Usiamo i cookie</h3>
-						<p>Servono a far funzionare il sito e, se ci dai il permesso, a capire come viene usato. <a href="#" data-more>Dettagli</a></p>
+						<h3 data-i18n="ck.5">Usiamo i cookie</h3>
+						<p><span data-i18n="ck.6">Servono a far funzionare il sito e, se ci dai il permesso, a capire come viene usato.</span> <a href="#" data-more data-i18n="ck.7">Dettagli</a></p>
 						<div class="ck__actions">
-							<button type="button" class="ck__btn" data-decide="reject">Rifiuta</button>
-							<button type="button" class="ck__btn" data-decide="accept">Accetta</button>
+							<button type="button" class="ck__btn" data-decide="reject" data-i18n="ck.8">Rifiuta</button>
+							<button type="button" class="ck__btn" data-decide="accept" data-i18n="ck.9">Accetta</button>
 						</div>
 					</aside>
-					<button type="button" class="again" data-again hidden>Mostra di nuovo</button>
+					<button type="button" class="again" data-again hidden data-i18n="ck.10">Mostra di nuovo</button>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Barra che sale dal basso</h2>
+				<h2 class="demo__label" data-i18n="ck.11">Barra che sale dal basso</h2>
 				<div class="stage site" data-site>
 					<div class="site__page" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-					<aside class="ck ck--bar" data-ck data-open aria-label="Avviso cookie a barra">
+					<aside class="ck ck--bar" data-ck data-open aria-label="Avviso cookie a barra" data-i18n-attr="aria-label=ck.32">
 						<svg class="ck__icon" aria-hidden="true"><use href="#cookie" /></svg>
-						<p><strong>Un attimo di attenzione.</strong> Usiamo cookie tecnici e, con il tuo consenso, di statistica. <a href="#" data-more>Dettagli</a></p>
+						<p><strong data-i18n="ck.12">Un attimo di attenzione.</strong> <span data-i18n="ck.13">Usiamo cookie tecnici e, con il tuo consenso, di statistica.</span> <a href="#" data-more data-i18n="ck.14">Dettagli</a></p>
 						<div class="ck__actions">
-							<button type="button" class="ck__btn" data-decide="reject">Rifiuta</button>
-							<button type="button" class="ck__btn" data-decide="accept">Accetta</button>
+							<button type="button" class="ck__btn" data-decide="reject" data-i18n="ck.15">Rifiuta</button>
+							<button type="button" class="ck__btn" data-decide="accept" data-i18n="ck.16">Accetta</button>
 						</div>
 					</aside>
-					<button type="button" class="again" data-again hidden>Mostra di nuovo</button>
+					<button type="button" class="again" data-again hidden data-i18n="ck.17">Mostra di nuovo</button>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Finestra con le preferenze</h2>
+				<h2 class="demo__label" data-i18n="ck.18">Finestra con le preferenze</h2>
 				<div class="stage site" data-site>
 					<div class="site__page" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 					<div class="ck-wrap" data-ck data-open>
 						<div class="ck ck--modal" role="dialog" aria-modal="false" aria-labelledby="ck-m-title">
 							<svg class="ck__icon" aria-hidden="true"><use href="#cookie" /></svg>
-							<h3 id="ck-m-title">Le tue preferenze</h3>
+							<h3 id="ck-m-title" data-i18n="ck.19">Le tue preferenze</h3>
 							<ul class="prefs">
-								<li><div><strong>Necessari</strong><span>Fanno funzionare il sito. Sempre attivi.</span></div><label class="sw"><input type="checkbox" checked disabled role="switch" aria-label="Cookie necessari, sempre attivi" /><span class="sw__t"><span></span></span></label></li>
-								<li><div><strong>Statistiche</strong><span>Ci dicono quali pagine servono davvero.</span></div><label class="sw"><input type="checkbox" role="switch" aria-label="Cookie di statistica" /><span class="sw__t"><span></span></span></label></li>
-								<li><div><strong>Marketing</strong><span>Per mostrarti annunci che c’entrano.</span></div><label class="sw"><input type="checkbox" role="switch" aria-label="Cookie di marketing" /><span class="sw__t"><span></span></span></label></li>
+								<li><div><strong data-i18n="ck.20">Necessari</strong><span data-i18n="ck.21">Fanno funzionare il sito. Sempre attivi.</span></div><label class="sw"><input type="checkbox" checked disabled role="switch" aria-label="Cookie necessari, sempre attivi"  data-i18n-attr="aria-label=ck.33"/><span class="sw__t"><span></span></span></label></li>
+								<li><div><strong data-i18n="ck.22">Statistiche</strong><span data-i18n="ck.23">Ci dicono quali pagine servono davvero.</span></div><label class="sw"><input type="checkbox" role="switch" aria-label="Cookie di statistica"  data-i18n-attr="aria-label=ck.34"/><span class="sw__t"><span></span></span></label></li>
+								<li><div><strong data-i18n="ck.24">Marketing</strong><span data-i18n="ck.25">Per mostrarti annunci che c’entrano.</span></div><label class="sw"><input type="checkbox" role="switch" aria-label="Cookie di marketing"  data-i18n-attr="aria-label=ck.35"/><span class="sw__t"><span></span></span></label></li>
 							</ul>
 							<div class="ck__actions ck__actions--three">
-								<button type="button" class="ck__btn" data-decide="reject">Rifiuta tutto</button>
-								<button type="button" class="ck__btn" data-decide="save">Salva la scelta</button>
-								<button type="button" class="ck__btn" data-decide="accept">Accetta tutto</button>
+								<button type="button" class="ck__btn" data-decide="reject" data-i18n="ck.26">Rifiuta tutto</button>
+								<button type="button" class="ck__btn" data-decide="save" data-i18n="ck.27">Salva la scelta</button>
+								<button type="button" class="ck__btn" data-decide="accept" data-i18n="ck.28">Accetta tutto</button>
 							</div>
 						</div>
 					</div>
-					<button type="button" class="again" data-again hidden>Mostra di nuovo</button>
+					<button type="button" class="again" data-again hidden data-i18n="ck.29">Mostra di nuovo</button>
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="ck.30">
 				Una demo di aspetto: non salva nulla. In un sito vero la scelta si memorizza e i cookie non
 				necessari partono solo dopo il “sì”. “Dettagli” e “Salva la scelta” sono i punti dove metteresti il
 				rimando all’informativa.

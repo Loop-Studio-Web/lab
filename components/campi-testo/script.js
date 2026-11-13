@@ -141,11 +141,15 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 	const box = document.querySelector('[data-otp]');
 	const msg = document.querySelector('[data-otp-msg]');
 	const cells = [...box.querySelectorAll('input')];
-	const idle = msg.textContent;
+	let idle = msg.textContent;
+	// Il testo si legge dopo che le traduzioni sono state applicate (DOMContentLoaded).
+	document.addEventListener('DOMContentLoaded', () => {
+		idle = msg.textContent;
+	});
 	const report = () => {
 		const code = cells.map((c) => c.value).join('');
 		box.classList.toggle('is-done', code.length === cells.length);
-		msg.textContent = code.length === cells.length ? `Codice inserito: ${code}` : idle;
+		msg.textContent = code.length === cells.length ? LabI18n.t('ct.js.code', 'Codice inserito: {c}', { c: code }) : idle;
 	};
 	cells.forEach((cell, i) => {
 		cell.addEventListener('input', () => {
@@ -195,8 +199,11 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 		num: (v) => /\d/.test(v),
 		sym: (v) => /[^\w\s]/.test(v),
 	};
-	const labels = ['', 'Debole', 'Discreta', 'Buona', 'Ottima'];
-	const hint = text.textContent;
+	const labels = ['', LabI18n.t('ct.js.l1', 'Debole'), LabI18n.t('ct.js.l2', 'Discreta'), LabI18n.t('ct.js.l3', 'Buona'), LabI18n.t('ct.js.l4', 'Ottima')];
+	let hint = text.textContent;
+	document.addEventListener('DOMContentLoaded', () => {
+		hint = text.textContent;
+	});
 	input.addEventListener('input', () => {
 		const v = input.value;
 		let score = 0;
@@ -207,6 +214,6 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 		}
 		if (!v) score = 0;
 		meter.dataset.score = String(score);
-		text.textContent = v ? `Robustezza: ${labels[score] || 'molto debole'}` : hint;
+		text.textContent = v ? LabI18n.t('ct.js.strength', 'Robustezza: {l}', { l: labels[score] || LabI18n.t('ct.js.l0', 'molto debole') }) : hint;
 	});
 })();
