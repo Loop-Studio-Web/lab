@@ -7,6 +7,10 @@
 	I?.apply(); // i tab vanno tradotti prima che questo script ne legga i titoli
 	const lang = I?.lang;
 	const root = document.querySelector('[data-suite]');
+	// Un solo punto di riferimento <main> per tutte le schede a tab (titolo nascosto + guscio).
+	const main = document.createElement('main');
+	root.before(main);
+	main.append(...[document.querySelector('h1'), root].filter(Boolean));
 	const list = root.querySelector('[role="tablist"]');
 	const tabs = [...list.querySelectorAll('[role="tab"]')];
 	const panels = root.querySelector('.suite__panels');
@@ -57,7 +61,6 @@
 		const f = document.createElement('iframe');
 		f.id = `p-${i}`;
 		f.title = tab.dataset.title || tab.textContent.trim();
-		f.setAttribute('role', 'tabpanel');
 		f.setAttribute('aria-labelledby', tab.id);
 		f.hidden = true;
 		f.allow = 'accelerometer; gyroscope'; // serve al tab «Inclinazione» di Storie e feed; negli altri non cambia nulla

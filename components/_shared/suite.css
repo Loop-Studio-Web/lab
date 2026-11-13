@@ -102,7 +102,7 @@ body > .studio-mark {
 	font: 500 0.72rem var(--font-text);
 	font-variant-numeric: tabular-nums;
 	letter-spacing: 0.04em;
-	opacity: 0.55;
+	opacity: 0.9;
 }
 .suite__list [aria-selected='true'] .suite__n {
 	color: var(--accent);
