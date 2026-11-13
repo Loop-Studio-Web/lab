@@ -189,6 +189,12 @@ body {
 	align-items: center;
 	gap: 0.5rem;
 	margin-top: 1rem;
+	min-height: 7.75rem; /* le chip si scrivono con JS: sul telefono vanno a capo su più righe */
+}
+@container ciclo (min-width: 40rem) {
+	.hero__suggerite {
+		min-height: 2.25rem;
+	}
 }
 .hero__etichetta {
 	margin-inline-end: 0.25rem;
@@ -355,6 +361,21 @@ body {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+/* Elenco e temi si scrivono con JS: finché sono vuoti tengono lo spazio che occuperanno (il piè di pagina non salta). */
+.lista:empty {
+	min-height: 158rem;
+}
+.temi__lista:empty {
+	min-height: 3rem;
+}
+@container ciclo (min-width: 56rem) {
+	.lista:empty {
+		min-height: 131rem;
+	}
+	.temi__lista:empty {
+		min-height: 18rem;
+	}
 }
 .voce.entra {
 	animation: entra 180ms var(--ease-out) both;

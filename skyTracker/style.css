@@ -327,7 +327,33 @@ main {
   text-underline-offset: 2px;
 }
 
+/* ---------- Spazio riservato (niente salti di layout) ---------- */
+
+/* Le card compaiono quando arrivano i dati: nel frattempo main tiene l'altezza che avrà. */
+main:has(> .weather-card[hidden]) {
+  min-height: 35rem;
+}
+
+/* Logo in alto e firma in fondo li inserisce studio.js a pagina già disegnata: finché non ci sono, ne tengo il posto. */
+body:not(:has(> nav > .studio-corner))::before {
+  content: "";
+  display: block;
+  height: 2.65rem;
+}
+
+body:not(:has(> .studio-mark))::after {
+  content: "";
+  display: block;
+  height: 6.45rem;
+}
+
 /* ---------- Responsive ---------- */
+
+@media (max-width: 40rem) {
+  main:has(> .weather-card[hidden]) {
+    min-height: 49rem;
+  }
+}
 
 @media (max-width: 640px) {
   .weather-main {
