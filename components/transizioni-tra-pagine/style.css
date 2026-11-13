@@ -220,6 +220,8 @@
 	width: 71.5%;
 	aspect-ratio: 1;
 	border-radius: 50%;
+	/* il disco che gira è un quadrato ruotato: senza clip i suoi angoli generano per un istante scroll orizzontale */
+	overflow: clip;
 	/* esce da dietro la copertina quando la pagina è pronta */
 	animation: ttp-esce 0.9s 0.35s var(--ease-out) both;
 }

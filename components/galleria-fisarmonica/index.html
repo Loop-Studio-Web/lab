@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Galleria a fisarmonica — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="gf.1">Galleria a fisarmonica — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -13,8 +15,8 @@
 	<body>
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Galleria a fisarmonica</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="gf.2">Galleria a fisarmonica</h1>
+				<p class="demo__lead" data-i18n="gf.3">
 					Quattro foto che si sovrappongono come le lame di un ventaglio. Passa sopra una lama (o toccala,
 					o raggiungila con Tab) e si apre, mentre le altre si stringono. L’angolo tagliato sul lato
 					sinistro svanisce sulla lama aperta.
@@ -22,26 +24,26 @@
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Quattro architetture</h2>
+				<h2 class="demo__label" data-i18n="gf.4">Quattro architetture</h2>
 				<div class="stage stage--fan">
-					<div class="fan" role="group" aria-label="Quattro fotografie di architettura">
+					<div class="fan" role="group" aria-label="Quattro fotografie di architettura" data-i18n-attr="aria-label=gf.6">
 						<figure class="fan__item" tabindex="0">
-							<img src="img/arch-1.webp" alt="Un palazzo bianco a blocchi sovrapposti contro il cielo" width="900" height="800" />
+							<img src="img/arch-1.webp" alt="Un palazzo bianco a blocchi sovrapposti contro il cielo" width="900" height="800"  data-i18n-attr="alt=gf.7"/>
 						</figure>
 						<figure class="fan__item" tabindex="0">
-							<img src="img/arch-2.webp" alt="Una facciata ondulata di lamelle grigie sotto un cielo blu" width="900" height="800" />
+							<img src="img/arch-2.webp" alt="Una facciata ondulata di lamelle grigie sotto un cielo blu" width="900" height="800"  data-i18n-attr="alt=gf.8"/>
 						</figure>
 						<figure class="fan__item" tabindex="0">
-							<img src="img/arch-3.webp" alt="Due edifici a fasce blu che si piegano uno verso l’altro" width="900" height="800" />
+							<img src="img/arch-3.webp" alt="Due edifici a fasce blu che si piegano uno verso l’altro" width="900" height="800"  data-i18n-attr="alt=gf.9"/>
 						</figure>
 						<figure class="fan__item" tabindex="0">
-							<img src="img/arch-4.webp" alt="Un edificio a finestre quadrate, in bianco e nero, sopra un basamento scuro" width="900" height="800" />
+							<img src="img/arch-4.webp" alt="Un edificio a finestre quadrate, in bianco e nero, sopra un basamento scuro" width="900" height="800"  data-i18n-attr="alt=gf.10"/>
 						</figure>
 					</div>
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="gf.5">
 				Ogni lama occupa tre colonne di una griglia da nove e le lame si sovrappongono di una colonna. Al
 				passaggio la colonna diventa più larga con un’animazione. L’angolo tagliato, dove il browser non lo sa fare, resta arrotondato.
 				Foto: Unsplash.

@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Galleria 3D rotante — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="rg.1">Galleria 3D rotante — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -14,36 +16,36 @@
 	<body>
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Galleria 3D rotante</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="rg.2">Galleria 3D rotante</h1>
+				<p class="demo__lead" data-i18n="rg.3">
 					Otto immagini su un anello in prospettiva. Si sfoglia con i pulsanti, con le frecce della
 					tastiera o trascinando; da sola avanza finché la metti in pausa.
 				</p>
 			</header>
 
 			<section class="demo__section">
-				<div class="stage gallery" data-gallery tabindex="0" role="group" aria-roledescription="carosello" aria-label="Galleria di viaggi">
+				<div class="stage gallery" data-gallery tabindex="0" role="group" aria-roledescription="carosello" aria-label="Galleria di viaggi" data-i18n-attr="aria-label=rg.5">
 					<div class="ring" data-ring>
-						<figure class="face" style="--i: 0"><img src="../_shared/img/beach-m.webp" alt="Costa tropicale vista dall’alto, con acqua turchese e onde" width="900" height="600" data-caption="Spiaggia turchese" /></figure>
-						<figure class="face" style="--i: 1"><img src="../_shared/img/desert-m.webp" alt="Dune del deserto con il sole basso sull’orizzonte" width="900" height="600" loading="lazy" data-caption="Dune del Sahara" /></figure>
-						<figure class="face" style="--i: 2"><img src="../_shared/img/aurora-m.webp" alt="Aurora boreale verde sopra una costa ghiacciata" width="900" height="600" loading="lazy" data-caption="Aurora boreale" /></figure>
-						<figure class="face" style="--i: 3"><img src="../_shared/img/waterfall-m.webp" alt="Cascata che scende tra rocce e vegetazione fitta" width="900" height="600" loading="lazy" data-caption="Cascata nella giungla" /></figure>
-						<figure class="face" style="--i: 4"><img src="../_shared/img/alpine-lake-m.webp" alt="Lago alpino scuro con cime innevate sullo sfondo" width="900" height="600" loading="lazy" data-caption="Lago alpino" /></figure>
-						<figure class="face" style="--i: 5"><img src="../_shared/img/snow-lake-m.webp" alt="Casa su palafitte e passerella sul lago ghiacciato di Braies" width="900" height="600" loading="lazy" data-caption="Lago di Braies" /></figure>
-						<figure class="face" style="--i: 6"><img src="../_shared/img/manarola-m.webp" alt="Case colorate su una scogliera sul mare a Manarola" width="900" height="600" loading="lazy" data-caption="Manarola" /></figure>
-						<figure class="face" style="--i: 7"><img src="../_shared/img/pagoda-m.webp" alt="Pagoda giapponese a cinque piani tra gli alberi" width="900" height="600" loading="lazy" data-caption="Pagoda giapponese" /></figure>
+						<figure class="face" style="--i: 0"><img src="../_shared/img/beach-m.webp" alt="Costa tropicale vista dall’alto, con acqua turchese e onde" width="900" height="600" data-caption="Spiaggia turchese"  data-i18n-attr="alt=rg.6"/></figure>
+						<figure class="face" style="--i: 1"><img src="../_shared/img/desert-m.webp" alt="Dune del deserto con il sole basso sull’orizzonte" width="900" height="600" loading="lazy" data-caption="Dune del Sahara"  data-i18n-attr="alt=rg.7"/></figure>
+						<figure class="face" style="--i: 2"><img src="../_shared/img/aurora-m.webp" alt="Aurora boreale verde sopra una costa ghiacciata" width="900" height="600" loading="lazy" data-caption="Aurora boreale"  data-i18n-attr="alt=rg.8"/></figure>
+						<figure class="face" style="--i: 3"><img src="../_shared/img/waterfall-m.webp" alt="Cascata che scende tra rocce e vegetazione fitta" width="900" height="600" loading="lazy" data-caption="Cascata nella giungla"  data-i18n-attr="alt=rg.9"/></figure>
+						<figure class="face" style="--i: 4"><img src="../_shared/img/alpine-lake-m.webp" alt="Lago alpino scuro con cime innevate sullo sfondo" width="900" height="600" loading="lazy" data-caption="Lago alpino"  data-i18n-attr="alt=rg.10"/></figure>
+						<figure class="face" style="--i: 5"><img src="../_shared/img/snow-lake-m.webp" alt="Casa su palafitte e passerella sul lago ghiacciato di Braies" width="900" height="600" loading="lazy" data-caption="Lago di Braies"  data-i18n-attr="alt=rg.11"/></figure>
+						<figure class="face" style="--i: 6"><img src="../_shared/img/manarola-m.webp" alt="Case colorate su una scogliera sul mare a Manarola" width="900" height="600" loading="lazy" data-caption="Manarola"  data-i18n-attr="alt=rg.12"/></figure>
+						<figure class="face" style="--i: 7"><img src="../_shared/img/pagoda-m.webp" alt="Pagoda giapponese a cinque piani tra gli alberi" width="900" height="600" loading="lazy" data-caption="Pagoda giapponese"  data-i18n-attr="alt=rg.13"/></figure>
 					</div>
 				</div>
 
 				<div class="controls">
-					<button type="button" class="ctl" data-prev aria-label="Immagine precedente">
+					<button type="button" class="ctl" data-prev aria-label="Immagine precedente" data-i18n-attr="aria-label=rg.14">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
 					</button>
-					<p class="caption" data-caption-out aria-live="off">Spiaggia turchese</p>
-					<button type="button" class="ctl" data-next aria-label="Immagine successiva">
+					<p class="caption" data-caption-out aria-live="off" data-i18n="rg.4">Spiaggia turchese</p>
+					<button type="button" class="ctl" data-next aria-label="Immagine successiva" data-i18n-attr="aria-label=rg.15">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
 					</button>
-					<button type="button" class="ctl ctl--play" data-play aria-pressed="false" aria-label="Metti in pausa la rotazione">
+					<button type="button" class="ctl ctl--play" data-play aria-pressed="false" aria-label="Metti in pausa la rotazione" data-i18n-attr="aria-label=rg.16">
 						<svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
 						<svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L8.5 4.64A1 1 0 0 0 7 5.5Z" /></svg>
 					</button>

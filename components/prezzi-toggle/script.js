@@ -6,7 +6,7 @@ document.querySelectorAll('.pricing').forEach((block) => {
 			if (!radio.checked) return;
 			block.dataset.bill = radio.value;
 			block.querySelectorAll('[data-per]').forEach((el) => {
-				el.textContent = radio.value === 'year' ? '/mese, pagato all’anno' : '/mese';
+				el.textContent = radio.value === 'year' ? LabI18n.t('pz.peryear', '/mese, pagato all’anno') : LabI18n.t('pz.per', '/mese');
 			});
 		});
 	});

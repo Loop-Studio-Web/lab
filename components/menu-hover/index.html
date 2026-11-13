@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Menu con riflesso — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="mex.1">Menu con riflesso — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -14,8 +16,8 @@
 	<body>
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Menu con riflesso</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="mex.2">Menu con riflesso</h1>
+				<p class="demo__lead" data-i18n="mex.3">
 					Una voce di menu che, al passaggio o con la tastiera, proietta sopra e sotto di sé un’eco
 					sfumata del proprio testo. Solo ombre del testo: niente elementi in più, niente JavaScript
 					per l’effetto.
@@ -23,48 +25,48 @@
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Riflesso</h2>
+				<h2 class="demo__label" data-i18n="mex.4">Riflesso</h2>
 				<div class="stage">
-					<nav aria-label="Menu dimostrativo">
+					<nav aria-label="Menu dimostrativo" data-i18n-attr="aria-label=mex.20">
 						<ul class="menu" role="list">
-							<li><a href="#" data-demo-link>Chi siamo</a></li>
-							<li><a href="#" data-demo-link aria-current="page">Servizi</a></li>
-							<li><a href="#" data-demo-link>Portfolio</a></li>
-							<li class="cta"><a href="#" data-demo-link>Contatti</a></li>
+							<li><a href="#" data-demo-link data-i18n="mex.5">Chi siamo</a></li>
+							<li><a href="#" data-demo-link aria-current="page" data-i18n="mex.6">Servizi</a></li>
+							<li><a href="#" data-demo-link data-i18n="mex.7">Portfolio</a></li>
+							<li class="cta"><a href="#" data-demo-link data-i18n="mex.8">Contatti</a></li>
 						</ul>
 					</nav>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Eco verso il basso</h2>
+				<h2 class="demo__label" data-i18n="mex.9">Eco verso il basso</h2>
 				<div class="stage">
-					<nav aria-label="Menu dimostrativo con eco in basso">
+					<nav aria-label="Menu dimostrativo con eco in basso" data-i18n-attr="aria-label=mex.21">
 						<ul class="menu menu--down" role="list">
-							<li><a href="#" data-demo-link>Foto</a></li>
-							<li><a href="#" data-demo-link>Video</a></li>
-							<li><a href="#" data-demo-link>Social</a></li>
-							<li class="cta"><a href="#" data-demo-link>Preventivo</a></li>
+							<li><a href="#" data-demo-link data-i18n="mex.10">Foto</a></li>
+							<li><a href="#" data-demo-link data-i18n="mex.11">Video</a></li>
+							<li><a href="#" data-demo-link data-i18n="mex.12">Social</a></li>
+							<li class="cta"><a href="#" data-demo-link data-i18n="mex.13">Preventivo</a></li>
 						</ul>
 					</nav>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Alone</h2>
+				<h2 class="demo__label" data-i18n="mex.14">Alone</h2>
 				<div class="stage">
-					<nav aria-label="Menu dimostrativo con alone">
+					<nav aria-label="Menu dimostrativo con alone" data-i18n-attr="aria-label=mex.22">
 						<ul class="menu menu--halo" role="list">
-							<li><a href="#" data-demo-link>Studio</a></li>
-							<li><a href="#" data-demo-link>Lavori</a></li>
-							<li><a href="#" data-demo-link>Pacchetti</a></li>
-							<li class="cta"><a href="#" data-demo-link>Scrivici</a></li>
+							<li><a href="#" data-demo-link data-i18n="mex.15">Studio</a></li>
+							<li><a href="#" data-demo-link data-i18n="mex.16">Lavori</a></li>
+							<li><a href="#" data-demo-link data-i18n="mex.17">Pacchetti</a></li>
+							<li class="cta"><a href="#" data-demo-link data-i18n="mex.18">Scrivici</a></li>
 						</ul>
 					</nav>
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="mex.19">
 				Sul touch non esiste il passaggio del mouse: un tocco segna la voce come attiva e l’eco resta accesa. Con la tastiera (Tab) compare lo stesso effetto,
 				più una sottolineatura. I tre menu cambiano solo il colore e le ombre.
 			</p>

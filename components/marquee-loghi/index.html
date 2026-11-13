@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Marquee loghi — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="ml.1">Marquee loghi — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -25,8 +27,8 @@
 
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Marquee loghi</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="ml.2">Marquee loghi</h1>
+				<p class="demo__lead" data-i18n="ml.3">
 					La striscia dei “hanno scelto noi”. Scorre da sola, si ferma passandoci sopra, con Tab o dal
 					pulsante, e con il movimento ridotto diventa una fila da scorrere a mano. I
 					marchi sono tutti di fantasia.
@@ -34,10 +36,10 @@
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Una fila, in grigio</h2>
+				<h2 class="demo__label" data-i18n="ml.4">Una fila, in grigio</h2>
 				<div class="stage stage--marquee">
 					<div class="marquee" data-marquee>
-						<ul class="marquee__group" aria-label="Aziende che ci hanno scelto">
+						<ul class="marquee__group" aria-label="Aziende che ci hanno scelto" data-i18n-attr="aria-label=ml.20">
 							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#nordico" /></svg>Nordico</a></li>
 							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#vela" /></svg>Vela</a></li>
 							<li><a href="#" data-demo-link><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#orbita" /></svg>Orbita</a></li>
@@ -50,38 +52,38 @@
 					</div>
 					<button type="button" class="marquee__toggle" data-toggle aria-pressed="false">
 						<svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /><path class="i-play" d="M8 5v14l11-7z" /></svg>
-						<span>Metti in pausa</span>
+						<span data-i18n="ml.5">Metti in pausa</span>
 					</button>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Due file in senso opposto</h2>
+				<h2 class="demo__label" data-i18n="ml.6">Due file in senso opposto</h2>
 				<div class="stage stage--marquee">
 					<div class="marquee marquee--pills" data-marquee style="--t: 38s">
-						<ul class="marquee__group" aria-label="Settori">
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#vela" /></svg>Nautica</span></li>
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#nordico" /></svg>Outdoor</span></li>
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#cumulo" /></svg>Meteo</span></li>
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#faro" /></svg>Turismo</span></li>
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#orbita" /></svg>Tecnologia</span></li>
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#ondina" /></svg>Benessere</span></li>
+						<ul class="marquee__group" aria-label="Settori" data-i18n-attr="aria-label=ml.21">
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#vela" /></svg><span data-i18n="ml.7">Nautica</span></span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#nordico" /></svg><span data-i18n="ml.8">Outdoor</span></span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#cumulo" /></svg><span data-i18n="ml.9">Meteo</span></span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#faro" /></svg><span data-i18n="ml.10">Turismo</span></span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#orbita" /></svg><span data-i18n="ml.11">Tecnologia</span></span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#ondina" /></svg><span data-i18n="ml.12">Benessere</span></span></li>
 						</ul>
 					</div>
 					<div class="marquee marquee--pills marquee--reverse" data-marquee style="--t: 46s">
-						<ul class="marquee__group" aria-label="Servizi">
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#rotta" /></svg>Siti web</span></li>
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#brezza" /></svg>Social</span></li>
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#orbita" /></svg>Video</span></li>
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#nordico" /></svg>Foto</span></li>
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#cumulo" /></svg>Logo</span></li>
-							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#vela" /></svg>Strategia</span></li>
+						<ul class="marquee__group" aria-label="Servizi" data-i18n-attr="aria-label=ml.22">
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#rotta" /></svg><span data-i18n="ml.13">Siti web</span></span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#brezza" /></svg><span data-i18n="ml.14">Social</span></span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#orbita" /></svg><span data-i18n="ml.15">Video</span></span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#nordico" /></svg><span data-i18n="ml.16">Foto</span></span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#cumulo" /></svg><span data-i18n="ml.17">Logo</span></span></li>
+							<li><span><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#vela" /></svg><span data-i18n="ml.18">Strategia</span></span></li>
 						</ul>
 					</div>
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="ml.19">
 				Il gruppo di marchi viene duplicato dallo script (la copia è nascosta ai lettori di schermo e senza focus) e l’animazione sposta tutto di una copia intera: il giro si chiude senza salti.
 			</p>
 		</main>

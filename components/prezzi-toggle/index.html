@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Prezzi con toggle — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="pz.1">Prezzi con toggle — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -14,8 +16,8 @@
 	<body>
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Prezzi, mensile o annuale</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="pz.2">Prezzi, mensile o annuale</h1>
+				<p class="demo__lead" data-i18n="pz.3">
 					Tre modi di presentare gli stessi piani. Il selettore è un gruppo di radio vero: si usa con le
 					frecce, e i prezzi scorrono invece di cambiare di colpo. Dati di fantasia.
 				</p>
@@ -28,67 +30,67 @@
 			</svg>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Tre schede</h2>
+				<h2 class="demo__label" data-i18n="pz.4">Tre schede</h2>
 				<div class="stage pricing" data-bill="month">
 					<fieldset class="bill">
-						<legend class="sr-only">Periodo di fatturazione</legend>
-						<input type="radio" name="b1" id="b1m" value="month" checked /><label for="b1m">Mensile</label>
-						<input type="radio" name="b1" id="b1y" value="year" /><label for="b1y">Annuale <em>−20%</em></label>
+						<legend class="sr-only" data-i18n="pz.5">Periodo di fatturazione</legend>
+						<input type="radio" name="b1" id="b1m" value="month" checked /><label for="b1m" data-i18n="pz.6">Mensile</label>
+						<input type="radio" name="b1" id="b1y" value="year" /><label for="b1y"><span data-i18n="pz.7">Annuale</span> <em>−20%</em></label>
 						<span class="bill__thumb" aria-hidden="true"></span>
 					</fieldset>
 
 					<div class="cards">
 						<article class="plan">
-							<h3>Essenziale</h3>
-							<p class="plan__for">Per partire con una presenza ordinata.</p>
-							<p class="price"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">29</span><span class="p p--y">24</span></span><span class="price__per" data-per>/mese</span></p>
-							<ul class="feat"><li>Sito di 1 pagina</li><li>Dominio incluso</li><li>Assistenza via email</li></ul>
-							<button type="button" class="cta">Scegli Essenziale</button>
+							<h3 data-i18n="pz.8">Essenziale</h3>
+							<p class="plan__for" data-i18n="pz.9">Per partire con una presenza ordinata.</p>
+							<p class="price"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">29</span><span class="p p--y">24</span></span><span class="price__per" data-per data-i18n="pz.10">/mese</span></p>
+							<ul class="feat"><li data-i18n="pz.11">Sito di 1 pagina</li><li data-i18n="pz.12">Dominio incluso</li><li data-i18n="pz.13">Assistenza via email</li></ul>
+							<button type="button" class="cta" data-i18n="pz.14">Scegli Essenziale</button>
 						</article>
 						<article class="plan plan--hot">
-							<span class="plan__tag">Consigliato</span>
-							<h3>Evoluto</h3>
-							<p class="plan__for">Il giusto per un’attività che cresce.</p>
-							<p class="price"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">59</span><span class="p p--y">49</span></span><span class="price__per" data-per>/mese</span></p>
-							<ul class="feat"><li>Fino a 6 pagine</li><li>Statistiche e SEO di base</li><li>Assistenza prioritaria</li><li>Un aggiornamento al mese</li></ul>
-							<button type="button" class="cta cta--hot">Scegli Evoluto</button>
+							<span class="plan__tag" data-i18n="pz.15">Consigliato</span>
+							<h3 data-i18n="pz.16">Evoluto</h3>
+							<p class="plan__for" data-i18n="pz.17">Il giusto per un’attività che cresce.</p>
+							<p class="price"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">59</span><span class="p p--y">49</span></span><span class="price__per" data-per data-i18n="pz.18">/mese</span></p>
+							<ul class="feat"><li data-i18n="pz.19">Fino a 6 pagine</li><li data-i18n="pz.20">Statistiche e SEO di base</li><li data-i18n="pz.21">Assistenza prioritaria</li><li data-i18n="pz.22">Un aggiornamento al mese</li></ul>
+							<button type="button" class="cta cta--hot" data-i18n="pz.23">Scegli Evoluto</button>
 						</article>
 						<article class="plan">
-							<h3>Studio</h3>
-							<p class="plan__for">Per chi vuole tutto curato da noi.</p>
-							<p class="price"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">119</span><span class="p p--y">99</span></span><span class="price__per" data-per>/mese</span></p>
-							<ul class="feat"><li>Pagine illimitate</li><li>Foto e video inclusi</li><li>Gestione dei social</li><li>Consulente dedicato</li></ul>
-							<button type="button" class="cta">Scegli Studio</button>
+							<h3 data-i18n="pz.24">Studio</h3>
+							<p class="plan__for" data-i18n="pz.25">Per chi vuole tutto curato da noi.</p>
+							<p class="price"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">119</span><span class="p p--y">99</span></span><span class="price__per" data-per data-i18n="pz.26">/mese</span></p>
+							<ul class="feat"><li data-i18n="pz.27">Pagine illimitate</li><li data-i18n="pz.28">Foto e video inclusi</li><li data-i18n="pz.29">Gestione dei social</li><li data-i18n="pz.30">Consulente dedicato</li></ul>
+							<button type="button" class="cta" data-i18n="pz.31">Scegli Studio</button>
 						</article>
 					</div>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Tabella di confronto</h2>
+				<h2 class="demo__label" data-i18n="pz.32">Tabella di confronto</h2>
 				<div class="stage pricing" data-bill="month">
 					<fieldset class="bill">
-						<legend class="sr-only">Periodo di fatturazione</legend>
-						<input type="radio" name="b2" id="b2m" value="month" checked /><label for="b2m">Mensile</label>
-						<input type="radio" name="b2" id="b2y" value="year" /><label for="b2y">Annuale <em>−20%</em></label>
+						<legend class="sr-only" data-i18n="pz.33">Periodo di fatturazione</legend>
+						<input type="radio" name="b2" id="b2m" value="month" checked /><label for="b2m" data-i18n="pz.34">Mensile</label>
+						<input type="radio" name="b2" id="b2y" value="year" /><label for="b2y"><span data-i18n="pz.35">Annuale</span> <em>−20%</em></label>
 						<span class="bill__thumb" aria-hidden="true"></span>
 					</fieldset>
 					<div class="tablewrap">
 						<table class="cmp">
 							<thead>
 								<tr>
-									<th scope="col"><span class="sr-only">Funzione</span></th>
-									<th scope="col">Essenziale<span class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">29</span><span class="p p--y">24</span></span><span class="price__per" data-per>/mese</span></span></th>
-									<th scope="col" class="hot">Evoluto<span class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">59</span><span class="p p--y">49</span></span><span class="price__per" data-per>/mese</span></span></th>
-									<th scope="col">Studio<span class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">119</span><span class="p p--y">99</span></span><span class="price__per" data-per>/mese</span></span></th>
+									<th scope="col"><span class="sr-only" data-i18n="pz.36">Funzione</span></th>
+									<th scope="col"><span data-i18n="pz.37">Essenziale</span><span class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">29</span><span class="p p--y">24</span></span><span class="price__per" data-per data-i18n="pz.38">/mese</span></span></th>
+									<th scope="col" class="hot"><span data-i18n="pz.39">Evoluto</span><span class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">59</span><span class="p p--y">49</span></span><span class="price__per" data-per data-i18n="pz.40">/mese</span></span></th>
+									<th scope="col"><span data-i18n="pz.41">Studio</span><span class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">119</span><span class="p p--y">99</span></span><span class="price__per" data-per data-i18n="pz.42">/mese</span></span></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr><th scope="row">Pagine</th><td>1</td><td class="hot">6</td><td>Illimitate</td></tr>
-								<tr><th scope="row">Dominio e hosting</th><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td><td class="hot"><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td></tr>
-								<tr><th scope="row">SEO e statistiche</th><td><svg class="no"><use href="#i-minus" /></svg><span class="sr-only">No</span></td><td class="hot"><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td></tr>
-								<tr><th scope="row">Foto e video</th><td><svg class="no"><use href="#i-minus" /></svg><span class="sr-only">No</span></td><td class="hot"><svg class="no"><use href="#i-minus" /></svg><span class="sr-only">No</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td></tr>
-								<tr><th scope="row">Gestione social</th><td><svg class="no"><use href="#i-minus" /></svg><span class="sr-only">No</span></td><td class="hot"><svg class="no"><use href="#i-minus" /></svg><span class="sr-only">No</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only">Sì</span></td></tr>
+								<tr><th scope="row" data-i18n="pz.43">Pagine</th><td>1</td><td class="hot">6</td><td data-i18n="pz.44">Illimitate</td></tr>
+								<tr><th scope="row" data-i18n="pz.45">Dominio e hosting</th><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only" data-i18n="pz.46">Sì</span></td><td class="hot"><svg class="yes"><use href="#i-check" /></svg><span class="sr-only" data-i18n="pz.47">Sì</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only" data-i18n="pz.48">Sì</span></td></tr>
+								<tr><th scope="row" data-i18n="pz.49">SEO e statistiche</th><td><svg class="no"><use href="#i-minus" /></svg><span class="sr-only" data-i18n="pz.50">No</span></td><td class="hot"><svg class="yes"><use href="#i-check" /></svg><span class="sr-only" data-i18n="pz.51">Sì</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only" data-i18n="pz.52">Sì</span></td></tr>
+								<tr><th scope="row" data-i18n="pz.53">Foto e video</th><td><svg class="no"><use href="#i-minus" /></svg><span class="sr-only" data-i18n="pz.54">No</span></td><td class="hot"><svg class="no"><use href="#i-minus" /></svg><span class="sr-only" data-i18n="pz.55">No</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only" data-i18n="pz.56">Sì</span></td></tr>
+								<tr><th scope="row" data-i18n="pz.57">Gestione social</th><td><svg class="no"><use href="#i-minus" /></svg><span class="sr-only" data-i18n="pz.58">No</span></td><td class="hot"><svg class="no"><use href="#i-minus" /></svg><span class="sr-only" data-i18n="pz.59">No</span></td><td><svg class="yes"><use href="#i-check" /></svg><span class="sr-only" data-i18n="pz.60">Sì</span></td></tr>
 							</tbody>
 						</table>
 					</div>
@@ -96,18 +98,18 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Elenco a righe</h2>
+				<h2 class="demo__label" data-i18n="pz.61">Elenco a righe</h2>
 				<div class="stage pricing" data-bill="month">
 					<fieldset class="bill">
-						<legend class="sr-only">Periodo di fatturazione</legend>
-						<input type="radio" name="b3" id="b3m" value="month" checked /><label for="b3m">Mensile</label>
-						<input type="radio" name="b3" id="b3y" value="year" /><label for="b3y">Annuale <em>−20%</em></label>
+						<legend class="sr-only" data-i18n="pz.62">Periodo di fatturazione</legend>
+						<input type="radio" name="b3" id="b3m" value="month" checked /><label for="b3m" data-i18n="pz.63">Mensile</label>
+						<input type="radio" name="b3" id="b3y" value="year" /><label for="b3y"><span data-i18n="pz.64">Annuale</span> <em>−20%</em></label>
 						<span class="bill__thumb" aria-hidden="true"></span>
 					</fieldset>
 					<ul class="rows">
-						<li class="row"><div><h3>Essenziale</h3><p>1 pagina, dominio incluso</p></div><p class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">29</span><span class="p p--y">24</span></span><span class="price__per" data-per>/mese</span></p><button type="button" class="cta">Scegli</button></li>
-						<li class="row row--hot"><div><h3>Evoluto <span class="plan__tag plan__tag--inline">Consigliato</span></h3><p>Fino a 6 pagine, SEO e statistiche</p></div><p class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">59</span><span class="p p--y">49</span></span><span class="price__per" data-per>/mese</span></p><button type="button" class="cta cta--hot">Scegli</button></li>
-						<li class="row"><div><h3>Studio</h3><p>Tutto incluso, foto, video e social</p></div><p class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">119</span><span class="p p--y">99</span></span><span class="price__per" data-per>/mese</span></p><button type="button" class="cta">Scegli</button></li>
+						<li class="row"><div><h3 data-i18n="pz.65">Essenziale</h3><p data-i18n="pz.66">1 pagina, dominio incluso</p></div><p class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">29</span><span class="p p--y">24</span></span><span class="price__per" data-per data-i18n="pz.67">/mese</span></p><button type="button" class="cta" data-i18n="pz.68">Scegli</button></li>
+						<li class="row row--hot"><div><h3><span data-i18n="pz.69">Evoluto</span> <span class="plan__tag plan__tag--inline" data-i18n="pz.70">Consigliato</span></h3><p data-i18n="pz.71">Fino a 6 pagine, SEO e statistiche</p></div><p class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">59</span><span class="p p--y">49</span></span><span class="price__per" data-per data-i18n="pz.72">/mese</span></p><button type="button" class="cta cta--hot" data-i18n="pz.73">Scegli</button></li>
+						<li class="row"><div><h3 data-i18n="pz.74">Studio</h3><p data-i18n="pz.75">Tutto incluso, foto, video e social</p></div><p class="price price--sm"><span class="price__cur">€</span><span class="price__roll"><span class="p p--m">119</span><span class="p p--y">99</span></span><span class="price__per" data-per data-i18n="pz.76">/mese</span></p><button type="button" class="cta" data-i18n="pz.77">Scegli</button></li>
 					</ul>
 				</div>
 			</section>

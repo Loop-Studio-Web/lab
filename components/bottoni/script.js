@@ -13,11 +13,11 @@ btn.addEventListener('blur', () => open(false));
 
 btn.addEventListener('click', async () => {
 	try {
-		await navigator.clipboard.writeText(btn.dataset.copy);
-		done.textContent = 'Indirizzo copiato';
+		await navigator.clipboard.writeText(box.querySelectorAll('.box__line')[1].textContent.trim());
+		done.textContent = LabI18n.t('bo.js.done', 'Indirizzo copiato');
 	} catch {
 		// Clipboard non disponibile (es. dentro certi iframe): lo diciamo, non fingiamo.
-		done.textContent = 'Copia non riuscita: seleziona e copia a mano';
+		done.textContent = LabI18n.t('bo.js.fail', 'Copia non riuscita: seleziona e copia a mano');
 	}
 	box.classList.add('is-copied');
 	clearTimeout(timer);

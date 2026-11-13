@@ -40,7 +40,7 @@ function syncTimer() {
 function setPaused(paused) {
 	userPaused = paused;
 	playBtn.setAttribute('aria-pressed', String(paused));
-	playBtn.setAttribute('aria-label', paused ? 'Riprendi la rotazione' : 'Metti in pausa la rotazione');
+	playBtn.setAttribute('aria-label', paused ? LabI18n.t('rg.js.play', 'Riprendi la rotazione') : LabI18n.t('rg.js.pause', 'Metti in pausa la rotazione'));
 	syncTimer();
 }
 

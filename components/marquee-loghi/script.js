@@ -17,5 +17,5 @@ const first = document.querySelector('[data-marquee]');
 toggle.addEventListener('click', () => {
 	const paused = first.classList.toggle('is-paused');
 	toggle.setAttribute('aria-pressed', paused);
-	toggle.querySelector('span').textContent = paused ? 'Riprendi' : 'Metti in pausa';
+	toggle.querySelector('span').textContent = paused ? LabI18n.t('ml.js.resume', 'Riprendi') : LabI18n.t('ml.js.pause', 'Metti in pausa');
 });
