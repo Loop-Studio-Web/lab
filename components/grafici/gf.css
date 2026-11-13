@@ -139,7 +139,7 @@
 .mn-big { font: 600 1.5rem var(--font-display); color: var(--text); font-variant-numeric: tabular-nums; }
 .mn-status { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem; color: var(--text); }
 .mn-status svg { width: 0.75rem; height: 0.75rem; flex: none; }
-.mn-gauge { width: min(100%, 9rem); margin-inline: auto; }
+.gf .mn-gauge { width: min(100%, 9rem); margin-inline: auto; }
 .mn-gauge .track { fill: none; stroke: var(--grid); stroke-width: 10; stroke-linecap: round; }
 .mn-gauge .val { fill: none; stroke: var(--c3); stroke-width: 10; stroke-linecap: round; }
 .mn-gauge .goal { stroke: var(--text); stroke-width: 2; }
@@ -153,3 +153,24 @@
 @keyframes mn-sweep { from { stroke-dashoffset: 1; } }
 .mn-gauge .val { stroke-dasharray: 1 1; }
 @media (prefers-reduced-motion: reduce) { .is-live .mn-gauge .val, .is-live .mn-prog span { animation: none; } }
+
+/* Schermo basso (portatile dentro il guscio a tab): celle e righe più compatte, per restare senza scroll.
+   In fondo al file: deve battere le regole base dei tab. */
+@media (max-height: 44rem) and (min-width: 56rem) {
+	.gf-foot { min-height: 2.4rem; padding-block: 0.45rem; }
+	.ca-wrap { padding-block: 0.5rem 0.2rem; }
+	.ca td button { aspect-ratio: 1.7; min-height: 1.25rem; }
+	.ca-scale { padding-bottom: 0.45rem; }
+	.mn-row { padding-block: 0.35rem; }
+	.mn-name small { display: inline; margin-left: 0.5rem; }
+	.mn-tiles { gap: 0.6rem; padding-block: 0.6rem 0.7rem; }
+	.mn-tile { padding: 0.6rem 0.8rem; gap: 0.25rem; }
+	.gf .mn-gauge { width: 6.5rem; }
+	.mn-big { font-size: 1.25rem; }
+}
+/* Ancora più basso (1366×600): via il sottotitolo del riquadro dei mini-grafici, celle più larghe che alte */
+@media (max-height: 38rem) and (min-width: 56rem) {
+	.ca td button { aspect-ratio: 2.3; min-height: 1rem; }
+	.mn-box .gf-bar { display: none; }
+	.gf .mn-gauge { width: 5.5rem; }
+}

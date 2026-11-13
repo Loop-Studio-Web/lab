@@ -19,8 +19,9 @@ window.Gf = (() => {
 		return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
 	};
 
-	// Coperti (clienti serviti) per mese, due anni di fantasia
-	const TOT25 = [1820, 1710, 2050, 2240, 2480, 2760, 3020, 3180, 2640, 2390, 2210, 3050];
+	// Coperti (clienti serviti) per mese, due anni di fantasia. Il 2025 è piatto e senza picchi (estate e dicembre deboli);
+	// il 2026 parte vicino e stacca da primavera: +31,5% sull'anno, credibile e non gonfiato.
+	const TOT25 = [1880, 1760, 1900, 1980, 2050, 2080, 2200, 2220, 2100, 2030, 1960, 2100];
 	const TOT26 = [1960, 1840, 2190, 2420, 2710, 2980, 3260, 3410, 2850, 2570, 2390, 3320];
 
 	const CH = [

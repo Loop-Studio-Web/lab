@@ -41,7 +41,8 @@
 		if (!W) return;
 		const n = b - a + 1;
 		const iw = W - ML - MR;
-		const h = Math.round(Math.min(260, Math.max(170, W * 0.4)));
+		const low = matchMedia('(max-height: 38rem) and (min-width: 56rem)').matches; // 1366×600: grafico più basso
+		const h = Math.round(Math.min(low ? 190 : 260, Math.max(170, W * 0.4)));
 		const ih = h - MT - MB;
 		xf = (i) => ML + ((i - a) / (b - a)) * iw;
 		yf = (v) => MT + ih - (v / yMax) * ih;
