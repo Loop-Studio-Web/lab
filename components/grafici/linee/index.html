@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="ln.title">Linee e aree — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../gf.css" />
+		<script src="../gf.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="gf" data-root>
+					<div class="gf-box">
+						<div class="gf-bar">
+							<h2 data-i18n="ln.h">Coperti per mese · Trattoria Alba</h2>
+							<div class="gf-legend">
+								<span class="gf-key"><i></i><span>2026</span></span>
+								<span class="gf-key gf-key--prev"><i></i><span>2025</span></span>
+							</div>
+						</div>
+						<div class="gf-body">
+							<div class="gf-plot" data-plot tabindex="0" role="group" aria-label="Grafico a linee: usa le frecce per scorrere i mesi" data-i18n-attr="aria-label=ln.plot"></div>
+							<div class="gf-strip" data-strip aria-label="Periodo mostrato" data-i18n-attr="aria-label=ln.strip"></div>
+						</div>
+						<div class="gf-chips gf-presets" data-presets role="group" aria-label="Periodi rapidi" data-i18n-attr="aria-label=ln.presets"></div>
+						<p class="gf-foot" data-foot role="status"></p>
+						<table class="sr-only" data-table></table>
+					</div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="ln.name">Linee e aree</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="ln.lead">I coperti di un anno contro l'anno prima. Sotto il grafico c'è una striscia: trascina i bordi per scegliere i mesi e il grafico ingrandisce solo quel periodo.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="gf.mouse">Mouse</dt><dd data-i18n="ln.mouse">Passa sul grafico: il fumetto aggancia il mese più vicino. Trascina i bordi o il corpo della striscia.</dd></div>
+						<div><dt data-i18n="gf.touch">Tocco</dt><dd data-i18n="ln.touch">Scorri un dito sul grafico per leggere i mesi; trascina le maniglie rosse della striscia.</dd></div>
+						<div><dt data-i18n="gf.kbd">Tastiera</dt><dd data-i18n="ln.kbd">Tab sul grafico e frecce per i mesi; sulle maniglie le frecce spostano di un mese. I pulsanti scelgono un periodo.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="ln.tip">L'asse parte da zero e non cambia quando ingrandisci: restringere i mesi non deve far sembrare più ripida una curva uguale.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

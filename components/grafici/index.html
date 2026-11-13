@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="gf.title">Grafici — Loop Studio Lab</title>
+		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../_shared/suite.css" />
+		<script src="../_shared/suite.js" defer></script>
+	</head>
+	<body>
+		<h1 class="sr-only" data-i18n="gf.h1">Grafici</h1>
+		<div data-suite>
+			<div class="suite__top">
+				<div class="suite__scroll">
+					<div class="suite__list" role="tablist" aria-label="Quattro modi di mostrare i numeri" data-i18n-attr="aria-label=gf.tabs">
+						<button type="button" role="tab" id="t-linee" data-id="linee" data-src="linee/" data-title="Linee e aree" data-i18n="ln.name" data-i18n-attr="data-title=ln.name">Linee e aree</button>
+						<button type="button" role="tab" id="t-barre" data-id="barre" data-src="barre/" data-title="Barre e ciambella" data-i18n="br.name" data-i18n-attr="data-title=br.name">Barre e ciambella</button>
+						<button type="button" role="tab" id="t-calore" data-id="calore" data-src="calore/" data-title="Mappa di calore" data-i18n="ca.name" data-i18n-attr="data-title=ca.name">Mappa di calore</button>
+						<button type="button" role="tab" id="t-mini" data-id="mini" data-src="mini/" data-title="Mini-grafici" data-i18n="mn.name" data-i18n-attr="data-title=mn.name">Mini-grafici</button>
+						<span class="suite__bar" aria-hidden="true"></span>
+					</div>
+				</div>
+			</div>
+			<div class="suite__panels"></div>
+		</div>
+		<script src="../_shared/studio.js"></script>
+	</body>
+</html>

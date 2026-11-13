@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="br.title">Barre e ciambella — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../gf.css" />
+		<script src="../gf.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="gf" data-root>
+					<div class="gf-box">
+						<div class="gf-bar">
+							<h2 data-i18n="br.h">Coperti per canale · 2026</h2>
+							<span data-i18n="br.hint">Scegli un canale per isolarlo</span>
+						</div>
+						<div class="br-grid">
+							<div class="gf-plot" data-plot tabindex="0" role="group" aria-label="Barre impilate per mese: usa le frecce per scorrere i mesi" data-i18n-attr="aria-label=br.plot"></div>
+							<div>
+								<div class="gf-plot" data-donut></div>
+								<ul class="br-list" data-list></ul>
+							</div>
+						</div>
+						<p class="gf-foot" data-foot role="status"></p>
+					</div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="br.name">Barre e ciambella</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="br.lead">Gli stessi coperti letti in due modi: mese per mese in barre impilate, e il peso di ogni canale nella ciambella. Scegliendo un canale si accende in entrambi.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="gf.mouse">Mouse</dt><dd data-i18n="br.mouse">Passa su una barra per il dettaglio; clicca una fetta o una voce dell'elenco per isolare il canale.</dd></div>
+						<div><dt data-i18n="gf.touch">Tocco</dt><dd data-i18n="br.touch">Tocca una fetta o una voce: gli altri canali si attenuano e il centro mostra la quota.</dd></div>
+						<div><dt data-i18n="gf.kbd">Tastiera</dt><dd data-i18n="br.kbd">L'elenco è fatto di pulsanti; sulle barre Tab e frecce scorrono i mesi.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="br.tip">Il colore resta del canale, anche quando gli altri si spengono: chi guarda non deve rimparare la legenda.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>

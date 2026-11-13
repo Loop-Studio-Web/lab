@@ -37,7 +37,7 @@ for (const s of schede) {
 		const t = readFileSync(f, 'utf8');
 		for (const m of t.matchAll(/data-i18n="([^"]+)"/g)) usate.add(m[1]);
 		for (const m of t.matchAll(/data-i18n-attr="([^"]+)"/g)) m[1].split(',').forEach((p) => usate.add(p.split('=')[1].trim()));
-		for (const m of t.matchAll(/LabI18n\.t\(\s*'([^']+)'/g)) usate.add(m[1]);
+		for (const m of t.matchAll(/(?:LabI18n\.t|\btr)\(\s*'([^']+)'/g)) usate.add(m[1]);
 	}
 	const err = [];
 	for (const k of usate) for (const l of ['en', 'es']) if (!dict[l].has(k)) err.push(`manca ${l}: ${k}`);

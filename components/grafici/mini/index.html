@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex" />
+		<script src="../../_shared/i18n.js"></script>
+		<script src="../i18n.js"></script>
+		<title data-i18n="mn.title">Mini-grafici — Loop Studio Lab</title>
+		<link rel="preload" href="../../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="../../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="stylesheet" href="../../_shared/base.css" />
+		<link rel="icon" href="data:," />
+		<link rel="stylesheet" href="../../_shared/scheda.css" />
+		<link rel="stylesheet" href="../gf.css" />
+		<script src="../gf.js" defer></script>
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<main class="demo">
+			<div class="demo__stage">
+				<div class="gf" data-root>
+					<div class="gf-box">
+						<div class="gf-bar">
+							<h2 data-i18n="mn.h">Piatti della settimana</h2>
+							<span data-i18n="mn.hint">Porzioni vendute, ultime 12 settimane</span>
+						</div>
+						<ul class="mn-list gf-plot" data-list></ul>
+						<div class="mn-tiles" data-tiles></div>
+						<p class="gf-foot" data-foot role="status"></p>
+					</div>
+				</div>
+			</div>
+			<div class="demo__side">
+				<header class="demo__head">
+					<h1 data-i18n="mn.name">Mini-grafici</h1>
+				</header>
+				<div class="fd-lead">
+					<p data-i18n="mn.lead">Grafici piccoli dentro una riga o una tessera: l'andamento di un piatto in una linea sola, un misuratore ad arco e due barre di avanzamento con il loro obiettivo.</p>
+				</div>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.how">Come si usa</h2>
+					<dl class="fd-how">
+						<div><dt data-i18n="gf.mouse">Mouse</dt><dd data-i18n="mn.mouse">Passa sulla linea di un piatto: il fumetto legge la settimana più vicina.</dd></div>
+						<div><dt data-i18n="gf.touch">Tocco</dt><dd data-i18n="mn.touch">Scorri un dito lungo la linea per leggere le settimane.</dd></div>
+						<div><dt data-i18n="gf.kbd">Tastiera</dt><dd data-i18n="mn.kbd">Tab su una linea e frecce per spostarsi tra le settimane.</dd></div>
+					</dl>
+				</section>
+				<section class="fd-block">
+					<h2 class="demo__label" data-i18n="gf.tip">Consiglio</h2>
+					<p class="fd-tip" data-i18n="mn.tip">Lo stato è sempre scritto e ha un'icona: freccia su o giù, «sotto l'obiettivo». Il colore da solo non basta a chi non lo distingue.</p>
+				</section>
+			</div>
+		</main>
+		<script src="../../_shared/studio.js"></script>
+	</body>
+</html>
