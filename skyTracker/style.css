@@ -168,8 +168,8 @@ main {
 }
 
 .weather-info__icon img {
-  width: 90px;
-  height: 90px;
+  width: 64px;
+  height: 64px;
 }
 
 .weather-info__description {
