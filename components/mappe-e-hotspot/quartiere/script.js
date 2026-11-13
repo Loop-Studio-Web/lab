@@ -6,29 +6,56 @@
 	const W = 800;
 	const H = 524;
 
-	// id|nome|categoria|x|y|orari (ore decimali, fasce separate da ;)  — luoghi di fantasia
+	// Luoghi di fantasia, adattati a ogni lingua (nomi nello stile del posto, non solo tradotti): id → [it, en, es].
+	const NAMES = {
+		forno: ["Forno Sant'Elia", 'St Elias Bakery', 'Panadería San Elías'],
+		trattoria: ['Trattoria del Ponte', 'The Bridge Tavern', 'Mesón del Puente'],
+		osteria: ['Osteria dei Tigli', 'The Linden Tree Pub', 'Taberna de los Tilos'],
+		gelateria: ['Gelateria Luna', 'Moon Ice Cream Parlour', 'Heladería Luna'],
+		lanterna: ['Caffè Lanterna', 'Lantern Café', 'Café Farol'],
+		moka: ['Torrefazione Moka', 'Moka Roasters', 'Tostadero Moka'],
+		bar: ['Bar del Viale', 'Avenue Coffee Bar', 'Bar de la Avenida'],
+		te: ['Tè e Libri', 'Tea & Books', 'Té y Libros'],
+		libreria: ['Libreria Cartaio', 'Paperseller Books', 'Librería Papelero'],
+		fiorista: ['Fiorista Petalo', 'Petal Florist', 'Floristería Pétalo'],
+		mercato: ['Mercato Coperto', 'Covered Market', 'Mercado Cubierto'],
+		bottega: ['Bottega Filo', 'Thread Workshop', 'Taller del Hilo'],
+		museo: ['Museo del Vetro', 'Glass Museum', 'Museo del Vidrio'],
+		teatro: ['Teatro Piccolo', 'Little Theatre', 'Teatro Pequeño'],
+		galleria: ['Galleria Nodo', 'Knot Gallery', 'Galería Nudo'],
+		cinema: ['Cinema Aurora', 'Aurora Cinema', 'Cine Aurora'],
+		farmacia: ['Farmacia Croce', 'Cross Pharmacy', 'Farmacia Cruz'],
+		posta: ['Posta di Borgo', 'Lantern Post Office', 'Correos del Barrio'],
+		bici: ['Bici Lanterna', 'Lantern Bike Hire', 'Bicis Farol'],
+		info: ['Info Giardino', 'Garden Info Point', 'Info Jardín'],
+	};
+	// In Spagna si pranza e si cena più tardi: gli orari dei locali di cibo cambiano con la lingua.
+	const ES_HOURS = { forno: '7-14;17-20', trattoria: '13.5-16;20.5-24', osteria: '13-16;20.5-24', gelateria: '12-24' };
+	const LI = { it: 0, en: 1, es: 2 }[LabI18n.lang] ?? 0;
+
+	// id|categoria|x|y|orari (ore decimali, fasce separate da ;)
 	const PLACES = [
-		['forno', "Forno Sant'Elia", 'cibo', 100, 70, '6.5-13;16-19.5'],
-		['trattoria', 'Trattoria del Ponte', 'cibo', 272, 180, '12-15;19-23'],
-		['osteria', 'Osteria dei Tigli', 'cibo', 444, 180, '12-14.5;19-23.5'],
-		['gelateria', 'Gelateria Luna', 'cibo', 730, 380, '12-23'],
-		['lanterna', 'Caffè Lanterna', 'caffe', 100, 180, '7-20'],
-		['moka', 'Torrefazione Moka', 'caffe', 272, 70, '7-13'],
-		['bar', 'Bar del Viale', 'caffe', 480, 228, '6-24'],
-		['te', 'Tè e Libri', 'caffe', 600, 380, '10-22'],
-		['libreria', 'Libreria Cartaio', 'negozi', 272, 380, '9.5-19.5'],
-		['fiorista', 'Fiorista Petalo', 'negozi', 100, 380, '8-13;15-19'],
-		['mercato', 'Mercato Coperto', 'negozi', 444, 380, '7-14'],
-		['bottega', 'Bottega Filo', 'negozi', 730, 470, '10-19'],
-		['museo', 'Museo del Vetro', 'cultura', 444, 70, '10-18'],
-		['teatro', 'Teatro Piccolo', 'cultura', 100, 470, '18-23'],
-		['galleria', 'Galleria Nodo', 'cultura', 272, 470, '11-19'],
-		['cinema', 'Cinema Aurora', 'cultura', 444, 470, '15-24'],
-		['farmacia', 'Farmacia Croce', 'servizi', 600, 470, '8.5-20'],
-		['posta', 'Posta di Borgo', 'servizi', 192, 228, '8-14'],
-		['bici', 'Bici Lanterna', 'servizi', 380, 228, '0-24'],
-		['info', 'Info Giardino', 'servizi', 620, 90, '9-17'],
-	].map(([id, n, c, x, y, h]) => ({ id, n, c, x, y, h: h.split(';').map((r) => r.split('-').map(Number)) }));
+		['forno', 'cibo', 100, 70, '6.5-13;16-19.5'],
+		['trattoria', 'cibo', 272, 180, '12-15;19-23'],
+		['osteria', 'cibo', 444, 180, '12-14.5;19-23.5'],
+		['gelateria', 'cibo', 730, 380, '12-23'],
+		['lanterna', 'caffe', 100, 180, '7-20'],
+		['moka', 'caffe', 272, 70, '7-13'],
+		['bar', 'caffe', 480, 228, '6-24'],
+		['te', 'caffe', 600, 380, '10-22'],
+		['libreria', 'negozi', 272, 380, '9.5-19.5'],
+		['fiorista', 'negozi', 100, 380, '8-13;15-19'],
+		['mercato', 'negozi', 444, 380, '7-14'],
+		['bottega', 'negozi', 730, 470, '10-19'],
+		['museo', 'cultura', 444, 70, '10-18'],
+		['teatro', 'cultura', 100, 470, '18-23'],
+		['galleria', 'cultura', 272, 470, '11-19'],
+		['cinema', 'cultura', 444, 470, '15-24'],
+		['farmacia', 'servizi', 600, 470, '8.5-20'],
+		['posta', 'servizi', 192, 228, '8-14'],
+		['bici', 'servizi', 380, 228, '0-24'],
+		['info', 'servizi', 620, 90, '9-17'],
+	].map(([id, c, x, y, h]) => ({ id, n: NAMES[id][LI], c, x, y, h: ((LabI18n.lang === 'es' && ES_HOURS[id]) || h).split(';').map((r) => r.split('-').map(Number)) }));
 	const CATS = { cibo: LabI18n.t('qu.c.cibo', 'Cibo'), caffe: LabI18n.t('qu.c.caffe', 'Caffè'), negozi: LabI18n.t('qu.c.negozi', 'Negozi'), cultura: LabI18n.t('qu.c.cultura', 'Cultura'), servizi: LabI18n.t('qu.c.servizi', 'Servizi') };
 
 	// ——— mappa disegnata da JS (isolati, parco, fiume con ponti sulle strade)
@@ -85,10 +112,10 @@
 	const count = $('[data-count]');
 	const openBtn = $('[data-open]');
 	const shape = (c, closed) => `<span class="mh-shape${closed ? ' is-closed' : ''}" data-c="${c}" aria-hidden="true"></span>`;
-	const nm = (p) => `<span lang="it">${p.n}</span>`;
+	const nm = (p) => p.n;
 
 	layer.innerHTML = mapSvg();
-	layer.insertAdjacentHTML('beforeend', `<span class="mh-geo" style="left:50%;top:60.5%;--r:-4deg" lang="it">Rio Lanterna</span><span class="mh-geo" style="left:82%;top:36%" lang="it">Giardino dei Tigli</span>`);
+	layer.insertAdjacentHTML('beforeend', `<span class="mh-geo" style="left:50%;top:60.5%;--r:-4deg">${LabI18n.t('qu.river', 'Rio Lanterna')}</span><span class="mh-geo" style="left:82%;top:36%">${LabI18n.t('qu.park', 'Giardino dei Tigli')}</span>`);
 	const tip = document.createElement('div');
 	tip.className = 'mh-tip';
 	tip.hidden = true;

@@ -1,5 +1,5 @@
 // Traduzioni di «Mappe e hotspot» (guscio e pagine). L'italiano sta nell'HTML e nei ripieghi dei LabI18n.t().
-// Luoghi, nomi e porti sono di fantasia e restano in italiano (con lang="it"); si traducono categorie e interfaccia.
+// Luoghi, nomi dei locali, palloni e piloti di fantasia: adattati per lingua (non solo tradotti) in quartiere/script.js e volo/script.js; qui l'interfaccia.
 LabI18n.add({
 	en: {
 		'mh.title': 'Maps and hotspots — Loop Studio Lab',
@@ -13,6 +13,10 @@ LabI18n.add({
 
 		'qu.name': 'Neighbourhood',
 		'qu.title': 'Neighbourhood — Loop Studio Lab',
+		'qu.district': 'Lantern Quarter',
+		'qu.river': 'Lantern River',
+		'qu.park': 'Linden Gardens',
+		'vo.day': 'A day in the air',
 		'qu.lead': 'A neighbourhood map with a list: filters act on both, and every place says whether it is open at the time you choose.',
 		'qu.mouse': 'Drag the map, zoom with + and −, click a point or a row: the other half lights up.',
 		'qu.touch': 'Drag with one finger once the map is zoomed; on narrow screens the list goes under the map.',
@@ -102,6 +106,10 @@ LabI18n.add({
 
 		'qu.name': 'Barrio',
 		'qu.title': 'Barrio — Loop Studio Lab',
+		'qu.district': 'Barrio Farol',
+		'qu.river': 'Río Farol',
+		'qu.park': 'Jardín de los Tilos',
+		'vo.day': 'Un día en el aire',
 		'qu.lead': 'Un mapa de barrio con lista: los filtros actúan sobre ambos y cada lugar dice si está abierto a la hora que eliges.',
 		'qu.mouse': 'Arrastra el mapa, amplía con + y −, haz clic en un punto o en una fila: la otra mitad se ilumina.',
 		'qu.touch': 'Arrastra con un dedo cuando el mapa está ampliado; en pantallas estrechas la lista va debajo del mapa.',

@@ -5,30 +5,32 @@
 	const $ = (s, r = document) => r.querySelector(s);
 	const PW = 1600;
 	const PH = 1067;
-	// nome, pilota, decollo, posti liberi, x, y, raggio del pallone (pixel della foto 1600×1067, centro del pallone); voli di fantasia, in ordine di decollo
+	// Nome del pallone e pilota per lingua [it, en, es] (nomi nello stile del posto), poi decollo, posti liberi, x, y, raggio del pallone
+	// (pixel della foto 1600×1067, centro del pallone); voli di fantasia, in ordine di decollo.
+	const LI = { it: 0, en: 1, es: 2 }[LabI18n.lang] ?? 0;
 	const FLIGHTS = [
-		['Alba Rossa', 'Irene Basso', '05:20', 4, 433, 302, 25],
-		['Nube Blu', 'Marco Ferri', '05:25', 0, 249, 466, 55],
-		['Tramonto al contrario', 'Lia Conti', '05:30', 2, 446, 574, 32],
-		['Tigli', 'Paolo Neri', '05:35', 6, 518, 620, 28],
-		['Quarzo', 'Sara Vita', '05:40', 1, 478, 767, 28],
-		['Piccolo Sole', 'Dario Pace', '05:45', 3, 266, 780, 28],
-		['Girasole', 'Elena Ross', '05:50', 5, 876, 248, 38],
-		['Bandiera', 'Tom Serra', '05:55', 0, 918, 620, 28],
-		['Mandorla', 'Anna Gatti', '06:00', 2, 940, 543, 25],
-		['Corallo', 'Nico Valli', '06:05', 4, 1005, 660, 28],
-		['Aurora', 'Giada Fonte', '06:10', 1, 1134, 520, 28],
-		['Ghiaccio', 'Luca Moro', '06:15', 6, 1194, 515, 40],
-		['Grande Cielo', 'Marta Lupi', '06:20', 3, 1342, 335, 105],
-		['Valle Bassa', 'Piero Alto', '06:30', 7, 934, 908, 25],
-		['Ultima Luce', 'Vera Sala', '06:40', 2, 1008, 990, 8],
-	].map(([n, p, t, s, x, y, r], i) => ({ i, n, p, t, s, x, y, r }));
+		[['Alba Rossa', 'Red Dawn', 'Alba Roja'], ['Irene Basso', 'Emily Brooks', 'Irene Bravo'], '05:20', 4, 433, 302, 25],
+		[['Nube Blu', 'Blue Cloud', 'Nube Azul'], ['Marco Ferri', 'Mark Fisher', 'Marcos Herrera'], '05:25', 0, 249, 466, 55],
+		[['Tramonto al contrario', 'Reverse Sunset', 'Atardecer al revés'], ['Lia Conti', 'Lily Cooper', 'Lía Conde'], '05:30', 2, 446, 574, 32],
+		[['Tigli', 'Lindens', 'Tilos'], ['Paolo Neri', 'Paul Nash', 'Pablo Negrete'], '05:35', 6, 518, 620, 28],
+		[['Quarzo', 'Quartz', 'Cuarzo'], ['Sara Vita', 'Sarah Vale', 'Sara Vidal'], '05:40', 1, 478, 767, 28],
+		[['Piccolo Sole', 'Little Sun', 'Solecito'], ['Dario Pace', 'Daniel Pearce', 'Darío Paz'], '05:45', 3, 266, 780, 28],
+		[['Girasole', 'Sunflower', 'Girasol'], ['Elena Ross', 'Helen Ross', 'Elena Roca'], '05:50', 5, 876, 248, 38],
+		[['Bandiera', 'Flag', 'Bandera'], ['Tom Serra', 'Tom Sears', 'Tomás Serra'], '05:55', 0, 918, 620, 28],
+		[['Mandorla', 'Almond', 'Almendra'], ['Anna Gatti', 'Anna Gates', 'Ana Gallo'], '06:00', 2, 940, 543, 25],
+		[['Corallo', 'Coral', 'Coral'], ['Nico Valli', 'Nick Wallis', 'Nico Vallés'], '06:05', 4, 1005, 660, 28],
+		[['Aurora', 'Aurora', 'Aurora'], ['Giada Fonte', 'Jade Foster', 'Jade Fuentes'], '06:10', 1, 1134, 520, 28],
+		[['Ghiaccio', 'Ice', 'Hielo'], ['Luca Moro', 'Luke Moore', 'Lucas Moreno'], '06:15', 6, 1194, 515, 40],
+		[['Grande Cielo', 'Big Sky', 'Gran Cielo'], ['Marta Lupi', 'Martha Lowe', 'Marta Lobo'], '06:20', 3, 1342, 335, 105],
+		[['Valle Bassa', 'Low Valley', 'Valle Bajo'], ['Piero Alto', 'Peter Hall', 'Pedro Alto'], '06:30', 7, 934, 908, 25],
+		[['Ultima Luce', 'Last Light', 'Última Luz'], ['Vera Sala', 'Vera Salt', 'Vera Salas'], '06:40', 2, 1008, 990, 8],
+	].map(([n, p, t, s, x, y, r], i) => ({ i, n: n[LI], p: p[LI], t, s, x, y, r }));
 
 	const photo = $('[data-photo]');
 	const card = $('[data-card]');
 	const pos = $('[data-pos]');
 	const count = $('[data-count]');
-	const nm = (f) => `<span lang="it">${f.n}</span>`;
+	const nm = (f) => f.n;
 	const seatsText = (f) => (f.s === 0 ? LabI18n.t('vo.full', 'Al completo') : f.s === 1 ? LabI18n.t('vo.seat1', '1 posto libero') : LabI18n.t('vo.seatN', '{n} posti liberi').replace('{n}', f.s));
 	const seatsCls = (f) => (f.s === 0 ? 'is-out' : f.s <= 2 ? 'is-low' : 'is-ok');
 	let sel = -1;
@@ -77,7 +79,7 @@
 		pins[i].classList.add('is-sel');
 		pins[i].setAttribute('aria-expanded', 'true');
 		photo.classList.add('has-sel');
-		card.innerHTML = `<b>${nm(f)}</b><small>${LabI18n.t('vo.pilot', 'Pilota')} <span lang="it">${f.p}</span></small><dl><div><dt>${LabI18n.t('vo.takeoff', 'Decollo')}</dt><dd>${f.t}</dd></div><div><dt>${LabI18n.t('vo.seats', 'Posti')}</dt><dd class="${seatsCls(f)}">${seatsText(f)}</dd></div></dl>`;
+		card.innerHTML = `<b>${nm(f)}</b><small>${LabI18n.t('vo.pilot', 'Pilota')} ${f.p}</small><dl><div><dt>${LabI18n.t('vo.takeoff', 'Decollo')}</dt><dd>${f.t}</dd></div><div><dt>${LabI18n.t('vo.seats', 'Posti')}</dt><dd class="${seatsCls(f)}">${seatsText(f)}</dd></div></dl>`;
 		card.hidden = false;
 		place();
 		pos.textContent = LabI18n.t('vo.of', 'Volo {i} di {n}').replace('{i}', i + 1).replace('{n}', FLIGHTS.length);
