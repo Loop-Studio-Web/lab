@@ -1,5 +1,5 @@
 // Traduzioni di «Filtri e griglie» (guscio e le 4 pagine interne). L'italiano sta nell'HTML.
-// Nomi e descrizioni delle proposte sono contenuti di fantasia: restano in italiano.
+// Nomi e descrizioni delle proposte: EN/ES in COPY dentro fg.js.
 LabI18n.add({
 	en: {
 		'fg.title': 'Filters and grids — Loop Studio Lab',
@@ -24,7 +24,7 @@ LabI18n.add({
 		'fg.reset': 'Reset',
 		'fg.count.one': '1 result',
 		'fg.count.many': '{n} results',
-		'fg.search.ph': 'Search: lago, mare, tramonto…',
+		'fg.search.ph': 'Search: lake, sea, sunset…',
 		'fg.search.label': 'Search the offers',
 		'fg.empty': 'No results. Try:',
 		'fg.view': 'View',
@@ -37,10 +37,10 @@ LabI18n.add({
 		'filtri.name': 'Filters',
 		'filtri.title': 'Filters — Loop Studio Lab',
 		'filtri.lead': 'Categories, sort order and search work together: with every choice the cards slide to their new place and what was found is highlighted.',
-		'filtri.mouse': 'Click the categories to switch them on or off; choose the order from the menu; type in the field (try “lago”); “Reset” clears everything.',
+		'filtri.mouse': 'Click the categories to switch them on or off; choose the order from the menu; type in the field (try “lake”); “Reset” clears everything.',
 		'filtri.touch': 'Tap the categories: they are buttons at least 36 px tall. The sort menu is the phone’s own.',
 		'filtri.kbd': 'Tab between field, categories and menu, Space to switch one on, Esc clears the field; the count updates and is read by screen readers.',
-		'filtri.tip': 'Always show how many results are left and a way to reset; search ignores accents and capitals and, if nothing matches, suggests a search that works. Items and prices are invented, in Italian.',
+		'filtri.tip': 'Always show how many results are left and a way to reset; search ignores accents and capitals and, if nothing matches, suggests a search that works. Items and prices are invented.',
 		'griglia-lista.name': 'Views',
 		'griglia-lista.title': 'Views — Loop Studio Lab',
 		'griglia-lista.lead': 'The same list in three shapes: grid, list and poster, with the photos scattered like prints on a table. Switching between them, the cards slide into place one after another.',
@@ -79,7 +79,7 @@ LabI18n.add({
 		'fg.reset': 'Borrar',
 		'fg.count.one': '1 resultado',
 		'fg.count.many': '{n} resultados',
-		'fg.search.ph': 'Busca: lago, mare, tramonto…',
+		'fg.search.ph': 'Busca: lago, mar, atardecer…',
 		'fg.search.label': 'Buscar en las propuestas',
 		'fg.empty': 'Sin resultados. Prueba con:',
 		'fg.view': 'Vista',
@@ -95,7 +95,7 @@ LabI18n.add({
 		'filtri.mouse': 'Haz clic en las categorías para activarlas o desactivarlas; elige el orden en el menú; escribe en el campo (prueba «lago»); «Borrar» lo quita todo.',
 		'filtri.touch': 'Toca las categorías: son botones de al menos 36 px. El menú de orden es el propio del móvil.',
 		'filtri.kbd': 'Tab entre campo, categorías y menú, Espacio para activar, Esc vacía el campo; el recuento se actualiza y lo lee el lector de pantalla.',
-		'filtri.tip': 'Muestra siempre cuántos resultados quedan y una forma de borrar; la búsqueda ignora acentos y mayúsculas y, si no encuentra nada, propone una que funcione. Las propuestas y los precios son inventados, en italiano.',
+		'filtri.tip': 'Muestra siempre cuántos resultados quedan y una forma de borrar; la búsqueda ignora acentos y mayúsculas y, si no encuentra nada, propone una que funcione. Las propuestas y los precios son inventados.',
 		'griglia-lista.name': 'Vistas',
 		'griglia-lista.title': 'Vistas — Loop Studio Lab',
 		'griglia-lista.lead': 'La misma lista en tres formas: cuadrícula, lista y póster, con las fotos esparcidas como copias sobre una mesa. Al pasar de una a otra, las fichas se deslizan a su sitio una tras otra.',

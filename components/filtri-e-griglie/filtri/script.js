@@ -61,7 +61,9 @@
 		reset.hidden = !on.size && !q && sort.value === 'rec';
 	};
 
-	['lago', 'mare', 'tramonto'].forEach((w) => {
+	// Parole che trovano qualcosa nei nomi/testi della lingua in uso.
+	const WORDS = { it: ['lago', 'mare', 'tramonto'], en: ['lake', 'sea', 'sunset'], es: ['lago', 'mar', 'atardecer'] };
+	(WORDS[LabI18n.lang] || WORDS.it).forEach((w) => {
 		const b = document.createElement('button');
 		b.type = 'button';
 		b.className = 'fg-chip';

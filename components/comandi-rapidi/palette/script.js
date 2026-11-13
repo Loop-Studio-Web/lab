@@ -18,14 +18,14 @@
 	const theme = (v) => () => (site.dataset.theme = v);
 
 	const items = [
-		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.home', 'Vai alla Home'), kbd: ['G', 'H'], seq: ['g', 'h'], keywords: 'home inizio casa', run: go('home') },
-		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.serv', 'Vai ai Servizi'), kbd: ['G', 'S'], seq: ['g', 's'], keywords: 'servizi offerta viaggi', run: go('servizi') },
-		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.prog', 'Vai alle Partenze'), kbd: ['G', 'P'], seq: ['g', 'p'], keywords: 'partenze viaggi mete date', run: go('progetti') },
-		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.cont', 'Vai ai Contatti'), kbd: ['G', 'C'], seq: ['g', 'c'], keywords: 'contatti scrivici', run: go('contatti') },
-		{ group: G.actions, icon: 'mail', label: LabI18n.t('palette.c.mail', 'Copia l’indirizzo email'), keywords: 'copia email scrivi' },
-		{ group: G.actions, icon: 'download', label: LabI18n.t('palette.c.price', 'Scarica il listino'), keywords: 'listino prezzi pdf download' },
-		{ group: G.look, icon: 'sun', label: LabI18n.t('palette.c.light', 'Tema chiaro'), keywords: 'tema chiaro luce giorno', run: theme('light') },
-		{ group: G.look, icon: 'moon', label: LabI18n.t('palette.c.dark', 'Tema scuro'), keywords: 'tema scuro notte buio', run: theme('dark') },
+		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.home', 'Vai alla Home'), kbd: ['G', 'H'], seq: ['g', 'h'], keywords: 'home inizio casa start inicio', run: go('home') },
+		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.serv', 'Vai ai Servizi'), kbd: ['G', 'S'], seq: ['g', 's'], keywords: 'servizi offerta viaggi services offer trips servicios oferta viajes', run: go('servizi') },
+		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.prog', 'Vai alle Partenze'), kbd: ['G', 'P'], seq: ['g', 'p'], keywords: 'partenze viaggi mete date departures trips destinations dates salidas destinos fechas', run: go('progetti') },
+		{ group: G.pages, icon: 'page', label: LabI18n.t('palette.c.cont', 'Vai ai Contatti'), kbd: ['G', 'C'], seq: ['g', 'c'], keywords: 'contatti scrivici contact write us contacto escribenos', run: go('contatti') },
+		{ group: G.actions, icon: 'mail', label: LabI18n.t('palette.c.mail', 'Copia l’indirizzo email'), keywords: 'copia email scrivi copy mail write copiar correo escribir' },
+		{ group: G.actions, icon: 'download', label: LabI18n.t('palette.c.price', 'Scarica il listino'), keywords: 'listino prezzi pdf download price list prices lista precios descargar' },
+		{ group: G.look, icon: 'sun', label: LabI18n.t('palette.c.light', 'Tema chiaro'), keywords: 'tema chiaro luce giorno theme light day tema claro luz dia', run: theme('light') },
+		{ group: G.look, icon: 'moon', label: LabI18n.t('palette.c.dark', 'Tema scuro'), keywords: 'tema scuro notte buio theme dark night tema oscuro noche', run: theme('dark') },
 	];
 
 	let timer;

@@ -1,5 +1,5 @@
 // Parte comune ai 4 tab di «Filtri e griglie»: dati di fantasia, scheda, riordino animato (FLIP) e morph con View Transitions.
-// I contenuti (nomi, descrizioni) sono di fantasia e restano in italiano; si traduce solo l'interfaccia.
+// I contenuti (nomi, descrizioni) sono di fantasia: italiano in ITEMS, EN/ES in COPY.
 (() => {
 	const L = window.LabI18n;
 	const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -28,6 +28,40 @@
 		{ id: 'club', name: 'Beach club', cat: 'mare', price: 160, date: '2026-07-30', img: 'beach-m', pos: '15% 45%', text: 'Lettino, aperitivo e musica dal vivo al tramonto; la sera si resta a cena sulla sabbia.' },
 	];
 
+	// Nomi e descrizioni delle voci in EN/ES (l'italiano sta in ITEMS): [nome, testo].
+	const COPY = {
+		en: {
+			rifugio: ['Lakeside refuge', 'Two nights in a mountain hut above an alpine lake, breakfast at sunrise and a trail up to the ridge.'],
+			scogliera: ['House on the cliff', 'A fisherman’s house perched over the sea: terrace, a boat for the sunset and a seafood dinner in the village.'],
+			aurora: ['Aurora night', 'Three nights under the northern sky with a guide, a hot flask and a photographer in tow.'],
+			dune: ['Dunes and silence', 'A dawn walk among the dunes, tea at the tent camp and stars without a single light around.'],
+			bosco: ['Forest in the fog', 'A guided walk through firs and early-morning fog; back in time for a farmhouse breakfast.'],
+			playa: ['Private beach', 'A bay with just a few umbrellas, snorkelling included and a beach bar that only opens at noon.'],
+			pagoda: ['Pagoda at sunset', 'An evening visit with a local guide, a tea ceremony and a walk back among the lanterns.'],
+			ghiaccio: ['Frozen lake', 'A snowshoe hike to a winter lake, a hot packed lunch and a sleigh ride home.'],
+			cascata: ['Hidden waterfall', 'Half a day in a little-known gorge, with a final swim for the brave.'],
+			quota: ['High-altitude trail', 'A six-hour loop above two thousand metres, for those with the legs and a taste for views.'],
+			borgo: ['Seaside village', 'A day among alleys, workshops and terraced vineyards, with a wine tasting in the cellar.'],
+			club: ['Beach club', 'Sunbed, aperitif and live music at sunset; in the evening you stay for dinner on the sand.'],
+		},
+		es: {
+			rifugio: ['Refugio junto al lago', 'Dos noches en un refugio sobre un lago alpino, desayuno al amanecer y sendero hasta la cresta.'],
+			scogliera: ['Casa en el acantilado', 'Una casa de pescadores sobre el mar: terraza, barca para la puesta de sol y cena de pescado en el pueblo.'],
+			aurora: ['Noche de aurora', 'Tres noches bajo el cielo del norte con guía, termo caliente y un fotógrafo a tu lado.'],
+			dune: ['Dunas y silencio', 'Caminata al amanecer entre las dunas, té en el campamento y estrellas sin una sola luz alrededor.'],
+			bosco: ['Bosque en la niebla', 'Paseo guiado entre abetos y niebla a primera hora; se vuelve a tiempo para el desayuno campesino.'],
+			playa: ['Playa privada', 'Una bahía con pocas sombrillas, snorkel incluido y un chiringuito que solo abre a mediodía.'],
+			pagoda: ['Pagoda al atardecer', 'Visita nocturna con guía local, ceremonia del té y regreso a pie entre los farolillos.'],
+			ghiaccio: ['Lago helado', 'Excursión con raquetas hasta un lago en invierno, comida caliente de mochila y regreso en trineo.'],
+			cascata: ['Cascada escondida', 'Medio día en una garganta poco conocida, con baño final para los valientes.'],
+			quota: ['Sendero de alta montaña', 'Un circuito de seis horas por encima de los dos mil metros, para quien tiene piernas y quiere panorama.'],
+			borgo: ['Pueblo junto al mar', 'Un día entre callejuelas, talleres y viñedos en terraza, con cata de vinos en la bodega.'],
+			club: ['Beach club', 'Tumbona, aperitivo y música en vivo al atardecer; por la noche te quedas a cenar en la arena.'],
+		},
+	};
+	const copy = COPY[L.lang];
+	if (copy) ITEMS.forEach((it) => ([it.name, it.text] = copy[it.id]));
+
 	const eur = new Intl.NumberFormat(L.lang, { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
 	const day = new Intl.DateTimeFormat(L.lang, { day: 'numeric', month: 'short' });
 	const norm = (s) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
@@ -37,7 +71,7 @@
 		asc: (a, b) => a.price - b.price,
 		desc: (a, b) => b.price - a.price,
 		new: (a, b) => (a.date < b.date ? 1 : -1),
-		az: (a, b) => a.name.localeCompare(b.name, 'it'),
+		az: (a, b) => a.name.localeCompare(b.name, L.lang),
 	};
 
 	// Una voce = un <li> con foto e testi. `button` mette un vero <button> attorno al contenuto (per il dettaglio).
@@ -45,7 +79,6 @@
 		const li = document.createElement('li');
 		li.className = 'fg-card';
 		li.dataset.id = it.id;
-		li.lang = 'it';
 		const inner = document.createElement(button ? 'button' : 'div');
 		if (button) inner.type = 'button';
 		inner.className = 'fg-card__in';

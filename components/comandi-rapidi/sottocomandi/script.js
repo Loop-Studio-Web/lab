@@ -47,13 +47,13 @@
 	}));
 
 	const items = [
-		{ icon: 'user', label: LabI18n.t('sub.c.assign', 'Assegna a…'), keywords: 'persona assegna responsabile', children: people },
-		{ icon: 'calendar', label: LabI18n.t('sub.c.due', 'Imposta la scadenza…'), keywords: 'data scadenza quando', children: dueOpts },
-		{ icon: 'tag', label: LabI18n.t('sub.c.label', 'Aggiungi un’etichetta…'), keywords: 'etichetta colore tag', children: labels },
+		{ icon: 'user', label: LabI18n.t('sub.c.assign', 'Assegna a…'), keywords: 'persona assegna responsabile person assign owner persona asignar responsable', children: people },
+		{ icon: 'calendar', label: LabI18n.t('sub.c.due', 'Imposta la scadenza…'), keywords: 'data scadenza quando date due deadline when fecha vencimiento cuando', children: dueOpts },
+		{ icon: 'tag', label: LabI18n.t('sub.c.label', 'Aggiungi un’etichetta…'), keywords: 'etichetta colore tag label colour color etiqueta', children: labels },
 		{
 			icon: 'check',
 			label: LabI18n.t('sub.c.done', 'Segna come fatta'),
-			keywords: 'completa fatto finito',
+			keywords: 'completa fatto finito complete done finished completar hecho terminado',
 			run: () => {
 				card.classList.add('is-done');
 				set('state', LabI18n.t('sub.done', 'Fatta'), LabI18n.t('sub.l.done', 'Segnata come fatta'));
@@ -62,7 +62,7 @@
 		{
 			icon: 'undo',
 			label: LabI18n.t('sub.c.reset', 'Ripristina tutto'),
-			keywords: 'reset annulla ripristina',
+			keywords: 'reset annulla ripristina undo restore cancel deshacer restaurar cancelar',
 			run: () => {
 				card.classList.remove('is-done');
 				set('who', '—', LabI18n.t('sub.l.reset', 'Attività ripristinata'));
