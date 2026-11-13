@@ -1,4 +1,7 @@
-# 15 schede nuove — concept APPROVATO (2026-11-08, fase 1 chiusa)
+# Schede nuove — piano chiuso (13/11/2026): Componenti 30 + Demo 15
+Piano nato a 15 schede (8/11), ridotto a 7 il 12/11 (vedi «Lotti 3-4 rivisti»): ora tutte costruite, totale 30 Componenti. Il resto è cronaca del piano.
+
+## Concept approvato (2026-11-08, fase 1 chiusa)
 
 Ognuna è una suite a tab (stesso guscio `_shared/suite.css/.js` dei raggruppamenti). Ordine = lotti di costruzione.
 Prima di costruire una scheda: fase 2 (struttura cartelle, dati, asset), poi bozza all'autore, poi (solo dopo il deploy) axe + PSI.
