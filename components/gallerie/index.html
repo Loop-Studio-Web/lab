@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Gallerie — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="ga.1">Gallerie — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -12,14 +14,14 @@
 		<script src="../_shared/suite.js" defer></script>
 	</head>
 	<body>
-		<h1 class="sr-only">Gallerie</h1>
+		<h1 class="sr-only" data-i18n="ga.2">Gallerie</h1>
 		<div data-suite>
 			<div class="suite__top">
 				<div class="suite__scroll">
-					<div class="suite__list" role="tablist" aria-label="Gallerie e scorrimenti">
-						<button type="button" role="tab" id="t-rotante" data-id="rotante" data-src="../rotating-image-gallery/" data-title="Galleria 3D">Galleria 3D</button>
-						<button type="button" role="tab" id="t-fisarmonica" data-id="fisarmonica" data-src="../galleria-fisarmonica/" data-title="Fisarmonica">Fisarmonica</button>
-						<button type="button" role="tab" id="t-marquee" data-id="marquee" data-src="../marquee-loghi/" data-title="Marquee loghi">Marquee loghi</button>
+					<div class="suite__list" role="tablist" aria-label="Gallerie e scorrimenti" data-i18n-attr="aria-label=ga.6">
+						<button type="button" role="tab" id="t-rotante" data-id="rotante" data-src="../rotating-image-gallery/" data-title="Galleria 3D" data-i18n="ga.3" data-i18n-attr="data-title=ga.3">Galleria 3D</button>
+						<button type="button" role="tab" id="t-fisarmonica" data-id="fisarmonica" data-src="../galleria-fisarmonica/" data-title="Fisarmonica" data-i18n="ga.4" data-i18n-attr="data-title=ga.4">Fisarmonica</button>
+						<button type="button" role="tab" id="t-marquee" data-id="marquee" data-src="../marquee-loghi/" data-title="Marquee loghi" data-i18n="ga.5" data-i18n-attr="data-title=ga.5">Marquee loghi</button>
 						<span class="suite__bar" aria-hidden="true"></span>
 					</div>
 				</div>
