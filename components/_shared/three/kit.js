@@ -25,7 +25,9 @@ export const mulberry32 = (seed) => () => {
 	return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
 
-export function createStage(container, { fov = 30, z = 12, maxDpr = 1.75, antialias = true } = {}) {
+// onDemand: disegna solo quando una funzione di onFrame restituisce true (o dopo un ridimensionamento / invalidate()):
+// per le scene che da ferme non cambiano, così la GPU e il thread principale restano liberi.
+export function createStage(container, { fov = 30, z = 12, maxDpr = 1.75, antialias = true, onDemand = false } = {}) {
 	let renderer;
 	try {
 		renderer = new THREE.WebGLRenderer({ alpha: true, antialias, powerPreference: 'high-performance' });
@@ -43,6 +45,7 @@ export function createStage(container, { fov = 30, z = 12, maxDpr = 1.75, antial
 
 	// size.visW / visH: dimensioni del mondo visibili sul piano z = 0, per posizionare gli oggetti in proporzione al riquadro.
 	const size = { w: 1, h: 1, aspect: 1, visW: 1, visH: 1 };
+	let dirty = true;
 	const fit = () => {
 		const r = container.getBoundingClientRect();
 		size.w = Math.max(1, Math.round(r.width));
@@ -51,6 +54,7 @@ export function createStage(container, { fov = 30, z = 12, maxDpr = 1.75, antial
 		renderer.setSize(size.w, size.h, false);
 		camera.aspect = size.aspect;
 		camera.updateProjectionMatrix();
+		dirty = true;
 		size.visH = 2 * Math.tan((fov * Math.PI) / 360) * z;
 		size.visW = size.visH * size.aspect;
 	};
@@ -68,7 +72,10 @@ export function createStage(container, { fov = 30, z = 12, maxDpr = 1.75, antial
 		const dt = Math.min((now - last) / 1000, 0.05);
 		last = now;
 		time += dt;
-		for (const fn of frames) fn(dt, time);
+		let moving = false;
+		for (const fn of frames) if (fn(dt, time) === true) moving = true;
+		if (onDemand && !moving && !dirty) return;
+		dirty = false;
 		renderer.render(scene, camera);
 	};
 	const start = () => {
@@ -93,5 +100,6 @@ export function createStage(container, { fov = 30, z = 12, maxDpr = 1.75, antial
 		camera,
 		size,
 		onFrame: (fn) => frames.push(fn),
+		invalidate: () => (dirty = true),
 	};
 }

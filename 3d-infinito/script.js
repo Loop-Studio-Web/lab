@@ -5,7 +5,7 @@ import { THREE, createStage, damp, reduceMotion, smoothstep } from '../component
 import { RoomEnvironment } from '../components/_shared/three/RoomEnvironment.min.js';
 import { ANELLO_ROSSO, ANELLO_BIANCO } from './marchio.js';
 
-const stage = createStage(document.getElementById('scena'), { fov: 30, z: 12 });
+const stage = createStage(document.getElementById('scena'), { fov: 30, z: 12, onDemand: true });
 
 if (stage) {
 	const { scene, renderer, size } = stage;
@@ -140,17 +140,18 @@ if (stage) {
 
 		const narrow = size.aspect < 0.85;
 		const fit = narrow ? 0.62 : 1;
-		const float = calm ? 0 : Math.sin(t * 0.8) * 0.06;
+		let moving = false;
+		for (const k of Object.keys(want)) if (Math.abs(cur[k] - want[k]) > 0.0005) moving = true;
 
 		logo.rotation.y = cur.ry;
 		logo.rotation.x = cur.rx;
 		holder.scale.setScalar(cur.s * fit);
-		holder.position.y = float;
 		pivotRed.position.x = -cur.dx / unit;
 		pivotWhite.position.x = cur.dx / unit;
 		pivotRed.position.z = cur.sep / unit;
 		pivotWhite.position.z = -cur.sep / unit;
 		pivotRed.rotation.z = cur.tz;
 		pivotWhite.rotation.z = -cur.tz;
+		return moving;
 	});
 }

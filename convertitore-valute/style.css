@@ -372,7 +372,8 @@
 	text-transform: uppercase;
 }
 .timbro[data-stato='carico'] {
-	opacity: 0.55;
+	border-color: color-mix(in srgb, var(--terracotta) 45%, transparent);
+	outline-color: color-mix(in srgb, var(--terracotta) 45%, transparent);
 }
 .timbro[data-stato='esempio'] {
 	border-style: dashed;
