@@ -61,12 +61,12 @@ zoneVideo.querySelectorAll('.player').forEach((player) => {
 	});
 	video.addEventListener('play', () => {
 		player.dataset.state = 'playing';
-		btn.setAttribute('aria-label', 'Metti in pausa');
+		btn.setAttribute('aria-label', LabI18n.t('cu.js.pause', 'Metti in pausa'));
 		syncCursor(player);
 	});
 	video.addEventListener('pause', () => {
 		player.dataset.state = 'paused';
-		btn.setAttribute('aria-label', 'Riproduci');
+		btn.setAttribute('aria-label', LabI18n.t('cu.js.play', 'Riproduci'));
 		syncCursor(player);
 	});
 	player.addEventListener('pointerenter', () => syncCursor(player));

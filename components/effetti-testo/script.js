@@ -29,7 +29,9 @@ document.querySelectorAll('[data-hglitch], [data-stack]').forEach((btn) => {
 	});
 });
 
-// 3. Lettere.
-document.querySelectorAll('[data-stack]').forEach(fx.buildStack);
-document.querySelectorAll('[data-scramble]').forEach(fx.buildScramble);
-document.querySelectorAll('[data-orbit]').forEach(fx.buildOrbit);
+// 3. Lettere. Si costruiscono a DOMContentLoaded, dopo che le traduzioni hanno sostituito il testo.
+document.addEventListener('DOMContentLoaded', () => {
+	document.querySelectorAll('[data-stack]').forEach(fx.buildStack);
+	document.querySelectorAll('[data-scramble]').forEach(fx.buildScramble);
+	document.querySelectorAll('[data-orbit]').forEach(fx.buildOrbit);
+});

@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Loader e progress — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="lo.1">Loader e progress — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -14,17 +16,17 @@
 	<body>
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Caricamenti e avanzamento</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="lo.2">Caricamenti e avanzamento</h1>
+				<p class="demo__lead" data-i18n="lo.3">
 					Cinque modi di far aspettare con garbo, e due per dire quanto manca. Restano in movimento
 					anche con “riduci animazioni”: qui il movimento è l’informazione.
 				</p>
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Preloader con il logo</h2>
+				<h2 class="demo__label" data-i18n="lo.4">Preloader con il logo</h2>
 				<div class="stage stage--pre" data-motion-ok>
-					<div class="pre" role="img" aria-label="Caricamento in corso">
+					<div class="pre" role="img" aria-label="Caricamento in corso" data-i18n-attr="aria-label=lo.15">
 						<span class="pre__ring pre__ring--5"></span><span class="pre__ring pre__ring--4"></span>
 						<span class="pre__ring pre__ring--3"></span><span class="pre__ring pre__ring--2"></span>
 						<span class="pre__ring pre__ring--1"></span>
@@ -37,8 +39,8 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Bolle</h2>
-				<div class="stage ld ld1" data-motion-ok role="img" aria-label="Caricamento in corso">
+				<h2 class="demo__label" data-i18n="lo.5">Bolle</h2>
+				<div class="stage ld ld1" data-motion-ok role="img" aria-label="Caricamento in corso" data-i18n-attr="aria-label=lo.16">
 					<div class="pl">
 						<div class="pl__bubble">
 							<div class="pl__bubble-drop"></div>
@@ -72,9 +74,9 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Tazza di caffè</h2>
+				<h2 class="demo__label" data-i18n="lo.6">Tazza di caffè</h2>
 				<div class="stage ld ld2" data-motion-ok>
-					<div class="coffee" role="img" aria-label="Coffee cup spinning and stretching from side to side">
+					<div class="coffee" role="img" aria-label="Coffee cup spinning and stretching from side to side" data-i18n-attr="aria-label=lo.17">
 						<div class="coffee__cup">
 							<div class="coffee__cup-part coffee__cup-part--a"></div>
 							<div class="coffee__cup-part coffee__cup-part--b"></div>
@@ -105,8 +107,8 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Puntini</h2>
-				<div class="stage ld ld3" data-motion-ok role="img" aria-label="Caricamento in corso">
+				<h2 class="demo__label" data-i18n="lo.7">Puntini</h2>
+				<div class="stage ld ld3" data-motion-ok role="img" aria-label="Caricamento in corso" data-i18n-attr="aria-label=lo.18">
 					<div class="pl">
 						<div class="pl__dot"></div>
 						<div class="pl__dot"></div>
@@ -122,8 +124,8 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Pila di card</h2>
-				<div class="stage ld ld4" data-motion-ok role="img" aria-label="Caricamento in corso">
+				<h2 class="demo__label" data-i18n="lo.8">Pila di card</h2>
+				<div class="stage ld ld4" data-motion-ok role="img" aria-label="Caricamento in corso" data-i18n-attr="aria-label=lo.19">
 					<div class="stack">
 						<div class="stack__card"></div>
 						<div class="stack__card"></div>
@@ -133,9 +135,9 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Anello di avanzamento</h2>
+				<h2 class="demo__label" data-i18n="lo.9">Anello di avanzamento</h2>
 				<div class="stage stage--ring" data-motion-ok>
-					<div class="ring" role="progressbar" aria-label="Avanzamento" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-ring>
+					<div class="ring" role="progressbar" aria-label="Avanzamento" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-ring data-i18n-attr="aria-label=lo.20">
 						<svg viewBox="0 0 100 100" aria-hidden="true">
 							<defs>
 								<linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1">
@@ -147,22 +149,22 @@
 						</svg>
 						<span class="ring__value"><span data-ring-num>0</span><small>%</small></span>
 					</div>
-					<button type="button" class="replay" data-replay="ring">Ripeti</button>
+					<button type="button" class="replay" data-replay="ring" data-i18n="lo.10">Ripeti</button>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Barra di caricamento</h2>
+				<h2 class="demo__label" data-i18n="lo.11">Barra di caricamento</h2>
 				<div class="stage stage--bar" data-motion-ok>
-					<div class="bar" role="progressbar" aria-label="Caricamento file" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-bar>
-						<div class="bar__top"><span>caricamento-foto.zip</span><span data-bar-num>0%</span></div>
+					<div class="bar" role="progressbar" aria-label="Caricamento file" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-bar data-i18n-attr="aria-label=lo.21">
+						<div class="bar__top"><span data-i18n="lo.12">caricamento-foto.zip</span><span data-bar-num>0%</span></div>
 						<div class="bar__track"><div class="bar__fill" data-bar-fill></div></div>
 					</div>
-					<div class="bar bar--indeterminate" role="progressbar" aria-label="Attesa senza durata nota">
-						<div class="bar__top"><span>Attesa senza durata nota</span></div>
+					<div class="bar bar--indeterminate" role="progressbar" aria-label="Attesa senza durata nota" data-i18n-attr="aria-label=lo.22">
+						<div class="bar__top"><span data-i18n="lo.13">Attesa senza durata nota</span></div>
 						<div class="bar__track"><div class="bar__fill"></div></div>
 					</div>
-					<button type="button" class="replay" data-replay="bar">Ripeti</button>
+					<button type="button" class="replay" data-replay="bar" data-i18n="lo.14">Ripeti</button>
 				</div>
 			</section>
 		</main>

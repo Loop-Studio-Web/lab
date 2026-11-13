@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Effetti di testo — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="et.1">Effetti di testo — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -23,100 +25,100 @@
 
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Effetti di testo</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="et.2">Effetti di testo</h1>
+				<p class="demo__lead" data-i18n="et.3">
 					Un titolo che si rompe, appare, si ombreggia o si ricompone mentre si scorre. Nove effetti,
 					tutti in CSS: il JavaScript serve solo a spezzare il testo in lettere e a far girare le
 					animazioni quando sono in vista.
 				</p>
 			</header>
 
-			<h2 class="group">Glitch</h2>
+			<h2 class="group" data-i18n="et.4">Glitch</h2>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Neon rotto</h2>
+				<h2 class="demo__label" data-i18n="et.5">Neon rotto</h2>
 				<div class="stage stage--neon" data-live>
-					<p class="neon" data-text="LOOP">LOOP</p>
+					<p class="neon" data-text="LOOP" data-i18n="et.6" data-i18n-attr="data-text=et.6">LOOP</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Al passaggio</h2>
+				<h2 class="demo__label" data-i18n="et.7">Al passaggio</h2>
 				<div class="stage stage--photo">
-					<button type="button" class="hglitch" data-text="Facciamo siti" aria-pressed="false" data-hglitch>Facciamo siti</button>
-					<p class="stage__hint">Passa sopra o tocca</p>
+					<button type="button" class="hglitch" data-text="Facciamo siti" aria-pressed="false" data-hglitch data-i18n="et.8" data-i18n-attr="data-text=et.8">Facciamo siti</button>
+					<p class="stage__hint" data-i18n="et.9">Passa sopra o tocca</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Comparsa</h2>
+				<h2 class="demo__label" data-i18n="et.10">Comparsa</h2>
 				<div class="stage stage--deep" data-live data-restart>
 					<p class="deep">
-						<span class="deep__pre">benvenuto nel</span>
-						<span class="deep__word" data-text="loop">loop</span>
+						<span class="deep__pre" data-i18n="et.11">benvenuto nel</span>
+						<span class="deep__word" data-text="loop" data-i18n="et.12" data-i18n-attr="data-text=et.12">loop</span>
 					</p>
-					<button type="button" class="replay" data-replay>Rivedi</button>
+					<button type="button" class="replay" data-replay data-i18n="et.13">Rivedi</button>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Segnale disturbato</h2>
+				<h2 class="demo__label" data-i18n="et.14">Segnale disturbato</h2>
 				<div class="stage stage--signal" data-live>
-					<p class="signal" data-text="Segnale">Segnale</p>
+					<p class="signal" data-text="Segnale" data-i18n="et.15" data-i18n-attr="data-text=et.15">Segnale</p>
 				</div>
 			</section>
 
-			<h2 class="group">Altri effetti</h2>
+			<h2 class="group" data-i18n="et.16">Altri effetti</h2>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Ombra sfumata</h2>
+				<h2 class="demo__label" data-i18n="et.17">Ombra sfumata</h2>
 				<div class="stage stage--paper">
-					<p class="floor" data-text="Ombra">Ombra</p>
+					<p class="floor" data-text="Ombra" data-i18n="et.18" data-i18n-attr="data-text=et.18">Ombra</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Lettere impilate</h2>
+				<h2 class="demo__label" data-i18n="et.19">Lettere impilate</h2>
 				<div class="stage stage--stack">
-					<button type="button" class="stack" data-stack="Loop" aria-pressed="false" aria-label="Loop, lettere impilate: premi per aprirle">Loop</button>
-					<p class="stage__hint">Passa sopra o tocca</p>
+					<button type="button" class="stack" data-stack="Loop" aria-pressed="false" aria-label="Loop, lettere impilate: premi per aprirle" data-i18n="et.20" data-i18n-attr="aria-label=et.34">Loop</button>
+					<p class="stage__hint" data-i18n="et.21">Passa sopra o tocca</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Barre che entrano</h2>
+				<h2 class="demo__label" data-i18n="et.22">Barre che entrano</h2>
 				<div class="stage stage--bars" data-live data-restart>
 					<div class="bars">
 						<div class="bars__in">
 							<div class="bars__text">
-								<img class="bars__logo" src="../_shared/logo-on-dark.svg" alt="Loop Studio" width="182" height="96" />
-								<p class="bars__sub">Siti, foto, social</p>
+								<img class="bars__logo" src="../_shared/logo-on-dark.svg" alt="Loop Studio" width="182" height="96"  data-i18n-attr="alt=et.35"/>
+								<p class="bars__sub" data-i18n="et.23">Siti, foto, social</p>
 							</div>
 						</div>
 					</div>
-					<button type="button" class="replay" data-replay>Rivedi</button>
+					<button type="button" class="replay" data-replay data-i18n="et.24">Rivedi</button>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Si ricompone scorrendo</h2>
+				<h2 class="demo__label" data-i18n="et.25">Si ricompone scorrendo</h2>
 				<div class="scrubstage">
-							<p class="scramble" data-scramble>Il senso nasce una lettera alla volta.</p>
-							<p class="scrollhint" aria-hidden="true">Scorri la pagina ↓</p>
-							<p class="nosupport">Il tuo browser non anima lo scorrimento: il testo è già composto.</p>
+							<p class="scramble" data-scramble data-i18n="et.26">Il senso nasce una lettera alla volta.</p>
+							<p class="scrollhint" aria-hidden="true" data-i18n="et.27">Scorri la pagina ↓</p>
+							<p class="nosupport" data-i18n="et.28">Il tuo browser non anima lo scorrimento: il testo è già composto.</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Giro dopo giro</h2>
+				<h2 class="demo__label" data-i18n="et.29">Giro dopo giro</h2>
 				<div class="scrubstage">
-							<div class="orbit" data-orbit>Giro dopo giro le lettere vanno, dove si fermano lo saprai.</div>
-							<p class="scrollhint" aria-hidden="true">Scorri la pagina ↓</p>
-							<p class="nosupport">Il tuo browser non anima lo scorrimento: il testo è già composto.</p>
+							<div class="orbit" data-orbit data-i18n="et.30">Giro dopo giro le lettere vanno, dove si fermano lo saprai.</div>
+							<p class="scrollhint" aria-hidden="true" data-i18n="et.31">Scorri la pagina ↓</p>
+							<p class="nosupport" data-i18n="et.32">Il tuo browser non anima lo scorrimento: il testo è già composto.</p>
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="et.33">
 				Le due ultime schede si animano con lo scorrimento della pagina, in base alla posizione del riquadro nella finestra: niente JavaScript per il movimento. Dove il
 				browser non le conosce il testo resta composto. Con il movimento ridotto tutti gli effetti
 				si fermano sul risultato finale.

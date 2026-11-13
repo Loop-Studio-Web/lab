@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Cursori — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="cu.1">Cursori — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -14,63 +16,63 @@
 	<body>
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Cursori</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="cu.2">Cursori</h1>
+				<p class="demo__lead" data-i18n="cu.3">
 					Quattro cursori che reagiscono a ciò che toccano. Funzionano con il mouse (con il tocco
 					seguono il dito); dove il puntatore non c’è, i contenuti restano comunque leggibili.
 				</p>
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Torcia su una mappa</h2>
+				<h2 class="demo__label" data-i18n="cu.4">Torcia su una mappa</h2>
 				<div class="stage zone zone--torch" data-zone data-torch>
-					<img class="torch__map" src="img/mappa.webp" alt="Mappa antica dell’Europa, quasi tutta al buio: si vede solo ciò che la torcia illumina" width="1600" height="1337" />
+					<img class="torch__map" src="img/mappa.webp" alt="Mappa antica dell’Europa, quasi tutta al buio: si vede solo ciò che la torcia illumina" width="1600" height="1337"  data-i18n-attr="alt=cu.17"/>
 					<div class="torch__dark" aria-hidden="true"></div>
 					<div class="cursor cursor--torch" aria-hidden="true">
 						<svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" /></svg>
 					</div>
 					<label class="torch__ctl">
-						Raggio
+						<span data-i18n="cu.5">Raggio</span>
 						<input type="range" min="40" max="300" value="110" />
 					</label>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Cerchio a contrasto</h2>
+				<h2 class="demo__label" data-i18n="cu.6">Cerchio a contrasto</h2>
 				<div class="stage zone zone--blend" data-zone>
 					<div class="cards">
 						<article class="card-p">
 							<img src="../_shared/img/alpine-lake-m.webp" alt="" width="900" height="600" />
-							<a href="#" data-demo-link><span>Il lago</span><span aria-hidden="true">Montagna</span></a>
+							<a href="#" data-demo-link><span data-i18n="cu.7">Il lago</span><span aria-hidden="true" data-i18n="cu.8">Montagna</span></a>
 						</article>
 						<article class="card-p">
 							<img src="../_shared/img/manarola-m.webp" alt="" width="900" height="600" />
-							<a href="#" data-demo-link><span>La scogliera</span><span aria-hidden="true">Mare</span></a>
+							<a href="#" data-demo-link><span data-i18n="cu.9">La scogliera</span><span aria-hidden="true" data-i18n="cu.10">Mare</span></a>
 						</article>
 						<article class="card-p">
 							<img src="img/sentiero.webp" alt="" width="600" height="800" />
-							<a href="#" data-demo-link><span>Il sentiero</span><span aria-hidden="true">Bosco</span></a>
+							<a href="#" data-demo-link><span data-i18n="cu.11">Il sentiero</span><span aria-hidden="true" data-i18n="cu.12">Bosco</span></a>
 						</article>
 					</div>
 					<div class="cursor cursor--blend" aria-hidden="true"></div>
-					<div class="cursor cursor--label" aria-hidden="true"><span>Leggi</span></div>
+					<div class="cursor cursor--label" aria-hidden="true"><span data-i18n="cu.13">Leggi</span></div>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Cursore play sul video</h2>
+				<h2 class="demo__label" data-i18n="cu.14">Cursore play sul video</h2>
 				<div class="stage zone zone--video" data-zone>
 					<div class="players">
 						<div class="player">
-							<video src="video/cursor-nebbia.mp4" loop muted playsinline preload="metadata" aria-label="Nebbia tra gli alberi, senza audio"></video>
+							<video src="video/cursor-nebbia.mp4" loop muted playsinline preload="metadata" aria-label="Nebbia tra gli alberi, senza audio" data-i18n-attr="aria-label=cu.18"></video>
 							<div class="player__bar" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="i-play" d="M8 5v14l11-7z" /><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /></svg></div>
-							<button type="button" class="player__btn" aria-label="Riproduci"></button>
+							<button type="button" class="player__btn" aria-label="Riproduci" data-i18n-attr="aria-label=cu.19"></button>
 						</div>
 						<div class="player">
-							<video src="video/cursor-onde.mp4" loop muted playsinline preload="metadata" aria-label="Onde sul mare, senza audio"></video>
+							<video src="video/cursor-onde.mp4" loop muted playsinline preload="metadata" aria-label="Onde sul mare, senza audio" data-i18n-attr="aria-label=cu.20"></video>
 							<div class="player__bar" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="i-play" d="M8 5v14l11-7z" /><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /></svg></div>
-							<button type="button" class="player__btn" aria-label="Riproduci"></button>
+							<button type="button" class="player__btn" aria-label="Riproduci" data-i18n-attr="aria-label=cu.21"></button>
 						</div>
 					</div>
 					<div class="cursor cursor--play" aria-hidden="true">
@@ -80,15 +82,15 @@
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Cursore che cambia con l’elemento</h2>
+				<h2 class="demo__label" data-i18n="cu.15">Cursore che cambia con l’elemento</h2>
 				<div class="stage zone zone--pets" data-zone data-pets>
 					<div class="pets">
-						<div class="pet" data-label="Cane" role="img" aria-label="Un cane bianco e nero" style="background-image: url(img/cane.webp)"></div>
-						<div class="pet" data-label="Gatto" role="img" aria-label="Un gatto rosso" style="background-image: url(img/gatto.webp)"></div>
-						<div class="pet" data-label="Pesce" role="img" aria-label="Un pesce rosso su sfondo nero" style="background-image: url(img/pesce.webp)"></div>
-						<div class="pet" data-label="Cavallo" role="img" aria-label="Un cavallo baio" style="background-image: url(img/cavallo.webp)"></div>
-						<div class="pet" data-label="Colomba" role="img" aria-label="Una colomba bianca" style="background-image: url(img/colomba.webp)"></div>
-						<div class="pet" data-label="Lontra" role="img" aria-label="Una lontra dietro una rete" style="background-image: url(img/lontra.webp)"></div>
+						<div class="pet" data-label="Cane" role="img" aria-label="Un cane bianco e nero" style="background-image: url(img/cane.webp)" data-i18n-attr="aria-label=cu.22"></div>
+						<div class="pet" data-label="Gatto" role="img" aria-label="Un gatto rosso" style="background-image: url(img/gatto.webp)" data-i18n-attr="aria-label=cu.23"></div>
+						<div class="pet" data-label="Pesce" role="img" aria-label="Un pesce rosso su sfondo nero" style="background-image: url(img/pesce.webp)" data-i18n-attr="aria-label=cu.24"></div>
+						<div class="pet" data-label="Cavallo" role="img" aria-label="Un cavallo baio" style="background-image: url(img/cavallo.webp)" data-i18n-attr="aria-label=cu.25"></div>
+						<div class="pet" data-label="Colomba" role="img" aria-label="Una colomba bianca" style="background-image: url(img/colomba.webp)" data-i18n-attr="aria-label=cu.26"></div>
+						<div class="pet" data-label="Lontra" role="img" aria-label="Una lontra dietro una rete" style="background-image: url(img/lontra.webp)" data-i18n-attr="aria-label=cu.27"></div>
 					</div>
 					<div class="cursor cursor--pet" aria-hidden="true">
 						<img src="img/animali/cane.svg" alt="" data-icon="Cane" />
@@ -102,7 +104,7 @@
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="cu.16">
 				Il cursore vero resta nascosto solo dove c’è un puntatore preciso, come il mouse: su telefono e tablet nessun cursore finto. Foto: Unsplash,
 				mappa del Rijksmuseum (pubblico dominio), video: Pexels.
 			</p>

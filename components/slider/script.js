@@ -103,7 +103,7 @@ const sliders = {
 			i = next;
 			root.dataset.dir = dir;
 			root.dataset.i = i;
-			if (byUser) announce(root, `Gusto ${names[i]}, ${i + 1} di ${items.length}`);
+			if (byUser) announce(root, LabI18n.t('sl.js.flavor', 'Gusto {n}, {i} di {t}', { n: names[i], i: i + 1, t: items.length }));
 		};
 		const ap = autoplay(root, () => go('next'), 5000);
 		controls(root, { ap, prev: () => go('prev', true), next: () => go('next', true) });
@@ -165,7 +165,7 @@ const sliders = {
 				root.classList.remove('next', 'prev');
 				locked = false;
 			}, 1300);
-			if (byUser) announce(root, `${info[current].title}, ${current + 1} di ${total}`);
+			if (byUser) announce(root, LabI18n.t('sl.js.of', '{n}, {i} di {t}', { n: info[current].title, i: current + 1, t: total }));
 		};
 
 		const ap = autoplay(root, () => show('next'), +root.dataset.ms || 6500);
@@ -200,7 +200,7 @@ const sliders = {
 			root.dataset.i = i;
 			panels.forEach((p, k) => (p.inert = k !== i));
 			shots.forEach((s, k) => (s.inert = k !== i));
-			if (byUser) announce(root, `${titles[i]}, look ${i + 1} di ${total}`);
+			if (byUser) announce(root, LabI18n.t('sl.js.look', '{n}, look {i} di {t}', { n: titles[i], i: i + 1, t: total }));
 		};
 		const ap = autoplay(root, () => go(1), 4500);
 		controls(root, { ap, vertical: true, prev: () => go(-1, true), next: () => go(1, true) });
@@ -230,7 +230,7 @@ const sliders = {
 				void item.offsetWidth;
 				parts.forEach((p) => (p.style.animation = ''));
 			});
-			if (byUser) announce(root, `${names[active]}, ${active + 1} di ${total}`);
+			if (byUser) announce(root, LabI18n.t('sl.js.of', '{n}, {i} di {t}', { n: names[active], i: active + 1, t: total }));
 		};
 		const ap = autoplay(root, () => place('next'), 5500);
 		controls(root, { ap, prev: () => place('prev', true), next: () => place('next', true) });
@@ -247,11 +247,14 @@ const sliders = {
 				item.classList.toggle('is-active', k === i);
 				item.inert = k !== i;
 			});
-			if (byUser) announce(root, `${names[i]}, ${i + 1} di ${items.length}`);
+			if (byUser) announce(root, LabI18n.t('sl.js.of', '{n}, {i} di {t}', { n: names[i], i: i + 1, t: items.length }));
 		};
 		const ap = autoplay(root, () => go(1), 6000);
 		controls(root, { ap, prev: () => go(-1, true), next: () => go(1, true) });
 	},
 };
 
-document.querySelectorAll('[data-slider]').forEach((root) => sliders[root.dataset.slider](root));
+// Gli slider si costruiscono dopo che le traduzioni hanno sostituito testi e attributi (le miniature leggono data-title e data-genre).
+document.addEventListener('DOMContentLoaded', () => {
+	document.querySelectorAll('[data-slider]').forEach((root) => sliders[root.dataset.slider](root));
+});

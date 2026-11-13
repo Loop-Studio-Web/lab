@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Sfondi — Loop Studio Lab</title>
+		<script src="../_shared/i18n.js"></script>
+		<script src="i18n.js"></script>
+		<title data-i18n="sf.1">Sfondi — Loop Studio Lab</title>
 		<link rel="preload" href="../_shared/fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="../_shared/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="stylesheet" href="../_shared/base.css" />
@@ -23,77 +25,77 @@
 
 		<main class="demo">
 			<header class="demo__head">
-				<h1>Sfondi</h1>
-				<p class="demo__lead">
+				<h1 data-i18n="sf.2">Sfondi</h1>
+				<p class="demo__lead" data-i18n="sf.3">
 					Sette sfondi animati da mettere dietro un titolo. Ognuno vive nel suo riquadro e si muove solo
 					quando è visibile; con il movimento ridotto restano fermi.
 				</p>
 			</header>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Stelle cadenti</h2>
+				<h2 class="demo__label" data-i18n="sf.4">Stelle cadenti</h2>
 				<div class="stage bg bg--stars" data-bg="stars">
 					<div class="bg__layer" data-fill></div>
-					<p class="bg__tag">Foto + 40 elementi</p>
+					<p class="bg__tag" data-i18n="sf.5">Foto + 40 elementi</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Lucciole</h2>
+				<h2 class="demo__label" data-i18n="sf.6">Lucciole</h2>
 				<div class="stage bg bg--fireflies" data-bg="fireflies">
 					<div class="bg__layer" data-fill></div>
-					<p class="bg__tag">Due movimenti sfasati per lucciola</p>
+					<p class="bg__tag" data-i18n="sf.7">Due movimenti sfasati per lucciola</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Foglie d’autunno</h2>
+				<h2 class="demo__label" data-i18n="sf.8">Foglie d’autunno</h2>
 				<div class="stage bg bg--leaves" data-bg="leaves">
 					<div class="bg__layer" data-fill></div>
-					<h3 class="bg__title">Ciao, ottobre</h3>
-					<p class="bg__tag">SVG inline, nessuna immagine</p>
+					<h3 class="bg__title" data-i18n="sf.9">Ciao, ottobre</h3>
+					<p class="bg__tag" data-i18n="sf.10">SVG inline, nessuna immagine</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Pioggia arcobaleno</h2>
+				<h2 class="demo__label" data-i18n="sf.11">Pioggia arcobaleno</h2>
 				<div class="stage bg bg--rain" data-bg="rain">
 					<div class="bg__layer" data-fill></div>
-					<p class="bg__tag">144 colonne, movimento leggero</p>
+					<p class="bg__tag" data-i18n="sf.12">144 colonne, movimento leggero</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Strisce in parallasse</h2>
+				<h2 class="demo__label" data-i18n="sf.13">Strisce in parallasse</h2>
 				<div class="stage bg bg--strips">
 					<div class="strip strip--1"></div>
 					<div class="strip strip--2"></div>
 					<div class="strip strip--3"></div>
 					<div class="strip strip--4"></div>
-					<p class="bg__tag">Una foto sola, quattro finestre</p>
+					<p class="bg__tag" data-i18n="sf.14">Una foto sola, quattro finestre</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Onde concentriche</h2>
+				<h2 class="demo__label" data-i18n="sf.15">Onde concentriche</h2>
 				<div class="stage bg bg--ripple">
 					<span class="ring ring--5"></span>
 					<span class="ring ring--4"></span>
 					<span class="ring ring--3"></span>
 					<span class="ring ring--2"></span>
 					<span class="ring ring--1"></span>
-					<p class="bg__tag">Cinque cerchi che respirano</p>
+					<p class="bg__tag" data-i18n="sf.16">Cinque cerchi che respirano</p>
 				</div>
 			</section>
 
 			<section class="demo__section">
-				<h2 class="demo__label">Illusione diagonale</h2>
-				<div class="stage bg bg--diag" tabindex="0" aria-label="Illusione ottica: le linee nere sono parallele. Passa sopra o tocca per rivelarlo.">
-					<p class="bg__tag">Passa sopra o tocca: le linee sono parallele</p>
+				<h2 class="demo__label" data-i18n="sf.17">Illusione diagonale</h2>
+				<div class="stage bg bg--diag" tabindex="0" aria-label="Illusione ottica: le linee nere sono parallele. Passa sopra o tocca per rivelarlo." data-i18n-attr="aria-label=sf.20">
+					<p class="bg__tag" data-i18n="sf.18">Passa sopra o tocca: le linee sono parallele</p>
 				</div>
 			</section>
 
-			<p class="demo__note">
+			<p class="demo__note" data-i18n="sf.19">
 				Gli elementi (stelle, lucciole, foglie, colonne) li crea lo script con un generatore
 				pseudo-casuale a seme fisso: ogni volta lo sfondo è lo stesso. Foto: Unsplash.
 			</p>
