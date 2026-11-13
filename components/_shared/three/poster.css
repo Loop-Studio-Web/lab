@@ -1,0 +1,14 @@
+/* Poster delle scene three.js (vedi avvio.js): la foto ferma sta nel contenitore #scena. */
+/* Il poster sta sotto la scena vera (il canvas arriva dopo) e sparisce quando questa ha disegnato. */
+.poster {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: opacity 300ms ease-out;
+}
+#scena.is-live .poster {
+	opacity: 0;
+}

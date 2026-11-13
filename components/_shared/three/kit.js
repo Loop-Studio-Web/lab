@@ -66,6 +66,7 @@ export function createStage(container, { fov = 30, z = 12, maxDpr = 1.75, antial
 	let time = 0;
 	let raf = 0;
 	let inView = true;
+	let live = false;
 
 	const loop = (now) => {
 		raf = requestAnimationFrame(loop);
@@ -77,6 +78,11 @@ export function createStage(container, { fov = 30, z = 12, maxDpr = 1.75, antial
 		if (onDemand && !moving && !dirty) return;
 		dirty = false;
 		renderer.render(scene, camera);
+		if (!live) {
+			live = true;
+			// Dal secondo disegno: la scena vera è sullo schermo e il poster (se c'è) può sparire.
+			requestAnimationFrame(() => container.classList.add('is-live'));
+		}
 	};
 	const start = () => {
 		if (raf || document.hidden || !inView) return;

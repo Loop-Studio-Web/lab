@@ -6,6 +6,7 @@
 		<title>Farfalla 3D interattiva — Loop Studio Lab</title>
 		<link rel="icon" href="data:," />
 		<link rel="stylesheet" href="../components/_shared/base.css" />
+		<link rel="stylesheet" href="../components/_shared/three/poster.css" />
 		<link rel="stylesheet" href="style.css" />
 		<script type="importmap">
 			{ "imports": { "three": "../components/_shared/three/three.module.min.js" } }
@@ -21,7 +22,13 @@
 			</picture>
 		</div>
 		<div class="velo" aria-hidden="true"></div>
-		<div id="scena" aria-hidden="true"></div>
+		<div id="scena" aria-hidden="true">
+			<!-- Foto ferma della scena: la scena vera parte al primo gesto (script.js) e la sostituisce. -->
+			<picture>
+				<source media="(max-aspect-ratio: 85/100)" srcset="img/poster-verticale.webp" />
+				<img class="poster" src="img/poster.webp" alt="" width="2400" height="800" />
+			</picture>
+		</div>
 
 		<main class="palco">
 			<header class="testa">
