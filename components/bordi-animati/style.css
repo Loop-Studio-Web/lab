@@ -154,6 +154,32 @@
 	color: rgb(255 255 255 / 0.7);
 }
 
+/* ——— Dispositivi touch: versione leggera ———
+   Safari su iPhone disegna i filtri SVG sulla CPU e li rifà a ogni fotogramma: alone del gradiente e
+   bordo elettrico scattavano. Qui l'alone diventa un'ombra statica (non si ricalcola), il bordo elettrico
+   usa un filtro a 2 ottave e si tolgono le sfocature più grandi. Il desktop non cambia. */
+@media (hover: none) and (pointer: coarse) {
+	.glow {
+		filter: none;
+		box-shadow: 0 0 1.25rem var(--gc, #4d7cff66);
+	}
+	.glow:nth-child(1) { --gc: #00ff9955; }
+	.glow:nth-child(2) { --gc: #9d4edd66; }
+	.glow:nth-child(3) { --gc: #ff620166; }
+	.electric__edge {
+		filter: url(#electric-lite);
+	}
+	.electric__sheen--2 {
+		display: none;
+	}
+	.electric__sheen {
+		filter: blur(10px);
+	}
+	.electric__bloom {
+		filter: blur(20px);
+	}
+}
+
 /* ——— 3. Tratto a pennarello ——— */
 
 .markers {

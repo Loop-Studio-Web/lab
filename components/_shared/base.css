@@ -202,5 +202,8 @@ p {
 .is-embed .demo > .demo__head h1, .is-embed .page__intro h1 { font-size: clamp(1.5rem, 4vw, 2rem); }
 .is-embed .demo > .demo__head .demo__lead, .is-embed .page__lead { margin-top: 0.4rem; color: var(--text); opacity: 0.8; }
 
-/* l'alone rosso esce dal pannello: non deve creare scroll orizzontale (telefono) */
+/* l'alone rosso esce dal pannello: non deve creare scroll orizzontale (telefono).
+   Serve su html E su body: con solo il body, l'overflow-x di body passa al viewport e l'alone
+   conta ancora come contenuto scorrevole (Chrome misura +39 px, iPhone lascia trascinare di lato). */
+.is-embed { overflow-x: hidden; }
 .is-embed body { overflow-x: clip; }
