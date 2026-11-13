@@ -31,6 +31,7 @@
 	// qui resta solo la firma in fondo.
 	const embed = new URLSearchParams(location.search).has('embed');
 	if (embed) document.documentElement.classList.add('is-embed');
+	document.documentElement.classList.remove('studio-pre'); // il posto del logo (base.css) lo prende il logo vero
 	if (!embed) {
 		const corner = document.createElement('nav');
 		corner.setAttribute('aria-label', 'Loop Studio');

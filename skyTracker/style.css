@@ -168,8 +168,8 @@ main {
 }
 
 .weather-info__icon img {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
 }
 
 .weather-info__description {
@@ -334,13 +334,7 @@ main:has(> .weather-card[hidden]) {
   min-height: 35rem;
 }
 
-/* Logo in alto e firma in fondo li inserisce studio.js a pagina già disegnata: finché non ci sono, ne tengo il posto. */
-body:not(:has(> nav > .studio-corner))::before {
-  content: "";
-  display: block;
-  height: 2.65rem;
-}
-
+/* La firma in fondo la inserisce studio.js a pagina già disegnata: ne tengo il posto (il logo in alto lo tiene base.css). */
 body:not(:has(> .studio-mark))::after {
   content: "";
   display: block;

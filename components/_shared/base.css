@@ -159,6 +159,13 @@ p {
 
 /* Misure del logo in alto (lo inserisce studio.js): qui e non in studio.css, che si carica
    dopo il primo disegno; senza queste il logo parte grande e poi sposta tutta la pagina. */
+/* Pagine a tutto schermo (le Demo) mettono class="studio-pre" su <html>: finché studio.js non inserisce il logo
+   ne tengono il posto, così il resto della pagina non scende di colpo (CLS). studio.js toglie la classe. */
+html.studio-pre body::before {
+	content: '';
+	display: block;
+	height: 2.65rem;
+}
 .studio-corner {
 	display: block;
 	width: fit-content;
