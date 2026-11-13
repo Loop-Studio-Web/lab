@@ -40,7 +40,7 @@
 
 /* Barra del browser e stato (sopra a tutto): la sagoma sta nella riga di stato. */
 .sc__bar-browser { position: absolute; z-index: 5; left: 0; right: 0; top: var(--status); height: var(--bar); display: grid; place-items: center; padding: 0.5rem 1rem; background: #262628; border-bottom: 1px solid #000; transition: opacity 0.25s; }
-.sc__bar-browser span { display: grid; place-items: center; width: 100%; height: 100%; font-size: 0.75rem; color: var(--muted); background: #38383a; border-radius: 0.6rem; }
+.sc__bar-browser span { display: grid; place-items: center; width: 100%; height: 100%; font-size: 0.75rem; color: #b4b4b4; background: #38383a; border-radius: 0.6rem; }
 .sc[data-ctx='app'] .sc__bar-browser, .sc[data-bar='closed'] .sc__bar-browser { opacity: 0; pointer-events: none; }
 .sc__status { position: absolute; z-index: 6; left: 0; right: 0; top: 0; height: var(--status); display: flex; align-items: center; padding: 0 1.4rem; pointer-events: none; }
 .sc[data-ctx='browser'] .sc__status { background: #262628; }

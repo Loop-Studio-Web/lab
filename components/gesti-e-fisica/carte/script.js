@@ -50,7 +50,6 @@
 		});
 		const top = deck.firstElementChild;
 		if (top) {
-			top.setAttribute('role', 'group');
 			top.setAttribute('aria-roledescription', LabI18n.t('carte.card', 'carta'));
 		}
 		const finito = !top;

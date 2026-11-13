@@ -3,6 +3,7 @@ LabI18n.add({
 	en: {
 		'rz.1': 'Reactions — Loop Studio Lab',
 		'rz.2': 'Reactions',
+		'rz.d': 'Animated like, star rating, notification bell and copy to clipboard: ready-to-copy micro-interactions.',
 		'rz.3': 'Like',
 		'rz.4': 'Star ratings',
 		'rz.5': 'Bell',
@@ -12,6 +13,7 @@ LabI18n.add({
 	es: {
 		'rz.1': 'Reacciones — Loop Studio Lab',
 		'rz.2': 'Reacciones',
+		'rz.d': 'Me gusta animado, valoración con estrellas, campana y copiar al portapapeles: microinteracciones listas para copiar.',
 		'rz.3': 'Me gusta',
 		'rz.4': 'Estrellas de valoración',
 		'rz.5': 'Campana',

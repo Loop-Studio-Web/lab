@@ -59,7 +59,7 @@
 					<input class="pc__input" type="text" role="combobox" aria-expanded="true" aria-controls="pc-l-${uid}" aria-autocomplete="list" aria-label="${LabI18n.t('pc.search', 'Cerca un comando')}" autocomplete="off" spellcheck="false" enterkeyhint="go">
 					<button type="button" class="pc__x" aria-label="${LabI18n.t('pc.close', 'Chiudi')}">esc</button>
 				</div>
-				<div class="pc__scroll"><div class="pc__hl" aria-hidden="true"></div><ul class="pc__list" id="pc-l-${uid}" role="listbox" aria-label="${LabI18n.t('pc.results', 'Comandi')}"></ul></div>
+				<div class="pc__scroll" tabindex="0" role="region" aria-label="${LabI18n.t('pc.results', 'Comandi')}"><div class="pc__hl" aria-hidden="true"></div><ul class="pc__list" id="pc-l-${uid}" role="listbox" aria-label="${LabI18n.t('pc.results', 'Comandi')}"></ul></div>
 				<p class="pc__empty" hidden></p>
 				<div class="pc__foot" aria-hidden="true">
 					<span><kbd>↑</kbd><kbd>↓</kbd> ${LabI18n.t('pc.nav', 'naviga')}</span>

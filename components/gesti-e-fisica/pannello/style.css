@@ -31,7 +31,7 @@
 @media (hover: hover) and (pointer: fine) { .pn__item:hover:not(.is-active) { background: #303030; } }
 .pn__item:focus-visible { outline: 2px solid var(--accent); }
 .pn__item b { font-weight: 600; }
-.pn__item small { color: var(--muted); }
+.pn__item small { color: #9c9c9c; }
 .pn__ico { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; font-weight: 800; color: #fff; background: hsl(var(--h) 45% 32%); border-radius: 0.6rem; }
 .pn__state { min-height: 1.4rem; font-size: 0.875rem; color: var(--muted); }
 .pn__handle:focus-visible { outline: 2px solid var(--accent); border-radius: 0.5rem; }

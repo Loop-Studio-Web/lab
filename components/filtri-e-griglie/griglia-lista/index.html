@@ -26,9 +26,9 @@
 							<button type="button" class="fg-chip" data-view="list" aria-pressed="false" data-i18n="fg.list">Lista</button>
 							<button type="button" class="fg-chip" data-view="poster" aria-pressed="false" data-i18n="fg.poster">Poster</button>
 						</div>
-						<p class="fg__count" data-count></p>
+						<p class="fg__count" id="fg-count" data-count></p>
 					</div>
-					<div class="fg__scroll"><ul class="fg-grid" data-grid></ul></div>
+					<div class="fg__scroll" tabindex="0" role="region" aria-labelledby="fg-count"><ul class="fg-grid" data-grid></ul></div>
 				</div>
 			</div>
 			<div class="demo__side">

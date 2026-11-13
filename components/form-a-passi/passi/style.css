@@ -83,7 +83,7 @@
 .pa-total { display: flex; justify-content: space-between; align-items: baseline; margin: 0.6rem 0 0; padding-top: 0.6rem; border-top: 1px dashed rgba(42, 33, 24, 0.45); font-weight: 800; }
 .pa-total dt { letter-spacing: 0.12em; text-transform: uppercase; }
 .pa-total dd { margin: 0; font-size: 1.25rem; }
-.pa-fine { margin: 0.5rem 0 0; font-size: 0.6875rem; opacity: 0.6; }
+.pa-fine { margin: 0.5rem 0 0; font-size: 0.6875rem; opacity: 0.75; }
 
 /* Stretto: scontrino sotto il modulo, in una riga di totale */
 @media (max-width: 40rem) {
