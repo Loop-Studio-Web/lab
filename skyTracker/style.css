@@ -167,9 +167,10 @@ main {
   gap: 0.25rem;
 }
 
+/* Le icone MET sono 64×64: a 42 px restano nitide anche a 1,5× di densità (PSI) */
 .weather-info__icon img {
-  width: 56px;
-  height: 56px;
+  width: 42px;
+  height: 42px;
 }
 
 .weather-info__description {
@@ -264,8 +265,8 @@ main {
 }
 
 .icon-next-day img {
-  width: 56px;
-  height: 56px;
+  width: 42px;
+  height: 42px;
   margin: 0 auto;
 }
 
