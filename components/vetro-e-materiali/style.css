@@ -23,7 +23,7 @@
 
 .slab {
 	position: absolute; left: 0; top: 0; z-index: 1;
-	width: 30cqw; height: 40cqh; margin: 0; padding: 0.8rem 0.9rem;
+	width: 30cqw; height: 40cqh; margin: 0; padding: clamp(0.4rem, 2.6cqw, 0.9rem); min-width: 0; overflow-wrap: anywhere;
 	display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 0.15rem; text-align: left;
 	border: 0; border-radius: 1.4rem; font: inherit; color: #fff; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 	translate: calc(var(--x) * 1cqw) calc(var(--y) * 1cqh);
@@ -35,8 +35,8 @@
 /* riflesso della luce che segue il puntatore */
 .slab::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(circle at var(--mx, 30%) var(--my, 15%), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 60%); }
 .slab > * { position: relative; z-index: 1; }
-.slab__name { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; line-height: 1.1; }
-.slab__state { font-size: 0.75rem; opacity: 0.85; }
+.slab__name { font-family: var(--font-display); font-weight: 600; font-size: clamp(0.7rem, 3.5cqw, 1.05rem); line-height: 1.1; }
+.slab__state { font-size: clamp(0.625rem, 2.5cqw, 0.75rem); opacity: 0.85; }
 .slab[aria-pressed='true'] .slab__name::before { content: ''; display: inline-block; width: 0.5rem; height: 0.5rem; margin-right: 0.4rem; border-radius: 50%; background: var(--accent); vertical-align: 0.1em; }
 
 /* Vetro liquido: rifrazione con un filtro SVG (solo Chromium); altrove cade sullo smerigliato. */
