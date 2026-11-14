@@ -266,9 +266,19 @@
 	transition: translate 0.2s var(--ease-out);
 	pointer-events: none;
 }
-.player:hover .player__bar,
 .player:has(.player__btn:focus-visible) .player__bar {
 	translate: 0 0;
+}
+@media (hover: hover) and (pointer: fine) {
+	.player:hover .player__bar {
+		translate: 0 0;
+	}
+}
+/* Al tocco non esiste il passaggio del mouse: la barra con play/pausa resta sempre visibile */
+@media (hover: none), (pointer: coarse) {
+	.player__bar {
+		translate: 0 0;
+	}
 }
 .player__bar svg,
 .cursor--play svg {

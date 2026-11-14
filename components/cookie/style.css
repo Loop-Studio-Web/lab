@@ -1,8 +1,11 @@
 /* Il "sito" è un palco con una pagina finta dietro: l'avviso vive dentro il palco
    (position: absolute), non sulla finestra, così si vede anche nel box del Lab. */
 .site { position: relative; display: block; min-height: 22rem; padding: 0; }
-.site:has(.ck--modal) { min-height: 32rem; }
-.site__page { display: grid; gap: 0.9rem; padding: 1.75rem; }
+/* Con la finestra, falsa pagina e velo condividono la stessa cella: il riquadro cresce con la finestra (testi lunghi, bottoni a capo) */
+.site:has(.ck--modal) { display: grid; align-items: stretch; justify-items: stretch; align-content: stretch; min-height: 32rem; }
+.site:has(.ck--modal) > * { grid-area: 1 / 1; }
+.site:has(.ck--modal) > .ck-wrap { position: relative; inset: auto; }
+.site__page { display: grid; align-content: start; gap: 0.9rem; padding: 1.75rem; }
 .site__page i { display: block; height: 0.85rem; background: #262626; border-radius: 0.4rem; }
 .site__page i:nth-child(1) { width: 45%; height: 1.4rem; }
 .site__page i:nth-child(2) { width: 90%; }
