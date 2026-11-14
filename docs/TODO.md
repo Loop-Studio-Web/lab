@@ -10,8 +10,7 @@ Stato: online = `origin/main` (verificare con `git fetch`). Server di prova: `ht
 ## Fasi finali (in ordine, concordate il 13/11)
 
 1. **Con l'autore**: controllo su Firefox (l'autore lo fa da solo) e, se avanza tempo, lettore di schermo e il tocco vero su `gesti-e-fisica`/`aggiorna`, `storie-e-feed`, `grafici`, Pendolo di `pagine-404`. Safari iPhone già provato (14/11); 1366×600 e 1920×950 provati da Claude il 14/11 su `comandi-rapidi`, `form-a-passi`, `tabelle-e-confronti`, `mappe-e-hotspot`, `vetro-e-materiali`: ok, niente scroll orizzontale né verticale.
-2. **Pulizia completa, da fare appena chiuso il punto 1 (regola dell'autore 13/11: non aspettare la nota finale)** (regola «Pulizia a progetto chiuso» del CLAUDE.md globale): inventario con i pesi prima, poi residui in repo (`git status --ignored`, `dist`/`.astro`/`.wrangler`; `node_modules` SÌ per i sorgenti chiusi `Lab-Calendario-demo` e `lab-preventivatore`, no per Lab/Loop-Studio/vetrine), `%TEMP%` (profili Chrome, `.tmp`, `lighthouse.*`, e la cartella `claude` come ultimo comando, con permesso), sessioni vecchie in `~/.claude/projects/` (mai `memory/`), note che citano file spariti; la cartella `Websites\lab-cambio-worker` (esempio non pubblicato) si tiene o si toglie con l'autore.
-3. **Ultima cosa: nota «come ripartire tra qualche mese»** in questo file (cosa è chiuso, cosa no, dove sono server/asset/strumenti: rimando a `docs/riferimento.md`), poi `/clear`.
+2. **Ultima cosa: nota «come ripartire tra qualche mese»** in questo file (cosa è chiuso, cosa no, dove sono server/asset/strumenti: rimando a `docs/riferimento.md`), poi `/clear`.
 
 **Documentazione, da aprire solo se serve:** `docs/noti-e-decisioni.md` (difetti accettati e scelte chiuse), `docs/riferimento.md` (trappole, asset, strumenti, server), `docs/demo-e-rinnovo.md` (cronaca di lotti e Demo), `docs/idee-future.md`, `docs/pagine-404.md`.
 
