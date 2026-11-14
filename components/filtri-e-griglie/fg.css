@@ -71,3 +71,9 @@ button.fg-card__in:active { transform: scale(0.97); }
 ::view-transition-old(*), ::view-transition-new(*) { height: 100%; object-fit: cover; }
 @media (prefers-reduced-motion: reduce) { ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 0.001s; } }
 @media (min-width: 56rem) and (min-aspect-ratio: 3/2) and (max-height: 32rem) { .fg { --h: 19rem; } }
+/* Telefono (una colonna): niente riquadro a altezza fissa con scorrimento interno, che dentro la finestra «Prova dal vivo»
+   lasciava vedere una sola scheda. Le schede stanno nel flusso e scorre la pagina; la barra dei comandi resta in cima. */
+@media (max-width: 55.99rem) {
+	.fg { height: auto; min-height: 22rem; grid-template-rows: auto auto; align-content: start; }
+	.fg__scroll { overflow: visible; margin-right: 0; padding: 0.15rem 0 0.5rem; }
+}
