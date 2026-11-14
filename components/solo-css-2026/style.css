@@ -515,9 +515,69 @@
 		height: 0.2rem;
 		scale: 0.4 1;
 	}
+	/* Dove il browser sa :target-current: pallini numerati come nelle altre schede (solo la voce attiva mostra il nome).
+	   Altrove resta l'elenco di testo qui sopra. */
 	@supports selector(:target-current) {
-		.sc-toc a:target-current::before {
+		.sc-toc {
+			padding-block: 0.35rem;
+		}
+		.sc-toc ol {
+			--dot: 2.25rem;
+			align-items: center;
+			gap: 0.25rem;
+			counter-reset: sc-t;
+			overflow: hidden;
+		}
+		.sc-toc li {
+			display: flex;
+			flex: 0 0 auto;
+			min-width: 0;
+			counter-increment: sc-t;
+		}
+		.sc-toc li:has(a:target-current) {
+			flex: 1 1 auto;
+		}
+		.sc-toc a {
+			display: flex;
+			align-items: center;
+			box-sizing: border-box;
+			min-width: var(--dot);
+			height: var(--dot);
+			padding: 0;
+			overflow: hidden;
+			border: 1.5px solid var(--line);
+			border-radius: var(--dot);
+			font-size: 0; /* il nome resta per il lettore di schermo, ma non si vede */
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		.sc-toc a::before {
+			content: counter(sc-t, decimal-leading-zero);
+			position: static;
+			display: grid;
+			flex: none;
+			place-items: center;
+			width: calc(var(--dot) - 3px);
+			height: auto;
+			background: none;
+			border-radius: 0;
+			color: var(--text);
+			font: 700 0.75rem var(--font-text);
+			opacity: 1;
 			scale: 1;
+		}
+		.sc-toc a:target-current {
+			flex: 1 1 auto;
+			padding-right: 0.9rem;
+			background: var(--accent);
+			border-color: var(--accent);
+			color: #fff;
+			font-size: 0.875rem;
+			font-weight: 600;
+			mask-image: linear-gradient(90deg, #000 calc(100% - 1.5rem), transparent); /* il nome lungo sfuma invece di tagliarsi */
+		}
+		.sc-toc a:target-current::before {
+			color: #fff;
 		}
 	}
 	.sc-sec {
