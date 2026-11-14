@@ -41,7 +41,13 @@
 		const same = r.v.every((x) => x === r.v[0]);
 		return `<tr${same ? ' class="is-same"' : ''}><th scope="row">${r.l}</th>${r.v.map((v, i) => `<td data-p="${PLANS[i].id}" class="${PLANS[i].best ? 'is-best' : ''}">${cell(v)}</td>`).join('')}</tr>`;
 	}).join('');
-	table.innerHTML = `<caption class="sr-only">${LabI18n.t('cf.cap', 'Confronto tra i tre piani del club')}</caption><thead><tr><td aria-hidden="true"></td>${head}</tr></thead><tbody>${body}</tbody>`;
+	// I ruoli ARIA espliciti servono perché in stretto la tabella è disegnata a griglia (display: grid) e alcuni browser ne perderebbero la semantica.
+	table.innerHTML = `<caption class="sr-only">${LabI18n.t('cf.cap', 'Confronto tra i tre piani del club')}</caption><thead role="rowgroup"><tr role="row"><td aria-hidden="true"></td>${head}</tr></thead><tbody role="rowgroup">${body}</tbody>`;
+	table.setAttribute('role', 'table');
+	table.querySelectorAll('tr').forEach((r) => r.setAttribute('role', 'row'));
+	table.querySelectorAll('th[scope="col"]').forEach((c) => c.setAttribute('role', 'columnheader'));
+	table.querySelectorAll('th[scope="row"]').forEach((c) => c.setAttribute('role', 'rowheader'));
+	table.querySelectorAll('td[data-p]').forEach((c) => c.setAttribute('role', 'cell'));
 
 	function summary() {
 		const p = PLANS.find((x) => x.id === chosen);

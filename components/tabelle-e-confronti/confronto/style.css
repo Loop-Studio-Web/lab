@@ -29,8 +29,26 @@
 .cf tr.is-same { transition: opacity 0.25s var(--ease-out); }
 @starting-style { .cf tr.is-same { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .cf th, .cf td, .cf tr.is-same, .cf-pick { transition: none; } }
+/* Stretto (telefono): niente scorrimento di lato né riquadro interno. I tre piani restano affiancati;
+   ogni voce è un'etichetta su una riga e, sotto, i tre valori. L'intestazione dei piani resta in cima mentre scorre la pagina. */
 @container (max-width: 34rem) {
-	.cf { min-width: 27rem; }
-	.cf tbody th { width: 7rem; font-size: 0.8125rem; }
-	.cf th, .cf td { padding-inline: 0.5rem; }
+	.tc-box { overflow: clip; } /* clip, non hidden: hidden fermerebbe l'intestazione sticky */
+	.cf-scroll { max-height: none; min-height: 0; overflow: visible; }
+	.cf { min-width: 0; display: block; }
+	.cf thead, .cf tbody { display: block; }
+	.cf thead { background: var(--head); border-bottom: 1px solid var(--line); }
+	/* sticky solo se la finestra è abbastanza alta: nel riquadro «Prova dal vivo» su telefono l'intestazione occuperebbe metà dello spazio */
+	@media (min-height: 38rem) { .cf thead { position: sticky; top: 0; z-index: 3; } }
+	.cf thead tr, .cf tbody tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	.cf tbody tr { border-bottom: 1px solid var(--line); }
+	.cf tbody tr:last-child { border-bottom: 0; }
+	.cf thead td { display: none; }
+	.cf th, .cf td { padding-inline: 0.3rem; border-bottom: 0; }
+	.cf thead th { position: static; padding-block: 0.6rem 0.55rem; }
+	.cf-name { font-size: 0.875rem; }
+	.cf-price { font-size: 1.05rem; }
+	.cf-badge { padding-inline: 0.4rem; font-size: 0.625rem; }
+	.cf-pick { padding: 0.35rem 0.6rem; }
+	.cf tbody th { grid-column: 1 / -1; position: static; width: auto; padding: 0.65rem 0.7rem 0.1rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; color: var(--muted); }
+	.cf tbody td { padding-block: 0.3rem 0.65rem; font-size: 0.8125rem; line-height: 1.25; }
 }

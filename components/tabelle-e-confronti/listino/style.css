@@ -39,9 +39,13 @@ th[aria-sort='descending'] .ls-sort i::before { content: '↓'; opacity: 1; colo
 
 /* Carte: sotto ~34rem di riquadro */
 @container (max-width: 34rem) {
+	/* Telefono: niente riquadro con scorrimento interno (due barre una dentro l'altra): scorre la pagina, e le carte si vedono tutte. */
+	.tc-box { overflow: clip; }
+	.ls-scroll { max-height: none; min-height: 0; overflow: visible; }
 	.ls, .ls tbody, .ls thead, .ls tr, .ls td { display: block; }
 	.ls caption { display: none; }
-	.ls thead { position: sticky; top: 0; z-index: 2; background: var(--head); border-bottom: 1px solid var(--line); }
+	.ls thead { background: var(--head); border-bottom: 1px solid var(--line); }
+	@media (min-height: 38rem) { .ls thead { position: sticky; top: 0; z-index: 2; } } /* in una finestra bassa occuperebbe un quarto dello spazio */
 	.ls thead tr { display: flex; flex-wrap: wrap; gap: 0.3rem 0.45rem; padding: 0.55rem 0.9rem; }
 	.ls thead th { position: static; display: block; padding: 0; border: 0; background: none; text-align: left; }
 	.ls thead .ls-sort { padding: 0.3rem 0.65rem; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; }
