@@ -7,10 +7,9 @@ e riprendere con «leggi docs/TODO.md, riparti dalla prima voce». Cronache lung
 
 Stato: online = `origin/main` (verificare con `git fetch`). Server di prova: `http://localhost:8765/components/<id>/` (sempre l'URL a cartella, mai `index.html`; tab via `#id`). **Schede: 30 esatte (13/11, regola dell'autore: ci si ferma a 30 per ora; idee in `docs/idee-future.md`).** Lab in fase di chiusura: l'autore ci tornerà tra qualche mese, quindi chiudere il più possibile ora.
 
-## Giro di correzioni da iPhone 12 mini (14/11, in corso). Fatte in locale, NON pushate: vanno mostrate all'autore e poi pushate col suo via (anche `Loop-Studio`: `417cff3` intestazione modale, 3 commit avanti a origin)
+## Da pushare (col via dell'autore)
 
-Da fare, in ordine (prova da iPhone: `node C:/Users/utente/studio-kit/scripts/serve-lan.mjs C:/Users/utente/Documents/Websites/Lab 8765 log.txt`, poi `http://<IP del PC>:8765/components/<id>/`; Python NON passa dal firewall, Node sì; Loop-Studio: `npx astro dev --host --port 4399`; fermare per PID/porta):
-6. `navigazione-e-schermo/schermo`: l'autore ha detto «togliamo» le etichette tecniche (`100lvh`, `visualViewport`), ma sono i nomi delle barre che il demo confronta: chiarire cosa togliere (solo lvh/visualViewport o le etichette di tutte le barre).
+Correzioni da iPhone (14/11) finite in locale, NON pushate: commit avanti a `origin/main` in Lab e in `Loop-Studio` (`417cff3` intestazione modale + 3). Prova da iPhone: `node C:/Users/utente/studio-kit/scripts/serve-lan.mjs C:/Users/utente/Documents/Websites/Lab 8765 log.txt`, poi `http://<IP del PC>:8765/components/<id>/` (Python NON passa dal firewall, Node sì; Loop-Studio: `npx astro dev --host --port 4399`; fermare per PID/porta).
 
 ## Fasi finali (in ordine, concordate il 13/11)
 
