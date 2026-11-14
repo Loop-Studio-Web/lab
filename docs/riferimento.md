@@ -25,7 +25,7 @@ Spostato da `CLAUDE.md` il 2026-11-08 per alleggerirlo: si legge solo quando il 
 - `C:\Users\utente\Documents\Assets\Lab_Componenti\`: `fonts/` (+`licenses/`), `photos-candidate/`, `photos-new/` (+`photos-new-list.txt` con i fotografi),
   `svg/` (flask, backpack, leaves, marchi, prezzi-*, biscotto), `icons/` (Lucide), `cutouts/`, `out/img` e `out/video`, `video/` (≤0,9 MB, muti),
   `video-src/` (originali 4K, NON pubblicare), `CREDITS.md`, `_build/` (script).
-  Crediti: solo la fonte (Unsplash/Pexels), mai per singola foto. Idee sorgente: `C:\Users\utente\Documents\Assets\Vetrine\Ispiration_Components`
+  Crediti: solo la fonte (Unsplash/Pexels), mai per singola foto. Autori noti (Unsplash): `navigazione-e-schermo/pollice/img/focaccia.webp` = mediha ekici (@mediha32, Hj20kQwSha8); `risotto.webp` = Hanna (@hannahagelin, 99snZGfYGn8). Idee sorgente: `C:\Users\utente\Documents\Assets\Vetrine\Ispiration_Components`
   (txt e zip CodePen "free to use"; i loro testi/font/immagini remoti vanno sostituiti con nostri).
 - **Server di prova**: `python -m http.server 8765` dalla radice del Lab, in background (porta libera prima; fermare solo il processo avviato da noi, mai `taskkill /IM`).
 - **Screenshot/test**: `node C:\Users\utente\Documents\Assets\Lab_Componenti\_build\drive.mjs <url> <outDir> <W> <H> <steps.json> [mobile]`;

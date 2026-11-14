@@ -1,7 +1,7 @@
 /* Parte comune ai tab di Filtri e griglie: solo il palco (barra di comandi + griglia di schede). L'impalcatura a due colonne sta in ../_shared/scheda.css. */
 
 /* Palco: barra di comandi in alto + elenco che scorre dentro il riquadro (la pagina no). */
-.fg { --h: min(31rem, 100svh - 9rem); display: grid; grid-template-rows: auto 1fr; gap: 0.7rem; height: var(--h); width: min(36rem, 100vw - 3rem); }
+.fg { --h: clamp(20rem, 100svh - 9rem, 31rem); /* mai sotto 20rem: in una finestra bassa (modale su telefono) il riquadro si schiacciava */ display: grid; grid-template-rows: auto 1fr; gap: 0.7rem; height: var(--h); width: min(36rem, 100vw - 3rem); }
 .fg__bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
 .fg__count { margin: 0 0 0 auto; color: var(--muted); font-size: 0.8125rem; font-variant-numeric: tabular-nums; }
 .fg__scroll { overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 0.15rem 0.25rem 0.5rem 0; margin-right: -0.25rem; }

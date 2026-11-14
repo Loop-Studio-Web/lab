@@ -10,7 +10,7 @@
 .vm-stage {
 	position: relative; isolation: isolate; overflow: hidden; container-type: size;
 	aspect-ratio: 4 / 3;
-	width: min(40rem, 100vw - 3rem, (100svh - 6rem) * 4 / 3);
+	width: min(40rem, 100vw - 3rem, max(20rem, (100svh - 6rem) * 4 / 3));
 	margin-inline: auto; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface);
 }
 .vm-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
