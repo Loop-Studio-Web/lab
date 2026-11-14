@@ -7,13 +7,9 @@ e riprendere con «leggi docs/TODO.md, riparti dalla prima voce». Cronache lung
 
 Stato: online = `origin/main` (verificare con `git fetch`). Server di prova: `http://localhost:8765/components/<id>/` (sempre l'URL a cartella, mai `index.html`; tab via `#id`). **Schede: 30 esatte (13/11, regola dell'autore: ci si ferma a 30 per ora; idee in `docs/idee-future.md`).** Lab in fase di chiusura: l'autore ci tornerà tra qualche mese, quindi chiudere il più possibile ora.
 
-## Da pushare (col via dell'autore)
-
-Correzioni da iPhone (14/11) finite in locale, NON pushate: commit avanti a `origin/main` in Lab e in `Loop-Studio` (`417cff3` intestazione modale + 3). Prova da iPhone: `node C:/Users/utente/studio-kit/scripts/serve-lan.mjs C:/Users/utente/Documents/Websites/Lab 8765 log.txt`, poi `http://<IP del PC>:8765/components/<id>/` (Python NON passa dal firewall, Node sì; Loop-Studio: `npx astro dev --host --port 4399`; fermare per PID/porta).
-
 ## Fasi finali (in ordine, concordate il 13/11)
 
-1. **Con l'autore, in una sola sessione** (server sulla stessa Wi-Fi o online): (i) telefono vero, Firefox/Safari, lettore di schermo, 1366×600/1920×950 per `comandi-rapidi`, `form-a-passi` («Su misura» scorre al suo interno), `tabelle-e-confronti`, `mappe-e-hotspot`, e i ripieghi di `vetro-e-materiali`, `transizioni-tra-pagine`, `solo-css-2026`; (ii) il tocco vero su telefono per tutte le schede, compresi `gesti-e-fisica`/`aggiorna`, gli altri tab di `storie-e-feed`, `navigazione-e-schermo`, `grafici` e il Pendolo di `pagine-404`.
+1. **Con l'autore**: controllo su Firefox (l'autore lo fa da solo) e, se avanza tempo, lettore di schermo e il tocco vero su `gesti-e-fisica`/`aggiorna`, `storie-e-feed`, `grafici`, Pendolo di `pagine-404`. Safari iPhone già provato (14/11); 1366×600 e 1920×950 provati da Claude il 14/11 su `comandi-rapidi`, `form-a-passi`, `tabelle-e-confronti`, `mappe-e-hotspot`, `vetro-e-materiali`: ok, niente scroll orizzontale né verticale.
 2. **Pulizia completa, da fare appena chiuso il punto 1 (regola dell'autore 13/11: non aspettare la nota finale)** (regola «Pulizia a progetto chiuso» del CLAUDE.md globale): inventario con i pesi prima, poi residui in repo (`git status --ignored`, `dist`/`.astro`/`.wrangler`; `node_modules` SÌ per i sorgenti chiusi `Lab-Calendario-demo` e `lab-preventivatore`, no per Lab/Loop-Studio/vetrine), `%TEMP%` (profili Chrome, `.tmp`, `lighthouse.*`, e la cartella `claude` come ultimo comando, con permesso), sessioni vecchie in `~/.claude/projects/` (mai `memory/`), note che citano file spariti; la cartella `Websites\lab-cambio-worker` (esempio non pubblicato) si tiene o si toglie con l'autore.
 3. **Ultima cosa: nota «come ripartire tra qualche mese»** in questo file (cosa è chiuso, cosa no, dove sono server/asset/strumenti: rimando a `docs/riferimento.md`), poi `/clear`.
 
