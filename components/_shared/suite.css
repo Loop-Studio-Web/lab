@@ -187,27 +187,39 @@ body > main {
 /* Telefono: pallini numerati; solo il tab attivo mostra anche il nome (gli altri lo tengono per il lettore di schermo) */
 @media (max-width: 40rem) {
 	.suite__list {
+		--dot: 2.75rem; /* diametro dei pallini e larghezza della cella del numero: scende con 4 e 5+ tab */
+		--pad: 1rem; /* aria a destra del nome nel pallino attivo */
 		gap: 0.35rem;
 		align-items: center;
 		padding: 0.35rem 0;
 		border-bottom: 0;
+	}
+	.suite__list[data-count='4'] {
+		--dot: 2.5rem;
+		--pad: 0.6rem;
+		gap: 0.25rem;
+	}
+	.suite__list[data-count='5'] {
+		--dot: 2.25rem;
+		--pad: 0.45rem;
+		gap: 0.2rem;
 	}
 	.suite__list [role='tab'] {
 		flex: 0 0 auto;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		min-width: 2.75rem;
-		height: 2.75rem;
+		min-width: var(--dot);
+		height: var(--dot);
 		padding: 0;
 		border: 1.5px solid var(--line);
-		border-radius: 1.4rem;
+		border-radius: var(--dot);
 		color: var(--text);
 	}
 	.suite__list [aria-selected='true'] {
 		flex: 1 1 auto;
 		min-width: 0;
-		padding: 0 1rem 0 0;
+		padding: 0 var(--pad) 0 0;
 		background: var(--accent);
 		border-color: var(--accent);
 	}
@@ -220,7 +232,7 @@ body > main {
 		display: grid;
 		place-items: center;
 		flex: none;
-		width: 2.75rem;
+		width: var(--dot);
 		color: #fff;
 	}
 	.suite__list [aria-selected='true'] .suite__t {

@@ -18,6 +18,7 @@
 
 	const top = root.querySelector('.suite__top');
 	const n = tabs.length;
+	list.dataset.count = n >= 5 ? '5' : String(n); // su telefono più tab ci sono, più i pallini si stringono (suite.css)
 	const pad = (i) => String(i + 1).padStart(2, '0');
 	const next = (i) => tabs[(i + 1) % n];
 
