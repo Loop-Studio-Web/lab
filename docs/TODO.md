@@ -7,6 +7,16 @@ e riprendere con «leggi docs/TODO.md, riparti dalla prima voce». Cronache lung
 
 Stato: online = `origin/main` (verificare con `git fetch`). Server di prova: `http://localhost:8765/components/<id>/` (sempre l'URL a cartella, mai `index.html`; tab via `#id`). **Schede: 30 esatte (13/11, regola dell'autore: ci si ferma a 30 per ora; idee in `docs/idee-future.md`).** Lab in fase di chiusura: l'autore ci tornerà tra qualche mese, quindi chiudere il più possibile ora.
 
+## Giro di correzioni da iPhone 12 mini (14/11, in corso). Fatte in locale, NON pushate: vanno mostrate all'autore e poi pushate col suo via (anche `Loop-Studio`: `417cff3` intestazione modale, 3 commit avanti a origin)
+
+Da fare, in ordine:
+1. **Scroll orizzontale su mobile**, pagina `/lab/` del sito madre e dentro la modale (es. Transizioni tra pagine mostra la barra in basso): misura con `studio-kit/scripts/overflow.mjs` a 360/375/390 su tutte le schede (server 8765) e su `/lab/` (dev di Loop-Studio: `npx astro dev --port 4399`, fermare per PID/porta). Corregge i responsabili.
+2. **`vetro-e-materiali` su telefono**: i campioni (Vetro liquido, Metallo, Grana, Smerigliato, Carta) hanno testo fuori dai loro riquadri; ridisporre.
+3. **`solo-css-2026`**: la minibar dei tab è diversa dalle altre (mancano i numeri 01/02 e i puntini) e la minibar iniziale ha formattazioni diverse da quella sticky; allinearla al guscio `_shared/suite.*` se possibile (scheda senza script: valutare).
+4. **Menu del sito madre tagliato sotto la barra di stato dell'iPhone** quando si scorre (safe-area / `top` dell'header sticky, probabile `viewport-fit`): da vedere in `Loop-Studio` (screenshot dell'autore: logo tagliato in alto).
+5. **Tab su due righe**, da decidere con l'autore a fine giro mobile (4 in una riga troppo stretti; idea alternativa dell'autore ancora da sentire).
+6. Domande aperte all'autore: `mappe-e-hotspot/giro` parte dalla tappa 4 (`START = 3`, voluto per la miniatura): partire dalla 1?; togliere il doppio clic su mobile nelle card del sito madre (`Loop-Studio`, primo tocco = «Prova dal vivo»); crediti per autore delle foto di focaccia e risotto; etichette tecniche (`100lvh`, `visualViewport.height`) in `navigazione-e-schermo/schermo`; cercare altri riquadri ad altezza fissa su `svh` (stesso difetto di Filtri e Storie).
+
 ## Fasi finali (in ordine, concordate il 13/11)
 
 1. **Con l'autore, in una sola sessione** (server sulla stessa Wi-Fi o online): (i) telefono vero, Firefox/Safari, lettore di schermo, 1366×600/1920×950 per `comandi-rapidi`, `form-a-passi` («Su misura» scorre al suo interno), `tabelle-e-confronti`, `mappe-e-hotspot`, e i ripieghi di `vetro-e-materiali`, `transizioni-tra-pagine`, `solo-css-2026`; (ii) il tocco vero su telefono per tutte le schede, compresi `gesti-e-fisica`/`aggiorna`, gli altri tab di `storie-e-feed`, `navigazione-e-schermo`, `grafici` e il Pendolo di `pagine-404`.
