@@ -7,7 +7,6 @@
 	const status = root.querySelector('.sc__status');
 	const barBrowser = root.querySelector('.sc__bar-browser');
 	const field = root.querySelector('[data-field]');
-	const attrsOut = document.querySelector('[data-attrs]');
 	const vvOut = document.querySelector('[data-vv]');
 	const ctl = (name) => document.querySelector('[data-ctl="' + name + '"]');
 	const bars = Object.fromEntries([...root.querySelectorAll('.sc__bar')].map((b) => [b.dataset.u, b]));
@@ -100,8 +99,6 @@
 		t.pattern ? field.setAttribute('pattern', t.pattern) : field.removeAttribute('pattern');
 		field.placeholder = placeholders()[v];
 		field.value = '';
-		const list = ['type', 'inputmode', 'pattern', 'autocomplete', 'autocapitalize'].filter((k) => t[k]).map((k) => k + '="' + t[k] + '"');
-		attrsOut.textContent = '<input ' + list.join(' ') + '>';
 		drawKeys(t.keys);
 		measure();
 	};

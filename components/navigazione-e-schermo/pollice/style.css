@@ -8,7 +8,7 @@
 .pz__tag { font-size: 0.75rem; color: var(--muted); }
 .pz__body { flex: 1; min-height: 0; display: grid; align-content: start; gap: 0.6rem; padding: 0.5rem 1rem; overflow: hidden; }
 .pz__card { display: grid; grid-template-columns: 3.4rem 1fr; gap: 0.7rem; padding: 0.6rem; background: #202020; border-radius: 0.9rem; }
-.pz__thumb { min-height: 3.4rem; border-radius: 0.6rem; background: linear-gradient(135deg, #b8542f, #7a2c1c); }
+.pz__thumb { display: block; width: 100%; height: 100%; min-height: 3.4rem; object-fit: cover; border-radius: 0.6rem; background: linear-gradient(135deg, #b8542f, #7a2c1c); }
 .pz__card--b .pz__thumb { background: linear-gradient(135deg, #c79a3b, #8a5d16); }
 .pz__card--c .pz__thumb { background: linear-gradient(135deg, #8d6a52, #4f3523); }
 .pz__text { min-width: 0; }
