@@ -8,6 +8,7 @@
 	const EXTRA = { pistacchio: 2 };
 	const SHIP = 4;
 	const MAXF = 3;
+	const phone = matchMedia('(max-width: 40rem)');
 
 	const $ = (s, r = document) => r.querySelector(s);
 	const root = $('[data-stage]');
@@ -249,6 +250,8 @@
 		renderReceipt();
 		save();
 		hideDraft();
+		// Telefono: scelto il box si passa subito al passo dei gusti (il tasto «Avanti» sta sotto e si potrebbe non vedere).
+		if (e.target.name === 'size' && step === 0 && phone.matches) setTimeout(() => step === 0 && next(), 280);
 	});
 	form.addEventListener('input', (e) => {
 		if (e.target === f.cap) f.cap.value = f.cap.value.replace(/\D/g, '');

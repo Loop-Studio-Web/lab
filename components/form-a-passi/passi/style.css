@@ -9,6 +9,8 @@
 .pa-draft { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.8rem; margin: 0 0 0.7rem; padding: 0.45rem 0.75rem; font-size: 0.8125rem; background: rgba(255, 59, 48, 0.12); border: 1px solid rgba(255, 59, 48, 0.4); border-radius: 0.6rem; }
 .pa-draft[hidden] { display: none; }
 .pa-draft span { margin-right: auto; }
+/* Telefono: la frase sta da sola sulla prima riga, «Riprendi» e «Cancella» insieme sulla seconda */
+@media (max-width: 40rem) { .pa-draft span { flex: 1 0 100%; } }
 
 /* Barra dei passi: linea, riempimento e ∞ che si sposta sul passo attuale */
 .pa-rail { position: relative; flex: none; margin-bottom: 0.9rem; --p: 0; }
