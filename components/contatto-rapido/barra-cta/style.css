@@ -8,11 +8,10 @@
 .bc__scroll::-webkit-scrollbar { display: none; }
 .bc__scroll:focus-visible { outline-offset: -3px; }
 .bc__scroll p { margin: 0 0 1rem; color: #cfcfcf; }
-.bc__hero { height: 7rem; margin-bottom: 1rem; border-radius: 0.7rem; background: linear-gradient(135deg, #2e2e2e, #1d1d1d); }
-.bc__hero--b { background: linear-gradient(135deg, #3a1a18, #1d1d1d); }
+.bc__hero { display: block; width: 100%; height: 7rem; margin-bottom: 1rem; object-fit: cover; border-radius: 0.7rem; background: #2e2e2e; }
 .bc__h { margin: 0 0 0.5rem; font-family: var(--font-display); font-size: 1.35rem; }
 .bc__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem; }
-.bc__cards i { height: 3.5rem; border-radius: 0.5rem; background: #242424; }
+.bc__cards img { display: block; width: 100%; height: 3.5rem; object-fit: cover; border-radius: 0.5rem; background: #242424; }
 .bc__tail { height: 6rem; border-radius: 0.7rem; background: #202020; }
 
 .bc__bar {
