@@ -9,11 +9,10 @@ Stato: online = `origin/main` (verificare con `git fetch`). Server di prova: `ht
 
 ## Giro di correzioni da iPhone 12 mini (14/11, in corso). Fatte in locale, NON pushate: vanno mostrate all'autore e poi pushate col suo via (anche `Loop-Studio`: `417cff3` intestazione modale, 3 commit avanti a origin)
 
-Da fare, in ordine:
+Da fare, in ordine (prova da iPhone: `node C:/Users/utente/studio-kit/scripts/serve-lan.mjs C:/Users/utente/Documents/Websites/Lab 8765 log.txt`, poi `http://<IP del PC>:8765/components/<id>/`; Python NON passa dal firewall, Node sì; Loop-Studio: `npx astro dev --host --port 4399`; fermare per PID/porta):
 2. **`vetro-e-materiali` su telefono**: i campioni (Vetro liquido, Metallo, Grana, Smerigliato, Carta) hanno testo fuori dai loro riquadri; ridisporre.
 3. **`solo-css-2026`**: la minibar dei tab è diversa dalle altre (mancano i numeri 01/02 e i puntini) e la minibar iniziale ha formattazioni diverse da quella sticky; allinearla al guscio `_shared/suite.*` se possibile (scheda senza script: valutare).
 4. **Menu del sito madre tagliato sotto la barra di stato dell'iPhone** quando si scorre (safe-area / `top` dell'header sticky, probabile `viewport-fit`): da vedere in `Loop-Studio` (screenshot dell'autore: logo tagliato in alto).
-5. **Da mostrare all'autore su iPhone**: tab a pallini numerati su telefono (`_shared/suite.*`, ≤ 40rem: solo l'attivo mostra anche il nome).
 6. Domande aperte all'autore: crediti per autore delle foto di focaccia e risotto; etichette tecniche (`100lvh`, `visualViewport.height`) in `navigazione-e-schermo/schermo`; cercare altri riquadri ad altezza fissa su `svh` (stesso difetto di Filtri e Storie).
 
 ## Fasi finali (in ordine, concordate il 13/11)
