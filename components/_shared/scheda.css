@@ -22,7 +22,7 @@
 .demo__stage { order: 0; }
 .demo__side > :not(.demo__head) { order: 1; }
 .demo__side > .fd-lead, .demo__side > .fd-controls, .demo__side > .fd-block { margin-inline: auto; width: min(100%, 36rem); }
-.demo__side > .fd-lead { margin-top: 1rem; text-align: left; }
+.demo__side > .fd-lead { margin-top: 0; margin-bottom: 1rem; text-align: left; order: -1; } /* la frase di riepilogo sta subito sotto il titolo: si capisce cosa fare prima di toccare */
 .demo__side > .fd-block { text-align: left; }
 
 /* Largo e basso (portatile, monitor, box «Prova dal vivo»): due colonne senza scroll.

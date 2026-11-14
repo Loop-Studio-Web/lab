@@ -1,7 +1,7 @@
 /* Parti comuni ai tre tab di «Storie e feed»: la cornice da telefono verticale 9:16 e le icone dei pulsanti. */
 .sf { display: grid; justify-items: center; }
 .sf-tel {
-	--h: min(28rem, 100svh - 12rem);
+	--h: clamp(26rem, 100svh - 12rem, 28rem); /* mai sotto 26rem: la larghezza deriva dall'altezza, e in una finestra bassa (modale su telefono) il telefono diventava largo meno di 7rem */
 	position: relative; height: var(--h); min-height: 16rem; width: min(calc(var(--h) * 9 / 16), 100%); overflow: hidden; isolation: isolate;
 	background: #0d0d0d; border: 1px solid var(--line); border-radius: 1.6rem;
 }

@@ -1,6 +1,6 @@
 /* Inclinazione: card a strati. Si animano solo transform (e un'opacità): gli strati li muove lo script con translate3d. */
 .in { display: grid; justify-items: center; gap: 0.9rem; }
-.in-scene { --h: min(24rem, 100svh - 16rem); position: relative; width: min(calc(var(--h) * 3 / 4), 100%); height: var(--h); min-height: 14rem; perspective: 60rem; }
+.in-scene { --h: clamp(20rem, 100svh - 16rem, 24rem); position: relative; width: min(calc(var(--h) * 3 / 4), 100%); height: var(--h); min-height: 14rem; perspective: 60rem; }
 @media (min-width: 56rem) and (min-aspect-ratio: 3/2) and (max-height: 32rem) { .in-scene { --h: min(24rem, 100svh - 8rem); } }
 .in-card {
 	position: absolute; inset: 0; overflow: hidden; isolation: isolate; border-radius: 1.4rem; background: #111; border: 1px solid rgba(255, 255, 255, 0.16);
