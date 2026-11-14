@@ -130,6 +130,7 @@
 	};
 
 	let corrente = 0;
+	let mosso = false;
 	const prepara = () => {
 		const top = deck.firstElementChild;
 		if (!top) return null;
@@ -150,9 +151,15 @@
 			deck._ignora = false;
 			// riprende da dove la molla si era fermata: l'origine del gesto è il punto di contatto
 			corrente = parseFloat((top.style.transform.match(/translate3d\((-?[\d.]+)px/) || [])[1]) || 0;
+			mosso = corrente !== 0;
 		},
-		onMove({ dx }) {
+		onMove({ dx, dy }) {
 			if (occupata || deck._ignora) return;
+			// Zona morta: finché il dito non va chiaramente di lato (e non in su/giù per scorrere la pagina) la carta sta ferma.
+			if (!mosso) {
+				if (Math.abs(dx) < 10 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+				mosso = true;
+			}
 			const top = prepara();
 			if (top) muovi(top, corrente + dx);
 		},
@@ -160,6 +167,7 @@
 			if (occupata || deck._ignora) return;
 			const top = prepara();
 			if (!top) return;
+			if (!mosso) return; // un tocco o uno scorrimento verticale: la carta non si è mossa
 			const x = corrente + dx;
 			const verso = annullato ? 0 : decidi(x, vx);
 			if (verso) lancia(top, x, vx, verso);

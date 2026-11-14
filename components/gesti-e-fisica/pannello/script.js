@@ -96,6 +96,7 @@
 		H = tel.clientHeight;
 		const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
 		soste = [H - 4.6 * rem, H * 0.5, H * 0.07];
+		tel.style.setProperty('--half', `${H * 0.5}px`);
 	};
 	const metti = (v) => {
 		y = v;
