@@ -254,7 +254,7 @@ function aggiorna() {
 		const n = perTema(b.dataset.tema);
 		b.querySelector('.tema__n').textContent = n;
 		b.querySelector('.tema__n').dataset.vuoto = n === 0;
-		b.setAttribute('aria-label', `${b.querySelector('.tema__nome').textContent}, ${n} ${n === 1 ? 'domanda' : 'domande'}`);
+		b.setAttribute('aria-label', `${b.querySelector('.tema__nome').textContent} ${n}, ${n === 1 ? 'domanda' : 'domande'}`);
 	}
 
 	// Visibili, nell'ordine di rilevanza. Chi compare ora (prima nascosto) entra con una piccola animazione.

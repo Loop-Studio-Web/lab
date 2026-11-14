@@ -34,7 +34,7 @@ body > footer.studio-mark {
 	align-items: center;
 	gap: 0.6rem;
 	width: max-content;
-	padding: 0.3rem 0.9rem;
+	padding: 0.05rem 0.9rem;
 	background: rgb(0 0 0 / 0.6);
 	border-radius: 99px;
 	pointer-events: none;
@@ -42,6 +42,7 @@ body > footer.studio-mark {
 body > footer.studio-mark .studio-mark__link {
 	pointer-events: auto;
 	opacity: 0.85;
+	padding-block: 0.25rem; /* bersaglio di tocco ≥ 24 px (il logo da solo è alto 18 px) */
 }
 body > footer.studio-mark img {
 	height: 1.15rem;

@@ -101,8 +101,10 @@
 			const f = PER_ID[li.dataset.id];
 			li.dataset.pos = i + 1;
 			$('.tessera__num', li).textContent = pad(i + 1);
-			const nuova = li.hasAttribute('data-nuova') ? ', nuova' : '';
-			bottone(li).setAttribute('aria-label', `Foto ${i + 1} di ${N}: ${f.nome}${i < VETRINA ? ', in vetrina' : ''}${nuova}`);
+			// Il nome accessibile ripete il testo visibile, nello stesso ordine (regola «label in name»), poi aggiunge la posizione.
+			const nuova = li.hasAttribute('data-nuova') ? 'Nuova ' : '';
+			const vetrina = i < VETRINA ? 'In vetrina ' : '';
+			bottone(li).setAttribute('aria-label', `${pad(i + 1)} ${vetrina}${nuova}${f.nome} Foto di ${f.autore}, posizione ${i + 1} di ${N}`);
 		});
 		// La copia in mano porta il numero del posto che sta per occupare.
 		if (presa?.ghost) $('.tessera__num', presa.ghost).textContent = pad(+presa.li.dataset.pos);
