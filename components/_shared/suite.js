@@ -113,19 +113,4 @@
 	select(fromHash || tabs[0], { push: false });
 	indicate(current());
 	requestAnimationFrame(() => root.classList.add('is-ready'));
-
-	// Invito animato, una volta sola: la barra rossa accenna al tab successivo e torna.
-	// Parte solo se l'utente non ha ancora toccato nulla e non chiede meno movimento.
-	if (!fromHash && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-		let touched = false;
-		list.addEventListener('pointerdown', () => (touched = true), { once: true });
-		list.addEventListener('keydown', () => (touched = true), { once: true });
-		const first = current();
-		setTimeout(() => {
-			if (touched || current() !== first) return;
-			const t = next(0);
-			list.style.setProperty('--x', `${first.offsetLeft + (t.offsetLeft - first.offsetLeft) * 0.22}px`);
-			setTimeout(() => !touched && current() === first && indicate(first), 450);
-		}, 1400);
-	}
 })();
