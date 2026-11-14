@@ -21,6 +21,19 @@ export function init(el) {
 	items = [...el.querySelectorAll('.fx')];
 	dots = [...el.querySelectorAll('.dots button')];
 	dots.forEach((d, k) => d.addEventListener('click', () => goTo(k)));
+	// Scorrimento orizzontale col dito (o trascinando): effetto precedente / successivo.
+	let from = null;
+	el.addEventListener('pointerdown', (e) => {
+		from = e.target.closest('a, button') ? null : { x: e.clientX, y: e.clientY };
+	});
+	el.addEventListener('pointerup', (e) => {
+		if (!from) return;
+		const dx = e.clientX - from.x;
+		const dy = e.clientY - from.y;
+		from = null;
+		if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) goTo((index + (dx < 0 ? 1 : -1) + items.length) % items.length);
+	});
+	el.addEventListener('pointercancel', () => (from = null));
 	el.querySelectorAll('[data-stack]').forEach(fx.buildStack);
 	el.querySelectorAll('[data-scramble]').forEach(fx.buildScramble);
 	el.querySelectorAll('[data-orbit]').forEach(fx.buildOrbit);

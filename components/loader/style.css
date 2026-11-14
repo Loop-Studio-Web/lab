@@ -793,7 +793,8 @@
 .ld3 { color-scheme: dark; background: var(--gray950); color: var(--gray50); min-height: 17rem; }
 .ld4 { background: var(--primary900); color: var(--primary100); border-color: hsl(223 90% 25%); min-height: 17rem; }
 .ld4 .stack { --stack-spacing: 15%; font-size: 0.55rem; }
-.ld1 { font-size: 1.5rem; }
+.ld1 { font-size: min(1.5rem, calc((100vw - 7rem) / 12.5)); } /* 12em di bolle devono stare nel riquadro anche su telefono */
+.ld2 .coffee { font-size: min(0.6em, calc((100vw - 7rem) / 32.75)); transform: translateX(-5.625em); } /* la tazza che si allunga occupa 32,75em: si rimpicciolisce e si ricentra */
 .ld3 { font-size: 1.3rem; }
 
 /* ---------- Preloader con il logo ---------- */

@@ -2,6 +2,9 @@
    ../../_shared/effetti-testo.css; qui il palco, la sequenza e i due effetti a scorrimento
    riportati al tempo (nel 404 non si scorre). */
 
+.page404--testo {
+	touch-action: pan-y; /* lo scorrimento orizzontale cambia effetto, quello verticale scorre la pagina */
+}
 .fxbox {
 	container-type: size;
 	position: relative;

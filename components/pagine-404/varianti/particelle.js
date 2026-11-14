@@ -183,6 +183,7 @@ function onLeave() {
 function onDown(e) {
 	if (e.target.closest('a, button')) return;
 	onMove(e);
+	panel.classList.add('is-tried'); // il suggerimento «click» ha fatto il suo lavoro
 	if (running) burst(ptr.x, ptr.y);
 }
 
