@@ -110,6 +110,7 @@
 }
 .torch__ctl input {
 	accent-color: var(--accent);
+	min-height: 1.5rem;
 }
 
 /* ——— 2. Cerchio a contrasto ——— */
