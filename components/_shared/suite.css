@@ -184,7 +184,62 @@ body > main {
 		translate: 0.25rem 0;
 	}
 }
+/* Telefono: pallini numerati; solo il tab attivo mostra anche il nome (gli altri lo tengono per il lettore di schermo) */
 @media (max-width: 40rem) {
+	.suite__list {
+		gap: 0.35rem;
+		align-items: center;
+		padding: 0.35rem 0;
+		border-bottom: 0;
+	}
+	.suite__list [role='tab'] {
+		flex: 0 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 2.75rem;
+		height: 2.75rem;
+		padding: 0;
+		border: 1.5px solid var(--line);
+		border-radius: 1.4rem;
+		color: var(--text);
+	}
+	.suite__list [aria-selected='true'] {
+		flex: 1 1 auto;
+		min-width: 0;
+		padding: 0 1rem 0 0;
+		background: var(--accent);
+		border-color: var(--accent);
+	}
+	.suite__list .suite__n {
+		margin: 0;
+		font: 700 0.85rem var(--font-text);
+		opacity: 1;
+	}
+	.suite__list [aria-selected='true'] .suite__n {
+		display: grid;
+		place-items: center;
+		flex: none;
+		width: 2.75rem;
+		color: #fff;
+	}
+	.suite__list [aria-selected='true'] .suite__t {
+		overflow: hidden;
+		color: #fff;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.suite__list [role='tab']:not([aria-selected='true']) .suite__t {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+	.suite__bar {
+		display: none;
+	}
 	.suite__hint span:last-child {
 		display: none;
 	}

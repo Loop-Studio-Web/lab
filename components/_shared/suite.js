@@ -27,7 +27,15 @@
 		num.className = 'suite__n';
 		num.setAttribute('aria-hidden', 'true');
 		num.textContent = pad(i);
-		t.prepend(num);
+		const label = document.createElement('span');
+		label.className = 'suite__t';
+		label.append(...t.childNodes); // il nome, in un suo elemento: su telefono si mostra solo quello del tab attivo
+		if (t.dataset.i18n) {
+			// la traduzione va sul nome: i18n.apply() riscrive il testo dell'elemento che ha data-i18n e cancellerebbe il numero
+			label.dataset.i18n = t.dataset.i18n;
+			t.removeAttribute('data-i18n');
+		}
+		t.append(num, label);
 	});
 
 	// Riga-invito sopra i tab: puntini di avanzamento + «N elementi · scegli».
