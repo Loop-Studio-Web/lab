@@ -17,7 +17,7 @@ modifiche si possono fare anche da fuori.
 Si procede a **lotti**: ogni lotto si costruisce, si mostra all'autore (link `http://localhost:8765/components/<id>/`),
 si raccolgono le correzioni, poi il lotto dopo. **Collaudi sul Lab (regola dell'autore, 22/10/2026): niente test formali**
 (niente Impeccable `detect`/`critique`, niente Lighthouse locale): solo **axe** e **PageSpeed Insights con la chiave**, DOPO il
-deploy, sulle pagine online. **Commit liberi, a pezzi logici; push solo dopo il via esplicito** (il deploy parte dal push su `main`).
+deploy, sulle pagine online. **Git: regole nel CLAUDE.md globale, sezione «Git»** (rami di lavoro, push su `main` solo col via; il deploy parte dal push su `main`).
 
 ## Struttura
 
